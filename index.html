@@ -2787,7 +2787,9 @@ body.theme-dark .search-highlight {
 .readiness-question-text {
   margin: 0 0 var(--space-24) 0;
   color: var(--color-text);
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
 }
 
 .readiness-scale {
@@ -2798,7 +2800,7 @@ body.theme-dark .search-highlight {
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-12);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--color-text-muted);
   text-align: center;
 }
@@ -2810,7 +2812,8 @@ body.theme-dark .search-highlight {
 .readiness-scale-inputs {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-8);
+  gap: var(--space-16);
+  padding: 0 var(--space-8);
 }
 
 .readiness-option {
@@ -2825,17 +2828,24 @@ body.theme-dark .search-highlight {
   transform: translateY(-2px);
 }
 
+.readiness-radio:hover {
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
 .readiness-radio {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: 2px solid var(--color-border);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: var(--font-weight-medium);
+  font-size: 16px;
   transition: all 0.2s ease;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-12);
+  cursor: pointer;
 }
 
 .readiness-option input:checked + .readiness-radio {
@@ -10088,6 +10098,9 @@ body.theme-dark .search-highlight {
 
             renderReadinessResults(results);
         }
+
+        // Делаем функцию глобально доступной
+        window.showReadinessResults = showReadinessResults;
 
         function assessReadiness(answers) {
             // Группируем ответы по категориям

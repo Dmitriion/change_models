@@ -127,6 +127,27 @@
   --container-lg: 1024px;
   --container-xl: 1280px;
 
+  /* Адаптивные размеры */
+  --responsive-padding: clamp(1rem, 4vw, 2rem);
+  --responsive-padding-lg: clamp(1.5rem, 6vw, 3rem);
+  --responsive-text-sm: clamp(0.75rem, 2vw, 0.875rem);
+  --responsive-text-base: clamp(0.875rem, 2.5vw, 1rem);
+  --responsive-text-lg: clamp(1rem, 3vw, 1.25rem);
+  --responsive-text-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --responsive-text-2xl: clamp(1.5rem, 5vw, 2rem);
+  --responsive-text-3xl: clamp(1.75rem, 6vw, 2.5rem);
+  --responsive-text-4xl: clamp(2rem, 8vw, 3rem);
+  --responsive-gap-sm: clamp(0.5rem, 2vw, 0.75rem);
+  --responsive-gap-md: clamp(0.75rem, 3vw, 1rem);
+  --responsive-gap-lg: clamp(1rem, 4vw, 1.5rem);
+
+  /* Новые брейкпоинты */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
   /* Presentation specific colors */
   --pres-primary: #1e3a8a;
   --pres-secondary: #0d9488;
@@ -137,6 +158,27 @@
   --pres-highlevel: #0d9488;
   --pres-actionable: #10b981;
   --pres-supporting: #f59e0b;
+
+  /* Адаптивные размеры */
+  --responsive-padding: clamp(1rem, 4vw, 2rem);
+  --responsive-padding-lg: clamp(1.5rem, 6vw, 3rem);
+  --responsive-text-sm: clamp(0.75rem, 2vw, 0.875rem);
+  --responsive-text-base: clamp(0.875rem, 2.5vw, 1rem);
+  --responsive-text-lg: clamp(1rem, 3vw, 1.25rem);
+  --responsive-text-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --responsive-text-2xl: clamp(1.5rem, 5vw, 2rem);
+  --responsive-text-3xl: clamp(1.75rem, 6vw, 2.5rem);
+  --responsive-text-4xl: clamp(2rem, 8vw, 3rem);
+  --responsive-gap-sm: clamp(0.5rem, 2vw, 0.75rem);
+  --responsive-gap-md: clamp(0.75rem, 3vw, 1rem);
+  --responsive-gap-lg: clamp(1rem, 4vw, 1.5rem);
+
+  /* Новые брейкпоинты */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -291,7 +333,7 @@ body {
   display: none;
   width: 100%;
   height: 100%;
-  padding: var(--space-32);
+  padding: var(--responsive-padding);
   overflow-y: auto;
   opacity: 0;
   transform: translateY(24px);
@@ -303,6 +345,18 @@ body {
   opacity: 1;
   transform: translateY(0);
   animation: slideFadeIn 0.6s var(--ease-standard);
+}
+
+@media (max-width: 640px) {
+  .slide {
+    padding: clamp(0.75rem, 3vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    padding: clamp(0.5rem, 2vw, 0.75rem);
+  }
 }
 
 @keyframes slideFadeIn {
@@ -333,7 +387,7 @@ body {
 }
 
 .slide-title {
-  font-size: var(--font-size-4xl);
+  font-size: var(--responsive-text-4xl);
   font-weight: var(--font-weight-bold);
   color: var(--pres-primary);
   margin-bottom: var(--space-16);
@@ -341,9 +395,19 @@ body {
 }
 
 .slide-subtitle {
-  font-size: var(--font-size-xl);
+  font-size: var(--responsive-text-xl);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-24);
+}
+
+@media (max-width: 480px) {
+  .slide-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .slide-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+  }
 }
 
 .stats-box {
@@ -383,6 +447,20 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-16);
+}
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: var(--responsive-gap-md);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--responsive-gap-lg);
+  }
 }
 
 .card {
@@ -426,6 +504,53 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--responsive-padding);
+  }
+
+  .card h3 {
+    font-size: var(--responsive-text-lg);
+    margin-bottom: var(--space-8);
+  }
+
+  .card p {
+    font-size: var(--responsive-text-sm);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .card:hover {
+    transform: none;
+  }
+
+  .card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Уважение настроек пользователя */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Упрощенные анимации на мобильных */
+@media (max-width: 640px) {
+  .slide.active {
+    animation-duration: 0.3s;
+  }
+
+  .card,
+  .toolbar-btn,
+  .filter-btn {
+    transition-duration: 0.15s;
+  }
 }
 
 .type-badge {
@@ -2118,6 +2243,74 @@ body.theme-dark .search-highlight {
     width: 18px;
     height: 18px;
     margin-top: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pct-tool, .roi-calculator, .quiz-tool {
+    padding: var(--responsive-padding);
+  }
+
+  /* PCT вкладки */
+  .pct-tabs {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .pct-tab {
+    width: 100%;
+    padding: var(--space-12);
+    font-size: 14px;
+  }
+
+  /* ROI инпуты */
+  .roi-input-group input {
+    min-height: 44px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+
+  /* Quiz опции */
+  .option-item {
+    padding: var(--space-12);
+    min-height: 60px;
+    font-size: 14px;
+  }
+
+  /* Результаты в виде карточек */
+  .pct-results-table,
+  .roi-results-table {
+    display: none;
+  }
+
+  .pct-results-cards,
+  .roi-results-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .result-card {
+    background: rgba(var(--color-teal-500-rgb), 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--space-16);
+  }
+
+  .result-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+  }
+
+  .result-card-title {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  .result-card-value {
+    font-size: var(--responsive-text-lg);
+    color: var(--color-teal-700);
+    font-weight: var(--font-weight-bold);
   }
 }
 
@@ -4353,6 +4546,69 @@ body.theme-dark .search-highlight {
   }
 }
 
+/* ========== Mobile Cards for Model Selector ========== */
+
+@media (max-width: 640px) {
+  /* Скрыть таблицу */
+  .comparison-table-wrapper {
+    display: none;
+  }
+
+  /* Показать карточную версию */
+  .comparison-cards-mobile {
+    display: block;
+  }
+
+  .mobile-model-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--space-16);
+    margin-bottom: var(--space-12);
+  }
+
+  .mobile-model-card h4 {
+    font-size: var(--responsive-text-lg);
+    margin-bottom: var(--space-8);
+    color: var(--color-teal-700);
+  }
+
+  .mobile-model-card-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-model-card-row:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-model-card-label {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    font-size: 12px;
+  }
+
+  .mobile-model-card-value {
+    font-size: 12px;
+    color: var(--color-text);
+    text-align: right;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Таблицы с горизонтальной прокруткой на планшетах */
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .model-comparison-table {
+    min-width: 700px;
+  }
+}
+
 /* ========== Modal Styles ========== */
 
 .modal-overlay {
@@ -5191,6 +5447,34 @@ body.theme-dark .search-highlight {
     display: none;
   }
 
+  .navigation {
+    padding: 6px 8px;
+    gap: var(--space-6);
+  }
+
+  .toolbar-btn {
+    min-height: 44px; /* Минимум для комфортного тапа */
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .slide-counter {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* Визуальный индикатор прокрутки */
+  .navigation::after {
+    content: '→';
+    position: sticky;
+    right: 0;
+    padding: 4px 8px;
+    background: linear-gradient(to left, var(--color-surface) 70%, transparent);
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
   .nav-center {
     flex-shrink: 0;
     min-width: auto;
@@ -5198,6 +5482,22 @@ body.theme-dark .search-highlight {
 
   .nav-actions-group {
     flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    padding: 4px 6px;
+  }
+
+  .toolbar-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .model-selector, .path-selector {
+    max-width: 120px;
+    font-size: 11px;
   }
 }
 
@@ -13417,6 +13717,10 @@ body.theme-dark .search-highlight {
             // Инициализируем UI
             setupModelSelectorEventListeners();
             buildModelsComparisonTable();
+            handleResponsiveTableView();
+
+            // Добавляем обработчик изменения размера окна
+            window.addEventListener('resize', handleResponsiveTableView);
 
             console.log('✓ Model Selector инициализирован');
         }
@@ -13618,6 +13922,73 @@ body.theme-dark .search-highlight {
                 'Культура': 'Фокус на ценностях, нормах и организационной культуре'
             };
             return tooltips[focus] || focus;
+        }
+
+        // Функция для создания мобильной карточной версии
+        function buildMobileModelCards() {
+            let container = document.querySelector('.comparison-cards-mobile');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'comparison-cards-mobile';
+                document.querySelector('.comparison-table-wrapper').parentNode.insertBefore(container, document.querySelector('.comparison-table-wrapper').nextSibling);
+            }
+
+            container.innerHTML = '';
+
+            filteredModels.forEach(model => {
+                const isSelected = selectedModels.includes(model.name);
+
+                const card = document.createElement('div');
+                card.className = `mobile-model-card ${isSelected ? 'selected' : ''}`;
+
+                card.innerHTML = `
+                    <h4>${model.name}</h4>
+                    <div class="mobile-model-card-row">
+                        <span class="mobile-model-card-label">Тип:</span>
+                        <span class="mobile-model-card-value">${model.type}</span>
+                    </div>
+                    <div class="mobile-model-card-row">
+                        <span class="mobile-model-card-label">Сложность:</span>
+                        <span class="mobile-model-card-value">${model.complexity}</span>
+                    </div>
+                    <div class="mobile-model-card-row">
+                        <span class="mobile-model-card-label">Масштаб:</span>
+                        <span class="mobile-model-card-value">${model.scale}</span>
+                    </div>
+                    <div class="mobile-model-card-row">
+                        <span class="mobile-model-card-label">Срок:</span>
+                        <span class="mobile-model-card-value">${model.duration}</span>
+                    </div>
+                    <div class="mobile-model-card-row">
+                        <span class="mobile-model-card-label">Фокус:</span>
+                        <span class="mobile-model-card-value">${model.focus}</span>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    toggleModelSelection(model.name, !selectedModels.includes(model.name));
+                    // Обновляем карточку
+                    buildMobileModelCards();
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // Адаптивное переключение между таблицей и карточками
+        function handleResponsiveTableView() {
+            const isMobile = window.innerWidth <= 640;
+            const tableWrapper = document.querySelector('.comparison-table-wrapper');
+            const cardsContainer = document.querySelector('.comparison-cards-mobile');
+
+            if (isMobile) {
+                if (tableWrapper) tableWrapper.style.display = 'none';
+                if (cardsContainer) cardsContainer.style.display = 'block';
+                buildMobileModelCards();
+            } else {
+                if (tableWrapper) tableWrapper.style.display = 'block';
+                if (cardsContainer) cardsContainer.style.display = 'none';
+            }
         }
 
         // Переключение фильтра

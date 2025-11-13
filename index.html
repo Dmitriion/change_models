@@ -4771,6 +4771,130 @@ body.theme-dark .search-highlight {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* ========== Final Slide Elegant Styles ========== */
+
+.final-slide-elegant {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+}
+
+.final-thanks {
+  text-align: center;
+  padding: var(--space-48) 0;
+}
+
+.final-thanks h2 {
+  font-size: 32px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-24);
+}
+
+.final-thanks p {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.final-contact {
+  text-align: center;
+  padding: var(--space-48) 0;
+}
+
+.contact-question {
+  font-size: 20px;
+  color: var(--color-text);
+  margin-bottom: var(--space-32);
+}
+
+.contact-name {
+  font-size: 24px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: 0 0 var(--space-32) 0;
+}
+
+.linkedin-button {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 14px 40px;
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(33, 128, 141, 0.2);
+}
+
+.linkedin-button:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+}
+
+.final-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-24);
+  padding: var(--space-32) 0;
+}
+
+.action-secondary {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-secondary:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-text-secondary);
+}
+
+/* Адаптивность для финального слайда */
+@media (max-width: 768px) {
+  .final-slide-elegant {
+    padding: var(--space-32) var(--space-16);
+  }
+
+  .final-thanks h2 {
+    font-size: 24px;
+  }
+
+  .final-thanks p {
+    font-size: 16px;
+  }
+
+  .contact-question {
+    font-size: 18px;
+  }
+
+  .contact-name {
+    font-size: 20px;
+  }
+
+  .final-actions {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .action-secondary {
+    width: 100%;
+  }
+}
+
 /* ========== Enhanced Quiz Styles ========== */
 .quiz-profile {
   background: rgba(var(--color-teal-500-rgb), 0.08);
@@ -8513,46 +8637,36 @@ body.theme-dark .search-highlight {
             
             // СЛАЙД 66 - ПОСЛЕДНИЙ СЛАЙД
             {
-                title: "Следующие Шаги и Ресурсы",
-                subtitle: "Как применить эти модели в вашей организации",
+                title: "Спасибо за время",
+                subtitle: "",
                 content: `
-                    <div class="cta-wrapper">
-                        <div class="cta-header">
-                            <h3>Готовы перейти от идей к действиям?</h3>
-                            <p>Вы познакомились с современным ландшафтом управления изменениями. Закрепите результаты и выведите трансформацию на новый уровень.</p>
+                    <div class="final-slide-elegant">
+                        <!-- Блок благодарности -->
+                        <div class="final-thanks">
+                            <h2>Спасибо за время</h2>
+                            <p>Теперь у вас есть инструменты<br>для управления изменениями</p>
                         </div>
-                        <div class="cta-metrics">
-                            <div class="cta-metric">
-                                <span class="cta-metric-value" id="ctaSlidesViewed">0</span>
-                                <span class="cta-metric-label">Слайдов изучено</span>
-                            </div>
-                            <div class="cta-metric">
-                                <span class="cta-metric-value" id="ctaBookmarksCount">0</span>
-                                <span class="cta-metric-label">Избранных идей</span>
-                            </div>
-                            <div class="cta-metric">
-                                <span class="cta-metric-value" id="ctaActivePath">Экспертный путь</span>
-                                <span class="cta-metric-label">Режим изучения</span>
-                            </div>
-                            <div class="cta-metric">
-                                <span class="cta-metric-value" id="ctaTimeSpent">00:00</span>
-                                <span class="cta-metric-label">Время в презентации</span>
-                            </div>
+
+                        <!-- Блок контакта -->
+                        <div class="final-contact">
+                            <p class="contact-question">💬 Нужна помощь в изменениях?</p>
+                            <h3 class="contact-name">Дмитрий Владимиров</h3>
+                            <a href="https://www.linkedin.com/in/dmitry-vladimirov-cdto"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="linkedin-button">
+                                LinkedIn →
+                            </a>
                         </div>
-                        <p class="cta-quiz-status" id="ctaQuizStatus">Мини-диагностика: ещё можно пройти на слайде 7</p>
-                        <div class="cta-actions">
-                            <a class="panel-button" id="ctaContact" href="https://www.linkedin.com/in/dmitry-vladimirov-cdto" target="_blank" rel="noopener noreferrer">📬 Связаться в LinkedIn</a>
-                            <button class="panel-button" id="ctaRestart" type="button">🔄 Перезапустить презентацию</button>
-                            <button class="panel-button secondary" id="ctaDownload" type="button">📄 Скачать PDF</button>
-                        </div>
-                        <div class="cta-next-steps">
-                            <h4>Следующие шаги</h4>
-                            <ul>
-                                <li>Соберите команду изменений и определите её роли (Role / Reason / Path / Partner).</li>
-                                <li>Выберите 2-3 модели, которые лучше всего отражают ваш контекст, и адаптируйте их к текущему проекту.</li>
-                                <li>Запланируйте пилот: определите метрики успеха, скорость циклов обратной связи и индикаторы сопротивления.</li>
-                                <li>Свяжитесь со мной для обмена опытом, проведения диагностики или коучинга команды трансформации.</li>
-                            </ul>
+
+                        <!-- Блок вторичных действий -->
+                        <div class="final-actions">
+                            <button onclick="location.reload()" class="action-secondary" type="button">
+                                🔄 Начать снова
+                            </button>
+                            <button onclick="exportToPDF()" class="action-secondary" type="button">
+                                📄 Сохранить
+                            </button>
                         </div>
                     </div>
                 `

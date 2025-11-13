@@ -13151,58 +13151,85 @@ body.theme-dark .search-highlight {
         
         // Export to PDF - Print all slides
         function exportToPDF() {
+            // Найдем индексы интерактивных слайдов для исключения из печати
+            const quizSlideIndex = slidesData.findIndex(slide =>
+                slide.title && slide.title.includes('Интерактивный квиз')
+            );
+            const roiSlideIndex = slidesData.findIndex(slide =>
+                slide.title && slide.title.includes('Калькулятор ROI')
+            );
+            const readinessSlideIndex = slidesData.findIndex(slide =>
+                slide.title && slide.title.includes('Диагностика готовности')
+            );
+            const constructorSlideIndex = slidesData.findIndex(slide =>
+                slide.title && slide.title.includes('Конструктор гибридной модели')
+            );
+            const pctSlideIndex = slidesData.findIndex(slide =>
+                slide.title && slide.title.includes('Prosci Change Triangle')
+            );
+
+            // Массив индексов интерактивных слайдов для исключения
+            const interactiveSlidesIndices = [quizSlideIndex, roiSlideIndex, readinessSlideIndex, constructorSlideIndex, pctSlideIndex].filter(index => index >= 0);
+
+            // Рассчитаем количество слайдов для печати (всего - интерактивные)
+            const printableSlidesCount = fullSlidesCount - interactiveSlidesIndices.length;
+
             // Show instruction dialog
             const exportMessage = [
-                `📄 ЭКСПОРТ ВСЕХ ${fullSlidesCount} СЛАЙДОВ В PDF`,
+                `📄 ЭКСПОРТ В PDF (ТОЛЬКО ИНФОРМАЦИОННЫЕ СЛАЙДЫ)`,
                 '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
                 '📋 ИНСТРУКЦИЯ:',
                 '1️⃣ Откроется диалог печати браузера',
                 '2️⃣ В поле "Принтер" выберите:\n   • "Сохранить как PDF" (Chrome/Edge)\n   • "Microsoft Print to PDF" (Firefox)',
                 '3️⃣ Настройки:\n   • Ориентация: АЛЬБОМНАЯ\n   • Страницы: ВСЕ\n   • Масштаб: По умолчанию',
                 '4️⃣ Нажмите "Сохранить"',
-                `✅ Результат: PDF со всеми ${fullSlidesCount} слайдами`,
+                `✅ Результат: PDF с ${printableSlidesCount} информационными слайдами`,
+                'ℹ️ Интерактивные инструменты (Квиз, ROI, Готовность, Конструктор, PCT) исключены из печати',
                 'Продолжить?'
             ].join('\n\n');
-            
+
             const userConfirmed = confirm(exportMessage);
-            
+
             if (!userConfirmed) {
                 return;
             }
-            
+
             // Prepare all slides for printing
             const slides = document.querySelectorAll('.slide');
             const navigation = document.querySelector('.navigation');
             const exportBtn = document.querySelector('.export-btn');
             const fullscreenBtn = document.querySelector('.fullscreen-btn');
             const progressBar = document.querySelector('.progress-bar-container');
-            
+
             // Store original states
             const originalStates = Array.from(slides).map(s => s.style.display);
-            
+
             // Prepare all slides for printing
             slides.forEach((slide, index) => {
-                // Make all slides visible
-                slide.style.display = 'block';
-                slide.style.opacity = '1';
-                slide.style.position = 'static';
-                slide.style.pageBreakAfter = 'always';
-                slide.style.pageBreakInside = 'avoid';
-                slide.style.width = '100%';
-                slide.style.maxWidth = '277mm';
-                slide.style.height = 'auto';
-                slide.style.maxHeight = '190mm';
-                slide.style.padding = '15mm';
-                slide.style.margin = '0 auto';
-                slide.style.overflow = 'hidden';
-                slide.style.boxSizing = 'border-box';
-                
-                // Remove active class from all
-                slide.classList.remove('active');
-                
-                // Remove page break from last slide
-                if (index === slides.length - 1) {
-                    slide.style.pageBreakAfter = 'auto';
+                // Проверяем, является ли слайд интерактивным инструментом
+                const isInteractiveSlide = interactiveSlidesIndices.includes(index);
+
+                if (isInteractiveSlide) {
+                    // Исключаем интерактивные слайды из печати
+                    slide.style.display = 'none';
+                } else {
+                    // Показываем информационные слайды
+                    slide.style.display = 'block';
+                    slide.style.opacity = '1';
+                    slide.style.position = 'static';
+                    slide.style.pageBreakAfter = 'always';
+                    slide.style.pageBreakInside = 'avoid';
+                    slide.style.width = '100%';
+                    slide.style.maxWidth = '277mm';
+                    slide.style.height = 'auto';
+                    slide.style.maxHeight = '190mm';
+                    slide.style.padding = '15mm';
+                    slide.style.margin = '0 auto';
+                    slide.style.overflow = 'hidden';
+                    slide.style.boxSizing = 'border-box';
+
+                    // Remove active class from all
+                    slide.classList.remove('active');
                 }
             });
             

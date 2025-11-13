@@ -5456,32 +5456,32 @@ body.theme-dark .search-highlight {
         
         const BOOKMARK_STORAGE_KEY = 'change_presentation_bookmarks_v1';
         const NOTES_STORAGE_KEY = 'change_presentation_notes_v1';
-        const ACHIEVEMENT_STORAGE_KEY = 'change_presentation_achievements_v1';
+        const ACHIEVEMENT_STORAGE_KEY = 'change_presentation_achievements_v2';
         
         const achievementThresholds = [
             {
                 id: 'slide-10-complete',
-                slideIndex: 9,
+                slidesCount: 10,
                 title: '10 слайдов позади!',
-                message: 'Отличный старт! Вы уже прошли основные концепции и готовы к углублению.'
+                message: 'Отличный старт! Вы уже прошли 10 разных слайдов и готовы к углублению.'
             },
             {
                 id: 'slide-25-complete',
-                slideIndex: 24,
-                title: 'Половина пути!',
-                message: 'Вы увидели ключевые модели и практики. Сделайте паузу на ветке кофе ☕ и продолжайте!'
+                slidesCount: 25,
+                title: 'Четверть пути!',
+                message: 'Вы просмотрели 25 слайдов! Сделайте паузу на чашку кофе ☕ и продолжайте!'
             },
             {
                 id: 'slide-50-complete',
-                slideIndex: 49,
+                slidesCount: 50,
                 title: '50 слайдов — вы эксперт!',
-                message: 'Вы практически охватили весь спектр методологий. Осталось совсем немного.'
+                message: 'Вы просмотрели 50 уникальных слайдов. Впечатляющий прогресс!'
             },
             {
                 id: 'slide-final',
-                slideIndex: null,
+                slidesCount: null,
                 title: 'Полное прохождение!',
-                message: 'Вы прошли все слайды и знакомы с 56 моделями управления изменениями. Впечатляет!'
+                message: 'Вы просмотрели все слайды презентации и знакомы с 56 моделями управления изменениями!'
             }
         ];
 
@@ -8450,10 +8450,6 @@ body.theme-dark .search-highlight {
         finalSlideIndex = fullSlidesCount - 1;
         modelsChartSlideIndex = findSlideIndexByKeyword('ландшафт');
         
-        const finalAchievement = achievementThresholds.find(item => item.id === 'slide-final');
-        if (finalAchievement) {
-            finalAchievement.slideIndex = fullSlidesCount - 1;
-        }
         
         buildLearningPaths();
         visibleSlides = learningPaths.expert.slides.slice();
@@ -8671,9 +8667,22 @@ body.theme-dark .search-highlight {
         let achievementVisible = false;
         
         function checkAchievements(slideIndex) {
+            const viewedCount = slidesVisited.size;
+
             for (const threshold of achievementThresholds) {
-                if (threshold.slideIndex === null) continue;
-                if (slideIndex >= threshold.slideIndex && !unlockedAchievements.has(threshold.id)) {
+                // Специальный случай: финальное достижение при просмотре всех слайдов
+                if (threshold.slidesCount === null) {
+                    if (viewedCount >= fullSlidesCount && !unlockedAchievements.has(threshold.id)) {
+                        unlockedAchievements.add(threshold.id);
+                        localStorage.setItem(ACHIEVEMENT_STORAGE_KEY, JSON.stringify([...unlockedAchievements]));
+                        queueAchievement(threshold);
+                        break;
+                    }
+                    continue;
+                }
+
+                // Обычные достижения: проверяем количество просмотренных слайдов
+                if (viewedCount >= threshold.slidesCount && !unlockedAchievements.has(threshold.id)) {
                     unlockedAchievements.add(threshold.id);
                     localStorage.setItem(ACHIEVEMENT_STORAGE_KEY, JSON.stringify([...unlockedAchievements]));
                     queueAchievement(threshold);

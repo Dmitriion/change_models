@@ -4601,6 +4601,7 @@ body.theme-dark .search-highlight {
 .separator-navigation {
   max-width: 600px;
   width: 100%;
+  margin-top: var(--space-32);
 }
 
 .nav-hint {
@@ -5857,9 +5858,6 @@ body.theme-dark .search-highlight {
                             </div>
                             <button class="separator-cta" onclick="changeSlide(1)">Начать путешествие →</button>
                         </div>
-                        <div class="model-navigation">
-                            <button class="panel-button" onclick="jumpToSlide(71)" type="button">← Вернуться к инструменту выбора моделей</button>
-                        </div>
                     </div>
                 `
             },
@@ -5947,13 +5945,10 @@ body.theme-dark .search-highlight {
                             <p id="timelineSummary">Выберите период на временной шкале, чтобы увидеть ключевые акценты эпохи и используемые модели.</p>
                             <ul id="timelineHighlights"></ul>
                         </div>
-                        <div class="model-navigation">
-                            <button class="panel-button" onclick="jumpToSlide(71)" type="button">← Вернуться к инструменту выбора моделей</button>
-                        </div>
                     </div>
                 `
             },
-            
+
             // СЛАЙД 4 - КЛЮЧЕВЫЕ ТРЕНДЫ 2025
             {
                 title: "7 Основных Трендов Управления Изменениями в 2025",
@@ -6039,13 +6034,10 @@ body.theme-dark .search-highlight {
                             <h3>7. НЕПРЕРЫВНОЕ ОБУЧЕНИЕ И АДАПТАЦИЯ</h3>
                             <p>Изменение - это спираль, а не конечная точка. Культура: PDCA циклы, "быстро ошибаться - быстро учиться". Результат: Организационная способность &gt; отдельные проекты.</p>
                         </div>
-                        <div class="model-navigation">
-                            <button class="panel-button" onclick="jumpToSlide(71)" type="button">← Вернуться к инструменту выбора моделей</button>
-                        </div>
                     </div>
                 `
             },
-            
+
             // СЛАЙД 5 - ЧТО ТРЕБУЕТСЯ ДЛЯ УСПЕХА
             {
                 title: "7 столпов успешного управления изменениями в 2025",
@@ -6080,13 +6072,10 @@ body.theme-dark .search-highlight {
                             <h3>7. Структурированная Личная Поддержка</h3>
                             <p>Обеспечьте каждого человека ясностью относительно их Роли, Причины изменения, Пути вперед и Партнера для поддержки (R2P2).</p>
                         </div>
-                        <div class="model-navigation">
-                            <button class="panel-button" onclick="jumpToSlide(71)" type="button">← Вернуться к инструменту выбора моделей</button>
-                        </div>
                     </div>
                 `
             },
-            
+
             // SLIDE 6 - MODEL SELECTION GUIDE
             {
                 title: "Матрица выбора модели",
@@ -6157,59 +6146,6 @@ body.theme-dark .search-highlight {
                             <p class="separator-subtitle">Комплексная диагностика и планирование изменений в 5 шагов</p>
                         </div>
 
-                        <div class="practice-path">
-                            <div class="path-step">
-                                <div class="path-icon">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
-                                    </svg>
-                                </div>
-                                <div class="path-label">Квиз</div>
-                                <div class="path-desc">Определите подходящую модель</div>
-                            </div>
-
-                            <div class="path-step">
-                                <div class="path-icon">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
-                                    </svg>
-                                </div>
-                                <div class="path-label">ROI</div>
-                                <div class="path-desc">Экономическая эффективность</div>
-                            </div>
-
-                            <div class="path-step">
-                                <div class="path-icon">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <circle cx="12" cy="8.5" r="3.5"></circle>
-                                        <path d="M6 19c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
-                                    </svg>
-                                </div>
-                                <div class="path-label">Готовность</div>
-                                <div class="path-desc">Диагностика организации</div>
-                            </div>
-
-                            <div class="path-step">
-                                <div class="path-icon">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                                    </svg>
-                                </div>
-                                <div class="path-label">Конструктор</div>
-                                <div class="path-desc">Гибридная модель</div>
-                            </div>
-
-                            <div class="path-step">
-                                <div class="path-icon">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                </div>
-                                <div class="path-label">PCT</div>
-                                <div class="path-desc">Комплексная оценка</div>
-                            </div>
-                        </div>
-
                         <div class="practice-tools">
                             <div class="practice-tool-card">
                                 <h4>Мини-диагностика</h4>
@@ -6243,34 +6179,7 @@ body.theme-dark .search-highlight {
                         </div>
 
                         <div class="separator-navigation">
-                            <div class="nav-hint">
-                                <p><strong>🔄 Логическая последовательность инструментов:</strong></p>
-                                <ul style="margin: var(--space-8) 0; padding-left: var(--space-16);">
-                                    <li><strong>Квиз</strong> → Определяет наиболее подходящую модель для вашего проекта</li>
-                                    <li><strong>ROI Калькулятор</strong> → Оценивает экономическую эффективность внедрения</li>
-                                    <li><strong>Диагностика готовности</strong> → Проверяет готовность организации к изменениям</li>
-                                    <li><strong>Конструктор модели</strong> → Создает персонализированную модель на основе предыдущих результатов</li>
-                                    <li><strong>PCT Оценка</strong> → Комплексная диагностика всех аспектов проекта изменений</li>
-                                </ul>
-                                <p><strong>💾 Автосохранение:</strong> Все результаты сохраняются в браузере и доступны для экспорта в PDF</p>
-                                <p><strong>🔗 Кросс-ссылки:</strong> Каждый инструмент ссылается на предыдущие результаты для комплексного анализа</p>
-                            </div>
-                            <div class="nav-actions">
-                                <button class="separator-cta" onclick="jumpToSlide(65)">🚀 Начать комплексную оценку</button>
-                                <div class="nav-shortcuts" style="margin-top: var(--space-16);">
-                                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-8);">Быстрый доступ:</p>
-                                    <div style="display: flex; gap: var(--space-8); flex-wrap: wrap;">
-                        <button class="nav-shortcut-btn" onclick="jumpToSlide(65)" title="Мини-диагностика">📋 Квиз</button>
-                        <button class="nav-shortcut-btn" onclick="jumpToSlide(66)" title="Калькулятор ROI">💰 ROI</button>
-                        <button class="nav-shortcut-btn" onclick="jumpToSlide(67)" title="Диагностика готовности">🎯 Готовность</button>
-                        <button class="nav-shortcut-btn" onclick="jumpToSlide(68)" title="Конструктор модели">🔧 Конструктор</button>
-                        <button class="nav-shortcut-btn" onclick="jumpToSlide(69)" title="PCT Оценка">📊 PCT</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="model-navigation">
-                            <button class="panel-button" onclick="jumpToSlide(71)" type="button">← Вернуться к инструменту выбора моделей</button>
+                            <button class="separator-cta" onclick="jumpToSlide(65)">🚀 Начать комплексную оценку</button>
                         </div>
                     </div>
                 `

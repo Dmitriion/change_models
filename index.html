@@ -3147,6 +3147,250 @@ body.theme-dark .search-highlight {
   border-left-color: #16A34A;
 }
 
+/* ========== Hero Intro Slide Styles ========== */
+
+.hero-intro-slide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--space-16);
+}
+
+.hero-hook {
+  background: rgba(239, 68, 68, 0.05);
+  padding: var(--space-24);
+  border-radius: 12px;
+  border-left: 4px solid #DC2626;
+  text-align: center;
+}
+
+.hero-hook .hook-question {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+  color: #DC2626;
+  margin-bottom: var(--space-20);
+  line-height: 1.2;
+}
+
+.hero-hook .hook-problems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-16);
+}
+
+.hero-hook .problem-item {
+  background: white;
+  padding: var(--space-16);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.hero-hook .problem-item:hover {
+  transform: translateY(-2px);
+}
+
+.hero-hook .problem-item .problem-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.hero-hook .problem-item p {
+  margin: 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  text-align: left;
+}
+
+.hero-value {
+  background: rgba(34, 197, 94, 0.05);
+  padding: var(--space-24);
+  border-radius: 12px;
+  border-left: 4px solid #22C55E;
+  text-align: center;
+}
+
+.hero-value h2 {
+  font-size: 24px;
+  color: #16A34A;
+  margin-bottom: var(--space-20);
+}
+
+.hero-value .value-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-20);
+}
+
+.hero-value .value-card {
+  background: white;
+  padding: var(--space-20);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.hero-value .value-card:hover {
+  transform: translateY(-2px);
+}
+
+.hero-value .value-card .card-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: var(--space-12);
+}
+
+.hero-value .value-card h3 {
+  margin: 0 0 var(--space-8) 0;
+  font-size: 18px;
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.hero-value .value-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.hero-proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+}
+
+.hero-proof .stat-card-hero {
+  background: var(--color-surface);
+  padding: var(--space-20);
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.hero-proof .stat-card-hero:hover {
+  transform: translateY(-2px);
+}
+
+.hero-proof .stat-card-hero.highlight {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+}
+
+.hero-proof .stat-card-hero .stat-number {
+  display: block;
+  font-size: 36px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.hero-proof .stat-card-hero.highlight .stat-number {
+  color: white;
+}
+
+.hero-proof .stat-card-hero p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.hero-proof .stat-card-hero.highlight p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-cta-section {
+  text-align: center;
+  padding: var(--space-24) 0;
+}
+
+.hero-cta-section .cta-primary-hero {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 16px 48px;
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(33, 128, 141, 0.3);
+  display: block;
+  margin: 0 auto var(--space-16) auto;
+  max-width: 300px;
+}
+
+.hero-cta-section .cta-primary-hero:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 128, 141, 0.4);
+}
+
+.hero-cta-section .cta-secondary-hero {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3B82F6;
+  border: 2px solid #3B82F6;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  max-width: 250px;
+}
+
+.hero-cta-section .cta-secondary-hero:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.hero-cta-section .cta-hint-text {
+  margin-top: var(--space-12);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+/* Mobile adaptations for hero slide */
+@media (max-width: 768px) {
+  .hero-intro-slide {
+    gap: var(--space-24);
+    padding: 0 var(--space-8);
+  }
+
+  .hero-hook .hook-question {
+    font-size: 24px;
+  }
+
+  .hero-hook .hook-problems {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-value .value-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-section .cta-primary-hero,
+  .hero-cta-section .cta-secondary-hero {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 /* ========== Hybrid Model Constructor Styles ========== */
 .hybrid-constructor {
   padding: var(--space-16);
@@ -6026,15 +6270,77 @@ body.theme-dark .search-highlight {
 
             // СЛАЙД 2 - ТИТУЛЬНЫЙ
             {
-                title: "56 МОДЕЛЕЙ УПРАВЛЕНИЯ ИЗМЕНЕНИЯМИ: От Классических к Современным",
-                subtitle: "Стратегический Путеводитель для Руководителей, Собственников Бизнеса и HR-специалистов",
+                title: "Мастер управления изменениями",
+                subtitle: "56 моделей • 5 инструментов • 1 правильное решение для вашего проекта",
                 content: `
-                    <div class="stats-box">
-                        <ul>
-                            <li>63% крупных организационных изменений терпят неудачу без правильной модели управления</li>
-                            <li>Компании со структурированным управлением изменениями успешнее в 2,5 раза</li>
-                            <li>2024-2025: новая парадигма - ИИ, персонализация, психологическая безопасность</li>
-                        </ul>
+                    <div class="hero-intro-slide">
+                        <!-- HOOK: Эмоциональный якорь через проблему -->
+                        <div class="hero-hook">
+                            <h2 class="hook-question">Ваш проект изменений под угрозой?</h2>
+                            <div class="hook-problems">
+                                <div class="problem-item">
+                                    <span class="problem-icon">😰</span>
+                                    <p>63% проектов проваливаются</p>
+                                </div>
+                                <div class="problem-item">
+                                    <span class="problem-icon">💸</span>
+                                    <p>Миллионы впустую</p>
+                                </div>
+                                <div class="problem-item">
+                                    <span class="problem-icon">🤷</span>
+                                    <p>Не знаете, какую модель выбрать</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VALUE PROPOSITION: Ценность решения -->
+                        <div class="hero-value">
+                            <h2>✅ Эта презентация — ваш ответ</h2>
+                            <div class="value-cards">
+                                <div class="value-card">
+                                    <span class="card-icon">🎯</span>
+                                    <h3>56 проверенных моделей</h3>
+                                    <p>От Левина 1947 до AI 2025</p>
+                                </div>
+                                <div class="value-card">
+                                    <span class="card-icon">🛠️</span>
+                                    <h3>5 интерактивных инструментов</h3>
+                                    <p>Квиз, ROI, Диагностика, Конструктор, PCT</p>
+                                </div>
+                                <div class="value-card">
+                                    <span class="card-icon">⚡</span>
+                                    <h3>Практическое применение</h3>
+                                    <p>Выберите модель за 20 минут</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SOCIAL PROOF: Статистическое доказательство -->
+                        <div class="hero-proof">
+                            <div class="stat-card-hero">
+                                <span class="stat-number">63%</span>
+                                <p>проектов проваливаются без правильной модели</p>
+                            </div>
+                            <div class="stat-card-hero highlight">
+                                <span class="stat-number">2.5x</span>
+                                <p>выше успех со структурированным подходом</p>
+                            </div>
+                            <div class="stat-card-hero">
+                                <span class="stat-number">$1M+</span>
+                                <p>средняя экономия на правильном выборе</p>
+                            </div>
+                        </div>
+
+                        <!-- CTA: Призыв к действию -->
+                        <div class="hero-cta-section">
+                            <button class="cta-primary-hero" onclick="changeSlide(1)" type="button">
+                                🚀 Начать путешествие
+                            </button>
+                            <button class="cta-secondary-hero" onclick="jumpToSlide(65)" type="button">
+                                ⚡ Быстрый квиз (5 минут)
+                            </button>
+                            <p class="cta-hint-text">⏱️ 20-40 минут • 💾 Прогресс сохраняется автоматически</p>
+                        </div>
                     </div>
                 `
             },

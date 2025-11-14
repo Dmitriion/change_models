@@ -752,6 +752,254 @@ body {
 }
 /* ========== КОНЕЦ СТИЛЕЙ ДЛЯ СЛАЙДА 2 ========== */
 
+/* ========== СТИЛИ ДЛЯ СЛАЙДА 6 - 7 СТОЛПОВ ========== */
+/* Горизонтальная компоновка карточек: иконка слева, текст справа */
+.pillars-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pillar-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-20);
+  padding: var(--space-24);
+}
+
+.pillar-icon {
+  flex-shrink: 0;
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--pres-primary);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.pillar-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+}
+
+.pillar-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.pillar-content h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin-bottom: var(--space-8);
+  color: var(--pres-primary);
+  line-height: 1.3;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pillar-content p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.pillar-card:hover .pillar-icon {
+  transform: scale(1.1);
+  background: rgba(var(--color-teal-500-rgb), 0.12);
+  border-color: var(--color-teal-300);
+  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+}
+
+/* Адаптивность для слайда 6 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .pillar-card {
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .pillar-icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pillar-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .pillar-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .pillar-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .pillar-card:hover {
+    transform: none;
+  }
+  
+  .pillar-card:active {
+    transform: scale(0.98);
+  }
+  
+  .pillar-card:hover .pillar-icon {
+    transform: none;
+  }
+  
+  .pillar-card:active .pillar-icon {
+    transform: scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-card,
+  .pillar-icon {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ========== КОНЕЦ СТИЛЕЙ ДЛЯ СЛАЙДА 6 ========== */
+
+/* ========== СТИЛИ ДЛЯ СЛАЙДА 5 - ТРЕНДЫ УПРАВЛЕНИЯ ИЗМЕНЕНИЯМИ ========== */
+/* Горизонтальная компоновка карточек: иконка слева, текст справа */
+.trends-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trend-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-20);
+  padding: var(--space-24);
+}
+
+.trend-icon {
+  flex-shrink: 0;
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--pres-primary);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.trend-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+}
+
+.trend-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.trend-content h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin-bottom: var(--space-8);
+  color: var(--pres-primary);
+  line-height: 1.3;
+  font-weight: var(--font-weight-semibold);
+}
+
+.trend-content p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.trend-card:hover .trend-icon {
+  transform: scale(1.1);
+  background: rgba(var(--color-teal-500-rgb), 0.12);
+  border-color: var(--color-teal-300);
+  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+}
+
+/* Адаптивность для слайда 5 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .trend-card {
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .trend-icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .trend-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .trend-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .trend-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .trend-card:hover {
+    transform: none;
+  }
+  
+  .trend-card:active {
+    transform: scale(0.98);
+  }
+  
+  .trend-card:hover .trend-icon {
+    transform: none;
+  }
+  
+  .trend-card:active .trend-icon {
+    transform: scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trend-card,
+  .trend-icon {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ========== КОНЕЦ СТИЛЕЙ ДЛЯ СЛАЙДА 5 ========== */
+
 /* Уважение настроек пользователя */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -8973,94 +9221,7 @@ body.theme-dark .search-highlight {
                 `
             },
             
-            // СЛАЙД 2 - КЛАССИФИКАЦИЯ
-            {
-                title: "Классификация: Как распределены 56 моделей",
-                subtitle: "Четыре основные категории для каждого сценария",
-                content: `
-                    <div class="grid-2">
-                        <div class="card classification-card">
-                            <div class="classification-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                            </div>
-                            <div class="classification-card-content">
-                                <span class="type-badge type-contextual">КОНТЕКСТНЫЕ МОДЕЛИ</span>
-                                <h3>15 Моделей</h3>
-                                <p><strong>Стратегические, макро-подходы</strong></p>
-                                <ul class="classification-models-list">
-                                    <li>Модель Левина</li>
-                                    <li>Коттер 8-этапов</li>
-                                    <li>Модель Сатир</li>
-                                    <li>Переход Бриджеса</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card classification-card">
-                            <div class="classification-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17.5 19H9a7 7 0 0 1-5-11.5A7 7 0 0 1 15 2"></path>
-                                    <path d="M22 10a3 3 0 0 0-3-3h-2.207a5.502 5.502 0 0 0-10.702.5"></path>
-                                </svg>
-                            </div>
-                            <div class="classification-card-content">
-                                <span class="type-badge type-highlevel">ВЫСОКОУРОВНЕВЫЕ МОДЕЛИ</span>
-                                <h3>10 Моделей</h3>
-                                <p><strong>Концептуальные Рамки</strong></p>
-                                <ul class="classification-models-list">
-                                    <li>Бекхард и Харрис</li>
-                                    <li>Модель Pritchett</li>
-                                    <li>Модель Carnall</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card classification-card">
-                            <div class="classification-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                                </svg>
-                            </div>
-                            <div class="classification-card-content">
-                                <span class="type-badge type-actionable">ДЕЙСТВЕННЫЕ МОДЕЛИ</span>
-                                <h3>26 Моделей</h3>
-                                <p><strong>Пошаговые, подробные методологии</strong></p>
-                                <ul class="classification-models-list">
-                                    <li>АДКАР</li>
-                                    <li>АИМ</li>
-                                    <li>ГЕ КАП</li>
-                                    <li>PDCA</li>
-                                    <li>Гибридный подход</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card classification-card">
-                            <div class="classification-card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                                </svg>
-                            </div>
-                            <div class="classification-card-content">
-                                <span class="type-badge type-supporting">ВСПОМОГАТЕЛЬНЫЕ МОДЕЛИ</span>
-                                <h3>8 Моделей</h3>
-                                <p><strong>Инструменты и методологии поддержки</strong></p>
-                                <ul class="classification-models-list">
-                                    <li>Теория подталкивания</li>
-                                    <li>AI-усиленный</li>
-                                    <li>Теории изменений</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="classification-highlight-box">
-                        <strong>Всего: 56 моделей, охватывающих каждый сценарий организационных изменений</strong>
-                    </div>
-                `
-            },
-            
-            // СЛАЙД 3 - ЭВОЛЮЦИЯ
+            // СЛАЙД 2 - ЭВОЛЮЦИЯ
             {
                 title: "История развития: 75 лет эволюции",
                 subtitle: "От научного управления до ИИ-усиленных подходов",
@@ -9081,10 +9242,10 @@ body.theme-dark .search-highlight {
                 title: "Тренды управления изменениями",
                 subtitle: "Что формирует будущее управления изменениями",
                 content: `
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <div class="grid-2 trends-grid">
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="7" width="18" height="10" rx="3"></rect>
                                     <circle cx="9" cy="12" r="1.5"></circle>
                                     <circle cx="15" cy="12" r="1.5"></circle>
@@ -9096,70 +9257,81 @@ body.theme-dark .search-highlight {
                                     <line x1="22.5" y1="12" x2="21" y2="12"></line>
                                 </svg>
                             </div>
-                            <h3>1. ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ КАК ИНСТРУМЕНТ</h3>
-                            <p>ИИ - это не только предмет изменений, но и инструмент для управления ими. Применение: Анализ настроений, прогнозная аналитика, адаптивная коммуникация. Компании с ИИ видят на 25-30% выше успешность внедрения.</p>
+                            <div class="trend-content">
+                                <h3>1. ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ КАК ИНСТРУМЕНТ</h3>
+                                <p>ИИ - это не только предмет изменений, но и инструмент для управления ими. Применение: Анализ настроений, прогнозная аналитика, адаптивная коммуникация. Компании с ИИ видят на 25-30% выше успешность внедрения.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M21 8.25c0-2.35-1.86-4.25-4.15-4.25-1.66 0-3.16 0.98-3.85 2.45-0.69-1.47-2.19-2.45-3.85-2.45C5.86 4 4 5.9 4 8.25c0 4.04 3.64 7.19 8 11 4.36-3.81 8-6.96 8-11z"></path>
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"></path>
                                 </svg>
                             </div>
-                            <h3>2. ЧЕЛОВЕК В ЦЕНТРЕ (Несмотря на Технологию)</h3>
-                            <p>Эмоции, психология и психологическая безопасность остаются решающими. Люди - это главный фактор успеха или неудачи изменений. Подход: Модели Сатир, R2P2, Мауэра.</p>
+                            <div class="trend-content">
+                                <h3>2. ЧЕЛОВЕК В ЦЕНТРЕ (Несмотря на Технологию)</h3>
+                                <p>Эмоции, психология и психологическая безопасность остаются решающими. Люди - это главный фактор успеха или неудачи изменений. Подход: Модели Сатир, R2P2, Мауэра.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="11 2 5 13 11 13 9 22 19 9 13 9 15 2"></polyline>
                                 </svg>
                             </div>
-                            <h3>3. СКОРОСТЬ И ГИБКОСТЬ КАК НОВЫЙ СТАНДАРТ</h3>
-                            <p>Гибридные модели (Waterfall + Agile) становятся нормой. Рынки меняются быстро, нужна адаптивность. Результат: Большие планы + быстрая реализация + коррекции.</p>
+                            <div class="trend-content">
+                                <h3>3. СКОРОСТЬ И ГИБКОСТЬ КАК НОВЫЙ СТАНДАРТ</h3>
+                                <p>Гибридные модели (Waterfall + Agile) становятся нормой. Рынки меняются быстро, нужна адаптивность. Результат: Большие планы + быстрая реализация + коррекции.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 21c-4.8-1.5-8-6.02-8-10.8V6.2L12 3l8 3.2v4.98c0 4.78-3.2 9.3-8 10.8z"></path>
-                                    <polyline points="9.5 12.5 12 15.5 15.5 10.5"></polyline>
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
                             </div>
-                            <h3>4. ГЛУБОКОЕ ПОНИМАНИЕ ТИПОВ СОПРОТИВЛЕНИЯ</h3>
-                            <p>Не всё сопротивление одинаково - 3 различных уровня. Уровень 1: "Я не понимаю", Уровень 2: "Мне это не нравится", Уровень 3: "Я вам не доверяю". Решение: Диагностика перед действием.</p>
+                            <div class="trend-content">
+                                <h3>4. ГЛУБОКОЕ ПОНИМАНИЕ ТИПОВ СОПРОТИВЛЕНИЯ</h3>
+                                <p>Не всё сопротивление одинаково - 3 различных уровня. Уровень 1: "Я не понимаю", Уровень 2: "Мне это не нравится", Уровень 3: "Я вам не доверяю". Решение: Диагностика перед действием.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="8.5" r="3.5"></circle>
-                                    <path d="M6 19c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
                             </div>
-                            <h3>5. ПЕРСОНАЛИЗАЦИЯ И ИНДИВИДУАЛЬНОСТЬ</h3>
-                            <p>Каждый сотрудник - уникальный путь, не один размер для всех. Модель R2P2: Роль, Причина, Путь, Партнер для каждого человека. Технология: AI помогает масштабировать персонализацию.</p>
+                            <div class="trend-content">
+                                <h3>5. ПЕРСОНАЛИЗАЦИЯ И ИНДИВИДУАЛЬНОСТЬ</h3>
+                                <p>Каждый сотрудник - уникальный путь, не один размер для всех. Модель R2P2: Роль, Причина, Путь, Партнер для каждого человека. Технология: AI помогает масштабировать персонализацию.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="9"></circle>
-                                    <path d="M3 12h18"></path>
-                                    <path d="M12 3c2.6 2.8 3.9 6 3.9 9s-1.3 6.2-3.9 9"></path>
-                                    <path d="M12 3c-2.6 2.8-3.9 6-3.9 9s1.3 6.2 3.9 9"></path>
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                                 </svg>
                             </div>
-                            <h3>6. ГИБРИДНАЯ РАБОТА ТРЕБУЕТ НОВЫХ ПОДХОДОВ</h3>
-                            <p>Удалённые команды нуждаются в структурированной виртуальной поддержке. Вызов: Меньше личных контактов, больше цифровых инструментов. Решение: Асинхронная коммуникация, виртуальные коучи.</p>
+                            <div class="trend-content">
+                                <h3>6. ГИБРИДНАЯ РАБОТА ТРЕБУЕТ НОВЫХ ПОДХОДОВ</h3>
+                                <p>Удалённые команды нуждаются в структурированной виртуальной поддержке. Вызов: Меньше личных контактов, больше цифровых инструментов. Решение: Асинхронная коммуникация, виртуальные коучи.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M5 6h6a2 2 0 0 1 2 2v12"></path>
-                                    <path d="M19 6h-6a2 2 0 0 0-2 2v12"></path>
-                                    <path d="M5 6v12.5c0-0.8 0.6-1.5 1.4-1.5H11"></path>
-                                    <path d="M19 6v12.5c0-0.8-0.6-1.5-1.4-1.5H13"></path>
+                        <div class="card trend-card">
+                            <div class="trend-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                                 </svg>
                             </div>
-                            <h3>7. НЕПРЕРЫВНОЕ ОБУЧЕНИЕ И АДАПТАЦИЯ</h3>
-                            <p>Изменение - это спираль, а не конечная точка. Культура: PDCA циклы, "быстро ошибаться - быстро учиться". Результат: Организационная способность &gt; отдельные проекты.</p>
+                            <div class="trend-content">
+                                <h3>7. НЕПРЕРЫВНОЕ ОБУЧЕНИЕ И АДАПТАЦИЯ</h3>
+                                <p>Изменение - это спираль, а не конечная точка. Культура: PDCA циклы, "быстро ошибаться - быстро учиться". Результат: Организационная способность &gt; отдельные проекты.</p>
+                            </div>
                         </div>
                     </div>
                 `
@@ -9170,38 +9342,44 @@ body.theme-dark .search-highlight {
                 title: "7 столпов успешного управления изменениями",
                 subtitle: "Основные элементы для эффективного лидерства",
                 content: `
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="icon">
+                    <div class="grid-2 pillars-grid">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M19.439 7.85c-.049-.177-.177-.304-.304-.353l-4.83-2.065a1 1 0 0 0-.608-.048l-5.492 1.106a1 1 0 0 1-.608-.048l-4.83-2.065a1.089 1.089 0 0 0-.304-.049 1 1 0 0 0-.304.049l-4.83 2.065a1 1 0 0 0-.608.804l-.088 4.83a1 1 0 0 0 .255.804l3.83 3.83a1 1 0 0 0 .804.255l4.83-.088a1 1 0 0 0 .804-.608l2.065-4.83a1 1 0 0 1 .048-.608l1.106-5.492a1.048 1.048 0 0 1 .048-.608l2.065-4.83c.049-.127.049-.255 0-.353z"></path>
                                 </svg>
                             </div>
-                            <h3>1. Комбинированный Подход к Моделям</h3>
-                            <p>Выберите правильный микс моделей для вашей конкретной ситуации. Ни одна модель не подходит для всех сценариев.</p>
+                            <div class="pillar-content">
+                                <h3>1. Комбинированный Подход к Моделям</h3>
+                                <p>Выберите правильный микс моделей для вашей конкретной ситуации. Ни одна модель не подходит для всех сценариев.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"></path>
                                 </svg>
                             </div>
-                            <h3>2. Понимание Человеческой Психологии</h3>
-                            <p>Признайте эмоциональное путешествие, которое люди переживают во время изменений. Работайте со страхами, сопротивлением и опасениями с эмпатией.</p>
+                            <div class="pillar-content">
+                                <h3>2. Понимание Человеческой Психологии</h3>
+                                <p>Признайте эмоциональное путешествие, которое люди переживают во время изменений. Работайте со страхами, сопротивлением и опасениями с эмпатией.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
                                     <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
                                     <path d="m9 12 3 3L22 4"></path>
                                 </svg>
                             </div>
-                            <h3>3. Гибкость и Адаптивность</h3>
-                            <p>Будьте готовы быстро менять курс, когда обстоятельства изменяются. Встраивайте циклы обратной связи и механизмы корректировки.</p>
+                            <div class="pillar-content">
+                                <h3>3. Гибкость и Адаптивность</h3>
+                                <p>Будьте готовы быстро менять курс, когда обстоятельства изменяются. Встраивайте циклы обратной связи и механизмы корректировки.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="4" y="2" width="16" height="20" rx="2"></rect>
                                     <path d="M9 22v-4h6v4"></path>
@@ -9213,29 +9391,35 @@ body.theme-dark .search-highlight {
                                     <path d="M12 18h.01"></path>
                                 </svg>
                             </div>
-                            <h3>4. Технология как Инструмент</h3>
-                            <p>Используйте AI и цифровые инструменты для улучшения принятия решений, но не заменяйте человеческое суждение и эмпатию.</p>
+                            <div class="pillar-content">
+                                <h3>4. Технология как Инструмент</h3>
+                                <p>Используйте AI и цифровые инструменты для улучшения принятия решений, но не заменяйте человеческое суждение и эмпатию.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                                 </svg>
                             </div>
-                            <h3>5. Непрерывное Обучение</h3>
-                            <p>Установите циклы обратной связи на каждом этапе. Учитесь на неудачах и успехах для постоянного улучшения.</p>
+                            <div class="pillar-content">
+                                <h3>5. Непрерывное Обучение</h3>
+                                <p>Установите циклы обратной связи на каждом этапе. Учитесь на неудачах и успехах для постоянного улучшения.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
                                 </svg>
                             </div>
-                            <h3>6. Доверие и Психологическая Безопасность</h3>
-                            <p>Создайте среду, в которой люди чувствуют себя в безопасности, чтобы выражать опасения, задавать вопросы и рисковать.</p>
+                            <div class="pillar-content">
+                                <h3>6. Доверие и Психологическая Безопасность</h3>
+                                <p>Создайте среду, в которой люди чувствуют себя в безопасности, чтобы выражать опасения, задавать вопросы и рисковать.</p>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card pillar-card">
+                            <div class="pillar-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
@@ -9243,8 +9427,10 @@ body.theme-dark .search-highlight {
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
                             </div>
-                            <h3>7. Структурированная Личная Поддержка</h3>
-                            <p>Обеспечьте каждого человека ясностью относительно их Роли, Причины изменения, Пути вперед и Партнера для поддержки (R2P2).</p>
+                            <div class="pillar-content">
+                                <h3>7. Структурированная Личная Поддержка</h3>
+                                <p>Обеспечьте каждого человека ясностью относительно их Роли, Причины изменения, Пути вперед и Партнера для поддержки (R2P2).</p>
+                            </div>
                         </div>
                     </div>
                 `
@@ -10343,49 +10529,89 @@ body.theme-dark .search-highlight {
         classicalModels.forEach(model => extendModelData(model));
         newModels.forEach(model => extendModelData(model));
 
-        // СЛАЙД - РАЗДЕЛИТЕЛЬ: МОДЕЛИ УПРАВЛЕНИЯ ИЗМЕНЕНИЯМИ
+        // СЛАЙД 8 - КЛАССИФИКАЦИЯ
         slidesData.push({
-            title: "Модели управления изменениями",
-            subtitle: "56 подходов от классических до современных",
+            title: "Классификация: Как распределены 56 моделей",
+            subtitle: "Четыре основные категории для каждого сценария",
             content: `
-                <div class="section-separator models-separator">
-                    <div class="models-overview">
-                        <div class="model-category-card">
+                <div class="grid-2">
+                    <div class="card classification-card">
+                        <div class="classification-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="classification-card-content">
                             <span class="type-badge type-contextual">КОНТЕКСТНЫЕ МОДЕЛИ</span>
-                            <h4>Стратегические, макро-подходы</h4>
-                            <p>Модели, фокусирующиеся на общем контексте изменений, стратегическом планировании и системном подходе.</p>
-                            <span class="model-count">15 моделей</span>
+                            <h3>15 Моделей</h3>
+                            <p><strong>Стратегические, макро-подходы</strong></p>
+                            <ul class="classification-models-list">
+                                <li>Модель Левина</li>
+                                <li>Коттер 8-этапов</li>
+                                <li>Модель Сатир</li>
+                                <li>Переход Бриджеса</li>
+                            </ul>
                         </div>
-
-                        <div class="model-category-card">
+                    </div>
+                    <div class="card classification-card">
+                        <div class="classification-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17.5 19H9a7 7 0 0 1-5-11.5A7 7 0 0 1 15 2"></path>
+                                <path d="M22 10a3 3 0 0 0-3-3h-2.207a5.502 5.502 0 0 0-10.702.5"></path>
+                            </svg>
+                        </div>
+                        <div class="classification-card-content">
                             <span class="type-badge type-highlevel">ВЫСОКОУРОВНЕВЫЕ МОДЕЛИ</span>
-                            <h4>Концептуальные рамки</h4>
-                            <p>Абстрактные модели, предоставляющие высокоуровневые концепции и теоретические основы.</p>
-                            <span class="model-count">10 моделей</span>
+                            <h3>10 Моделей</h3>
+                            <p><strong>Концептуальные Рамки</strong></p>
+                            <ul class="classification-models-list">
+                                <li>Бекхард и Харрис</li>
+                                <li>Модель Pritchett</li>
+                                <li>Модель Carnall</li>
+                            </ul>
                         </div>
-
-                        <div class="model-category-card">
+                    </div>
+                    <div class="card classification-card">
+                        <div class="classification-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <div class="classification-card-content">
                             <span class="type-badge type-actionable">ДЕЙСТВЕННЫЕ МОДЕЛИ</span>
-                            <h4>Пошаговые методологии</h4>
-                            <p>Практические модели с четкими этапами, инструментами и рекомендациями по реализации.</p>
-                            <span class="model-count">26 моделей</span>
+                            <h3>26 Моделей</h3>
+                            <p><strong>Пошаговые, подробные методологии</strong></p>
+                            <ul class="classification-models-list">
+                                <li>АДКАР</li>
+                                <li>АИМ</li>
+                                <li>ГЕ КАП</li>
+                                <li>PDCA</li>
+                                <li>Гибридный подход</li>
+                            </ul>
                         </div>
-
-                        <div class="model-category-card">
+                    </div>
+                    <div class="card classification-card">
+                        <div class="classification-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                            </svg>
+                        </div>
+                        <div class="classification-card-content">
                             <span class="type-badge type-supporting">ВСПОМОГАТЕЛЬНЫЕ МОДЕЛИ</span>
-                            <h4>Инструменты и методологии поддержки</h4>
-                            <p>Специализированные модели для конкретных аспектов управления изменениями и поддержки.</p>
-                            <span class="model-count">8 моделей</span>
+                            <h3>8 Моделей</h3>
+                            <p><strong>Инструменты и методологии поддержки</strong></p>
+                            <ul class="classification-models-list">
+                                <li>Теория подталкивания</li>
+                                <li>AI-усиленный</li>
+                                <li>Теории изменений</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="models-cta-container">
-                        <button class="models-cta-full" onclick="jumpToSlide(9)">Изучить модели →</button>
-                    </div>
-
-                    <div class="models-hint">
-                        <p>Категории: каждая модель имеет цветовую маркировку для облегчения поиска</p>
-                    </div>
+                </div>
+                <div class="classification-highlight-box">
+                    <strong>Всего: 56 моделей, охватывающих каждый сценарий организационных изменений</strong>
                 </div>
             `
         });
@@ -17485,4 +17711,5 @@ body.theme-dark .search-highlight {
         setTimeout(showSwipeHint, 1000);
     </script>
 </body>
+</html>
 </html>

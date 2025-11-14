@@ -1680,6 +1680,233 @@ body.theme-dark .search-highlight {
   margin: var(--space-24) 0;
 }
 
+/* ========== Matrix Comparison Slide Styles ========== */
+.matrix-comparison-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-32);
+}
+
+.matrix-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-24);
+  margin-bottom: var(--space-40);
+}
+
+.matrix-stat-card {
+  text-align: center;
+  padding: var(--space-32);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.matrix-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.08), rgba(var(--color-brown-600-rgb), 0.08));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-standard);
+  pointer-events: none;
+}
+
+.matrix-stat-card:nth-child(1) {
+  background: linear-gradient(135deg, var(--color-bg-1) 0%, rgba(59, 130, 246, 0.1) 100%);
+  animation-delay: 0.1s;
+}
+
+.matrix-stat-card:nth-child(2) {
+  background: linear-gradient(135deg, var(--color-bg-3) 0%, rgba(34, 197, 94, 0.1) 100%);
+  animation-delay: 0.2s;
+}
+
+.matrix-stat-card:nth-child(3) {
+  background: linear-gradient(135deg, var(--color-bg-5) 0%, rgba(147, 51, 234, 0.1) 100%);
+  animation-delay: 0.3s;
+}
+
+.matrix-stat-card:nth-child(4) {
+  background: linear-gradient(135deg, var(--color-bg-2) 0%, rgba(245, 158, 11, 0.1) 100%);
+  animation-delay: 0.4s;
+}
+
+.matrix-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
+}
+
+.matrix-stat-card:hover::before {
+  opacity: 1;
+}
+
+.matrix-stat-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-16);
+  color: var(--pres-primary);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.matrix-stat-number {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-12);
+  line-height: 1.2;
+  color: var(--pres-primary);
+}
+
+.matrix-stat-label {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.matrix-insights {
+  background: linear-gradient(135deg, var(--color-surface) 0%, rgba(var(--color-teal-500-rgb), 0.05) 100%);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--space-40);
+}
+
+.matrix-insights h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-24);
+  color: var(--pres-primary);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+
+.matrix-insights-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.matrix-insights ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin: 0;
+}
+
+.matrix-insights li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  line-height: 1.6;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.matrix-insights-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Matrix Comparison Responsive Styles ========== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .matrix-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-20);
+  }
+  
+  .matrix-comparison-container {
+    padding: var(--space-24);
+  }
+}
+
+@media (max-width: 767px) {
+  .matrix-comparison-container {
+    padding: var(--space-16);
+  }
+  
+  .matrix-stats-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    margin-bottom: var(--space-32);
+  }
+  
+  .matrix-stat-card {
+    min-height: 140px;
+    padding: var(--space-24);
+  }
+  
+  .matrix-stat-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--space-12);
+  }
+  
+  .matrix-insights {
+    padding: var(--space-24);
+    margin-top: var(--space-32);
+  }
+  
+  .matrix-insights h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .matrix-stat-card:hover {
+    transform: none;
+  }
+  
+  .matrix-stat-card:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matrix-stat-card {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .matrix-stat-card,
+  .matrix-stat-card::before {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .cta-wrapper {
   display: flex;
   flex-direction: column;
@@ -1910,16 +2137,18 @@ body.theme-dark .search-highlight {
 
 /* ========== PCT Tool Styles ========== */
 .pct-tool {
-  padding: var(--space-16);
-  max-width: 100%;
+  padding: var(--space-32);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .pct-intro {
   background: rgba(var(--color-teal-500-rgb), 0.08);
-  padding: var(--space-16);
-  border-radius: 8px;
-  margin-bottom: var(--space-24);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-32);
   line-height: 1.6;
+  box-shadow: var(--shadow-sm);
 }
 
 .pct-intro p {
@@ -1938,9 +2167,9 @@ body.theme-dark .search-highlight {
 }
 
 .pct-progress-bar {
-  height: 8px;
+  height: 12px;
   background: var(--color-gray-200);
-  border-radius: 4px;
+  border-radius: var(--radius-full);
   overflow: hidden;
   margin-top: var(--space-8);
 }
@@ -1950,39 +2179,76 @@ body.theme-dark .search-highlight {
   background: linear-gradient(90deg, var(--color-teal-500), var(--color-teal-400));
   transition: width 0.3s ease;
   width: 0%;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(var(--color-teal-500-rgb), 0.3);
 }
 
 .pct-tabs {
   display: flex;
-  gap: var(--space-8);
-  margin-bottom: var(--space-24);
+  gap: var(--space-12);
+  margin-bottom: var(--space-32);
   flex-wrap: wrap;
 }
 
 .pct-tab {
+  position: relative;
   flex: 1;
   min-width: 140px;
-  padding: var(--space-12) var(--space-16);
-  border: 2px solid var(--color-border);
+  padding: var(--space-16) var(--space-20);
+  border: 1px solid var(--color-card-border);
   background: var(--color-surface);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  justify-content: center;
+}
+
+.pct-tab svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .pct-tab:hover {
-  border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(var(--color-slate-900-rgb), 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
 }
 
 .pct-tab.active {
   background: var(--color-primary);
   color: var(--color-white);
   border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.3);
+}
+
+.pct-tab.active svg {
+  color: var(--color-white);
+}
+
+.pct-tab-progress {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 2px 8px rgba(var(--color-teal-500-rgb), 0.3);
 }
 
 .pct-content {
@@ -2011,17 +2277,33 @@ body.theme-dark .search-highlight {
 }
 
 .pct-factor {
+  position: relative;
   background: var(--color-surface);
-  padding: var(--space-16);
-  border-radius: 8px;
-  margin-bottom: var(--space-12);
-  border: 1px solid var(--color-border);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-16);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
 }
 
 .pct-factor:hover {
-  border-color: var(--color-primary);
-  box-shadow: 0 2px 8px rgba(var(--color-slate-900-rgb), 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
+}
+
+.pct-factor.has-selection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 40px 40px 0;
+  border-color: transparent var(--color-primary) transparent transparent;
+  z-index: 1;
 }
 
 .pct-factor-text {
@@ -2035,61 +2317,104 @@ body.theme-dark .search-highlight {
   display: flex;
   gap: var(--space-16);
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .pct-rating label {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-8);
   cursor: pointer;
-  padding: var(--space-8) var(--space-16);
-  border-radius: 6px;
-  transition: background 0.2s ease;
+  transition: transform 0.2s ease;
+  min-width: 100px;
   user-select: none;
 }
 
-.pct-rating label:hover {
-  background: rgba(var(--color-teal-500-rgb), 0.08);
-}
-
 .pct-rating input[type="radio"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  accent-color: var(--color-primary);
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.pct-rating input[type="radio"]:checked + span {
+.pct-rating-option {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  transition: all 0.2s ease;
+  margin-bottom: var(--space-8);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.pct-rating label:hover .pct-rating-option {
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.pct-rating input:checked + .pct-rating-option {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.pct-rating-label-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.pct-rating input:checked ~ .pct-rating-label-text {
+  color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
 }
 
 .pct-results {
   margin-top: var(--space-32);
-  padding: var(--space-24);
+  padding: var(--space-32);
   background: var(--color-surface);
-  border-radius: 12px;
-  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .pct-results h3 {
-  margin-bottom: var(--space-20);
+  margin-bottom: var(--space-24);
   color: var(--pres-primary);
   text-align: center;
 }
 
 .pct-scores {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-16);
-  margin-bottom: var(--space-24);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pct-score-item {
-  padding: var(--space-16);
-  border-radius: 8px;
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
   text-align: center;
-  border: 2px solid var(--color-border);
-  transition: all 0.3s ease;
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.pct-score-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .pct-score-item.excellent {
@@ -2108,11 +2433,21 @@ body.theme-dark .search-highlight {
 }
 
 .pct-score-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-muted);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.pct-score-label svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .pct-score-value {
@@ -2124,13 +2459,14 @@ body.theme-dark .search-highlight {
 }
 
 .pct-visualization {
-  margin: var(--space-24) 0;
+  margin: var(--space-32) 0;
   min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(var(--color-slate-900-rgb), 0.02);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
   padding: var(--space-24);
 }
 
@@ -2140,11 +2476,12 @@ body.theme-dark .search-highlight {
 }
 
 .pct-recommendations {
-  margin-top: var(--space-24);
-  padding: var(--space-16);
+  margin-top: var(--space-32);
+  padding: var(--space-24);
   background: rgba(var(--color-teal-500-rgb), 0.05);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .pct-recommendations h4 {
@@ -2174,9 +2511,21 @@ body.theme-dark .search-highlight {
 .pct-actions {
   display: flex;
   gap: var(--space-16);
-  margin-top: var(--space-24);
+  margin-top: var(--space-32);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.pct-actions .panel-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.pct-actions .panel-button svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
 }
 
 .pct-actions .panel-button.secondary {
@@ -2186,6 +2535,42 @@ body.theme-dark .search-highlight {
 
 .pct-actions .panel-button.secondary:hover {
   background: var(--color-gray-300);
+}
+
+/* ========== PCT Tool Responsive Styles ========== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .pct-scores {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-20);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .pct-tab:hover,
+  .pct-factor:hover,
+  .pct-rating label:hover {
+    transform: none;
+  }
+
+  .pct-tab:active,
+  .pct-rating label:active {
+    transform: scale(0.98);
+  }
+
+  .pct-rating-option {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pct-tab,
+  .pct-factor,
+  .pct-rating-option,
+  .pct-score-item {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ========== Quiz Tool Styles ========== */
@@ -2366,6 +2751,10 @@ body.theme-dark .search-highlight {
   }
 
   /* PCT вкладки */
+  .pct-tool {
+    padding: var(--space-16);
+  }
+
   .pct-tabs {
     flex-direction: column;
     gap: var(--space-8);
@@ -2373,8 +2762,49 @@ body.theme-dark .search-highlight {
 
   .pct-tab {
     width: 100%;
-    padding: var(--space-12);
+    padding: var(--space-12) var(--space-16);
     font-size: 14px;
+    min-height: 44px;
+  }
+
+  .pct-tab svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pct-factor {
+    padding: var(--space-20);
+  }
+
+  .pct-rating {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .pct-rating label {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .pct-rating-option {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-xl);
+  }
+
+  .pct-scores {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .pct-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pct-actions .panel-button {
+    width: 100%;
+    justify-content: center;
   }
 
   /* ROI инпуты */
@@ -4497,45 +4927,64 @@ body.theme-dark .search-highlight {
 /* ========== Model Selector Tool Styles ========== */
 
 .model-selector-tool {
-  padding: var(--space-16);
-  max-width: 100%;
+  padding: var(--space-32);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .selector-mode-tabs {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--space-24);
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
-  border-radius: 12px 12px 0 0;
-  overflow: hidden;
+  margin-bottom: var(--space-32);
+  gap: var(--space-12);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .mode-tab {
   flex: 1;
-  padding: var(--space-12) var(--space-16);
-  border: none;
-  background: transparent;
-  color: var(--color-text-secondary);
+  max-width: 300px;
+  padding: var(--space-16) var(--space-24);
+  border: 1px solid var(--color-card-border);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
+  transition: all 0.35s var(--ease-standard);
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  justify-content: center;
+}
+
+.mode-tab svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .mode-tab:hover {
-  background: rgba(var(--color-teal-500-rgb), 0.05);
-  color: var(--color-teal-600);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
 }
 
 .mode-tab.active {
-  background: var(--color-teal-50);
-  color: var(--color-teal-700);
-  border-bottom-color: var(--color-teal-500);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.3);
   font-weight: var(--font-weight-semibold);
-  transform: translateY(-1px);
+}
+
+.mode-tab.active svg {
+  color: var(--color-white);
 }
 
 .selector-mode-content {
@@ -4547,27 +4996,30 @@ body.theme-dark .search-highlight {
 .table-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-12);
-  margin-bottom: var(--space-20);
-  padding: var(--space-16);
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+  padding: var(--space-24);
   background: var(--color-surface);
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .table-filters input[type="search"] {
   flex: 1;
   min-width: 200px;
-  padding: var(--space-8) var(--space-12);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 14px;
+  padding: var(--space-12) var(--space-16);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  background: var(--color-surface);
+  transition: all 0.2s ease;
 }
 
 .table-filters input[type="search"]:focus {
   outline: none;
-  border-color: var(--color-teal-500);
-  box-shadow: 0 0 0 2px rgba(var(--color-teal-500-rgb), 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-teal-500-rgb), 0.1);
 }
 
 .filter-group {
@@ -4576,51 +5028,68 @@ body.theme-dark .search-highlight {
 }
 
 .filter-btn {
-  padding: var(--space-8) var(--space-12);
-  border: 1px solid var(--color-border);
+  padding: var(--space-10) var(--space-16);
+  border: 1px solid var(--color-card-border);
   background: var(--color-surface);
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
 }
 
 .filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--color-teal-300);
   background: rgba(var(--color-teal-500-rgb), 0.08);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(var(--color-teal-500-rgb), 0.1);
 }
 
 .filter-btn.active {
-  background: var(--color-teal-500);
+  background: var(--color-primary);
   color: white;
-  border-color: var(--color-teal-500);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.3);
 }
 
 .reset-filters-btn {
-  padding: var(--space-8) var(--space-12);
+  padding: var(--space-10) var(--space-16);
   border: 1px solid var(--color-red-300);
   background: var(--color-red-50);
   color: var(--color-red-700);
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.reset-filters-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .reset-filters-btn:hover {
   background: var(--color-red-100);
   border-color: var(--color-red-400);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
 .comparison-table-wrapper {
   max-height: 600px;
   overflow-y: auto;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   background: var(--color-surface);
-  margin-bottom: var(--space-20);
+  margin-bottom: var(--space-32);
 }
 
 .model-comparison-table {
@@ -4648,13 +5117,29 @@ body.theme-dark .search-highlight {
 }
 
 .model-comparison-table thead th.sort-asc::after {
-  content: ' ▲';
-  color: var(--color-teal-500);
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-4);
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314b8a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .model-comparison-table thead th.sort-desc::after {
-  content: ' ▼';
-  color: var(--color-teal-500);
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: var(--space-4);
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314b8a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .model-comparison-table tbody td {
@@ -4793,10 +5278,11 @@ body.theme-dark .search-highlight {
 
 .selected-models-panel {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: var(--space-16);
-  margin-bottom: var(--space-20);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-24);
+  margin-bottom: var(--space-32);
   display: none;
 }
 
@@ -4820,29 +5306,49 @@ body.theme-dark .search-highlight {
 }
 
 .clear-selection-btn {
-  padding: var(--space-6) var(--space-12);
+  padding: var(--space-8) var(--space-16);
   border: 1px solid var(--color-red-300);
   background: var(--color-red-50);
   color: var(--color-red-700);
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.clear-selection-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .clear-selection-btn:hover {
   background: var(--color-red-100);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
 .selected-model-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-8);
-  margin-bottom: var(--space-8);
+  padding: var(--space-12);
+  margin-bottom: var(--space-12);
   background: rgba(var(--color-teal-500-rgb), 0.05);
-  border-radius: 6px;
-  border-left: 3px solid var(--color-teal-500);
+  border-radius: var(--radius-base);
+  border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.selected-model-item:hover {
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  transform: translateX(4px);
 }
 
 .selected-model-name {
@@ -4873,29 +5379,43 @@ body.theme-dark .search-highlight {
 .compare-models-btn {
   display: block;
   width: 100%;
-  padding: var(--space-10) var(--space-16);
-  background: var(--color-teal-500);
+  padding: var(--space-12) var(--space-20);
+  background: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-top: var(--space-12);
+  transition: all 0.35s var(--ease-standard);
+  margin-top: var(--space-16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+}
+
+.compare-models-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .compare-models-btn:hover {
   background: var(--color-teal-600);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--color-teal-500-rgb), 0.3);
 }
 
 /* ========== Matrix Mode Styles ========== */
 
 .selection-matrix {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: var(--space-24);
-  margin-bottom: var(--space-24);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-32);
+  margin-bottom: var(--space-32);
 }
 
 .matrix-step {
@@ -4920,38 +5440,63 @@ body.theme-dark .search-highlight {
 }
 
 .matrix-parameter {
-  padding: var(--space-16);
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
+  padding: var(--space-24);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   background: var(--color-surface);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-standard);
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .matrix-parameter:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--color-teal-300);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(var(--color-teal-500-rgb), 0.15);
 }
 
 .matrix-parameter:hover .matrix-parameter-icon {
   transform: scale(1.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.35s var(--ease-standard);
 }
 
 .matrix-parameter.selected {
-  border-color: var(--color-teal-500);
+  border-color: var(--color-primary);
   background: rgba(var(--color-teal-500-rgb), 0.05);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.matrix-parameter.selected::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 40px 40px 0;
+  border-color: transparent var(--color-primary) transparent transparent;
+  z-index: 1;
 }
 
 .matrix-parameter-icon {
-  font-size: 2rem;
-  margin-bottom: var(--space-8);
-  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-16);
+  color: var(--pres-primary);
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-standard);
+}
+
+.matrix-parameter-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
 }
 
 .matrix-parameter-title {
@@ -4970,44 +5515,47 @@ body.theme-dark .search-highlight {
 
 .recommendations-panel {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: var(--space-24);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-32);
 }
 
 .recommendations-header {
   text-align: center;
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-32);
 }
 
 .recommendations-header h3 {
-  color: var(--color-text);
-  margin-bottom: var(--space-8);
+  color: var(--pres-primary);
+  margin-bottom: var(--space-12);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
 }
 
 .recommendations-header p {
   color: var(--color-text-secondary);
-  font-size: 16px;
+  font-size: var(--font-size-base);
 }
 
 .recommended-models {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-16);
-  margin-bottom: var(--space-24);
+  gap: var(--space-24);
+  margin-bottom: var(--space-32);
 }
 
 .recommended-model {
   background: rgba(var(--color-teal-500-rgb), 0.05);
-  border: 1px solid var(--color-teal-200);
-  border-radius: 8px;
-  padding: var(--space-16);
-  transition: all 0.3s ease;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-24);
+  transition: all 0.35s var(--ease-standard);
 }
 
 .recommended-model:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--color-teal-300);
 }
 
@@ -5031,43 +5579,70 @@ body.theme-dark .search-highlight {
 .goto-model-btn {
   display: block;
   width: 100%;
-  padding: var(--space-8) var(--space-12);
-  background: var(--color-teal-500);
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
   text-align: center;
 }
 
 .goto-model-btn:hover {
   background: var(--color-teal-600);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--color-teal-500-rgb), 0.3);
 }
 
 .recommendations-actions {
   display: flex;
-  gap: var(--space-12);
+  gap: var(--space-16);
   justify-content: center;
   flex-wrap: wrap;
 }
 
+.recommendations-actions .panel-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.recommendations-actions .panel-button svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .restart-matrix-btn {
-  padding: var(--space-10) var(--space-16);
-  border: 1px solid var(--color-gray-300);
-  background: var(--color-gray-50);
-  color: var(--color-text-secondary);
-  border-radius: 6px;
+  padding: var(--space-12) var(--space-20);
+  border: 1px solid var(--color-card-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.35s var(--ease-standard);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.restart-matrix-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .restart-matrix-btn:hover {
   background: var(--color-gray-100);
   border-color: var(--color-gray-400);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* ========== Animations ========== */
@@ -5083,19 +5658,98 @@ body.theme-dark .search-highlight {
   }
 }
 
+/* ========== Model Selector Tool Responsive & Accessibility ========== */
+@media (hover: none) and (pointer: coarse) {
+  .mode-tab:hover,
+  .filter-btn:hover,
+  .matrix-parameter:hover,
+  .recommended-model:hover {
+    transform: none;
+  }
+  
+  .mode-tab:active,
+  .filter-btn:active,
+  .matrix-parameter:active {
+    transform: scale(0.98);
+  }
+  
+  .filter-btn,
+  .reset-filters-btn,
+  .clear-selection-btn {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mode-tab,
+  .filter-btn,
+  .matrix-parameter,
+  .recommended-model,
+  .selected-model-item,
+  .compare-models-btn {
+    transition-duration: 0.01ms !important;
+  }
+  
+  .selector-mode-content {
+    animation: none;
+  }
+}
+
 /* ========== Responsive Design ========== */
 
-@media (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  .model-selector-tool {
+    padding: var(--space-24);
+  }
+  
+  .selector-mode-tabs {
+    gap: var(--space-8);
+  }
+  
+  .mode-tab {
+    padding: var(--space-14) var(--space-20);
+    font-size: var(--font-size-sm);
+  }
+  
+  .matrix-parameters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .model-selector-tool {
+    padding: var(--space-16);
+  }
+  
+  .selector-mode-tabs {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  
+  .mode-tab {
+    max-width: 100%;
+    min-height: 44px;
+  }
+  
   .table-filters {
     flex-direction: column;
+    padding: var(--space-20);
   }
 
   .table-filters input[type="search"] {
     min-width: auto;
+    width: 100%;
   }
 
   .filter-group {
     justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .filter-btn {
+    flex: 1;
+    min-width: 100px;
   }
 
   .comparison-table-wrapper {
@@ -5113,18 +5767,36 @@ body.theme-dark .search-highlight {
 
   .matrix-parameters {
     grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  
+  .matrix-parameter {
+    padding: var(--space-20);
+  }
+  
+  .matrix-parameter-icon {
+    width: 40px;
+    height: 40px;
   }
 
   .recommended-models {
     grid-template-columns: 1fr;
-  }
-
-  .selector-mode-tabs {
-    flex-direction: column;
+    gap: var(--space-16);
   }
 
   .recommendations-actions {
     flex-direction: column;
+    width: 100%;
+  }
+  
+  .recommendations-actions .panel-button,
+  .restart-matrix-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .selected-models-panel {
+    padding: var(--space-20);
   }
 }
 
@@ -10026,10 +10698,35 @@ body.theme-dark .search-highlight {
 
                         <!-- Табы категорий -->
                         <div class="pct-tabs" id="pctTabs">
-                            <button class="pct-tab active" data-category="success" type="button">🎯 Успех</button>
-                            <button class="pct-tab" data-category="leadership" type="button">👑 Лидерство</button>
-                            <button class="pct-tab" data-category="projectManagement" type="button">📊 Проекты</button>
-                            <button class="pct-tab" data-category="changeManagement" type="button">🔄 Изменения</button>
+                            <button class="pct-tab active" data-category="success" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                </svg>
+                                Успех
+                            </button>
+                            <button class="pct-tab" data-category="leadership" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                </svg>
+                                Лидерство
+                            </button>
+                            <button class="pct-tab" data-category="projectManagement" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="20" x2="12" y2="10"></line>
+                                    <line x1="18" y1="20" x2="18" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="16"></line>
+                                </svg>
+                                Проекты
+                            </button>
+                            <button class="pct-tab" data-category="changeManagement" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                    <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                </svg>
+                                Изменения
+                            </button>
                         </div>
 
                         <!-- Контент категорий -->
@@ -10042,19 +10739,44 @@ body.theme-dark .search-highlight {
                             <h3>Результаты оценки</h3>
                             <div class="pct-scores">
                                 <div class="pct-score-item" id="pctScoreSuccess">
-                                    <span class="pct-score-label">🎯 Успех</span>
+                                    <span class="pct-score-label">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <circle cx="12" cy="12" r="6"></circle>
+                                            <circle cx="12" cy="12" r="2"></circle>
+                                        </svg>
+                                        Успех
+                                    </span>
                                     <span class="pct-score-value">0/30</span>
                                 </div>
                                 <div class="pct-score-item" id="pctScoreLeadership">
-                                    <span class="pct-score-label">👑 Лидерство</span>
+                                    <span class="pct-score-label">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                        </svg>
+                                        Лидерство
+                                    </span>
                                     <span class="pct-score-value">0/30</span>
                                 </div>
                                 <div class="pct-score-item" id="pctScoreProjectManagement">
-                                    <span class="pct-score-label">📊 Проекты</span>
+                                    <span class="pct-score-label">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                                        </svg>
+                                        Проекты
+                                    </span>
                                     <span class="pct-score-value">0/30</span>
                                 </div>
                                 <div class="pct-score-item" id="pctScoreChangeManagement">
-                                    <span class="pct-score-label">🔄 Изменения</span>
+                                    <span class="pct-score-label">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                            <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                        </svg>
+                                        Изменения
+                                    </span>
                                     <span class="pct-score-value">0/30</span>
                                 </div>
                             </div>
@@ -10068,9 +10790,31 @@ body.theme-dark .search-highlight {
 
                         <!-- Кнопки действий -->
                         <div class="pct-actions">
-                            <button class="panel-button" id="pctActionPlan" type="button">🎯 Сгенерировать план действий</button>
-                            <button class="panel-button" id="pctExportPdf" type="button">📄 Экспорт в PDF</button>
-                            <button class="panel-button secondary" id="pctReset" type="button">🔄 Сбросить оценку</button>
+                            <button class="panel-button" id="pctActionPlan" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                                Сгенерировать план действий
+                            </button>
+                            <button class="panel-button" id="pctExportPdf" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Экспорт в PDF
+                            </button>
+                            <button class="panel-button secondary" id="pctReset" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                    <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                </svg>
+                                Сбросить оценку
+                            </button>
                         </div>
                     </div>
                 `
@@ -10079,32 +10823,74 @@ body.theme-dark .search-highlight {
                 title: "Матрица сравнения моделей",
                 subtitle: "Комплексное сравнение в одном взгляде",
                 content: `
-                    <div class="chart-container">
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
-                            <div class="card" style="background: var(--color-bg-1); text-align: center;">
-                                <h3 style="font-size: 36px; margin-bottom: 8px;">15</h3>
-                                <p style="margin: 0;">Контекстные Модели</p>
+                    <div class="matrix-comparison-container">
+                        <div class="matrix-stats-grid">
+                            <div class="matrix-stat-card">
+                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5"></path>
+                                    <path d="M2 12l10 5 10-5"></path>
+                                </svg>
+                                <div class="matrix-stat-number">15</div>
+                                <p class="matrix-stat-label">Контекстные Модели</p>
                             </div>
-                            <div class="card" style="background: var(--color-bg-3); text-align: center;">
-                                <h3 style="font-size: 36px; margin-bottom: 8px;">10</h3>
-                                <p style="margin: 0;">Высокоуровневые Модели</p>
+                            <div class="matrix-stat-card">
+                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                                <div class="matrix-stat-number">10</div>
+                                <p class="matrix-stat-label">Высокоуровневые Модели</p>
                             </div>
-                            <div class="card" style="background: var(--color-bg-5); text-align: center;">
-                                <h3 style="font-size: 36px; margin-bottom: 8px;">26</h3>
-                                <p style="margin: 0;">Действенные Модели</p>
+                            <div class="matrix-stat-card">
+                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <div class="matrix-stat-number">26</div>
+                                <p class="matrix-stat-label">Действенные Модели</p>
                             </div>
-                            <div class="card" style="background: var(--color-bg-2); text-align: center;">
-                                <h3 style="font-size: 36px; margin-bottom: 8px;">8</h3>
-                                <p style="margin: 0;">Вспомогательные Модели</p>
+                            <div class="matrix-stat-card">
+                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                </svg>
+                                <div class="matrix-stat-number">8</div>
+                                <p class="matrix-stat-label">Вспомогательные Модели</p>
                             </div>
                         </div>
-                        <div class="highlight-box">
-                            <h3 style="margin-bottom: 16px;">Ключевые Инсайты</h3>
-                            <ul style="list-style: none;">
-                                <li>→ <strong>Наиболее комплексные</strong>: Действенные модели (26) предоставляют детальные шаги реализации</li>
-                                <li>→ <strong>Фундамент</strong>: Контекстные модели (15) помогают понять 'почему' и 'что'</li>
-                                <li>→ <strong>Стратегические</strong>: Высокоуровневые модели (10) направляют общий подход</li>
-                                <li>→ <strong>Инструменты</strong>: Вспомогательные модели (8) предоставляют инструменты и техники</li>
+                        <div class="matrix-insights">
+                            <h3>
+                                <svg class="matrix-insights-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                Ключевые Инсайты
+                            </h3>
+                            <ul>
+                                <li>
+                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                    <span><strong>Наиболее комплексные</strong>: Действенные модели (26) предоставляют детальные шаги реализации</span>
+                                </li>
+                                <li>
+                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                    <span><strong>Фундамент</strong>: Контекстные модели (15) помогают понять 'почему' и 'что'</span>
+                                </li>
+                                <li>
+                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                    <span><strong>Стратегические</strong>: Высокоуровневые модели (10) направляют общий подход</span>
+                                </li>
+                                <li>
+                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                    <span><strong>Инструменты</strong>: Вспомогательные модели (8) предоставляют инструменты и техники</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -10117,8 +10903,22 @@ body.theme-dark .search-highlight {
                     <div class="model-selector-tool">
                         <!-- Табы режимов -->
                         <div class="selector-mode-tabs">
-                            <button class="mode-tab active" data-mode="table">Таблица сравнения</button>
-                            <button class="mode-tab" data-mode="matrix">Матрица выбора</button>
+                            <button class="mode-tab active" data-mode="table">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 3v18"></path>
+                                    <rect x="4" y="7" width="16" height="10" rx="2" ry="2"></rect>
+                                </svg>
+                                Таблица сравнения
+                            </button>
+                            <button class="mode-tab" data-mode="matrix">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                                Матрица выбора
+                            </button>
                         </div>
 
                         <!-- Режим 1: Таблица сравнения -->
@@ -10141,7 +10941,13 @@ body.theme-dark .search-highlight {
                                     <button class="filter-btn" data-filter="focus" data-value="Стратегия">Фокус на стратегии</button>
                                     <button class="filter-btn" data-filter="focus" data-value="Культура">Фокус на культуре</button>
                                 </div>
-                                <button class="reset-filters-btn" id="resetFiltersBtn" type="button">Сбросить фильтры</button>
+                                <button class="reset-filters-btn" id="resetFiltersBtn" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                        <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                    </svg>
+                                    Сбросить фильтры
+                                </button>
                             </div>
                             <div class="comparison-table-wrapper">
                                 <table class="model-comparison-table" id="modelsComparisonTable">
@@ -10164,12 +10970,30 @@ body.theme-dark .search-highlight {
                             <div class="selected-models-panel" id="selectedModelsPanel">
                                 <div class="selected-models-header">
                                     <h4>Выбранные модели для сравнения (макс. 3)</h4>
-                                    <button class="clear-selection-btn" id="clearSelectionBtn" type="button">Очистить</button>
+                                    <button class="clear-selection-btn" id="clearSelectionBtn" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                        Очистить
+                                    </button>
                                 </div>
                                 <div id="selectedModelsList"></div>
                                 <div class="selected-models-actions">
-                                    <button class="compare-models-btn" id="compareModelsBtn" type="button" style="display: none;">Сравнить модели</button>
-                                    <button class="panel-button" onclick="exportSelectedModelsToPDF()">📄 Экспорт выбранных моделей</button>
+                                    <button class="compare-models-btn" id="compareModelsBtn" type="button" style="display: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                        </svg>
+                                        Сравнить модели
+                                    </button>
+                                    <button class="panel-button" onclick="exportSelectedModelsToPDF()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="7 10 12 15 17 10"></polyline>
+                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                        </svg>
+                                        Экспорт выбранных моделей
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -10181,17 +11005,44 @@ body.theme-dark .search-highlight {
                                     <h4>Шаг 1: Масштаб изменений</h4>
                                     <div class="matrix-parameters">
                                         <div class="matrix-parameter" data-step="1" data-value="Малый">
-                                            <div class="matrix-parameter-icon">👥</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Малый</div>
                                             <div class="matrix-parameter-description">Команда или отдел, локальные процессы</div>
                                         </div>
                                         <div class="matrix-parameter" data-step="1" data-value="Средний">
-                                            <div class="matrix-parameter-icon">🏢</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                                    <path d="M9 22v-4h6v4"></path>
+                                                    <path d="M8 6h.01"></path>
+                                                    <path d="M16 6h.01"></path>
+                                                    <path d="M12 6h.01"></path>
+                                                    <path d="M12 10h.01"></path>
+                                                    <path d="M12 14h.01"></path>
+                                                    <path d="M16 10h.01"></path>
+                                                    <path d="M16 14h.01"></path>
+                                                    <path d="M8 10h.01"></path>
+                                                    <path d="M8 14h.01"></path>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Средний</div>
                                             <div class="matrix-parameter-description">Несколько отделов, кросс-функциональные процессы</div>
                                         </div>
                                         <div class="matrix-parameter" data-step="1" data-value="Крупный">
-                                            <div class="matrix-parameter-icon">🌐</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Крупный</div>
                                             <div class="matrix-parameter-description">Вся организация или холдинг</div>
                                         </div>
@@ -10201,17 +11052,33 @@ body.theme-dark .search-highlight {
                                     <h4>Шаг 2: Скорость внедрения</h4>
                                     <div class="matrix-parameters">
                                         <div class="matrix-parameter" data-step="2" data-value="Быстро">
-                                            <div class="matrix-parameter-icon">⚡</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Быстро</div>
                                             <div class="matrix-parameter-description">1-3 месяца, срочные изменения</div>
                                         </div>
                                         <div class="matrix-parameter" data-step="2" data-value="Средне">
-                                            <div class="matrix-parameter-icon">🕐</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Средне</div>
                                             <div class="matrix-parameter-description">3-6 месяцев, сбалансированный подход</div>
                                         </div>
                                         <div class="matrix-parameter" data-step="2" data-value="Долго">
-                                            <div class="matrix-parameter-icon">📅</div>
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                            </div>
                                             <div class="matrix-parameter-title">Долго</div>
                                             <div class="matrix-parameter-description">6+ месяцев, фундаментальные изменения</div>
                                         </div>
@@ -10227,8 +11094,19 @@ body.theme-dark .search-highlight {
                                     <!-- Рекомендации генерируются JS -->
                                 </div>
                                 <div class="recommendations-actions">
-                                    <button class="restart-matrix-btn" id="restartMatrixBtn" type="button">Начать заново</button>
-                                    <button class="panel-button" onclick="jumpToSlide(65)" type="button">Пройти квиз для точных рекомендаций</button>
+                                    <button class="restart-matrix-btn" id="restartMatrixBtn" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                            <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                        </svg>
+                                        Начать заново
+                                    </button>
+                                    <button class="panel-button" onclick="jumpToSlide(65)" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                        Пройти квиз для точных рекомендаций
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -13798,8 +14676,19 @@ body.theme-dark .search-highlight {
             renderPCTCategory('success');
             setupPCTEventListeners();
             updatePCTResults();
+            updatePCTTabsProgress();
         }
         
+        function getPCTCategoryIcon(categoryId) {
+            const icons = {
+                'success': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>',
+                'leadership': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>',
+                'projectManagement': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>',
+                'changeManagement': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path></svg>'
+            };
+            return icons[categoryId] || icons['success'];
+        }
+
         function renderPCTCategory(categoryId) {
             const category = pctAssessment.categories[categoryId];
             const container = document.getElementById('pctContent');
@@ -13811,34 +14700,41 @@ body.theme-dark .search-highlight {
             
             let html = `
                 <div class="pct-category">
-                    <h3>${category.icon} ${category.label}</h3>
+                    <h3 style="display: flex; align-items: center; gap: 12px; justify-content: center;">
+                        <span style="display: inline-flex; width: 32px; height: 32px;">${getPCTCategoryIcon(categoryId)}</span>
+                        ${category.label}
+                    </h3>
                     <p class="pct-category-desc">${category.description}</p>
                     <div class="pct-factors">
             `;
             
             category.factors.forEach(factor => {
                 const savedScore = pctState.scores[categoryId][factor.id] || 0;
+                const hasSelection = savedScore > 0;
                 html += `
-                    <div class="pct-factor">
+                    <div class="pct-factor ${hasSelection ? 'has-selection' : ''}">
                         <div class="pct-factor-text">${factor.id}. ${factor.text}</div>
                         <div class="pct-rating">
                             <label>
                                 <input type="radio" name="pct_${categoryId}_${factor.id}" value="1" 
                                        ${savedScore === 1 ? 'checked' : ''}
                                        onchange="handlePCTScore('${categoryId}', ${factor.id}, 1)">
-                                <span>1 - Не применимо</span>
+                                <span class="pct-rating-option">1</span>
+                                <span class="pct-rating-label-text">Не применимо</span>
                             </label>
                             <label>
                                 <input type="radio" name="pct_${categoryId}_${factor.id}" value="2"
                                        ${savedScore === 2 ? 'checked' : ''}
                                        onchange="handlePCTScore('${categoryId}', ${factor.id}, 2)">
-                                <span>2 - Применимо</span>
+                                <span class="pct-rating-option">2</span>
+                                <span class="pct-rating-label-text">Применимо</span>
                             </label>
                             <label>
                                 <input type="radio" name="pct_${categoryId}_${factor.id}" value="3"
                                        ${savedScore === 3 ? 'checked' : ''}
                                        onchange="handlePCTScore('${categoryId}', ${factor.id}, 3)">
-                                <span>3 - Превосходит ожидания</span>
+                                <span class="pct-rating-option">3</span>
+                                <span class="pct-rating-label-text">Превосходит ожидания</span>
                             </label>
                         </div>
                     </div>
@@ -13848,6 +14744,7 @@ body.theme-dark .search-highlight {
             html += `</div></div>`;
             container.innerHTML = html;
             pctState.currentCategory = categoryId;
+            updatePCTTabsProgress();
         }
         
         function handlePCTScore(category, factorId, score) {
@@ -13855,6 +14752,44 @@ body.theme-dark .search-highlight {
             savePCTScores();
             updatePCTProgress();
             updatePCTResults();
+            updatePCTTabsProgress();
+            
+            // Обновляем визуальный индикатор в карточке фактора
+            const factorEl = document.querySelector(`input[name="pct_${category}_${factorId}"]`)?.closest('.pct-factor');
+            if (factorEl) {
+                if (score > 0) {
+                    factorEl.classList.add('has-selection');
+                } else {
+                    factorEl.classList.remove('has-selection');
+                }
+            }
+        }
+        
+        function updatePCTTabsProgress() {
+            const tabs = document.querySelectorAll('.pct-tab');
+            tabs.forEach(tab => {
+                const categoryId = tab.getAttribute('data-category');
+                const category = pctAssessment.categories[categoryId];
+                if (!category) return;
+                
+                const categoryScores = pctState.scores[categoryId] || {};
+                // Считаем только факторы с ненулевой оценкой
+                const completedFactors = Object.values(categoryScores).filter(score => score > 0).length;
+                
+                // Удаляем старый индикатор прогресса
+                const oldProgress = tab.querySelector('.pct-tab-progress');
+                if (oldProgress) {
+                    oldProgress.remove();
+                }
+                
+                // Добавляем новый индикатор, если есть заполненные факторы
+                if (completedFactors > 0) {
+                    const progressBadge = document.createElement('span');
+                    progressBadge.className = 'pct-tab-progress';
+                    progressBadge.textContent = completedFactors;
+                    tab.appendChild(progressBadge);
+                }
+            });
         }
         
         function calculateCategoryScore(categoryId) {
@@ -13867,7 +14802,8 @@ body.theme-dark .search-highlight {
             let completedFactors = 0;
             
             Object.values(pctState.scores).forEach(categoryScores => {
-                completedFactors += Object.keys(categoryScores).length;
+                // Считаем только факторы с ненулевой оценкой
+                completedFactors += Object.values(categoryScores).filter(score => score > 0).length;
             });
             
             const progressPercent = (completedFactors / totalFactors) * 100;

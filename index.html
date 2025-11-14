@@ -563,6 +563,195 @@ body {
   }
 }
 
+/* ========== СТИЛИ ДЛЯ СЛАЙДА 2 - КЛАССИФИКАЦИЯ ========== */
+/* Горизонтальная компоновка карточек: иконка слева, текст справа */
+.classification-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-24);
+  padding: var(--space-24);
+}
+
+.classification-card-icon {
+  flex-shrink: 0;
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--pres-primary);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.classification-card-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+}
+
+.classification-card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.classification-card-content .type-badge {
+  margin-bottom: var(--space-8);
+}
+
+.classification-card-content h3 {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin-bottom: var(--space-8);
+  color: var(--pres-primary);
+  line-height: 1.3;
+}
+
+.classification-card-content p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.classification-models-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-12) 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.classification-models-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.classification-models-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease-standard);
+}
+
+.classification-card:hover .classification-card-icon {
+  transform: scale(1.1);
+  background: rgba(var(--color-teal-500-rgb), 0.12);
+  border-color: var(--color-teal-300);
+  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+}
+
+.classification-card:hover .classification-models-list li::before {
+  transform: scale(1.2);
+}
+
+.classification-highlight-box {
+  background: linear-gradient(135deg, var(--color-surface) 0%, rgba(var(--color-teal-500-rgb), 0.05) 100%);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary);
+  border-top: 1px solid var(--color-card-border);
+  border-right: 1px solid var(--color-card-border);
+  border-bottom: 1px solid var(--color-card-border);
+  margin-top: var(--space-32);
+  box-shadow: var(--shadow-sm);
+}
+
+.classification-highlight-box strong {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: var(--color-text);
+  line-height: 1.6;
+  display: block;
+}
+
+/* Адаптивность для слайда 2 */
+@media (max-width: 767px) {
+  .classification-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .classification-card-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .classification-card-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .classification-models-list {
+    align-items: center;
+    width: 100%;
+  }
+  
+  .classification-models-list li {
+    justify-content: center;
+  }
+  
+  .classification-highlight-box {
+    margin-top: var(--space-24);
+    padding: var(--space-20);
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .classification-card {
+    gap: var(--space-20);
+    padding: var(--space-20);
+  }
+  
+  .classification-card-icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .classification-card:hover {
+    transform: none;
+  }
+  
+  .classification-card:active {
+    transform: scale(0.98);
+  }
+  
+  .classification-card:hover .classification-card-icon {
+    transform: none;
+  }
+  
+  .classification-card:active .classification-card-icon {
+    transform: scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .classification-card,
+  .classification-card-icon,
+  .classification-models-list li::before {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ========== КОНЕЦ СТИЛЕЙ ДЛЯ СЛАЙДА 2 ========== */
+
 /* Уважение настроек пользователя */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -941,10 +1130,9 @@ body {
   box-shadow: 0 12px 20px rgba(var(--color-teal-500-rgb), 0.2);
 }
 
-/* Унифицированные стили для новых иконок (без фона и границы) */
+/* Унифицированные стили для иконок (для карточек, которые не имеют специальных стилей) */
 .card .icon,
 .overview-card .icon,
-.practice-tool-card .icon,
 .hero-value .value-card .icon {
   background: none;
   border: none;
@@ -956,7 +1144,6 @@ body {
 
 .card .icon svg,
 .overview-card .icon svg,
-.practice-tool-card .icon svg,
 .hero-value .value-card .icon svg {
   width: 100%;
   height: 100%;
@@ -967,7 +1154,6 @@ body {
 @media (max-width: 640px) {
   .card .icon,
   .overview-card .icon,
-  .practice-tool-card .icon,
   .hero-value .value-card .icon {
     width: 64px;
     height: 64px;
@@ -4031,51 +4217,80 @@ body.theme-dark .search-highlight {
   padding: 0 var(--space-32);
 }
 
+/* ========== СТИЛИ ДЛЯ СЛАЙДА 1 - ПРОБЛЕМА ========== */
 .hero-hook {
-  background: rgba(239, 68, 68, 0.05);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(var(--color-teal-500-rgb), 0.03) 100%);
   padding: var(--space-32);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border-left: 4px solid #DC2626;
+  border-top: 1px solid var(--color-card-border);
+  border-right: 1px solid var(--color-card-border);
+  border-bottom: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
   text-align: center;
 }
 
 .hero-hook .hook-question {
-  font-size: 32px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: var(--font-weight-bold);
-  color: #DC2626;
-  margin-bottom: var(--space-24);
-  line-height: 1.2;
+  color: var(--pres-primary);
+  margin-bottom: var(--space-32);
+  line-height: 1.3;
 }
 
 .hero-hook .hook-problems {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-20);
+  gap: var(--space-24);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .hero-hook .problem-item {
-  background: white;
-  padding: var(--space-20);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: var(--space-16);
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease;
-  min-height: 100px;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-20);
+  transition: all 0.35s var(--ease-standard);
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+}
+
+.hero-hook .problem-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.05), rgba(239, 68, 68, 0.05));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-standard);
+  pointer-events: none;
 }
 
 .hero-hook .problem-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
+}
+
+.hero-hook .problem-item:hover::after {
+  opacity: 1;
 }
 
 .hero-hook .problem-item .icon {
-  width: 56px;
-  height: 56px;
   flex-shrink: 0;
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-lg);
+  border: 1px solid;
+  transition: all 0.35s var(--ease-standard);
 }
 
 .hero-hook .problem-item .icon svg {
@@ -4085,40 +4300,130 @@ body.theme-dark .search-highlight {
 }
 
 .hero-hook .problem-item .icon.danger {
-  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #DC2626;
 }
 
 .hero-hook .problem-item .icon.warning {
-  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+  color: #D97706;
 }
 
 .hero-hook .problem-item .icon.neutral {
-  color: #64748b;
+  background: rgba(100, 116, 139, 0.1);
+  border-color: rgba(100, 116, 139, 0.25);
+  color: #475569;
+}
+
+.hero-hook .problem-item:hover .icon {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .hero-hook .problem-item p {
   margin: 0;
-  font-style: italic;
-  color: var(--color-text-secondary);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  flex: 1;
+  font-style: normal;
   text-align: left;
-  font-size: 1rem;
-  line-height: 1.5;
 }
 
 .hero-hook-source {
-  margin-top: var(--space-24);
-  padding-top: var(--space-16);
-  border-top: 1px solid rgba(220, 38, 38, 0.15);
+  margin-top: var(--space-32);
+  padding-top: var(--space-20);
+  border-top: 1px solid var(--color-card-border);
   text-align: center;
 }
 
 .hero-hook-source .source-text {
-  font-size: 0.8125rem;
-  color: rgba(100, 116, 139, 0.7);
+  font-size: clamp(0.75rem, 1.5vw, 0.8125rem);
+  color: var(--color-text-secondary);
   font-style: normal;
   margin: 0;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
+
+/* Адаптивность для слайда 1 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-hook .hook-problems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-20);
+  }
+  
+  .hero-hook .problem-item {
+    padding: var(--space-20);
+    gap: var(--space-16);
+  }
+  
+  .hero-hook .problem-item .icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-hook {
+    padding: var(--space-24);
+  }
+  
+  .hero-hook .hook-problems {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+  
+  .hero-hook .problem-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-20);
+    gap: var(--space-16);
+  }
+  
+  .hero-hook .problem-item p {
+    text-align: center;
+  }
+  
+  .hero-hook .problem-item .icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .hero-hook-source {
+    margin-top: var(--space-24);
+    padding-top: var(--space-16);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-hook .problem-item:hover {
+    transform: none;
+  }
+  
+  .hero-hook .problem-item:active {
+    transform: scale(0.98);
+  }
+  
+  .hero-hook .problem-item:hover .icon {
+    transform: none;
+  }
+  
+  .hero-hook .problem-item:active .icon {
+    transform: scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-hook .problem-item,
+  .hero-hook .problem-item .icon {
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ========== КОНЕЦ СТИЛЕЙ ДЛЯ СЛАЙДА 1 ========== */
 
 .hero-value {
   background: rgba(34, 197, 94, 0.05);
@@ -4284,47 +4589,11 @@ body.theme-dark .search-highlight {
   color: var(--color-text-secondary);
 }
 
-/* Tablet adaptations for hero slide */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .hero-hook .hook-problems {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile adaptations for hero slide */
+/* Mobile adaptations for hero slide (остальные элементы) */
 @media (max-width: 768px) {
   .hero-intro-slide {
     gap: var(--space-24);
     padding: 0 var(--space-8);
-  }
-
-  .hero-hook {
-    padding: var(--space-24);
-  }
-
-  .hero-hook .hook-question {
-    font-size: 24px;
-    margin-bottom: var(--space-20);
-  }
-
-  .hero-hook .hook-problems {
-    grid-template-columns: 1fr;
-    gap: var(--space-16);
-  }
-
-  .hero-hook .problem-item {
-    padding: var(--space-16);
-    min-height: auto;
-    gap: var(--space-12);
-  }
-
-  .hero-hook-source {
-    margin-top: var(--space-16);
-    padding-top: var(--space-12);
-  }
-
-  .hero-hook-source .source-text {
-    font-size: 0.75rem;
   }
 
   .hero-value .value-cards {
@@ -4341,14 +4610,9 @@ body.theme-dark .search-highlight {
     max-width: none;
   }
 
-  .hero-hook .problem-item .icon,
   .hero-value .value-card .icon {
     width: 48px;
     height: 48px;
-  }
-
-  .hero-hook .problem-item p {
-    font-size: 0.9375rem;
   }
 }
 
@@ -7056,21 +7320,52 @@ body.theme-dark .search-highlight {
 }
 
 .practice-tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-20);
   background: var(--color-surface);
   padding: var(--space-24);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--color-card-border);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.practice-tool-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.05), rgba(var(--color-orange-500-rgb), 0.05));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-standard);
+  pointer-events: none;
 }
 
 .practice-tool-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-orange-300);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
+}
+
+.practice-tool-card:hover::after {
+  opacity: 1;
+}
+
+.practice-tool-card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
 }
 
 /* CTA карточка - выделенная зеленая кнопка */
 .practice-tool-card-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
   background: linear-gradient(135deg, var(--color-teal-500), var(--color-teal-600));
   border: 2px solid var(--color-teal-400);
   cursor: pointer;
@@ -7093,39 +7388,47 @@ body.theme-dark .search-highlight {
   left: 100%;
 }
 
-.practice-tool-card-cta h4 {
+.practice-tool-card-cta .practice-tool-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.practice-tool-card-cta .practice-tool-card-content h4 {
   color: white !important;
   position: relative;
   z-index: 1;
-  font-size: 1.2rem;
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
   font-weight: 700;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.3px;
 }
 
-.practice-tool-card-cta p {
+.practice-tool-card-cta .practice-tool-card-content p {
   color: white !important;
   position: relative;
   z-index: 1;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   line-height: 1.6;
+  margin: 0;
 }
 
 .practice-tool-card-cta .icon {
+  flex-shrink: 0;
   color: white;
   position: relative;
   z-index: 1;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-20);
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
+  border-radius: var(--radius-lg);
   backdrop-filter: blur(4px);
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.35s var(--ease-standard);
 }
 
 .practice-tool-card-cta .icon-cta svg {
@@ -7145,31 +7448,36 @@ body.theme-dark .search-highlight {
 .practice-tool-card-cta:hover .icon {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.practice-tool-card h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
+.practice-tool-card-content h4 {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text);
-  margin: var(--space-8) 0;
+  margin: 0 0 var(--space-8) 0;
+  line-height: 1.3;
 }
 
-.practice-tool-card p {
+.practice-tool-card-content p {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
   color: var(--color-text-secondary);
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  margin: 0 0 var(--space-12) 0;
 }
 
 .practice-tool-card .icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto var(--space-16);
-  color: var(--color-teal-500);
+  flex-shrink: 0;
+  width: clamp(48px, 8vw, 64px);
+  height: clamp(48px, 8vw, 64px);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--pres-primary);
+  transition: all 0.35s var(--ease-standard);
 }
 
 .practice-tool-card .icon svg {
@@ -7178,15 +7486,23 @@ body.theme-dark .search-highlight {
   stroke-width: 2;
 }
 
-.practice-tool-card .tool-duration {
+.practice-tool-card:hover .icon {
+  transform: scale(1.1);
+  background: rgba(var(--color-teal-500-rgb), 0.12);
+  border-color: var(--color-teal-300);
+  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+}
+
+.practice-tool-card-content .tool-duration {
   display: inline-block;
-  background: var(--color-orange-100);
+  background: rgba(var(--color-orange-500-rgb), 0.1);
   color: var(--color-orange-700);
-  padding: var(--space-4) var(--space-8);
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  margin-top: var(--space-12);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-base);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  font-weight: var(--font-weight-medium);
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 /* === СТИЛИ ДЛЯ ИНДИКАТОРА ПУТИ ПРОЕКТА === */
@@ -7372,6 +7688,16 @@ body.theme-dark .search-highlight {
   .practice-tools {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .practice-tool-card {
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .practice-tool-card .icon {
+    width: 56px;
+    height: 56px;
+  }
 
   .models-overview {
     grid-template-columns: repeat(2, 1fr);
@@ -7399,6 +7725,46 @@ body.theme-dark .search-highlight {
     grid-template-columns: 1fr;
     gap: var(--space-16);
     margin-top: var(--space-24);
+  }
+  
+  .practice-tool-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-16);
+    padding: var(--space-20);
+  }
+  
+  .practice-tool-card-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .practice-tool-card .icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .practice-tool-card-content .tool-duration {
+    align-self: center;
+  }
+  
+  .practice-tool-card-cta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-16);
+  }
+  
+  .practice-tool-card-cta .icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .practice-tool-card-cta .practice-tool-card-content {
+    align-items: center;
+    text-align: center;
   }
 
   .models-overview {
@@ -7450,7 +7816,6 @@ body.theme-dark .search-highlight {
   .practice-tool-card-cta .icon {
     width: 56px;
     height: 56px;
-    margin-bottom: var(--space-16);
   }
 
   .practice-tool-card-cta .icon-cta svg {
@@ -7458,19 +7823,64 @@ body.theme-dark .search-highlight {
     height: 28px;
   }
 
-  .practice-tool-card-cta h4 {
+  .practice-tool-card-cta .practice-tool-card-content h4 {
     font-size: 1.1rem;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-8);
     color: white !important;
   }
 
-  .practice-tool-card-cta p {
+  .practice-tool-card-cta .practice-tool-card-content p {
     font-size: 0.9rem;
     color: white !important;
   }
 
   .separator-title {
     font-size: 2.5rem;
+  }
+}
+
+/* Адаптивность для practice-tool-card - touch устройства */
+@media (hover: none) and (pointer: coarse) {
+  .practice-tool-card:hover {
+    transform: none;
+  }
+  
+  .practice-tool-card:active {
+    transform: scale(0.98);
+  }
+  
+  .practice-tool-card:hover .icon {
+    transform: none;
+  }
+  
+  .practice-tool-card:active .icon {
+    transform: scale(0.95);
+  }
+  
+  .practice-tool-card-cta:hover {
+    transform: none;
+  }
+  
+  .practice-tool-card-cta:active {
+    transform: scale(0.98);
+  }
+  
+  .practice-tool-card-cta:hover .icon {
+    transform: none;
+  }
+  
+  .practice-tool-card-cta:active .icon {
+    transform: scale(0.95);
+  }
+}
+
+/* Уважение настроек пользователя для practice-tool-card */
+@media (prefers-reduced-motion: reduce) {
+  .practice-tool-card,
+  .practice-tool-card .icon,
+  .practice-tool-card-cta,
+  .practice-tool-card-cta .icon {
+    transition-duration: 0.01ms !important;
   }
 
   .separator-subtitle {
@@ -8569,75 +8979,83 @@ body.theme-dark .search-highlight {
                 subtitle: "Четыре основные категории для каждого сценария",
                 content: `
                     <div class="grid-2">
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card classification-card">
+                            <div class="classification-card-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                                     <polyline points="2 17 12 22 22 17"></polyline>
                                     <polyline points="2 12 12 17 22 12"></polyline>
                                 </svg>
                             </div>
-                            <span class="type-badge type-contextual">КОНТЕКСТНЫЕ МОДЕЛИ</span>
-                            <h3>15 Моделей</h3>
-                            <p><strong>Стратегические, макро-подходы</strong></p>
-                            <ul style="margin-top: 12px; list-style: none; padding-left: 0;">
-                                <li>Модель Левина</li>
-                                <li>Коттер 8-этапов</li>
-                                <li>Модель Сатир</li>
-                                <li>Переход Бриджеса</li>
-                            </ul>
+                            <div class="classification-card-content">
+                                <span class="type-badge type-contextual">КОНТЕКСТНЫЕ МОДЕЛИ</span>
+                                <h3>15 Моделей</h3>
+                                <p><strong>Стратегические, макро-подходы</strong></p>
+                                <ul class="classification-models-list">
+                                    <li>Модель Левина</li>
+                                    <li>Коттер 8-этапов</li>
+                                    <li>Модель Сатир</li>
+                                    <li>Переход Бриджеса</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card classification-card">
+                            <div class="classification-card-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M17.5 19H9a7 7 0 0 1-5-11.5A7 7 0 0 1 15 2"></path>
                                     <path d="M22 10a3 3 0 0 0-3-3h-2.207a5.502 5.502 0 0 0-10.702.5"></path>
                                 </svg>
                             </div>
-                            <span class="type-badge type-highlevel">ВЫСОКОУРОВНЕВЫЕ МОДЕЛИ</span>
-                            <h3>10 Моделей</h3>
-                            <p><strong>Концептуальные Рамки</strong></p>
-                            <ul style="margin-top: 12px; list-style: none; padding-left: 0;">
-                                <li>Бекхард и Харрис</li>
-                                <li>Модель Pritchett</li>
-                                <li>Модель Carnall</li>
-                            </ul>
+                            <div class="classification-card-content">
+                                <span class="type-badge type-highlevel">ВЫСОКОУРОВНЕВЫЕ МОДЕЛИ</span>
+                                <h3>10 Моделей</h3>
+                                <p><strong>Концептуальные Рамки</strong></p>
+                                <ul class="classification-models-list">
+                                    <li>Бекхард и Харрис</li>
+                                    <li>Модель Pritchett</li>
+                                    <li>Модель Carnall</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card classification-card">
+                            <div class="classification-card-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
                             </div>
-                            <span class="type-badge type-actionable">ДЕЙСТВЕННЫЕ МОДЕЛИ</span>
-                            <h3>26 Моделей</h3>
-                            <p><strong>Пошаговые, подробные методологии</strong></p>
-                            <ul style="margin-top: 12px; list-style: none; padding-left: 0;">
-                                <li>АДКАР</li>
-                                <li>АИМ</li>
-                                <li>ГЕ КАП</li>
-                                <li>PDCA</li>
-                                <li>Гибридный подход</li>
-                            </ul>
+                            <div class="classification-card-content">
+                                <span class="type-badge type-actionable">ДЕЙСТВЕННЫЕ МОДЕЛИ</span>
+                                <h3>26 Моделей</h3>
+                                <p><strong>Пошаговые, подробные методологии</strong></p>
+                                <ul class="classification-models-list">
+                                    <li>АДКАР</li>
+                                    <li>АИМ</li>
+                                    <li>ГЕ КАП</li>
+                                    <li>PDCA</li>
+                                    <li>Гибридный подход</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card">
-                            <div class="icon">
+                        <div class="card classification-card">
+                            <div class="classification-card-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
                                 </svg>
                             </div>
-                            <span class="type-badge type-supporting">ВСПОМОГАТЕЛЬНЫЕ МОДЕЛИ</span>
-                            <h3>8 Моделей</h3>
-                            <p><strong>Инструменты и методологии поддержки</strong></p>
-                            <ul style="margin-top: 12px; list-style: none; padding-left: 0;">
-                                <li>Теория подталкивания</li>
-                                <li>AI-усиленный</li>
-                                <li>Теории изменений</li>
-                            </ul>
+                            <div class="classification-card-content">
+                                <span class="type-badge type-supporting">ВСПОМОГАТЕЛЬНЫЕ МОДЕЛИ</span>
+                                <h3>8 Моделей</h3>
+                                <p><strong>Инструменты и методологии поддержки</strong></p>
+                                <ul class="classification-models-list">
+                                    <li>Теория подталкивания</li>
+                                    <li>AI-усиленный</li>
+                                    <li>Теории изменений</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="highlight-box" style="margin-top: 32px;">
-                        <strong style="font-size: 18px;">Всего: 56 моделей, охватывающих каждый сценарий организационных изменений</strong>
+                    <div class="classification-highlight-box">
+                        <strong>Всего: 56 моделей, охватывающих каждый сценарий организационных изменений</strong>
                     </div>
                 `
             },
@@ -8928,12 +9346,18 @@ body.theme-dark .search-highlight {
                             <div class="practice-tool-card">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
                                 </div>
-                                <h4>Мини-диагностика</h4>
-                                <p>Ответьте на 3 вопроса и получите персональные рекомендации по выбору модели управления изменениями.</p>
-                                <span class="tool-duration">5 мин</span>
+                                <div class="practice-tool-card-content">
+                                    <h4>Мини-диагностика</h4>
+                                    <p>Ответьте на 3 вопроса и получите персональные рекомендации по выбору модели управления изменениями.</p>
+                                    <span class="tool-duration">5 мин</span>
+                                </div>
                             </div>
 
                             <div class="practice-tool-card">
@@ -8943,22 +9367,25 @@ body.theme-dark .search-highlight {
                                         <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                                     </svg>
                                 </div>
-                                <h4>Калькулятор ROI</h4>
-                                <p>Рассчитайте экономическую эффективность внедрения управления изменениями в вашем проекте.</p>
-                                <span class="tool-duration">10 мин</span>
+                                <div class="practice-tool-card-content">
+                                    <h4>Калькулятор ROI</h4>
+                                    <p>Рассчитайте экономическую эффективность внедрения управления изменениями в вашем проекте.</p>
+                                    <span class="tool-duration">10 мин</span>
+                                </div>
                             </div>
 
                             <div class="practice-tool-card">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <circle cx="12" cy="12" r="6"></circle>
-                                        <circle cx="12" cy="12" r="2"></circle>
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                     </svg>
                                 </div>
-                                <h4>Диагностика готовности</h4>
-                                <p>Оцените текущую готовность вашей организации к успешному внедрению изменений.</p>
-                                <span class="tool-duration">15 мин</span>
+                                <div class="practice-tool-card-content">
+                                    <h4>Диагностика готовности</h4>
+                                    <p>Оцените текущую готовность вашей организации к успешному внедрению изменений.</p>
+                                    <span class="tool-duration">15 мин</span>
+                                </div>
                             </div>
 
                             <div class="practice-tool-card">
@@ -8967,9 +9394,11 @@ body.theme-dark .search-highlight {
                                         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
                                     </svg>
                                 </div>
-                                <h4>Конструктор модели</h4>
-                                <p>Создайте собственную модель управления изменениями из лучших практик разных подходов.</p>
-                                <span class="tool-duration">20 мин</span>
+                                <div class="practice-tool-card-content">
+                                    <h4>Конструктор модели</h4>
+                                    <p>Создайте собственную модель управления изменениями из лучших практик разных подходов.</p>
+                                    <span class="tool-duration">20 мин</span>
+                                </div>
                             </div>
 
                             <div class="practice-tool-card">
@@ -8980,9 +9409,11 @@ body.theme-dark .search-highlight {
                                         <line x1="6" y1="20" x2="6" y2="16"></line>
                                     </svg>
                                 </div>
-                                <h4>PCT Оценка</h4>
-                                <p>Комплексная диагностика проекта по четырем аспектам: успех, лидерство, управление проектом и изменения.</p>
-                                <span class="tool-duration">25 мин</span>
+                                <div class="practice-tool-card-content">
+                                    <h4>PCT Оценка</h4>
+                                    <p>Комплексная диагностика проекта по четырем аспектам: успех, лидерство, управление проектом и изменения.</p>
+                                    <span class="tool-duration">25 мин</span>
+                                </div>
                             </div>
 
                             <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(65)">
@@ -8991,8 +9422,10 @@ body.theme-dark .search-highlight {
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
-                                <h4>Начать комплексную оценку</h4>
-                                <p>Пройти все инструменты последовательно для полной диагностики проекта</p>
+                                <div class="practice-tool-card-content">
+                                    <h4>Начать комплексную оценку</h4>
+                                    <p>Пройти все инструменты последовательно для полной диагностики проекта</p>
+                                </div>
                             </div>
                         </div>
                     </div>

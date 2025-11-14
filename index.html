@@ -5798,29 +5798,31 @@ body.theme-dark .search-highlight {
 
 /* === СТИЛИ ДЛЯ РАЗДЕЛИТЕЛЯ "МОДЕЛИ УПРАВЛЕНИЯ ИЗМЕНЕНИЯМИ" === */
 
-.models-separator .separator-hero {
-  margin-bottom: var(--space-32);
-}
-
 .models-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-20);
-  margin-bottom: var(--space-40);
-  max-width: 1000px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+  margin: var(--space-48) auto 60px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .model-category-card {
   background: var(--color-surface);
-  padding: var(--space-24);
-  border-radius: 12px;
+  padding: var(--space-32);
+  border-radius: 16px;
   border: 1px solid var(--color-card-border);
   transition: all 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .model-category-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
 }
 
 .model-category-card .type-badge {
@@ -5833,7 +5835,7 @@ body.theme-dark .search-highlight {
 }
 
 .model-category-card h4 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-text);
   margin: var(--space-8) 0;
@@ -5842,8 +5844,8 @@ body.theme-dark .search-highlight {
 .model-category-card p {
   color: var(--color-text-secondary);
   margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .model-count {
@@ -5854,7 +5856,49 @@ body.theme-dark .search-highlight {
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 600;
-  margin-left: var(--space-8);
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* CTA контейнер и кнопка для слайда моделей */
+.models-cta-container {
+  max-width: 1000px;
+  margin: 20px auto var(--space-48);
+  width: 100%;
+}
+
+.models-cta-full {
+  width: 100%;
+  background: var(--color-teal-500);
+  color: white;
+  border: none;
+  padding: var(--space-18) var(--space-32);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(33, 128, 141, 0.2);
+}
+
+.models-cta-full:hover {
+  background: var(--color-teal-600);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 128, 141, 0.3);
+}
+
+/* Подсказка про категории */
+.models-hint {
+  max-width: 1000px;
+  margin: var(--space-24) auto 0;
+  text-align: center;
+}
+
+.models-hint p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* === СТИЛИ ДЛЯ РАЗДЕЛИТЕЛЯ "ПРАКТИКА: ОЦЕНИТЕ СВОЙ ПРОЕКТ" === */
@@ -6276,15 +6320,79 @@ body.theme-dark .search-highlight {
   .practice-tools {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .models-overview {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-20);
+    max-width: 100%;
+    padding: 0 var(--space-16);
+    margin-bottom: 48px;
+  }
+
+  .model-category-card {
+    padding: var(--space-24);
+    min-height: 160px;
+  }
+
+  .models-cta-container {
+    max-width: 100%;
+    padding: 0 var(--space-16);
+    margin: 20px auto var(--space-40);
+  }
 }
 
 @media (max-width: 768px) {
   .section-overview,
-  .models-overview,
   .practice-tools {
     grid-template-columns: 1fr;
     gap: var(--space-16);
     margin-top: var(--space-24);
+  }
+
+  .models-overview {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    margin-top: var(--space-24);
+    margin-bottom: 40px;
+    max-width: 100%;
+    padding: 0 var(--space-16);
+  }
+
+  .model-category-card {
+    padding: var(--space-20);
+    min-height: auto;
+  }
+
+  .model-category-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .model-category-card p {
+    font-size: 0.9rem;
+  }
+
+  .models-cta-container {
+    max-width: 100%;
+    padding: 0 var(--space-16);
+    margin: 20px auto var(--space-32);
+  }
+
+  .models-hint {
+    margin-top: var(--space-20);
+  }
+
+  .models-cta-full {
+    padding: var(--space-16) var(--space-24);
+    font-size: 1rem;
+  }
+
+  .models-hint {
+    max-width: 100%;
+    padding: 0 var(--space-16);
+  }
+
+  .models-hint p {
+    font-size: 0.85rem;
   }
 
   .practice-tool-card-cta .icon {
@@ -8667,16 +8775,6 @@ body.theme-dark .search-highlight {
             subtitle: "56 подходов от классических до современных",
             content: `
                 <div class="section-separator models-separator">
-                    <div class="separator-hero">
-                        <div class="hero-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                            </svg>
-                        </div>
-                        <h1 class="separator-title">56 Моделей</h1>
-                        <p class="separator-subtitle">От классических подходов к современным инновационным методологиям</p>
-                    </div>
-
                     <div class="models-overview">
                         <div class="model-category-card">
                             <span class="type-badge type-contextual">КОНТЕКСТНЫЕ МОДЕЛИ</span>
@@ -8707,12 +8805,12 @@ body.theme-dark .search-highlight {
                         </div>
                     </div>
 
-                    <div class="separator-navigation">
-                        <div class="nav-hint">
-                            <p><strong>Навигация по моделям:</strong> Используйте номера слайдов для быстрого перехода к интересующей модели</p>
-                            <p><strong>Категории:</strong> Каждая модель имеет цветовую маркировку для облегчения поиска</p>
-                        </div>
-                        <button class="separator-cta" onclick="jumpToSlide(9)">Изучить модели →</button>
+                    <div class="models-cta-container">
+                        <button class="models-cta-full" onclick="jumpToSlide(9)">Изучить модели →</button>
+                    </div>
+
+                    <div class="models-hint">
+                        <p>Категории: каждая модель имеет цветовую маркировку для облегчения поиска</p>
                     </div>
                 </div>
             `

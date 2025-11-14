@@ -5997,17 +5997,47 @@ body.theme-dark .search-highlight {
   left: 100%;
 }
 
-.practice-tool-card-cta h4,
-.practice-tool-card-cta p {
-  color: white;
+.practice-tool-card-cta h4 {
+  color: white !important;
   position: relative;
   z-index: 1;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-12);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.practice-tool-card-cta p {
+  color: white !important;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  line-height: 1.6;
 }
 
 .practice-tool-card-cta .icon {
   color: white;
   position: relative;
   z-index: 1;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+.practice-tool-card-cta .icon-cta svg {
+  width: 32px;
+  height: 32px;
+  stroke: white;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
 }
 
 .practice-tool-card-cta:hover {
@@ -6016,10 +6046,10 @@ body.theme-dark .search-highlight {
   border-color: var(--color-teal-300);
 }
 
-.practice-tool-card-cta .tool-duration {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.practice-tool-card-cta:hover .icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
 .practice-tool-card h4 {
@@ -6255,6 +6285,28 @@ body.theme-dark .search-highlight {
     grid-template-columns: 1fr;
     gap: var(--space-16);
     margin-top: var(--space-24);
+  }
+
+  .practice-tool-card-cta .icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-16);
+  }
+
+  .practice-tool-card-cta .icon-cta svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .practice-tool-card-cta h4 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-10);
+    color: white !important;
+  }
+
+  .practice-tool-card-cta p {
+    font-size: 0.9rem;
+    color: white !important;
   }
 
   .separator-title {
@@ -7685,14 +7737,13 @@ body.theme-dark .search-highlight {
                             </div>
 
                             <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(65)">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <div class="icon icon-cta">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
                                 <h4>Начать комплексную оценку</h4>
                                 <p>Пройти все инструменты последовательно для полной диагностики проекта</p>
-                                <span class="tool-duration">→</span>
                             </div>
                         </div>
                     </div>

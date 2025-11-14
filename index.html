@@ -351,6 +351,17 @@ body {
   .slide {
     padding: clamp(0.75rem, 3vw, 1rem);
   }
+
+  .section-overview,
+  .practice-tools {
+    margin-top: var(--space-16);
+    gap: var(--space-12);
+  }
+
+  .overview-card,
+  .practice-tool-card {
+    padding: var(--space-20);
+  }
 }
 
 @media (max-width: 480px) {
@@ -5508,7 +5519,7 @@ body.theme-dark .search-highlight {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-24);
-  margin-bottom: var(--space-48);
+  margin: var(--space-48) auto var(--space-48);
   max-width: 900px;
   width: 100%;
 }
@@ -5858,8 +5869,9 @@ body.theme-dark .search-highlight {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-24);
-  margin-bottom: var(--space-40);
+  margin: var(--space-48) auto var(--space-40);
   max-width: 1000px;
+  width: 100%;
 }
 
 .practice-tool-card {
@@ -6102,6 +6114,7 @@ body.theme-dark .search-highlight {
   .practice-tools {
     grid-template-columns: 1fr;
     gap: var(--space-16);
+    margin-top: var(--space-24);
   }
 
   .separator-title {
@@ -6983,11 +6996,6 @@ body.theme-dark .search-highlight {
                 subtitle: "Интерактивное путешествие по 56 моделям",
                 content: `
                     <div class="section-separator">
-                        <div class="separator-hero">
-                            <h1 class="separator-title">Добро пожаловать!</h1>
-                            <p class="separator-subtitle">Ваш путь к мастерству управления изменениями начинается здесь</p>
-                        </div>
-
                         <div class="section-overview">
                             <div class="overview-card">
                                 <div class="icon">
@@ -7476,11 +7484,6 @@ body.theme-dark .search-highlight {
                 subtitle: "Интерактивные инструменты для комплексной оценки и планирования",
                 content: `
                     <div class="section-separator practice-separator">
-                        <div class="separator-hero">
-                            <h1 class="separator-title">Оцените свой проект</h1>
-                            <p class="separator-subtitle">Комплексная диагностика и планирование изменений в 5 шагов</p>
-                        </div>
-
                         <div class="practice-tools">
                             <div class="practice-tool-card">
                                 <div class="icon">

@@ -2428,6 +2428,101 @@ body.theme-dark .search-highlight {
   }
 }
 
+/* ========== Readiness Assessment Responsive Styles ========== */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .readiness-assessment {
+    padding: var(--space-24);
+  }
+
+  .readiness-radar-container {
+    max-width: 500px;
+    max-height: 450px;
+  }
+
+  .readiness-radar-container canvas {
+    max-height: 350px;
+  }
+
+  .readiness-categories {
+    max-width: 700px;
+    gap: var(--space-20);
+  }
+
+  .readiness-overall-score {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  .readiness-assessment {
+    padding: var(--space-16);
+  }
+
+  .readiness-results {
+    padding: 0;
+  }
+
+  .readiness-overall {
+    padding: var(--space-24);
+    margin-bottom: var(--space-32);
+  }
+
+  .readiness-overall-score {
+    font-size: 36px;
+  }
+
+  .readiness-overall-level {
+    font-size: 18px;
+  }
+
+  .readiness-radar-container {
+    max-width: 100%;
+    max-height: 300px;
+    padding: var(--space-16);
+    margin-bottom: var(--space-24);
+  }
+
+  .readiness-radar-container canvas {
+    max-height: 250px;
+  }
+
+  .readiness-categories {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    max-width: 100%;
+    margin-bottom: var(--space-24);
+  }
+
+  .readiness-category-result {
+    padding: var(--space-20);
+  }
+
+  .readiness-recommendation {
+    padding: var(--space-20);
+  }
+
+  .readiness-recommendation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .readiness-recommendation-meta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .readiness-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .readiness-actions .panel-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* Анимация появления вариантов */
 .question-options {
   animation: fadeInUp 0.6s ease-out;
@@ -3031,8 +3126,9 @@ body.theme-dark .search-highlight {
 
 /* ========== Readiness Assessment Styles ========== */
 .readiness-assessment {
-  padding: var(--space-16);
-  max-width: 100%;
+  padding: var(--space-32);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .readiness-intro {
@@ -3167,6 +3263,11 @@ body.theme-dark .search-highlight {
   align-items: center;
 }
 
+.readiness-results {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .readiness-results h3 {
   color: var(--pres-primary);
   margin-bottom: var(--space-24);
@@ -3174,19 +3275,20 @@ body.theme-dark .search-highlight {
 }
 
 .readiness-overall {
-  background: var(--color-surface);
-  padding: var(--space-24);
-  border-radius: 8px;
+  background: linear-gradient(135deg, var(--color-surface) 0%, rgba(var(--color-teal-500-rgb), 0.05) 100%);
+  padding: var(--space-32);
+  border-radius: 16px;
   text-align: center;
-  margin-bottom: var(--space-32);
-  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-40);
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .readiness-overall-score {
-  font-size: 36px;
+  font-size: 48px;
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-  margin-bottom: var(--space-8);
+  color: var(--color-teal-600);
+  margin-bottom: var(--space-12);
   display: block;
 }
 
@@ -3202,10 +3304,29 @@ body.theme-dark .search-highlight {
   line-height: 1.5;
 }
 
+.readiness-radar-container {
+  max-width: 600px;
+  max-height: 500px;
+  margin: 0 auto var(--space-32);
+  position: relative;
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: 16px;
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
 .readiness-radar-container h4 {
   color: var(--pres-primary);
   margin-bottom: var(--space-16);
   text-align: center;
+}
+
+.readiness-radar-container canvas {
+  max-width: 100%;
+  max-height: 400px;
+  width: 100% !important;
+  height: auto !important;
 }
 
 .readiness-details h4,
@@ -3217,16 +3338,25 @@ body.theme-dark .search-highlight {
 
 .readiness-categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-16);
-  margin-bottom: var(--space-24);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+  max-width: 800px;
+  margin: 0 auto var(--space-32);
 }
 
 .readiness-category-result {
   background: var(--color-surface);
-  padding: var(--space-16);
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
+  padding: var(--space-24);
+  border-radius: 16px;
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.readiness-category-result:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-teal-300);
 }
 
 .readiness-category-header {
@@ -3262,11 +3392,12 @@ body.theme-dark .search-highlight {
 }
 
 .readiness-recommendation {
-  background: #f0f8f0;
-  padding: var(--space-16);
-  border-radius: 8px;
-  margin-bottom: var(--space-16);
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: 12px;
+  margin-bottom: var(--space-20);
   border-left: 4px solid #2DB67D;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .readiness-recommendation.high {
@@ -3302,6 +3433,16 @@ body.theme-dark .search-highlight {
   flex-wrap: wrap;
 }
 
+.readiness-actions .panel-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.readiness-actions .panel-button svg {
+  flex-shrink: 0;
+}
+
 /* ========== Enhanced Readiness Recommendations Styles ========== */
 
 .readiness-recommendation-header {
@@ -3310,13 +3451,14 @@ body.theme-dark .search-highlight {
   align-items: center;
   margin-bottom: var(--space-12);
   flex-wrap: wrap;
-  gap: var(--space-8);
+  gap: var(--space-12);
 }
 
 .readiness-recommendation-meta {
   display: flex;
-  gap: var(--space-8);
+  gap: var(--space-12);
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .readiness-urgency-badge {
@@ -3350,13 +3492,7 @@ body.theme-dark .search-highlight {
 
 .readiness-complexity-icon,
 .readiness-impact-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  font-size: 12px;
+  display: none; /* Скрываем избыточные иконки для упрощения UI */
 }
 
 .readiness-complexity-icon.easy {
@@ -6520,20 +6656,21 @@ body.theme-dark .search-highlight {
   margin: 0;
 }
 
-/* Сетка карточек 2x2 */
-.tools-grid-2x2 {
+/* Сетка карточек 3x2 */
+.tools-grid-3x2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-24);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* Широкая карточка для PCT */
-.tool-card-wide {
-  margin: var(--space-24) 0;
-}
-
-.tool-card-wide .card {
-  padding: var(--space-32);
+.tools-grid-3x2 .card {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Содержимое карточки инструмента */
@@ -6542,11 +6679,22 @@ body.theme-dark .search-highlight {
   flex-direction: column;
   gap: var(--space-16);
   text-align: center;
+  align-items: center;
 }
 
 .tool-card-content .tool-icon {
-  font-size: 2.5rem;
-  line-height: 1;
+  width: 48px;
+  height: 48px;
+  color: var(--color-teal-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-card-content .tool-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
 }
 
 .tool-card-content h3 {
@@ -6568,28 +6716,96 @@ body.theme-dark .search-highlight {
   margin-top: var(--space-8);
 }
 
-/* Футер с CTA */
-.tools-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: var(--space-32);
-  border-top: 1px solid var(--color-card-border);
+/* CTA карточка для слайда инструментов */
+.tool-card-cta {
+  background: linear-gradient(135deg, var(--color-teal-500), var(--color-teal-600)) !important;
+  border: 2px solid var(--color-teal-400) !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.tool-card-cta:hover::before {
+  left: 100%;
+}
+
+.tool-card-cta .tool-card-content h3 {
+  color: white !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card-cta .tool-icon {
+  color: white !important;
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+.tool-card-cta .icon-cta svg {
+  width: 32px;
+  height: 32px;
+  stroke: white;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.tool-card-cta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(33, 128, 141, 0.4);
+  border-color: var(--color-teal-300);
+}
+
+.tool-card-cta:hover .tool-icon {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
 /* Адаптивность */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .tools-grid-3x2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-20);
+  }
+}
+
 @media (max-width: 768px) {
   .tools-slide-modern {
     padding: var(--responsive-padding-lg);
     gap: var(--space-32);
   }
 
-  .tools-grid-2x2 {
+  .tools-grid-3x2 {
     grid-template-columns: 1fr;
     gap: var(--responsive-gap-md);
   }
 
-  .tool-card-wide .card {
-    padding: var(--responsive-padding);
+  .tool-card-cta .tool-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .tool-card-cta .icon-cta svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tool-card-cta .tool-card-content h3 {
+    font-size: 1.1rem;
   }
 
   .tools-title {
@@ -6602,6 +6818,15 @@ body.theme-dark .search-highlight {
 
   .tool-card-content h3 {
     font-size: 1.125rem;
+  }
+
+  .tool-card-content .tool-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tools-grid-3x2 .card {
+    min-height: auto;
   }
 }
 
@@ -8879,52 +9104,78 @@ body.theme-dark .search-highlight {
             subtitle: "Интерактивные инструменты для оценки и планирования ваших проектов",
             content: `
                 <div class="tools-slide-modern">
-                    <!-- Сетка карточек 2x2 для первых 4 инструментов -->
-                    <div class="tools-grid-2x2">
+                    <!-- Сетка карточек 3x2 (5 инструментов + CTA) -->
+                    <div class="tools-grid-3x2">
                         <div class="card">
                             <div class="tool-card-content">
-                                <div class="tool-icon">📊</div>
+                                <div class="tool-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                </div>
                                 <h3>Квиз профиля</h3>
                                 <span class="tool-time">5 мин</span>
                             </div>
                         </div>
                         <div class="card">
                             <div class="tool-card-content">
-                                <div class="tool-icon">💰</div>
+                                <div class="tool-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                </div>
                                 <h3>Калькулятор ROI</h3>
                                 <span class="tool-time">10 мин</span>
                             </div>
                         </div>
                         <div class="card">
                             <div class="tool-card-content">
-                                <div class="tool-icon">🎯</div>
+                                <div class="tool-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="6"></circle>
+                                        <circle cx="12" cy="12" r="2"></circle>
+                                    </svg>
+                                </div>
                                 <h3>Диагностика готовности</h3>
                                 <span class="tool-time">15 мин</span>
                             </div>
                         </div>
                         <div class="card">
                             <div class="tool-card-content">
-                                <div class="tool-icon">🔧</div>
+                                <div class="tool-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                    </svg>
+                                </div>
                                 <h3>Конструктор моделей</h3>
                                 <span class="tool-time">20 мин</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Широкая карточка для PCT -->
-                    <div class="tool-card-wide">
                         <div class="card">
                             <div class="tool-card-content">
-                                <div class="tool-icon">⭐</div>
+                                <div class="tool-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                                    </svg>
+                                </div>
                                 <h3>PCT оценка</h3>
                                 <span class="tool-time">25 мин</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Футер с CTA -->
-                    <div class="tools-footer">
-                        <button class="panel-button" onclick="jumpToSlide(65)">Продолжить →</button>
+                        <div class="card tool-card-cta" onclick="jumpToSlide(65)">
+                            <div class="tool-card-content">
+                                <div class="tool-icon icon-cta">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </div>
+                                <h3>Продолжить</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `
@@ -9295,8 +9546,21 @@ body.theme-dark .search-highlight {
 
                         <!-- Действия -->
                         <div class="readiness-actions">
-                            <button class="panel-button" onclick="exportReadinessToPDF()">📄 Сохранить результаты</button>
-                            <button class="panel-button secondary" onclick="resetReadinessAssessment()">🔄 Пройти снова</button>
+                            <button class="panel-button" onclick="exportReadinessToPDF()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Сохранить результаты
+                            </button>
+                            <button class="panel-button secondary" onclick="resetReadinessAssessment()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                    <path d="M21 3a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                </svg>
+                                Пройти снова
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -9545,7 +9809,7 @@ body.theme-dark .search-highlight {
                 `
             },
             {
-                title: "Матрица Сравнения 56 Моделей",
+                title: "Матрица сравнения моделей",
                 subtitle: "Комплексное сравнение в одном взгляде",
                 content: `
                     <div class="chart-container">
@@ -12093,8 +12357,6 @@ body.theme-dark .search-highlight {
                         <h5>${rec.title}</h5>
                         <div class="readiness-recommendation-meta">
                             <span class="readiness-urgency-badge ${rec.urgency}">${getUrgencyLabel(rec.urgency)}</span>
-                            <span class="readiness-complexity-icon ${rec.complexity}" title="Сложность: ${getComplexityLabel(rec.complexity)}">${getComplexityIcon(rec.complexity)}</span>
-                            <span class="readiness-impact-icon ${rec.impact}" title="Влияние: ${getImpactLabel(rec.impact)}">${getImpactIcon(rec.impact)}</span>
                             <span class="readiness-timeframe">${rec.timeframe}</span>
                         </div>
                     </div>
@@ -12187,7 +12449,8 @@ body.theme-dark .search-highlight {
                 data: data,
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 1.2,
                     elements: {
                         line: {
                             borderWidth: 2

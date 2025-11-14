@@ -5952,7 +5952,7 @@ body.theme-dark .search-highlight {
 
 .practice-tools {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-24);
   margin: var(--space-48) auto var(--space-40);
   max-width: 1000px;
@@ -5971,6 +5971,55 @@ body.theme-dark .search-highlight {
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--color-orange-300);
+}
+
+/* CTA карточка - выделенная зеленая кнопка */
+.practice-tool-card-cta {
+  background: linear-gradient(135deg, var(--color-teal-500), var(--color-teal-600));
+  border: 2px solid var(--color-teal-400);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.practice-tool-card-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.practice-tool-card-cta:hover::before {
+  left: 100%;
+}
+
+.practice-tool-card-cta h4,
+.practice-tool-card-cta p {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.practice-tool-card-cta .icon {
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.practice-tool-card-cta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(33, 128, 141, 0.4);
+  border-color: var(--color-teal-300);
+}
+
+.practice-tool-card-cta .tool-duration {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .practice-tool-card h4 {
@@ -6193,6 +6242,12 @@ body.theme-dark .search-highlight {
 }
 
 /* Responsive design */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .practice-tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .section-overview,
   .models-overview,
@@ -7628,10 +7683,17 @@ body.theme-dark .search-highlight {
                                 <p>Комплексная диагностика проекта по четырем аспектам: успех, лидерство, управление проектом и изменения.</p>
                                 <span class="tool-duration">25 мин</span>
                             </div>
-                        </div>
 
-                        <div class="separator-navigation">
-                            <button class="separator-cta" onclick="jumpToSlide(65)">Начать комплексную оценку →</button>
+                            <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(65)">
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </div>
+                                <h4>Начать комплексную оценку</h4>
+                                <p>Пройти все инструменты последовательно для полной диагностики проекта</p>
+                                <span class="tool-duration">→</span>
+                            </div>
                         </div>
                     </div>
                 `
@@ -9494,8 +9556,8 @@ body.theme-dark .search-highlight {
                 `
             },
             {
-                title: "Ключевые Выводы и Рекомендации",
-                subtitle: "Семь критичных инсайтов для успешного управления изменениями в 2025",
+                title: "Ключевые рекомендации",
+                subtitle: "Инсайты для успешного управления изменениями в современном мире",
                 content: `
                     <div class="grid-2">
                         <div class="card">

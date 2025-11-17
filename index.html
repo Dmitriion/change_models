@@ -3793,6 +3793,751 @@ body.theme-dark .search-highlight {
   margin: 24px 0;
 }
 
+/* ========== FAQ Styles ========== */
+.faq-container {
+  padding: var(--space-24);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-24);
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--color-card-border);
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.faq-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--font-size-sm);
+}
+
+.faq-breadcrumb-item {
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s var(--ease-standard);
+}
+
+.faq-breadcrumb-item:hover {
+  color: var(--color-primary);
+}
+
+.faq-breadcrumb-item.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.faq-breadcrumb-separator {
+  color: var(--color-text-secondary);
+  margin: 0 var(--space-4);
+}
+
+.faq-header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.faq-search-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.faq-search-input {
+  width: 100%;
+  padding: var(--space-12) var(--space-16) var(--space-12) var(--space-40);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color 0.2s var(--ease-standard), box-shadow 0.2s var(--ease-standard);
+}
+
+.faq-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-teal-500-rgb), 0.1);
+}
+
+.faq-search-icon {
+  position: absolute;
+  left: var(--space-12);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.faq-collapse-all-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.faq-collapse-all-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.faq-collapse-all-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.faq-topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-24);
+  margin-top: var(--space-24);
+  transition: grid-template-columns 0.4s var(--ease-standard);
+}
+
+.faq-topics-grid.has-expanded {
+  grid-template-columns: 1fr;
+}
+
+.faq-topic-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s var(--ease-standard);
+  overflow: hidden;
+  position: relative;
+}
+
+.faq-topic-card:hover:not(.expanded) {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--color-teal-500-rgb), 0.35);
+}
+
+.faq-topic-card.expanded {
+  grid-column: 1 / -1;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg);
+  border-width: 2px;
+  margin-bottom: var(--space-32);
+  z-index: 10;
+}
+
+.faq-topics-grid.has-expanded .faq-topic-card:not(.expanded) {
+  opacity: 0.4;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.faq-topic-card.hidden {
+  display: none;
+}
+
+.faq-topic-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-16);
+  padding: var(--space-24);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.faq-topic-card.expanded .faq-topic-header {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 20;
+  border-bottom: 1px solid var(--color-card-border);
+  margin-bottom: var(--space-24);
+  padding-bottom: var(--space-24);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.faq-topic-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.faq-topic-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2;
+}
+
+.faq-topic-icon span {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.faq-topic-title-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.faq-topic-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--pres-primary);
+  margin: 0 0 var(--space-12) 0;
+  line-height: 1.3;
+}
+
+.faq-topic-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.faq-summary-item {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.faq-topic-toggle {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-secondary);
+  transition: transform 0.3s var(--ease-standard), color 0.3s var(--ease-standard);
+}
+
+.faq-topic-card.expanded .faq-topic-toggle {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+
+.faq-topic-content {
+  padding: 0 var(--space-24) var(--space-24) var(--space-24);
+  animation: fadeIn 0.4s var(--ease-standard);
+}
+
+.faq-topic-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-16) var(--space-24);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-top: 1px solid var(--color-card-border);
+  margin-top: var(--space-24);
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.faq-topic-nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.faq-topic-progress {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.faq-topic-related-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.faq-topic-related-links-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.faq-topic-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-12);
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.faq-topic-related-link:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.faq-topic-nav-right {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.faq-back-btn,
+.faq-close-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-10) var(--space-16);
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.faq-back-btn:hover,
+.faq-close-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.faq-back-btn svg,
+.faq-close-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-topic-details {
+  margin-bottom: var(--space-24);
+}
+
+.faq-topic-details h4 {
+  color: var(--pres-primary);
+  font-size: var(--font-size-lg);
+  margin: var(--space-24) 0 var(--space-12) 0;
+  font-weight: 600;
+}
+
+.faq-topic-details h5 {
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  margin: var(--space-16) 0 var(--space-8) 0;
+  font-weight: 600;
+}
+
+.faq-topic-details p,
+.faq-topic-details ul,
+.faq-topic-details li {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-8);
+}
+
+.faq-topic-details ul {
+  padding-left: var(--space-24);
+  margin-bottom: var(--space-16);
+}
+
+.faq-role,
+.faq-method,
+.faq-principle {
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  padding: var(--space-16);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-16);
+  border-left: 3px solid var(--color-primary);
+}
+
+.faq-case-study {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin: var(--space-16) 0;
+}
+
+.case-success {
+  background: rgba(45, 182, 125, 0.1);
+  padding: var(--space-16);
+  border-radius: var(--radius-md);
+  border-left: 3px solid #2DB67D;
+}
+
+.case-failure {
+  background: rgba(192, 21, 47, 0.1);
+  padding: var(--space-16);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-red-500);
+}
+
+.faq-related {
+  margin-top: var(--space-24);
+  padding: var(--space-16);
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-md);
+}
+
+.faq-link-btn,
+.faq-model-btn {
+  display: inline-block;
+  margin: var(--space-8) var(--space-8) var(--space-8) 0;
+  padding: var(--space-8) var(--space-16);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-standard), transform 0.2s var(--ease-standard);
+}
+
+.faq-link-btn:hover,
+.faq-model-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.faq-related-models {
+  margin-top: var(--space-24);
+  padding: var(--space-16);
+  background: rgba(var(--color-brown-600-rgb), 0.08);
+  border-radius: var(--radius-md);
+}
+
+.faq-tools {
+  margin-top: var(--space-24);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-card-border);
+}
+
+.faq-tools-section {
+  margin-bottom: var(--space-24);
+}
+
+.faq-tools-section h4 {
+  color: var(--pres-primary);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-16);
+  font-weight: 600;
+}
+
+.faq-checklist-wrapper {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-20);
+  margin-bottom: var(--space-20);
+}
+
+.faq-checklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-16);
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+.faq-checklist-header h5 {
+  color: var(--pres-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin: 0;
+}
+
+.faq-checklist-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.faq-checklist-progress span {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  min-width: 50px;
+}
+
+.faq-progress-bar {
+  width: 100px;
+  height: 8px;
+  background: rgba(var(--color-slate-500-rgb), 0.2);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.faq-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.3s var(--ease-standard);
+  border-radius: var(--radius-full);
+}
+
+.faq-checklist {
+  margin: var(--space-16) 0;
+}
+
+.faq-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  margin: var(--space-12) 0;
+  cursor: pointer;
+  padding: var(--space-12);
+  border-radius: var(--radius-md);
+  transition: background 0.2s var(--ease-standard);
+}
+
+.faq-checklist-item:hover {
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+}
+
+.faq-checklist-item input[type="checkbox"] {
+  display: none;
+}
+
+.faq-checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-gray-400);
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-12);
+  margin-top: 2px;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.faq-checklist-item input:checked + .faq-checkmark {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.faq-checklist-item input:checked + .faq-checkmark::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.faq-item-content {
+  flex: 1;
+}
+
+.faq-item-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+}
+
+.faq-item-category {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.faq-export-btn {
+  width: 100%;
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-standard);
+  margin-top: var(--space-16);
+}
+
+.faq-export-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.faq-template-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-20);
+  margin-bottom: var(--space-20);
+}
+
+.faq-template-card h5 {
+  color: var(--pres-primary);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin: 0 0 var(--space-12) 0;
+}
+
+.faq-template-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-8);
+}
+
+.faq-template-structure {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-16);
+}
+
+.faq-template-btn {
+  width: 100%;
+  padding: var(--space-12) var(--space-16);
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.faq-template-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+@media (max-width: 1024px) {
+  .faq-topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-topics-grid.has-expanded {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-search-wrapper {
+    width: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .faq-container {
+    padding: var(--space-16);
+  }
+
+  .faq-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .faq-header-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .faq-search-wrapper {
+    width: 100%;
+  }
+
+  .faq-collapse-all-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faq-topics-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .faq-topics-grid.has-expanded {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-topic-header {
+    padding: var(--space-16);
+    gap: var(--space-12);
+  }
+
+  .faq-topic-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .faq-topic-nav-left,
+  .faq-topic-nav-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faq-back-btn,
+  .faq-close-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faq-topic-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .faq-topic-icon span {
+    font-size: 24px;
+  }
+
+  .faq-topic-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .faq-topic-content {
+    padding: 0 var(--space-16) var(--space-16) var(--space-16);
+  }
+
+  .faq-checklist-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .faq-checklist-progress {
+    width: 100%;
+  }
+
+  .faq-progress-bar {
+    flex: 1;
+    max-width: 200px;
+  }
+}
+
 /* ========== ROI Calculator Styles ========== */
 .roi-calculator {
   padding: var(--space-16);
@@ -6505,9 +7250,17 @@ body.theme-dark .search-highlight {
 
 .matrix-step h4 {
   color: var(--color-text);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-8);
   text-align: center;
   font-size: 1.1rem;
+}
+
+.matrix-step-description {
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: var(--space-16);
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .matrix-parameters {
@@ -8700,6 +9453,186 @@ body.theme-dark .search-highlight {
   }
 }
 
+/* === СТИЛИ ДЛЯ СЛАЙДА "ВЫБЕРИТЕ ТО, ЧТО ПОЛЕЗНО ДЛЯ ВАС" === */
+
+.useful-options-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-24);
+}
+
+.useful-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-24);
+  width: 100%;
+}
+
+.useful-option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+  background: var(--color-surface);
+  padding: var(--space-32);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.useful-option-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--color-teal-500-rgb), 0.03), rgba(var(--color-orange-500-rgb), 0.03));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-standard);
+  pointer-events: none;
+}
+
+.useful-option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-teal-300);
+}
+
+.useful-option-card:hover::before {
+  opacity: 1;
+}
+
+.useful-option-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--color-primary);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.useful-option-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2;
+}
+
+.useful-option-card:hover .useful-option-icon {
+  transform: scale(1.1);
+  background: rgba(var(--color-teal-500-rgb), 0.12);
+  border-color: var(--color-teal-300);
+  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+}
+
+.useful-option-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.useful-option-content h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.useful-option-content p {
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+  text-align: left;
+}
+
+/* Адаптивность для useful-options-grid */
+@media (max-width: 768px) {
+  .useful-options-container {
+    padding: var(--space-24) var(--space-16);
+  }
+
+  .useful-options-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-20);
+  }
+
+  .useful-option-card {
+    padding: var(--space-24);
+    gap: var(--space-16);
+  }
+
+  .useful-option-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .useful-option-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .useful-options-container {
+    padding: var(--space-20) var(--space-12);
+  }
+
+  .useful-option-card {
+    padding: var(--space-20);
+    gap: var(--space-12);
+  }
+
+  .useful-option-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .useful-option-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Touch устройства */
+@media (hover: none) and (pointer: coarse) {
+  .useful-option-card:hover {
+    transform: none;
+  }
+
+  .useful-option-card:active {
+    transform: scale(0.98);
+  }
+
+  .useful-option-card:hover .useful-option-icon {
+    transform: none;
+  }
+
+  .useful-option-card:active .useful-option-icon {
+    transform: scale(0.95);
+  }
+}
+
+/* Уважение настроек пользователя */
+@media (prefers-reduced-motion: reduce) {
+  .useful-option-card,
+  .useful-option-icon {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Уважение настроек пользователя для practice-tool-card */
 @media (prefers-reduced-motion: reduce) {
   .practice-tool-card,
@@ -9272,6 +10205,16 @@ body.theme-dark .search-highlight {
             }
             if (currentSlide === finalSlideIndex) {
                 updateFinalStats();
+            }
+            
+            // Инициализация FAQ для слайда 69
+            const faqSlideIndex = slidesData.findIndex(slide => slide.title && (slide.title.includes('FAQ') || slide.title.includes('Ключевые вопросы')));
+            if (faqSlideIndex >= 0 && currentSlide === faqSlideIndex) {
+                setTimeout(() => {
+                    if (typeof initFAQ === 'function') {
+                        initFAQ();
+                    }
+                }, 100);
             }
             
             activateSlide(currentSlide);
@@ -10102,93 +11045,67 @@ body.theme-dark .search-highlight {
 
             // СЛАЙД - РАЗДЕЛИТЕЛЬ: ПРАКТИКА - ОЦЕНИТЕ СВОЙ ПРОЕКТ
             {
-                title: "Оцените свой проект",
-                subtitle: "Интерактивные инструменты для комплексной оценки и планирования",
+                title: "Выберите то, что полезно для вас",
+                subtitle: "",
                 content: `
-                    <div class="section-separator practice-separator">
-                        <div class="practice-tools">
-                            <div class="practice-tool-card">
-                                <div class="icon">
+                    <div class="useful-options-container">
+                        <div class="useful-options-grid">
+                            <div class="useful-option-card" onclick="goToClassification()">
+                                <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                                    </svg>
+                                </div>
+                                <div class="useful-option-content">
+                                    <h3>Изучить модели</h3>
+                                    <p>Познакомьтесь с 56 моделями управления изменениями от классических до современных подходов</p>
+                                </div>
+                            </div>
+
+                            <div class="useful-option-card" onclick="goToPracticalTools()">
+                                <div class="useful-option-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
                                         <polyline points="14 2 14 8 20 8"></polyline>
                                         <line x1="16" y1="13" x2="8" y2="13"></line>
                                         <line x1="16" y1="17" x2="8" y2="17"></line>
                                         <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
                                 </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>Мини-диагностика</h4>
-                                    <p>Ответьте на 3 вопроса и получите персональные рекомендации по выбору модели управления изменениями.</p>
-                                    <span class="tool-duration">5 мин</span>
+                                <div class="useful-option-content">
+                                    <h3>Практические инструменты</h3>
+                                    <p>Используйте интерактивные инструменты для оценки и планирования ваших проектов изменений</p>
                                 </div>
                             </div>
 
-                            <div class="practice-tool-card">
-                                <div class="icon">
+                            <div class="useful-option-card" onclick="goToFAQ()">
+                                <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <path d="M12 17h.01"></path>
                                     </svg>
                                 </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>Калькулятор ROI</h4>
-                                    <p>Рассчитайте экономическую эффективность внедрения управления изменениями в вашем проекте.</p>
-                                    <span class="tool-duration">10 мин</span>
+                                <div class="useful-option-content">
+                                    <h3>FAQ</h3>
+                                    <p>Найдите ответы на ключевые вопросы управления изменениями и получите практические инструменты</p>
                                 </div>
                             </div>
 
-                            <div class="practice-tool-card">
-                                <div class="icon">
+                            <div class="useful-option-card" onclick="goToModelSelector()">
+                                <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        <rect x="3" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="3" width="7" height="7"></rect>
+                                        <rect x="14" y="14" width="7" height="7"></rect>
+                                        <rect x="3" y="14" width="7" height="7"></rect>
                                     </svg>
                                 </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>Диагностика готовности</h4>
-                                    <p>Оцените текущую готовность вашей организации к успешному внедрению изменений.</p>
-                                    <span class="tool-duration">15 мин</span>
-                                </div>
-                            </div>
-
-                            <div class="practice-tool-card">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                                    </svg>
-                                </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>Конструктор модели</h4>
-                                    <p>Создайте собственную модель управления изменениями из лучших практик разных подходов.</p>
-                                    <span class="tool-duration">20 мин</span>
-                                </div>
-                            </div>
-
-                            <div class="practice-tool-card">
-                                <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="20" x2="12" y2="10"></line>
-                                        <line x1="18" y1="20" x2="18" y2="4"></line>
-                                        <line x1="6" y1="20" x2="6" y2="16"></line>
-                                    </svg>
-                                </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>PCT Оценка</h4>
-                                    <p>Комплексная диагностика проекта по четырем аспектам: успех, лидерство, управление проектом и изменения.</p>
-                                    <span class="tool-duration">25 мин</span>
-                                </div>
-                            </div>
-
-                            <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(64)">
-                                <div class="icon icon-cta">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg>
-                                </div>
-                                <div class="practice-tool-card-content">
-                                    <h4>Начать комплексную оценку</h4>
-                                    <p>Пройти все инструменты последовательно для полной диагностики проекта</p>
+                                <div class="useful-option-content">
+                                    <h3>Интерактивный инструмент выбора модели</h3>
+                                    <p>Найдите подходящую модель для вашего проекта с помощью интерактивного селектора</p>
                                 </div>
                             </div>
                         </div>
@@ -12152,78 +13069,32 @@ body.theme-dark .search-highlight {
                 `
             },
             {
-                title: "Матрица сравнения моделей",
-                subtitle: "Комплексное сравнение в одном взгляде",
+                title: "FAQ: Ключевые вопросы управления изменениями",
+                subtitle: "Практические инструменты и ответы на основные вопросы",
                 content: `
-                    <div class="matrix-comparison-container">
-                        <div class="matrix-stats-grid">
-                            <div class="matrix-stat-card">
-                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                    <path d="M2 17l10 5 10-5"></path>
-                                    <path d="M2 12l10 5 10-5"></path>
-                                </svg>
-                                <div class="matrix-stat-number">15</div>
-                                <p class="matrix-stat-label">Контекстные Модели</p>
+                    <div class="faq-container" id="faqContainer">
+                        <div class="faq-header" id="faqHeader">
+                            <div class="faq-breadcrumb" id="faqBreadcrumb">
+                                <span class="faq-breadcrumb-item active" onclick="collapseAllFAQTopics()">FAQ</span>
                             </div>
-                            <div class="matrix-stat-card">
-                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                    <polyline points="17 6 23 6 23 12"></polyline>
-                                </svg>
-                                <div class="matrix-stat-number">10</div>
-                                <p class="matrix-stat-label">Высокоуровневые Модели</p>
-                            </div>
-                            <div class="matrix-stat-card">
-                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <div class="matrix-stat-number">26</div>
-                                <p class="matrix-stat-label">Действенные Модели</p>
-                            </div>
-                            <div class="matrix-stat-card">
-                                <svg class="matrix-stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                                </svg>
-                                <div class="matrix-stat-number">8</div>
-                                <p class="matrix-stat-label">Вспомогательные Модели</p>
+                            <div class="faq-header-controls">
+                                <div class="faq-search-wrapper">
+                                    <input type="text" class="faq-search-input" id="faqSearchInput" placeholder="Поиск по темам..." oninput="filterFAQTopics(this.value)">
+                                    <svg class="faq-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.35-4.35"></path>
+                                    </svg>
+                                </div>
+                                <button class="faq-collapse-all-btn" id="faqCollapseAllBtn" onclick="collapseAllFAQTopics()" style="display: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="18 15 12 9 6 15"></polyline>
+                                    </svg>
+                                    Свернуть все
+                                </button>
                             </div>
                         </div>
-                        <div class="matrix-insights">
-                            <h3>
-                                <svg class="matrix-insights-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
-                                Ключевые Инсайты
-                            </h3>
-                            <ul>
-                                <li>
-                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                    <span><strong>Наиболее комплексные</strong>: Действенные модели (26) предоставляют детальные шаги реализации</span>
-                                </li>
-                                <li>
-                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                    <span><strong>Фундамент</strong>: Контекстные модели (15) помогают понять 'почему' и 'что'</span>
-                                </li>
-                                <li>
-                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                    <span><strong>Стратегические</strong>: Высокоуровневые модели (10) направляют общий подход</span>
-                                </li>
-                                <li>
-                                    <svg class="matrix-insights-item-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                    <span><strong>Инструменты</strong>: Вспомогательные модели (8) предоставляют инструменты и техники</span>
-                                </li>
-                            </ul>
+                        <div class="faq-topics-grid" id="faqTopicsGrid">
+                            <!-- Карточки тем будут сгенерированы через JavaScript -->
                         </div>
                     </div>
                 `
@@ -12334,7 +13205,51 @@ body.theme-dark .search-highlight {
                         <div class="selector-mode-content" id="matrixModeContent" style="display:none">
                             <div class="selection-matrix">
                                 <div class="matrix-step">
+                                    <h4>Шаг 0: Ваша роль</h4>
+                                    <p class="matrix-step-description">Выберите роль, с которой вы работаете над изменениями</p>
+                                    <div class="matrix-parameters">
+                                        <div class="matrix-parameter" data-step="0" data-value="CEO">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">CEO / Генеральный директор</div>
+                                            <div class="matrix-parameter-description">Стратегический фокус, быстрые результаты, бизнес-метрики</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="0" data-value="HRD">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="9" cy="7" r="4"></circle>
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">HRD / HR директор</div>
+                                            <div class="matrix-parameter-description">Фокус на людях, вовлеченность, работа с сопротивлением</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="0" data-value="ChangeManager">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                                                    <line x1="15" y1="3" x2="15" y2="21"></line>
+                                                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                                                    <line x1="3" y1="15" x2="21" y2="15"></line>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Руководитель управления изменениями</div>
+                                            <div class="matrix-parameter-description">Детальный план, инструменты, комплексный подход</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="matrix-step">
                                     <h4>Шаг 1: Масштаб изменений</h4>
+                                    <p class="matrix-step-description">Какой масштаб изменений вы планируете?</p>
                                     <div class="matrix-parameters">
                                         <div class="matrix-parameter" data-step="1" data-value="Малый">
                                             <div class="matrix-parameter-icon">
@@ -12382,6 +13297,7 @@ body.theme-dark .search-highlight {
                                 </div>
                                 <div class="matrix-step">
                                     <h4>Шаг 2: Скорость внедрения</h4>
+                                    <p class="matrix-step-description">Как быстро нужно внедрить изменения?</p>
                                     <div class="matrix-parameters">
                                         <div class="matrix-parameter" data-step="2" data-value="Быстро">
                                             <div class="matrix-parameter-icon">
@@ -12416,6 +13332,80 @@ body.theme-dark .search-highlight {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="matrix-step">
+                                    <h4>Шаг 3: Ожидаемый уровень сопротивления</h4>
+                                    <p class="matrix-step-description">Насколько сильным вы ожидаете сопротивление изменениям?</p>
+                                    <div class="matrix-parameters">
+                                        <div class="matrix-parameter" data-step="3" data-value="Низкое">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Низкое</div>
+                                            <div class="matrix-parameter-description">Команда готова, изменения ожидаемы, поддержка руководства</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="3" data-value="Среднее">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Среднее</div>
+                                            <div class="matrix-parameter-description">Смешанные реакции, требуется работа с людьми, частичная поддержка</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="3" data-value="Высокое">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Высокое</div>
+                                            <div class="matrix-parameter-description">Сильное сопротивление, кризисная ситуация, требуется активная работа</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="matrix-step">
+                                    <h4>Шаг 4: Доступные ресурсы</h4>
+                                    <p class="matrix-step-description">Какие ресурсы доступны для внедрения изменений?</p>
+                                    <div class="matrix-parameters">
+                                        <div class="matrix-parameter" data-step="4" data-value="Ограниченные">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Ограниченные</div>
+                                            <div class="matrix-parameter-description">Минимальный бюджет, 1-2 человека, без внешних консультантов</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="4" data-value="Средние">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                                                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Средние</div>
+                                            <div class="matrix-parameter-description">Умеренный бюджет, команда 3-5 человек, возможно привлечение консультантов</div>
+                                        </div>
+                                        <div class="matrix-parameter" data-step="4" data-value="Неограниченные">
+                                            <div class="matrix-parameter-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="matrix-parameter-title">Неограниченные</div>
+                                            <div class="matrix-parameter-description">Полная поддержка, большая команда, внешние эксперты, сертификация</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="recommendations-panel" id="matrixRecommendations">
                                 <div class="recommendations-header">
@@ -12433,7 +13423,7 @@ body.theme-dark .search-highlight {
                                         </svg>
                                         Начать заново
                                     </button>
-                                    <button class="panel-button" onclick="jumpToSlide(65)" type="button">
+                                    <button class="panel-button" onclick="jumpToSlide(64)" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                         </svg>
@@ -12737,6 +13727,526 @@ body.theme-dark .search-highlight {
             }
         };
 
+        // ========== FAQ Data Structure ==========
+        const faqData = {
+            topics: [
+                {
+                    id: 'why-important',
+                    title: 'Почему важно управлять изменениями?',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>',
+                    summary: [
+                        'Влияние на рост компании: +35%',
+                        'Устойчивость: снижение рисков на 40%',
+                        'Результаты: ROI управления изменениями 120%',
+                        'Без УИ: 70% проектов терпят неудачу'
+                    ],
+                    content: `
+                        <h4>Влияние управления изменениями на бизнес</h4>
+                        <p>Проекты с профессиональным управлением изменениями показывают на 35% больший рост выручки по сравнению с проектами без УИ. Это связано с более быстрой адаптацией сотрудников, снижением сопротивления и эффективным внедрением новых процессов.</p>
+                        
+                        <h4>Статистика успешности</h4>
+                        <ul>
+                            <li><strong>С УИ:</strong> 70% проектов достигают целей</li>
+                            <li><strong>Без УИ:</strong> Только 30% проектов успешны</li>
+                            <li><strong>ROI УИ:</strong> В среднем 120% возврат инвестиций</li>
+                            <li><strong>Снижение рисков:</strong> На 40% меньше провалов</li>
+                        </ul>
+                        
+                        <h4>Реальные кейсы</h4>
+                        <div class="faq-case-study">
+                            <div class="case-success">
+                                <strong>Успех:</strong> Компания FMCG внедрила новую ERP-систему с применением модели Коттера. Проект завершен на 2 месяца раньше срока, экономия составила 15 млн руб.
+                            </div>
+                            <div class="case-failure">
+                                <strong>Провал:</strong> IT-компания провела реорганизацию без управления изменениями. Проект провалился, потеря 50 млн руб., увольнение 30% команды.
+                            </div>
+                        </div>
+                        
+                        <div class="faq-related">
+                            <strong>Связанные инструменты:</strong>
+                            <button class="faq-link-btn" onclick="jumpToSlide(65)">Калькулятор ROI</button>
+                        </div>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'risk-assessment',
+                                title: 'Чек-лист оценки рисков проекта',
+                                items: [
+                                    { id: 'risk1', text: 'Риск провала проекта без УИ', category: 'Критический' },
+                                    { id: 'risk2', text: 'Риск потери бюджета (3-5x от первоначального)', category: 'Высокий' },
+                                    { id: 'risk3', text: 'Риск увольнения ключевых сотрудников', category: 'Высокий' },
+                                    { id: 'risk4', text: 'Риск снижения производительности', category: 'Средний' },
+                                    { id: 'risk5', text: 'Риск репутационных потерь', category: 'Средний' }
+                                ]
+                            }
+                        ],
+                        templates: []
+                    },
+                    relatedModels: ['Коттер', 'ADKAR', 'Prosci'],
+                    relatedSlides: [65]
+                },
+                {
+                    id: 'roles',
+                    title: 'Роли: кто и зачем?',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+                    summary: [
+                        'Спонсор изменений',
+                        'Функциональные руководители',
+                        'Лидеры изменений',
+                        'Проектная команда'
+                    ],
+                    content: `
+                        <h4>Ключевые роли в проекте изменений</h4>
+                        
+                        <div class="faq-role">
+                            <h5>1. Спонсор изменений</h5>
+                            <p><strong>Задачи:</strong> Стратегическое видение, принятие ключевых решений, выделение ресурсов и бюджета, устранение барьеров, видимая поддержка изменений.</p>
+                            <p><strong>Ответственность:</strong> Определение сути изменений и причин, коммуникация видения и выгод, приоритизация изменений, решение проблем по графику, объему и ресурсам, активное участие в проекте.</p>
+                        </div>
+                        
+                        <div class="faq-role">
+                            <h5>2. Функциональные руководители</h5>
+                            <p><strong>Задачи:</strong> Поддержка изменений в своих подразделениях, коммуникация изменений команде, управление сопротивлением на уровне подразделения, адаптация изменений под специфику подразделения.</p>
+                            <p><strong>Ответственность:</strong> Вовлечение своих команд в изменения, обеспечение ресурсов подразделения, мониторинг прогресса, обратная связь от команды к спонсору.</p>
+                        </div>
+                        
+                        <div class="faq-role">
+                            <h5>3. Лидеры изменений</h5>
+                            <p><strong>Задачи:</strong> Планирование и координация изменений, разработка стратегии управления изменениями, работа с сопротивлением, коммуникации и обучение, мониторинг прогресса.</p>
+                            <p><strong>Ответственность:</strong> Разработка плана управления изменениями, координация коммуникаций, диагностика готовности и сопротивления, обучение и развитие навыков, отчетность о прогрессе.</p>
+                        </div>
+                        
+                        <div class="faq-role">
+                            <h5>4. Проектная команда</h5>
+                            <p><strong>Задачи:</strong> Выполнение технических задач проекта, внедрение изменений на операционном уровне, тестирование и отработка новых процессов, сбор обратной связи, поддержка коллег.</p>
+                            <p><strong>Ответственность:</strong> Выполнение задач по плану проекта, соблюдение сроков и качества, коммуникация о проблемах и рисках, участие в тестировании и пилотировании.</p>
+                        </div>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'role-assignment',
+                                title: 'Чек-лист распределения ролей в проекте',
+                                items: [
+                                    { id: 'role1', text: 'Спонсор изменений назначен и имеет достаточную власть', category: 'Критический' },
+                                    { id: 'role2', text: 'Функциональные руководители определены и вовлечены', category: 'Высокий' },
+                                    { id: 'role3', text: 'Лидеры изменений назначены и имеют компетенции', category: 'Высокий' },
+                                    { id: 'role4', text: 'Проектная команда сформирована и обучена', category: 'Высокий' },
+                                    { id: 'role5', text: 'Задачи для каждой роли определены', category: 'Средний' },
+                                    { id: 'role6', text: 'Ответственность закреплена документально', category: 'Средний' },
+                                    { id: 'role7', text: 'Коммуникационные каналы установлены', category: 'Средний' }
+                                ]
+                            },
+                            {
+                                id: 'role-effectiveness',
+                                title: 'Чек-лист эффективности ролей',
+                                items: [
+                                    { id: 'eff1', text: 'Спонсор четко определяет суть изменений', category: 'Спонсор' },
+                                    { id: 'eff2', text: 'Спонсор активно участвует в проекте', category: 'Спонсор' },
+                                    { id: 'eff3', text: 'Функциональные руководители поддерживают изменения', category: 'Руководители' },
+                                    { id: 'eff4', text: 'Лидеры изменений имеют план УИ', category: 'Лидеры' },
+                                    { id: 'eff5', text: 'Проектная команда выполняет задачи в срок', category: 'Команда' }
+                                ]
+                            }
+                        ],
+                        templates: [
+                            {
+                                id: 'raci-matrix',
+                                title: 'Шаблон матрицы RACI',
+                                description: 'Матрица распределения ответственности для проекта изменений',
+                                structure: 'Этапы проекта × Роли'
+                            }
+                        ]
+                    },
+                    relatedModels: ['Коттер', 'ADKAR', 'Prosci'],
+                    relatedSlides: []
+                },
+                {
+                    id: 'context',
+                    title: 'Среда и контекст изменений',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+                    summary: [
+                        'Внутренние факторы: культура, структура, ресурсы',
+                        'Внешние факторы: рынок, конкуренты, регуляторы',
+                        'Примеры: FMCG, IT, РФ'
+                    ],
+                    content: `
+                        <h4>Факторы среды изменений</h4>
+                        
+                        <h5>Внутренние факторы:</h5>
+                        <ul>
+                            <li><strong>Культура организации:</strong> Консервативная требует более структурированных моделей, инновационная - Agile подходов</li>
+                            <li><strong>Структура:</strong> Иерархическая, плоская или матричная определяет способ коммуникации</li>
+                            <li><strong>Ресурсы:</strong> Бюджет, команда, время влияют на выбор модели</li>
+                            <li><strong>Опыт изменений:</strong> Наличие опыта упрощает внедрение</li>
+                        </ul>
+                        
+                        <h5>Внешние факторы:</h5>
+                        <ul>
+                            <li><strong>Рыночная среда:</strong> Стабильная или турбулентная определяет скорость изменений</li>
+                            <li><strong>Конкуренты:</strong> Активные требуют быстрой реакции</li>
+                            <li><strong>Регуляторы:</strong> Жесткие требования влияют на процесс</li>
+                            <li><strong>Технологии:</strong> Быстрые изменения требуют гибкости</li>
+                        </ul>
+                        
+                        <h4>Примеры по отраслям</h4>
+                        <ul>
+                            <li><strong>FMCG:</strong> Быстрая смена трендов, высокая конкуренция - требуют быстрых циклов изменений</li>
+                            <li><strong>IT:</strong> Инновации, короткие циклы - подходят Agile, PDCA подходы</li>
+                            <li><strong>РФ:</strong> Турбулентность, санкции - требуют адаптивности и устойчивости</li>
+                        </ul>
+                        
+                        <div class="faq-related">
+                            <strong>Связанные инструменты:</strong>
+                            <button class="faq-link-btn" onclick="jumpToSlide(67)">Диагностика готовности</button>
+                            <button class="faq-link-btn" onclick="jumpToSlide(70)">Выбор модели</button>
+                        </div>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'context-assessment',
+                                title: 'Чек-лист оценки контекста изменений',
+                                items: [
+                                    { id: 'ctx1', text: 'Культура организации оценена', category: 'Внутренние' },
+                                    { id: 'ctx2', text: 'Структура организации понятна', category: 'Внутренние' },
+                                    { id: 'ctx3', text: 'Ресурсы определены и доступны', category: 'Внутренние' },
+                                    { id: 'ctx4', text: 'Рыночная среда проанализирована', category: 'Внешние' },
+                                    { id: 'ctx5', text: 'Конкурентная ситуация учтена', category: 'Внешние' }
+                                ]
+                            }
+                        ],
+                        templates: []
+                    },
+                    relatedModels: ['PDCA', 'Agile', 'Гибридная'],
+                    relatedSlides: [67, 70]
+                },
+                {
+                    id: 'prevention',
+                    title: 'Профилактика сопротивления',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+                    summary: [
+                        'Причины: страх неизвестного, потеря контроля',
+                        'Ранние признаки: пассивность, слухи',
+                        'Инструменты диагностики'
+                    ],
+                    content: `
+                        <h4>Причины сопротивления</h4>
+                        <ul>
+                            <li><strong>Страх неизвестного (30%):</strong> Непонимание последствий изменений</li>
+                            <li><strong>Потеря контроля (25%):</strong> Ощущение потери влияния на ситуацию</li>
+                            <li><strong>Дополнительная нагрузка (20%):</strong> Опасение увеличения работы</li>
+                            <li><strong>Непонимание необходимости (15%):</strong> Отсутствие ясности в причинах</li>
+                            <li><strong>Предыдущий негативный опыт (10%):</strong> Неудачные изменения в прошлом</li>
+                        </ul>
+                        
+                        <h4>Ранние признаки сопротивления</h4>
+                        <ul>
+                            <li>Пассивность на встречах и обсуждениях</li>
+                            <li>Распространение слухов и неформальных обсуждений</li>
+                            <li>Много вопросов "почему?" без конструктивного диалога</li>
+                            <li>Снижение активности и вовлеченности</li>
+                            <li>Формальное согласие без реальной поддержки</li>
+                        </ul>
+                        
+                        <h4>Инструменты диагностики</h4>
+                        <ul>
+                            <li>Опросник готовности команды (5 вопросов)</li>
+                            <li>Карта сопротивления (визуализация уровней)</li>
+                            <li>Анализ коммуникаций (частота и качество)</li>
+                            <li>Оценка рисков сопротивления (матрица вероятности × влияния)</li>
+                        </ul>
+                        
+                        <div class="faq-related">
+                            <strong>Связанные инструменты:</strong>
+                            <button class="faq-link-btn" onclick="jumpToSlide(67)">Диагностика готовности</button>
+                        </div>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'resistance-prevention',
+                                title: 'Чек-лист профилактики сопротивления',
+                                items: [
+                                    { id: 'prev1', text: 'Коммуникация видения проведена до начала изменений', category: 'Коммуникация' },
+                                    { id: 'prev2', text: 'Ранние признаки сопротивления отслеживаются', category: 'Мониторинг' },
+                                    { id: 'prev3', text: 'Каналы обратной связи открыты', category: 'Коммуникация' },
+                                    { id: 'prev4', text: 'Обучение и поддержка предоставлены', category: 'Поддержка' },
+                                    { id: 'prev5', text: 'Участие сотрудников в планировании обеспечено', category: 'Вовлечение' }
+                                ]
+                            }
+                        ],
+                        templates: []
+                    },
+                    relatedModels: ['ADKAR', 'Бриджес', 'Сатир'],
+                    relatedSlides: [67]
+                },
+                {
+                    id: 'methods',
+                    title: 'Методы работы с сопротивлением',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+                    summary: [
+                        'ADKAR: индивидуальный подход',
+                        'Модель Левина: размораживание',
+                        'Обратная связь и вовлечение'
+                    ],
+                    content: `
+                        <h4>Рабочие инструменты</h4>
+                        
+                        <div class="faq-method">
+                            <h5>1. ADKAR (индивидуальный подход)</h5>
+                            <p><strong>Этапы:</strong> Осознание → Желание → Знание → Способность → Закрепление</p>
+                            <p><strong>Применение:</strong> Работа с каждым сотрудником индивидуально, определение текущего этапа, фокус на переход к следующему.</p>
+                            <p><strong>Пример:</strong> Если сотрудник не понимает причин изменений (нет Осознания), фокус на коммуникации "почему" и "что".</p>
+                        </div>
+                        
+                        <div class="faq-method">
+                            <h5>2. Модель Левина (размораживание)</h5>
+                            <p><strong>Этапы:</strong> Размораживание → Изменение → Замораживание</p>
+                            <p><strong>Применение:</strong> Создание дискомфорта с текущим состоянием, внедрение изменений, закрепление нового состояния.</p>
+                            <p><strong>Техники:</strong> Показ проблем текущего состояния, демонстрация выгод будущего, создание поддерживающей среды.</p>
+                        </div>
+                        
+                        <div class="faq-method">
+                            <h5>3. Обратная связь и вовлечение</h5>
+                            <p><strong>Техники:</strong> Активное слушание, вовлечение в решение проблем, регулярная обратная связь, признание вклада.</p>
+                            <p><strong>Применение:</strong> Создание форумов для обсуждения, включение сотрудников в рабочие группы, публичное признание поддержки изменений.</p>
+                        </div>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'resistance-methods',
+                                title: 'Чек-лист методов работы с сопротивлением',
+                                items: [
+                                    { id: 'meth1', text: 'Тип сопротивления определен (активное/пассивное)', category: 'Диагностика' },
+                                    { id: 'meth2', text: 'Выбран подходящий метод (ADKAR/Левин/Вовлечение)', category: 'Выбор метода' },
+                                    { id: 'meth3', text: 'План работы с сопротивлением разработан', category: 'Планирование' },
+                                    { id: 'meth4', text: 'Команда обучена техникам работы', category: 'Обучение' },
+                                    { id: 'meth5', text: 'Прогресс отслеживается регулярно', category: 'Мониторинг' }
+                                ]
+                            }
+                        ],
+                        templates: [
+                            {
+                                id: 'resistance-plan',
+                                title: 'Шаблон плана работы с сопротивлением',
+                                description: 'План действий для работы с конкретным типом сопротивления',
+                                structure: 'Тип → Метод → Действия → Сроки'
+                            }
+                        ]
+                    },
+                    relatedModels: ['ADKAR', 'Левин', 'Кублер-Росс', 'Бриджес'],
+                    relatedSlides: []
+                },
+                {
+                    id: 'information',
+                    title: 'Динамика распространения информации',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><circle cx="12" cy="12" r="3"></circle></svg>',
+                    summary: [
+                        'Слухи распространяются в 10x быстрее',
+                        'Коммуникационные узлы: 20% людей распространяют 80%',
+                        'Правило: "Чем быстрее узнать, тем меньше хаоса"'
+                    ],
+                    content: `
+                        <h4>Тренды информирования</h4>
+                        <ul>
+                            <li><strong>Слухи vs официальные каналы:</strong> Слухи распространяются в 10 раз быстрее официальных сообщений</li>
+                            <li><strong>Скорость:</strong> Информация достигает всех за 2-3 дня (неформально) vs 1-2 недели (официально)</li>
+                            <li><strong>Коммуникационные узлы:</strong> 20% людей распространяют 80% информации</li>
+                        </ul>
+                        
+                        <h4>Механика слухов</h4>
+                        <ul>
+                            <li><strong>Искажение при передаче:</strong> Каждый пересказ добавляет неточности</li>
+                            <li><strong>Эмоциональная окраска:</strong> Негативные эмоции усиливаются</li>
+                            <li><strong>Усиление негатива:</strong> Плохие новости распространяются быстрее хороших</li>
+                        </ul>
+                        
+                        <h4>Коммуникационные узлы</h4>
+                        <ul>
+                            <li><strong>Неформальные лидеры:</strong> Люди с высоким влиянием в команде</li>
+                            <li><strong>Активные коммуникаторы:</strong> Те, кто много общается</li>
+                            <li><strong>Влиятельные сотрудники:</strong> Эксперты и авторитеты</li>
+                        </ul>
+                        
+                        <h4>Стратегия работы</h4>
+                        <p><strong>Правило:</strong> "Чем быстрее узнать, тем меньше хаоса"</p>
+                        <ul>
+                            <li>Коммуникация до слухов</li>
+                            <li>Работа с коммуникационными узлами</li>
+                            <li>Использование неформальных каналов</li>
+                            <li>Регулярные обновления</li>
+                        </ul>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'communication-nodes',
+                                title: 'Чек-лист карты коммуникационных узлов',
+                                items: [
+                                    { id: 'node1', text: 'Ключевые коммуникаторы определены', category: 'Идентификация' },
+                                    { id: 'node2', text: 'Влияние каждого узла оценено', category: 'Оценка' },
+                                    { id: 'node3', text: 'План работы с узлами разработан', category: 'Планирование' },
+                                    { id: 'node4', text: 'Регулярная коммуникация с узлами налажена', category: 'Взаимодействие' }
+                                ]
+                            }
+                        ],
+                        templates: [
+                            {
+                                id: 'information-plan',
+                                title: 'Шаблон плана распространения информации',
+                                description: 'План коммуникации с учетом узлов и каналов',
+                                structure: 'Источник → Каналы → Узлы → Сроки'
+                            }
+                        ]
+                    },
+                    relatedModels: ['Теория подталкивания', 'R2P2'],
+                    relatedSlides: []
+                },
+                {
+                    id: 'communication',
+                    title: 'Правила и инструменты коммуникации',
+                    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
+                    summary: [
+                        '5 принципов прозрачной коммуникации',
+                        'Своевременность, прозрачность, многоканальность',
+                        'Обратная связь и персонализация'
+                    ],
+                    content: `
+                        <h4>5 принципов прозрачной коммуникации</h4>
+                        
+                        <div class="faq-principle">
+                            <h5>1. Своевременность</h5>
+                            <ul>
+                                <li>Коммуникация до слухов</li>
+                                <li>Регулярные обновления (еженедельно)</li>
+                                <li>Срочные сообщения при изменениях</li>
+                                <li>Планирование коммуникаций заранее</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="faq-principle">
+                            <h5>2. Прозрачность</h5>
+                            <ul>
+                                <li>Честность о причинах изменений</li>
+                                <li>Открытость о рисках</li>
+                                <li>Ясность о последствиях</li>
+                                <li>Прямые ответы на вопросы</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="faq-principle">
+                            <h5>3. Многоканальность</h5>
+                            <ul>
+                                <li>Официальные каналы (email, встречи)</li>
+                                <li>Неформальные каналы (мессенджеры, кофе-брейки)</li>
+                                <li>Визуальные материалы (инфографика, презентации)</li>
+                                <li>Личные встречи для ключевых сообщений</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="faq-principle">
+                            <h5>4. Обратная связь</h5>
+                            <ul>
+                                <li>Каналы для вопросов (Q&A сессии)</li>
+                                <li>Регулярные опросы (раз в 2 недели)</li>
+                                <li>Учет обратной связи в планах</li>
+                                <li>Публичные ответы на частые вопросы</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="faq-principle">
+                            <h5>5. Персонализация</h5>
+                            <ul>
+                                <li>Адаптация под аудиторию</li>
+                                <li>Учет потребностей каждой группы</li>
+                                <li>Релевантные примеры для ролей</li>
+                                <li>Язык, понятный аудитории</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>Инструменты</h4>
+                        <ul>
+                            <li>Корпоративные мессенджеры (Teams, Slack)</li>
+                            <li>Встречи (town hall, team meetings)</li>
+                            <li>Обратная связь (опросы, Q&A сессии)</li>
+                            <li>Визуальные материалы (инфографика, презентации)</li>
+                        </ul>
+                    `,
+                    tools: {
+                        checklists: [
+                            {
+                                id: 'communication-rules',
+                                title: 'Чек-лист правил коммуникации',
+                                items: [
+                                    { id: 'comm1', text: 'Коммуникация до слухов', category: 'Своевременность' },
+                                    { id: 'comm2', text: 'Регулярные обновления (еженедельно)', category: 'Своевременность' },
+                                    { id: 'comm3', text: 'Срочные сообщения при изменениях', category: 'Своевременность' },
+                                    { id: 'comm4', text: 'Планирование коммуникаций заранее', category: 'Своевременность' },
+                                    { id: 'comm5', text: 'Честность о причинах изменений', category: 'Прозрачность' },
+                                    { id: 'comm6', text: 'Открытость о рисках', category: 'Прозрачность' },
+                                    { id: 'comm7', text: 'Ясность о последствиях', category: 'Прозрачность' },
+                                    { id: 'comm8', text: 'Прямые ответы на вопросы', category: 'Прозрачность' },
+                                    { id: 'comm9', text: 'Официальные каналы используются', category: 'Многоканальность' },
+                                    { id: 'comm10', text: 'Неформальные каналы задействованы', category: 'Многоканальность' },
+                                    { id: 'comm11', text: 'Визуальные материалы подготовлены', category: 'Многоканальность' },
+                                    { id: 'comm12', text: 'Личные встречи для ключевых сообщений', category: 'Многоканальность' },
+                                    { id: 'comm13', text: 'Каналы для вопросов открыты', category: 'Обратная связь' },
+                                    { id: 'comm14', text: 'Регулярные опросы проводятся', category: 'Обратная связь' },
+                                    { id: 'comm15', text: 'Обратная связь учитывается в планах', category: 'Обратная связь' },
+                                    { id: 'comm16', text: 'Сообщения адаптированы под аудиторию', category: 'Персонализация' },
+                                    { id: 'comm17', text: 'Потребности каждой группы учтены', category: 'Персонализация' },
+                                    { id: 'comm18', text: 'Релевантные примеры для ролей', category: 'Персонализация' },
+                                    { id: 'comm19', text: 'Язык понятен аудитории', category: 'Персонализация' }
+                                ]
+                            },
+                            {
+                                id: 'communication-plan',
+                                title: 'Чек-лист плана коммуникаций',
+                                items: [
+                                    { id: 'plan1', text: 'Определены ключевые аудитории', category: 'Планирование' },
+                                    { id: 'plan2', text: 'Подготовлены сообщения для каждой аудитории', category: 'Планирование' },
+                                    { id: 'plan3', text: 'Выбраны каналы коммуникации', category: 'Планирование' },
+                                    { id: 'plan4', text: 'Определены сроки коммуникаций', category: 'Планирование' },
+                                    { id: 'plan5', text: 'Назначены ответственные за коммуникации', category: 'Планирование' }
+                                ]
+                            }
+                        ],
+                        templates: [
+                            {
+                                id: 'announcement',
+                                title: 'Шаблон "Объявление об изменениях"',
+                                description: 'Структура: Что → Почему → Когда → Как',
+                                structure: 'Что → Почему → Когда → Как'
+                            },
+                            {
+                                id: 'status-update',
+                                title: 'Шаблон "Обновление статуса"',
+                                description: 'Структура: Прогресс → Достижения → Следующие шаги',
+                                structure: 'Прогресс → Достижения → Следующие шаги'
+                            },
+                            {
+                                id: 'faq-template',
+                                title: 'Шаблон "Ответы на частые вопросы"',
+                                description: 'Структура: Вопрос → Ответ → Дополнительная информация',
+                                structure: 'Вопрос → Ответ → Дополнительная информация'
+                            }
+                        ]
+                    },
+                    relatedModels: ['Коттер', 'ADKAR', 'Prosci'],
+                    relatedSlides: []
+                }
+            ]
+        };
+
+        // ========== FAQ State ==========
+        let faqState = {
+            expandedTopics: [],
+            checklistStates: {}
+        };
+
         // ========== Quiz State ==========
         let quizState = {
             currentQuestion: 0,
@@ -12762,6 +14272,1061 @@ body.theme-dark .search-highlight {
         totalSlides = visibleSlides.length;
         buildSearchIndex();
         
+        // ========== FAQ Functions ==========
+        function initFAQ() {
+            loadFAQState();
+            renderFAQTopics();
+        }
+
+        function renderFAQTopics() {
+            const container = document.getElementById('faqTopicsGrid');
+            if (!container || !faqData) return;
+
+            const hasExpanded = faqState.expandedTopics.length > 0;
+            const expandedTopicId = hasExpanded ? faqState.expandedTopics[0] : null;
+            const expandedTopic = expandedTopicId ? faqData.topics.find(t => t.id === expandedTopicId) : null;
+            const expandedIndex = expandedTopic ? faqData.topics.findIndex(t => t.id === expandedTopicId) : -1;
+
+            // Обновляем класс grid для full-width expansion
+            if (hasExpanded) {
+                container.classList.add('has-expanded');
+            } else {
+                container.classList.remove('has-expanded');
+            }
+
+            // Обновляем breadcrumb
+            updateBreadcrumb(expandedTopic);
+
+            // Показываем/скрываем кнопку "Свернуть все"
+            const collapseBtn = document.getElementById('faqCollapseAllBtn');
+            if (collapseBtn) {
+                collapseBtn.style.display = hasExpanded ? 'flex' : 'none';
+            }
+
+            container.innerHTML = faqData.topics.map((topic, index) => {
+                const isExpanded = topic.id === expandedTopicId;
+                const iconHTML = topic.icon && topic.icon.includes('<svg') 
+                    ? topic.icon 
+                    : `<span style="font-size: 32px;">${topic.icon || ''}</span>`;
+                
+                // Находим связанные темы (кроме текущей)
+                const relatedTopics = faqData.topics.filter(t => {
+                    if (t.id === topic.id) return false;
+                    // Связь по моделям
+                    const hasCommonModels = topic.relatedModels && t.relatedModels && 
+                        topic.relatedModels.some(m => t.relatedModels.includes(m));
+                    // Связь по слайдам
+                    const hasCommonSlides = topic.relatedSlides && t.relatedSlides && 
+                        topic.relatedSlides.some(s => t.relatedSlides.includes(s));
+                    return hasCommonModels || hasCommonSlides;
+                }).slice(0, 3);
+
+                return `
+                    <div class="faq-topic-card ${isExpanded ? 'expanded' : ''}" data-topic-id="${topic.id}">
+                        <div class="faq-topic-header" onclick="toggleFAQTopic('${topic.id}')">
+                            <div class="faq-topic-icon">${iconHTML}</div>
+                            <div class="faq-topic-title-wrapper">
+                                <h3 class="faq-topic-title">${topic.title}</h3>
+                                ${!isExpanded ? `
+                                    <div class="faq-topic-summary">
+                                        ${topic.summary.map(item => `<div class="faq-summary-item">• ${item}</div>`).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <div class="faq-topic-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="${isExpanded ? '18 15 12 9 6 15' : '6 9 12 15 18 9'}"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-topic-content" style="display: ${isExpanded ? 'block' : 'none'}">
+                            <div class="faq-topic-details">
+                                ${topic.content}
+                            </div>
+                            ${renderFAQTools(topic)}
+                            ${topic.relatedModels.length > 0 ? `
+                                <div class="faq-related-models">
+                                    <strong>Связанные модели:</strong>
+                                    ${topic.relatedModels.map(model => `
+                                        <button class="faq-model-btn" onclick="findModelSlide('${model}')">${model}</button>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                            ${isExpanded ? `
+                                <div class="faq-topic-nav">
+                                    <div class="faq-topic-nav-left">
+                                        <div class="faq-topic-progress">Тема ${expandedIndex + 1} из ${faqData.topics.length}</div>
+                                        ${relatedTopics.length > 0 ? `
+                                            <div class="faq-topic-related-links">
+                                                <span class="faq-topic-related-links-label">Связанные темы:</span>
+                                                ${relatedTopics.map(rt => `
+                                                    <a href="#" class="faq-topic-related-link" onclick="event.preventDefault(); toggleFAQTopic('${rt.id}'); return false;">
+                                                        ${rt.title}
+                                                    </a>
+                                                `).join('')}
+                                            </div>
+                                        ` : ''}
+                                    </div>
+                                    <div class="faq-topic-nav-right">
+                                        <button class="faq-back-btn" onclick="collapseAllFAQTopics()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                            </svg>
+                                            Назад к списку
+                                        </button>
+                                        <button class="faq-close-btn" onclick="toggleFAQTopic('${topic.id}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                            Закрыть
+                                        </button>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Инициализируем чек-листы после рендеринга
+            initFAQChecklists();
+
+            // Плавный скролл к раскрытой карточке
+            if (hasExpanded && expandedTopicId) {
+                setTimeout(() => {
+                    scrollToExpandedTopic(expandedTopicId);
+                }, 100);
+            }
+        }
+
+        function renderFAQTools(topic) {
+            if (!topic.tools || (!topic.tools.checklists.length && !topic.tools.templates.length)) {
+                return '';
+            }
+
+            let html = '<div class="faq-tools">';
+            
+            if (topic.tools.checklists && topic.tools.checklists.length > 0) {
+                html += '<div class="faq-tools-section">';
+                html += '<h4>Чек-листы</h4>';
+                topic.tools.checklists.forEach(checklist => {
+                    html += renderFAQChecklist(checklist, topic.id);
+                });
+                html += '</div>';
+            }
+
+            if (topic.tools.templates && topic.tools.templates.length > 0) {
+                html += '<div class="faq-tools-section">';
+                html += '<h4>Шаблоны</h4>';
+                topic.tools.templates.forEach(template => {
+                    html += renderFAQTemplate(template, topic.id);
+                });
+                html += '</div>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function renderFAQChecklist(checklist, topicId) {
+            const checklistId = `${topicId}-${checklist.id}`;
+            const state = faqState.checklistStates[checklistId] || {};
+            const checkedCount = Object.values(state).filter(v => v).length;
+            const totalCount = checklist.items.length;
+            const progress = totalCount > 0 ? Math.round((checkedCount / totalCount) * 100) : 0;
+
+            return `
+                <div class="faq-checklist-wrapper">
+                    <div class="faq-checklist-header">
+                        <h5>${checklist.title}</h5>
+                        <div class="faq-checklist-progress">
+                            <span>${checkedCount}/${totalCount}</span>
+                            <div class="faq-progress-bar">
+                                <div class="faq-progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-checklist" id="${checklistId}">
+                        ${checklist.items.map(item => {
+                            const isChecked = state[item.id] || false;
+                            return `
+                                <label class="faq-checklist-item">
+                                    <input type="checkbox" 
+                                           ${isChecked ? 'checked' : ''} 
+                                           onchange="updateFAQChecklist('${checklistId}', '${item.id}', this.checked)">
+                                    <span class="faq-checkmark"></span>
+                                    <div class="faq-item-content">
+                                        <div class="faq-item-text">${item.text}</div>
+                                        ${item.category ? `<div class="faq-item-category">${item.category}</div>` : ''}
+                                    </div>
+                                </label>
+                            `;
+                        }).join('')}
+                    </div>
+                    <button class="faq-export-btn" onclick="exportFAQChecklist('${checklistId}', '${checklist.title}')">
+                        Экспорт в PDF
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderFAQTemplate(template, topicId) {
+            // Используем data-атрибуты для безопасной передачи данных
+            return `
+                <div class="faq-template-card">
+                    <h5>${template.title}</h5>
+                    <p class="faq-template-description">${template.description}</p>
+                    <p class="faq-template-structure"><strong>Структура:</strong> ${template.structure}</p>
+                    <button class="faq-template-btn" 
+                            data-template-id="${template.id}" 
+                            data-template-title="${(template.title || '').replace(/"/g, '&quot;')}"
+                            onclick="const btn = this; exportFAQTemplate(btn.dataset.templateId, btn.dataset.templateTitle)">
+                        Открыть шаблон
+                    </button>
+                </div>
+            `;
+        }
+
+        function toggleFAQTopic(topicId) {
+            const index = faqState.expandedTopics.indexOf(topicId);
+            if (index > -1) {
+                // Закрываем тему
+                faqState.expandedTopics.splice(index, 1);
+            } else {
+                // Открываем тему (закрываем остальные - только одна открыта)
+                faqState.expandedTopics = [topicId];
+            }
+            saveFAQState();
+            renderFAQTopics();
+        }
+
+        function collapseAllFAQTopics() {
+            faqState.expandedTopics = [];
+            saveFAQState();
+            renderFAQTopics();
+            // Очищаем поиск
+            const searchInput = document.getElementById('faqSearchInput');
+            if (searchInput) {
+                searchInput.value = '';
+                filterFAQTopics('');
+            }
+        }
+
+        function scrollToExpandedTopic(topicId) {
+            const card = document.querySelector(`[data-topic-id="${topicId}"]`);
+            if (card) {
+                const headerOffset = 80;
+                const elementPosition = card.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function updateBreadcrumb(topic) {
+            const breadcrumb = document.getElementById('faqBreadcrumb');
+            if (!breadcrumb) return;
+
+            if (topic) {
+                breadcrumb.innerHTML = `
+                    <span class="faq-breadcrumb-item" onclick="collapseAllFAQTopics()">FAQ</span>
+                    <span class="faq-breadcrumb-separator">></span>
+                    <span class="faq-breadcrumb-item active">${topic.title}</span>
+                `;
+            } else {
+                breadcrumb.innerHTML = `
+                    <span class="faq-breadcrumb-item active" onclick="collapseAllFAQTopics()">FAQ</span>
+                `;
+            }
+        }
+
+        function filterFAQTopics(searchQuery) {
+            const container = document.getElementById('faqTopicsGrid');
+            if (!container || !faqData) return;
+
+            const query = searchQuery.toLowerCase().trim();
+            const cards = container.querySelectorAll('.faq-topic-card');
+
+            if (!query) {
+                // Показываем все карточки
+                cards.forEach(card => {
+                    card.classList.remove('hidden');
+                });
+                return;
+            }
+
+            // Фильтруем карточки
+            faqData.topics.forEach((topic, index) => {
+                const card = cards[index];
+                if (!card) return;
+
+                const searchText = (
+                    topic.title.toLowerCase() +
+                    ' ' +
+                    topic.summary.join(' ').toLowerCase() +
+                    ' ' +
+                    (topic.content || '').toLowerCase()
+                );
+
+                if (searchText.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function initFAQChecklists() {
+            // Чек-листы уже инициализированы в renderFAQTopics
+        }
+
+        function updateFAQChecklist(checklistId, itemId, checked) {
+            if (!faqState.checklistStates[checklistId]) {
+                faqState.checklistStates[checklistId] = {};
+            }
+            faqState.checklistStates[checklistId][itemId] = checked;
+            saveFAQState();
+            
+            // Обновляем прогресс
+            const checklistEl = document.getElementById(checklistId);
+            if (checklistEl) {
+                const checkedItems = checklistEl.querySelectorAll('input[type="checkbox"]:checked').length;
+                const totalItems = checklistEl.querySelectorAll('input[type="checkbox"]').length;
+                const progress = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
+                
+                const progressFill = checklistEl.closest('.faq-checklist-wrapper')?.querySelector('.faq-progress-fill');
+                const progressText = checklistEl.closest('.faq-checklist-wrapper')?.querySelector('.faq-checklist-progress span');
+                
+                if (progressFill) {
+                    progressFill.style.width = `${progress}%`;
+                }
+                if (progressText) {
+                    progressText.textContent = `${checkedItems}/${totalItems}`;
+                }
+            }
+        }
+
+        function exportFAQChecklist(checklistId, title) {
+            const checklistEl = document.getElementById(checklistId);
+            if (!checklistEl) return;
+
+            const items = Array.from(checklistEl.querySelectorAll('.faq-checklist-item')).map(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const text = item.querySelector('.faq-item-text')?.textContent || '';
+                const category = item.querySelector('.faq-item-category')?.textContent || '';
+                return {
+                    checked: checkbox?.checked || false,
+                    text: text,
+                    category: category
+                };
+            });
+
+            const checkedCount = items.filter(i => i.checked).length;
+            const totalCount = items.length;
+
+            const reportWindow = window.open('', '_blank');
+            reportWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>${title} - ${new Date().toLocaleDateString('ru-RU')}</title>
+                    <style>
+                        body {
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                            line-height: 1.6;
+                            padding: 40px;
+                            max-width: 900px;
+                            margin: 0 auto;
+                        }
+                        h1 { color: var(--color-teal-500, #21808d); border-bottom: 3px solid var(--color-teal-500, #21808d); padding-bottom: 10px; }
+                        .progress { margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 8px; }
+                        .checklist-item { margin: 10px 0; padding: 10px; border-left: 4px solid #ddd; }
+                        .checklist-item.checked { border-left-color: #2DB67D; background: #f0f8f0; }
+                        .category { font-size: 12px; color: #666; margin-top: 5px; }
+                        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; }
+                    </style>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    
+                    <div class="progress">
+                        <strong>Прогресс:</strong> ${checkedCount} из ${totalCount} (${Math.round((checkedCount / totalCount) * 100)}%)
+                    </div>
+
+                    <h2>Элементы чек-листа</h2>
+                    ${items.map((item, index) => `
+                        <div class="checklist-item ${item.checked ? 'checked' : ''}">
+                            <strong>${item.checked ? '✓' : '○'}</strong> ${item.text}
+                            ${item.category ? `<div class="category">Категория: ${item.category}</div>` : ''}
+                        </div>
+                    `).join('')}
+
+                    <div class="footer">
+                        <p>Автор: Dmitry Vladimirov | LinkedIn: www.linkedin.com/in/dmitry-vladimirov-cdto</p>
+                        <p>Чек-лист создан с помощью интерактивного FAQ управления изменениями</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            reportWindow.document.close();
+
+            setTimeout(() => {
+                reportWindow.print();
+            }, 500);
+        }
+
+        function exportFAQTemplate(templateId, title) {
+            // Декодируем HTML entities в title, если они есть
+            if (title) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = title;
+                title = tempDiv.textContent || tempDiv.innerText || title;
+            }
+            
+            // Полные шаблоны для экспорта
+            const templates = {
+                'announcement': {
+                    structure: 'Что → Почему → Когда → Как',
+                    content: `
+                        <h2>Объявление об изменениях</h2>
+                        <p><strong>Проект:</strong> [Название проекта изменений]</p>
+                        <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="template-section">
+                            <h3>Что меняется?</h3>
+                            <p>[Опишите суть изменений: новая система, процесс, структура и т.д.]</p>
+                            <p><strong>Пример:</strong> Внедрение новой CRM-системы для улучшения работы с клиентами</p>
+                            <p><strong>Что конкретно изменится:</strong></p>
+                            <ul>
+                                <li>[Изменение 1]</li>
+                                <li>[Изменение 2]</li>
+                                <li>[Изменение 3]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Почему это важно?</h3>
+                            <p>[Объясните причины и выгоды для компании и сотрудников]</p>
+                            <p><strong>Выгоды для компании:</strong></p>
+                            <ul>
+                                <li>[Конкретный бизнес-результат 1]</li>
+                                <li>[Конкретный бизнес-результат 2]</li>
+                                <li>[Конкретный бизнес-результат 3]</li>
+                            </ul>
+                            <p><strong>Выгоды для сотрудников:</strong></p>
+                            <ul>
+                                <li>[Улучшение работы, упрощение процессов]</li>
+                                <li>[Новые возможности для развития]</li>
+                                <li>[Улучшение условий работы]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Когда это произойдет?</h3>
+                            <p>[Укажите сроки и этапы]</p>
+                            <ul>
+                                <li><strong>Этап 1:</strong> [дата] - [описание этапа]</li>
+                                <li><strong>Этап 2:</strong> [дата] - [описание этапа]</li>
+                                <li><strong>Этап 3:</strong> [дата] - [описание этапа]</li>
+                                <li><strong>Завершение:</strong> [дата]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Как это будет происходить?</h3>
+                            <p>[Опишите процесс внедрения, обучение, поддержку]</p>
+                            <p><strong>Обучение:</strong></p>
+                            <ul>
+                                <li>Формат: [онлайн/офлайн, вебинары, тренинги]</li>
+                                <li>Сроки: [когда будет проводиться обучение]</li>
+                                <li>Ответственные: [кто проводит обучение]</li>
+                            </ul>
+                            <p><strong>Поддержка:</strong></p>
+                            <ul>
+                                <li>Каналы помощи: [email, телефон, чат, портал]</li>
+                                <li>Часы работы поддержки: [расписание]</li>
+                                <li>Контакты: [email, телефон]</li>
+                            </ul>
+                            <p><strong>Обратная связь:</strong></p>
+                            <ul>
+                                <li>Как задать вопросы: [каналы для вопросов]</li>
+                                <li>Регулярные обновления: [частота коммуникаций]</li>
+                                <li>Q&A сессии: [даты и время]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Контакты для вопросов</h3>
+                            <p>Если у вас есть вопросы, свяжитесь с нами:</p>
+                            <ul>
+                                <li>Email: [контактный email]</li>
+                                <li>Телефон: [контактный телефон]</li>
+                                <li>Встреча Q&A: [дата и время]</li>
+                                <li>Канал в Teams/Slack: [ссылка]</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                'status-update': {
+                    structure: 'Прогресс → Достижения → Следующие шаги',
+                    content: `
+                        <h2>Обновление статуса проекта изменений</h2>
+                        <p><strong>Проект:</strong> [Название проекта]</p>
+                        <p><strong>Дата обновления:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="template-section">
+                            <h3>Текущий прогресс</h3>
+                            <p><strong>Общий прогресс:</strong> [X]% завершено</p>
+                            <div class="progress-indicator" style="width: 100%; height: 20px; background: #f0f0f0; border-radius: 10px; margin: 10px 0;">
+                                <div style="width: [X]%; height: 100%; background: #21808d; border-radius: 10px;"></div>
+                            </div>
+                            <p><strong>Текущий этап:</strong> [название этапа]</p>
+                            <p><strong>Срок проекта:</strong> [дата начала] - [дата завершения]</p>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Достижения</h3>
+                            <p>Что уже сделано:</p>
+                            <ul>
+                                <li>✓ [Конкретный результат 1 - что выполнено]</li>
+                                <li>✓ [Конкретный результат 2 - достижения команды]</li>
+                                <li>✓ [Конкретный результат 3 - преодоленные препятствия]</li>
+                                <li>✓ [Конкретный результат 4]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Следующие шаги</h3>
+                            <p><strong>Ближайшие 2 недели:</strong></p>
+                            <ul>
+                                <li>[Конкретное действие 1] - Срок: [дата]</li>
+                                <li>[Конкретное действие 2] - Срок: [дата]</li>
+                                <li>[Конкретное действие 3] - Срок: [дата]</li>
+                            </ul>
+                            <p><strong>В следующем месяце:</strong></p>
+                            <ul>
+                                <li>[План 1]</li>
+                                <li>[План 2]</li>
+                                <li>[План 3]</li>
+                            </ul>
+                            <p><strong>Ключевые вехи:</strong></p>
+                            <ul>
+                                <li><strong>[Веха 1]:</strong> [дата] - [описание]</li>
+                                <li><strong>[Веха 2]:</strong> [дата] - [описание]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Как вы можете помочь?</h3>
+                            <p>[Конкретные действия, которые сотрудники могут предпринять]</p>
+                            <ul>
+                                <li>[Действие 1 - что нужно от сотрудников]</li>
+                                <li>[Действие 2 - участие в обучении]</li>
+                                <li>[Действие 3 - обратная связь]</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                'faq-template': {
+                    structure: 'Вопрос → Ответ → Дополнительная информация',
+                    content: `
+                        <h2>Ответы на частые вопросы</h2>
+                        <p><strong>Проект:</strong> [Название проекта изменений]</p>
+                        <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="faq-item">
+                            <h3>Вопрос 1: [Часто задаваемый вопрос]</h3>
+                            <p><strong>Ответ:</strong> [Прямой и понятный ответ на вопрос]</p>
+                            <p><strong>Дополнительная информация:</strong> [Ссылки, ресурсы, контакты для получения более детальной информации]</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3>Вопрос 2: [Часто задаваемый вопрос]</h3>
+                            <p><strong>Ответ:</strong> [Прямой и понятный ответ на вопрос]</p>
+                            <p><strong>Дополнительная информация:</strong> [Ссылки, ресурсы, контакты]</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3>Вопрос 3: [Часто задаваемый вопрос]</h3>
+                            <p><strong>Ответ:</strong> [Прямой и понятный ответ на вопрос]</p>
+                            <p><strong>Дополнительная информация:</strong> [Ссылки, ресурсы, контакты]</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3>Вопрос 4: [Часто задаваемый вопрос]</h3>
+                            <p><strong>Ответ:</strong> [Прямой и понятный ответ на вопрос]</p>
+                            <p><strong>Дополнительная информация:</strong> [Ссылки, ресурсы, контакты]</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h3>Вопрос 5: [Часто задаваемый вопрос]</h3>
+                            <p><strong>Ответ:</strong> [Прямой и понятный ответ на вопрос]</p>
+                            <p><strong>Дополнительная информация:</strong> [Ссылки, ресурсы, контакты]</p>
+                        </div>
+                        
+                        <div class="template-section">
+                            <h3>Остались вопросы?</h3>
+                            <p>Свяжитесь с нами:</p>
+                            <ul>
+                                <li>Email: [контактный email]</li>
+                                <li>Встреча Q&A: [дата и время]</li>
+                                <li>Канал в Teams/Slack: [ссылка]</li>
+                                <li>Телефон поддержки: [номер]</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                'raci-matrix': {
+                    structure: 'Этапы проекта × Роли',
+                    content: `
+                        <h2>Матрица RACI для проекта изменений</h2>
+                        <p><strong>Проект:</strong> [Название проекта]</p>
+                        <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="template-section">
+                            <h3>Инструкция по заполнению</h3>
+                            <p>Заполните матрицу, указав для каждого этапа проекта роль каждой группы:</p>
+                            <ul>
+                                <li><strong>R (Responsible):</strong> Выполняет работу</li>
+                                <li><strong>A (Accountable):</strong> Отвечает за результат (только один на этап)</li>
+                                <li><strong>C (Consulted):</strong> Консультирует, дает советы</li>
+                                <li><strong>I (Informed):</strong> Информируется о прогрессе</li>
+                            </ul>
+                        </div>
+                        
+                        <table class="raci-table" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <thead>
+                                <tr style="background: #f5f5f5;">
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Этап проекта</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Спонсор изменений</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Функциональные руководители</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Лидеры изменений</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Проектная команда</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Планирование</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">C</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">I</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Коммуникация</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">C</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Обучение</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">C</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Внедрение</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Мониторинг</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">C</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">C</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Закрепление</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">A</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">R</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="raci-legend" style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+                            <h3>Легенда RACI</h3>
+                            <ul>
+                                <li><strong>R (Responsible):</strong> Выполняет работу, отвечает за выполнение задачи</li>
+                                <li><strong>A (Accountable):</strong> Отвечает за результат, принимает окончательные решения (только один на этап)</li>
+                                <li><strong>C (Consulted):</strong> Консультирует, дает советы и рекомендации</li>
+                                <li><strong>I (Informed):</strong> Информируется о прогрессе, получает обновления</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                'resistance-plan': {
+                    structure: 'Тип → Метод → Действия → Сроки',
+                    content: `
+                        <h2>План работы с сопротивлением</h2>
+                        <p><strong>Проект:</strong> [Название проекта]</p>
+                        <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="template-section">
+                            <h3>Инструкция по использованию</h3>
+                            <p>Для каждого типа сопротивления заполните карточку с планом действий. Определите источник, причину, выберите метод работы и составьте конкретный план.</p>
+                        </div>
+                        
+                        <div class="resistance-plan-item" style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
+                            <h3>Тип сопротивления: [Активное/Пассивное]</h3>
+                            <p><strong>Источник:</strong> [От кого исходит сопротивление - конкретные люди, группы, подразделения]</p>
+                            <p><strong>Причина:</strong> [Почему возникает сопротивление - страх, непонимание, предыдущий опыт и т.д.]</p>
+                            
+                            <h4>Выбранный метод:</h4>
+                            <p>[ADKAR / Модель Левина / Вовлечение и обратная связь]</p>
+                            <p><strong>Обоснование выбора:</strong> [Почему выбран именно этот метод]</p>
+                            
+                            <h4>План действий:</h4>
+                            <ol>
+                                <li>[Конкретное действие 1] - Срок: [дата] - Ответственный: [имя, роль]</li>
+                                <li>[Конкретное действие 2] - Срок: [дата] - Ответственный: [имя, роль]</li>
+                                <li>[Конкретное действие 3] - Срок: [дата] - Ответственный: [имя, роль]</li>
+                                <li>[Конкретное действие 4] - Срок: [дата] - Ответственный: [имя, роль]</li>
+                            </ol>
+                            
+                            <h4>Ответственный за работу с сопротивлением:</h4>
+                            <p>[Имя и роль]</p>
+                            
+                            <h4>Критерии успеха:</h4>
+                            <p>[Как измерить, что сопротивление преодолено - конкретные индикаторы]</p>
+                            <ul>
+                                <li>[Индикатор 1]</li>
+                                <li>[Индикатор 2]</li>
+                                <li>[Индикатор 3]</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="resistance-plan-item" style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #fff;">
+                            <h3>Тип сопротивления: [Активное/Пассивное]</h3>
+                            <p><strong>Источник:</strong> [От кого исходит сопротивление]</p>
+                            <p><strong>Причина:</strong> [Почему возникает сопротивление]</p>
+                            
+                            <h4>Выбранный метод:</h4>
+                            <p>[ADKAR / Модель Левина / Вовлечение]</p>
+                            
+                            <h4>План действий:</h4>
+                            <ol>
+                                <li>[Конкретное действие 1] - Срок: [дата]</li>
+                                <li>[Конкретное действие 2] - Срок: [дата]</li>
+                                <li>[Конкретное действие 3] - Срок: [дата]</li>
+                            </ol>
+                            
+                            <h4>Ответственный:</h4>
+                            <p>[Имя и роль]</p>
+                            
+                            <h4>Критерии успеха:</h4>
+                            <p>[Как измерить преодоление сопротивления]</p>
+                        </div>
+                    `
+                },
+                'information-plan': {
+                    structure: 'Источник → Каналы → Узлы → Сроки',
+                    content: `
+                        <h2>План распространения информации</h2>
+                        <p><strong>Проект:</strong> [Название проекта]</p>
+                        <p><strong>Дата создания:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        
+                        <div class="template-section">
+                            <h3>Инструкция по заполнению</h3>
+                            <p>Заполните таблицу для каждого важного сообщения в проекте. Укажите источник информации, каналы коммуникации, ключевых коммуникаторов (узлы) и сроки распространения.</p>
+                        </div>
+                        
+                        <table class="information-plan-table" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <thead>
+                                <tr style="background: #f5f5f5;">
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Информация</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Источник</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Каналы</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Коммуникационные узлы</th>
+                                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Срок</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Объявление о начале проекта</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Спонсор / Руководитель проекта]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Email, Town Hall встреча</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Ключевые коммуникаторы]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Дата и время]</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Обновление статуса</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Лидер изменений]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Email, мессенджер</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Коммуникационные узлы]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Дата и время]</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Ответы на частые вопросы</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Команда проекта]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Корпоративный портал, мессенджер</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Коммуникационные узлы]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Дата и время]</td>
+                                </tr>
+                                <tr style="background: #f9f9f9;">
+                                    <td style="padding: 12px; border: 1px solid #ddd;"><strong>Изменения в планах</strong></td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Спонсор / Руководитель проекта]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">Email, личные встречи</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Коммуникационные узлы]</td>
+                                    <td style="padding: 12px; border: 1px solid #ddd;">[Дата и время]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="template-section">
+                            <h3>Рекомендации по работе с коммуникационными узлами</h3>
+                            <ul>
+                                <li><strong>Идентификация узлов:</strong> Определите 20% людей, которые распространяют 80% информации</li>
+                                <li><strong>Работа с узлами:</strong> Информируйте узлы первыми, до официальной коммуникации</li>
+                                <li><strong>Вовлечение узлов:</strong> Вовлекайте узлы в процесс коммуникации, делайте их союзниками</li>
+                                <li><strong>Регулярная коммуникация:</strong> Поддерживайте постоянный контакт с ключевыми коммуникаторами</li>
+                                <li><strong>Мониторинг:</strong> Отслеживайте, как информация распространяется через узлы</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            };
+
+            const template = templates[templateId];
+            if (!template) {
+                console.error('Шаблон не найден:', templateId, 'Доступные шаблоны:', Object.keys(templates));
+                alert(`Шаблон "${templateId}" не найден. Доступные шаблоны: ${Object.keys(templates).join(', ')}`);
+                return;
+            }
+
+            const reportWindow = window.open('', '_blank');
+            reportWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                    <style>
+                        * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                        }
+                        body {
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                            padding: 40px 20px;
+                            max-width: 900px;
+                            margin: 0 auto;
+                            background: #fff;
+                        }
+                        h1 {
+                            color: #21808d;
+                            font-size: 28px;
+                            margin-bottom: 10px;
+                            padding-bottom: 10px;
+                            border-bottom: 3px solid #21808d;
+                        }
+                        h2 {
+                            color: #21808d;
+                            font-size: 24px;
+                            margin-top: 30px;
+                            margin-bottom: 15px;
+                            padding-bottom: 8px;
+                            border-bottom: 2px solid #e0e0e0;
+                        }
+                        h3 {
+                            color: #21808d;
+                            font-size: 20px;
+                            margin-top: 25px;
+                            margin-bottom: 12px;
+                        }
+                        h4 {
+                            color: #333;
+                            font-size: 18px;
+                            margin-top: 20px;
+                            margin-bottom: 10px;
+                        }
+                        .template-section {
+                            margin: 25px 0;
+                            padding: 20px;
+                            background: #f9f9f9;
+                            border-radius: 8px;
+                            border-left: 4px solid #21808d;
+                        }
+                        .template-structure {
+                            background: #f5f5f5;
+                            padding: 15px;
+                            border-radius: 8px;
+                            margin: 20px 0;
+                            font-size: 14px;
+                            color: #666;
+                        }
+                        ul, ol {
+                            margin: 15px 0;
+                            padding-left: 30px;
+                        }
+                        li {
+                            margin: 8px 0;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin: 20px 0;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        }
+                        th {
+                            background: #21808d;
+                            color: #fff;
+                            padding: 12px;
+                            text-align: left;
+                            font-weight: 600;
+                            border: 1px solid #1a6b75;
+                        }
+                        td {
+                            padding: 12px;
+                            border: 1px solid #ddd;
+                        }
+                        tr:nth-child(even) {
+                            background: #f9f9f9;
+                        }
+                        tr:hover {
+                            background: #f0f0f0;
+                        }
+                        .faq-item {
+                            margin: 20px 0;
+                            padding: 20px;
+                            background: #fff;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                        }
+                        .resistance-plan-item {
+                            margin: 20px 0;
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            background: #fff;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                        }
+                        .raci-legend {
+                            margin-top: 30px;
+                            padding: 20px;
+                            background: #f5f5f5;
+                            border-radius: 8px;
+                        }
+                        .progress-indicator {
+                            width: 100%;
+                            height: 20px;
+                            background: #f0f0f0;
+                            border-radius: 10px;
+                            margin: 10px 0;
+                            overflow: hidden;
+                        }
+                        .progress-indicator div {
+                            height: 100%;
+                            background: #21808d;
+                            border-radius: 10px;
+                            transition: width 0.3s ease;
+                        }
+                        .footer {
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 2px solid #e0e0e0;
+                            text-align: center;
+                            color: #666;
+                            font-size: 14px;
+                        }
+                        @media print {
+                            body {
+                                padding: 20px;
+                            }
+                            .template-section {
+                                page-break-inside: avoid;
+                            }
+                            table {
+                                page-break-inside: avoid;
+                            }
+                            h2, h3 {
+                                page-break-after: avoid;
+                            }
+                        }
+                        @media (max-width: 768px) {
+                            body {
+                                padding: 20px 10px;
+                            }
+                            table {
+                                font-size: 14px;
+                            }
+                            th, td {
+                                padding: 8px;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    <div class="template-structure">
+                        <strong>Структура:</strong> ${template.structure}
+                    </div>
+                    ${template.content}
+                    <div class="footer">
+                        <p><strong>Автор:</strong> Dmitry Vladimirov | LinkedIn: www.linkedin.com/in/dmitry-vladimirov-cdto</p>
+                        <p>Шаблон создан с помощью интерактивного FAQ управления изменениями</p>
+                        <p style="margin-top: 10px; font-size: 12px; color: #999;">
+                            <strong>Инструкция по использованию:</strong> Заполните все поля, помеченные квадратными скобками [ ], и используйте шаблон для коммуникаций в вашем проекте изменений.
+                        </p>
+                    </div>
+                </body>
+                </html>
+            `);
+            reportWindow.document.close();
+            
+            setTimeout(() => {
+                reportWindow.print();
+            }, 500);
+        }
+
+        function saveFAQState() {
+            try {
+                localStorage.setItem('faq_state', JSON.stringify(faqState));
+            } catch (error) {
+                console.warn('Не удалось сохранить состояние FAQ:', error);
+            }
+        }
+
+        function loadFAQState() {
+            try {
+                const saved = localStorage.getItem('faq_state');
+                if (saved) {
+                    faqState = JSON.parse(saved);
+                }
+            } catch (error) {
+                console.warn('Не удалось загрузить состояние FAQ:', error);
+            }
+        }
+
+        function findModelSlide(modelName) {
+            // Поиск слайда с моделью по названию
+            const slideIndex = slidesData.findIndex(slide => 
+                slide.title && slide.title.toLowerCase().includes(modelName.toLowerCase())
+            );
+            if (slideIndex >= 0) {
+                jumpToSlide(slideIndex);
+            } else {
+                alert(`Модель "${modelName}" не найдена в презентации`);
+            }
+        }
+
         function initPresentation() {
             // Отладочная информация только в режиме разработки
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -13114,6 +15679,27 @@ body.theme-dark .search-highlight {
                 const subtitle = (slide.subtitle ?? '').toLowerCase();
                 return title.includes(lowerKeyword) || subtitle.includes(lowerKeyword);
             });
+        }
+
+        // Функции-обертки для переходов со слайда 6
+        function goToClassification() {
+            const idx = findSlideIndexByKeyword('Классификация');
+            if (idx >= 0) jumpToSlide(idx);
+        }
+
+        function goToPracticalTools() {
+            const idx = findSlideIndexByKeyword('Практические инструменты');
+            if (idx >= 0) jumpToSlide(idx);
+        }
+
+        function goToFAQ() {
+            const idx = findSlideIndexByKeyword('FAQ');
+            if (idx >= 0) jumpToSlide(idx);
+        }
+
+        function goToModelSelector() {
+            const idx = findSlideIndexByKeyword('Интерактивный инструмент выбора модели');
+            if (idx >= 0) jumpToSlide(idx);
         }
         
         function resolveQuizResult(answers) {
@@ -18469,8 +21055,11 @@ body.theme-dark .search-highlight {
 
         // Матрица выбора - состояние
         let matrixSelections = {
+            role: null,
             scale: null,
-            speed: null
+            speed: null,
+            resistance: null,
+            resources: null
         };
 
         // Инициализация model selector
@@ -19017,15 +21606,28 @@ body.theme-dark .search-highlight {
             param.classList.add('selected');
 
             // Сохраняем выбор
-            if (step === 1) {
+            if (step === 0) {
+                matrixSelections.role = value;
+            } else if (step === 1) {
                 matrixSelections.scale = value;
             } else if (step === 2) {
                 matrixSelections.speed = value;
+            } else if (step === 3) {
+                matrixSelections.resistance = value;
+            } else if (step === 4) {
+                matrixSelections.resources = value;
             }
 
-            // Если выбраны оба параметра, показываем рекомендации
-            if (matrixSelections.scale && matrixSelections.speed) {
-                const recommendations = calculateRecommendations(matrixSelections.scale, matrixSelections.speed);
+            // Если выбраны все параметры, показываем рекомендации
+            if (matrixSelections.role && matrixSelections.scale && matrixSelections.speed && 
+                matrixSelections.resistance && matrixSelections.resources) {
+                const recommendations = calculateRecommendations(
+                    matrixSelections.role,
+                    matrixSelections.scale, 
+                    matrixSelections.speed,
+                    matrixSelections.resistance,
+                    matrixSelections.resources
+                );
                 showMatrixRecommendations(recommendations);
             }
 
@@ -19034,67 +21636,154 @@ body.theme-dark .search-highlight {
         }
 
         // Расчет рекомендаций на основе выбранных параметров
-        function calculateRecommendations(scale, speed) {
-            const recommendationsMap = {
+        function calculateRecommendations(role, scale, speed, resistance, resources) {
+            // Базовые рекомендации по масштабу и скорости
+            const baseRecommendationsMap = {
                 // Малый масштаб
                 'Малый-быстро': [
-                    { name: 'PDCA Цикл', keyword: 'pdca', reason: 'Простой итеративный подход для быстрого тестирования идей' },
-                    { name: 'Теория подталкивания', keyword: 'подталкивания', reason: 'Эффективные поведенческие изменения без сложных процессов' },
-                    { name: 'R2P2', keyword: 'r2p2', reason: 'Быстрое вовлечение людей и получение результатов' }
+                    { name: 'PDCA Цикл', keyword: 'pdca', reason: 'Простой итеративный подход для быстрого тестирования идей', complexity: 'Низкая', focus: 'Процессы' },
+                    { name: 'Теория подталкивания', keyword: 'подталкивания', reason: 'Эффективные поведенческие изменения без сложных процессов', complexity: 'Низкая', focus: 'Люди' },
+                    { name: 'R2P2', keyword: 'r2p2', reason: 'Быстрое вовлечение людей и получение результатов', complexity: 'Низкая', focus: 'Люди' }
                 ],
                 'Малый-средне': [
-                    { name: 'ADKAR', keyword: 'адкар', reason: 'Структурированный подход к индивидуальным изменениям' },
-                    { name: 'Модель Сатир', keyword: 'сатир', reason: 'Фокус на эмоциональном пути человека при изменениях' },
-                    { name: 'Позитивное отклонение', keyword: 'отклонение', reason: 'Эксперименты с позитивными изменениями' }
+                    { name: 'ADKAR', keyword: 'адкар', reason: 'Структурированный подход к индивидуальным изменениям', complexity: 'Средняя', focus: 'Люди' },
+                    { name: 'Модель Сатир', keyword: 'сатир', reason: 'Фокус на эмоциональном пути человека при изменениях', complexity: 'Средняя', focus: 'Люди' },
+                    { name: 'Позитивное отклонение', keyword: 'отклонение', reason: 'Эксперименты с позитивными изменениями', complexity: 'Низкая', focus: 'Культура' }
                 ],
                 'Малый-долго': [
-                    { name: 'Теория подталкивания', keyword: 'подталкивания', reason: 'Долгосрочные поведенческие изменения' },
-                    { name: 'PDCA Цикл', keyword: 'pdca', reason: 'Постоянное улучшение с течением времени' },
-                    { name: 'R2P2', keyword: 'r2p2', reason: 'Устойчивое вовлечение для долгосрочных изменений' }
+                    { name: 'Теория подталкивания', keyword: 'подталкивания', reason: 'Долгосрочные поведенческие изменения', complexity: 'Низкая', focus: 'Люди' },
+                    { name: 'PDCA Цикл', keyword: 'pdca', reason: 'Постоянное улучшение с течением времени', complexity: 'Низкая', focus: 'Процессы' },
+                    { name: 'R2P2', keyword: 'r2p2', reason: 'Устойчивое вовлечение для долгосрочных изменений', complexity: 'Низкая', focus: 'Люди' }
                 ],
 
                 // Средний масштаб
                 'Средний-быстро': [
-                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Быстрое создание коалиции и видения изменений' },
-                    { name: 'ADKAR', keyword: 'адкар', reason: 'Структурированная поддержка для команды среднего размера' },
-                    { name: 'Переход Бриджеса', keyword: 'бриджес', reason: 'Помощь в эмоциональном переходе группы людей' }
+                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Быстрое создание коалиции и видения изменений', complexity: 'Средняя', focus: 'Стратегия' },
+                    { name: 'ADKAR', keyword: 'адкар', reason: 'Структурированная поддержка для команды среднего размера', complexity: 'Средняя', focus: 'Люди' },
+                    { name: 'Переход Бриджеса', keyword: 'бриджес', reason: 'Помощь в эмоциональном переходе группы людей', complexity: 'Средняя', focus: 'Люди' }
                 ],
                 'Средний-средне': [
-                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Комплексный подход к организационным изменениям' },
-                    { name: 'ADKAR', keyword: 'адкар', reason: 'Индивидуальная готовность + организационная поддержка' },
-                    { name: 'Переход Бриджеса', keyword: 'бриджес', reason: 'Эмоциональная поддержка в переходный период' }
+                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Комплексный подход к организационным изменениям', complexity: 'Средняя', focus: 'Стратегия' },
+                    { name: 'ADKAR', keyword: 'адкар', reason: 'Индивидуальная готовность + организационная поддержка', complexity: 'Средняя', focus: 'Люди' },
+                    { name: 'Переход Бриджеса', keyword: 'бриджес', reason: 'Эмоциональная поддержка в переходный период', complexity: 'Средняя', focus: 'Люди' }
                 ],
                 'Средний-долго': [
-                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный стандарт для комплексных изменений' },
-                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Комбинация подходов для устойчивых результатов' },
-                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Глубокие изменения в культуре и процессах' }
+                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный стандарт для комплексных изменений', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Комбинация подходов для устойчивых результатов', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Глубокие изменения в культуре и процессах', complexity: 'Высокая', focus: 'Культура' }
                 ],
 
                 // Крупный масштаб
                 'Крупный-быстро': [
-                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Быстрая адаптация проверенных подходов' },
-                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Создание мощной коалиции для быстрого старта' },
-                    { name: 'Change Delta', keyword: 'delta', reason: 'Фокус на ключевых элементах для ускорения' }
+                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Быстрая адаптация проверенных подходов', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Модель Коттера', keyword: 'коттер', reason: 'Создание мощной коалиции для быстрого старта', complexity: 'Средняя', focus: 'Стратегия' },
+                    { name: 'Change Delta', keyword: 'delta', reason: 'Фокус на ключевых элементах для ускорения', complexity: 'Высокая', focus: 'Стратегия' }
                 ],
                 'Крупный-средне': [
-                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный подход к крупным изменениям' },
-                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Комбинированный подход для комплексности' },
-                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Системные изменения на всех уровнях организации' }
+                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный подход к крупным изменениям', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Комбинированный подход для комплексности', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Системные изменения на всех уровнях организации', complexity: 'Высокая', focus: 'Культура' }
                 ],
                 'Крупный-долго': [
-                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Фундаментальные изменения в культуре и системах' },
-                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Долгосрочная трансформация с множеством элементов' },
-                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональное управление комплексными изменениями' }
+                    { name: 'Маур 3 уровня', keyword: 'маур', reason: 'Фундаментальные изменения в культуре и системах', complexity: 'Высокая', focus: 'Культура' },
+                    { name: 'Гибридная модель', keyword: 'гибридная', reason: 'Долгосрочная трансформация с множеством элементов', complexity: 'Высокая', focus: 'Стратегия' },
+                    { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональное управление комплексными изменениями', complexity: 'Высокая', focus: 'Стратегия' }
                 ]
             };
 
-            const key = `${scale}-${speed.charAt(0).toLowerCase()}${speed.slice(1).toLowerCase()}`;
-
-            return recommendationsMap[key] || [
-                { name: 'Модель Коттера', keyword: 'коттер', reason: 'Универсальный подход для большинства ситуаций' },
-                { name: 'ADKAR', keyword: 'адкар', reason: 'Фокус на индивидуальной готовности к изменениям' },
-                { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный стандарт управления изменениями' }
+            const baseKey = `${scale}-${speed.charAt(0).toLowerCase()}${speed.slice(1).toLowerCase()}`;
+            let recommendations = baseRecommendationsMap[baseKey] || [
+                { name: 'Модель Коттера', keyword: 'коттер', reason: 'Универсальный подход для большинства ситуаций', complexity: 'Средняя', focus: 'Стратегия' },
+                { name: 'ADKAR', keyword: 'адкар', reason: 'Фокус на индивидуальной готовности к изменениям', complexity: 'Средняя', focus: 'Люди' },
+                { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный стандарт управления изменениями', complexity: 'Высокая', focus: 'Стратегия' }
             ];
+
+            // Фильтрация и приоритизация на основе роли
+            if (role === 'CEO') {
+                // CEO предпочитает: быстрые результаты, низкая/средняя сложность, стратегический фокус
+                recommendations = recommendations
+                    .filter(r => r.complexity !== 'Высокая' || resources === 'Неограниченные')
+                    .sort((a, b) => {
+                        if (a.focus === 'Стратегия' && b.focus !== 'Стратегия') return -1;
+                        if (a.focus !== 'Стратегия' && b.focus === 'Стратегия') return 1;
+                        if (a.complexity === 'Низкая' && b.complexity !== 'Низкая') return -1;
+                        if (a.complexity !== 'Низкая' && b.complexity === 'Низкая') return 1;
+                        return 0;
+                    });
+            } else if (role === 'HRD') {
+                // HRD предпочитает: фокус на людях, работа с сопротивлением
+                recommendations = recommendations
+                    .filter(r => r.focus === 'Люди' || r.focus === 'Культура')
+                    .sort((a, b) => {
+                        if (a.focus === 'Люди' && b.focus !== 'Люди') return -1;
+                        if (a.focus !== 'Люди' && b.focus === 'Люди') return 1;
+                        return 0;
+                    });
+            } else if (role === 'ChangeManager') {
+                // Руководитель УИ предпочитает: детальные модели, комплексный подход
+                recommendations = recommendations
+                    .sort((a, b) => {
+                        if (a.complexity === 'Высокая' && b.complexity !== 'Высокая') return -1;
+                        if (a.complexity !== 'Высокая' && b.complexity === 'Высокая') return 1;
+                        return 0;
+                    });
+            }
+
+            // Фильтрация по сопротивлению
+            if (resistance === 'Высокое') {
+                // При высоком сопротивлении приоритет моделям с фокусом на людей
+                recommendations = recommendations
+                    .sort((a, b) => {
+                        if (a.focus === 'Люди' && b.focus !== 'Люди') return -1;
+                        if (a.focus !== 'Люди' && b.focus === 'Люди') return 1;
+                        return 0;
+                    });
+            }
+
+            // Фильтрация по ресурсам
+            if (resources === 'Ограниченные') {
+                // При ограниченных ресурсах исключаем сложные модели
+                recommendations = recommendations
+                    .filter(r => r.complexity === 'Низкая' || r.complexity === 'Средняя')
+                    .sort((a, b) => {
+                        if (a.complexity === 'Низкая' && b.complexity !== 'Низкая') return -1;
+                        if (a.complexity !== 'Низкая' && b.complexity === 'Низкая') return 1;
+                        return 0;
+                    });
+            } else if (resources === 'Неограниченные') {
+                // При неограниченных ресурсах можем использовать сложные модели
+                recommendations = recommendations
+                    .sort((a, b) => {
+                        if (a.complexity === 'Высокая' && b.complexity !== 'Высокая') return -1;
+                        if (a.complexity !== 'Высокая' && b.complexity === 'Высокая') return 1;
+                        return 0;
+                    });
+            }
+
+            // Добавляем контекстные причины на основе всех параметров
+            recommendations = recommendations.slice(0, 3).map(rec => {
+                let enhancedReason = rec.reason;
+                
+                if (role === 'CEO') {
+                    enhancedReason += '. Быстрые результаты и стратегический фокус';
+                } else if (role === 'HRD') {
+                    enhancedReason += '. Эффективная работа с людьми и сопротивлением';
+                } else if (role === 'ChangeManager') {
+                    enhancedReason += '. Детальный план и комплексный подход';
+                }
+
+                if (resistance === 'Высокое') {
+                    enhancedReason += '. Специально для работы с высоким сопротивлением';
+                }
+
+                if (resources === 'Ограниченные') {
+                    enhancedReason += '. Эффективна при ограниченных ресурсах';
+                }
+
+                return { ...rec, reason: enhancedReason };
+            });
+
+            return recommendations;
         }
 
         // Отображение рекомендаций матрицы
@@ -19132,7 +21821,13 @@ body.theme-dark .search-highlight {
             });
 
             // Сбрасываем состояние
-            matrixSelections = { scale: null, speed: null };
+            matrixSelections = {
+                role: null,
+                scale: null,
+                speed: null,
+                resistance: null,
+                resources: null
+            };
 
             // Скрываем панель рекомендаций
             const recommendationsPanel = document.getElementById('matrixRecommendations');
@@ -19158,19 +21853,37 @@ body.theme-dark .search-highlight {
                     matrixSelections = JSON.parse(saved);
 
                     // Восстанавливаем выделение параметров
+                    if (matrixSelections.role) {
+                        const roleParam = document.querySelector(`.matrix-parameter[data-step="0"][data-value="${matrixSelections.role}"]`);
+                        if (roleParam) roleParam.classList.add('selected');
+                    }
                     if (matrixSelections.scale) {
                         const scaleParam = document.querySelector(`.matrix-parameter[data-step="1"][data-value="${matrixSelections.scale}"]`);
                         if (scaleParam) scaleParam.classList.add('selected');
                     }
-
                     if (matrixSelections.speed) {
                         const speedParam = document.querySelector(`.matrix-parameter[data-step="2"][data-value="${matrixSelections.speed}"]`);
                         if (speedParam) speedParam.classList.add('selected');
                     }
+                    if (matrixSelections.resistance) {
+                        const resistanceParam = document.querySelector(`.matrix-parameter[data-step="3"][data-value="${matrixSelections.resistance}"]`);
+                        if (resistanceParam) resistanceParam.classList.add('selected');
+                    }
+                    if (matrixSelections.resources) {
+                        const resourcesParam = document.querySelector(`.matrix-parameter[data-step="4"][data-value="${matrixSelections.resources}"]`);
+                        if (resourcesParam) resourcesParam.classList.add('selected');
+                    }
 
-                    // Если выбраны оба параметра, показываем рекомендации
-                    if (matrixSelections.scale && matrixSelections.speed) {
-                        const recommendations = calculateRecommendations(matrixSelections.scale, matrixSelections.speed);
+                    // Если выбраны все параметры, показываем рекомендации
+                    if (matrixSelections.role && matrixSelections.scale && matrixSelections.speed && 
+                        matrixSelections.resistance && matrixSelections.resources) {
+                        const recommendations = calculateRecommendations(
+                            matrixSelections.role,
+                            matrixSelections.scale,
+                            matrixSelections.speed,
+                            matrixSelections.resistance,
+                            matrixSelections.resources
+                        );
                         showMatrixRecommendations(recommendations);
                     }
                 }

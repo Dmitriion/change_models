@@ -7579,6 +7579,7 @@ body.theme-dark .search-highlight {
   transition: all 0.35s var(--ease-standard);
   position: relative;
   overflow: hidden;
+  text-align: left;
 }
 
 .practice-tool-card::after {
@@ -7607,6 +7608,8 @@ body.theme-dark .search-highlight {
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
+  text-align: left;
+  align-items: flex-start;
 }
 
 /* CTA карточка - выделенная зеленая кнопка */
@@ -7639,6 +7642,8 @@ body.theme-dark .search-highlight {
 .practice-tool-card-cta .practice-tool-card-content {
   flex: 1;
   min-width: 0;
+  text-align: left;
+  align-items: flex-start;
 }
 
 .practice-tool-card-cta .practice-tool-card-content h4 {
@@ -7705,6 +7710,7 @@ body.theme-dark .search-highlight {
   color: var(--color-text);
   margin: 0 0 var(--space-8) 0;
   line-height: 1.3;
+  text-align: left;
 }
 
 .practice-tool-card-content p {
@@ -7712,6 +7718,7 @@ body.theme-dark .search-highlight {
   line-height: 1.6;
   color: var(--color-text-secondary);
   margin: 0 0 var(--space-12) 0;
+  text-align: left;
 }
 
 .practice-tool-card .icon {
@@ -7940,6 +7947,12 @@ body.theme-dark .search-highlight {
   .practice-tool-card {
     gap: var(--space-16);
     padding: var(--space-20);
+    text-align: left;
+  }
+  
+  .practice-tool-card-content {
+    text-align: left;
+    align-items: flex-start;
   }
   
   .practice-tool-card .icon {
@@ -7977,15 +7990,15 @@ body.theme-dark .search-highlight {
   
   .practice-tool-card {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     gap: var(--space-16);
     padding: var(--space-20);
   }
   
   .practice-tool-card-content {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     width: 100%;
   }
   
@@ -7995,13 +8008,13 @@ body.theme-dark .search-highlight {
   }
   
   .practice-tool-card-content .tool-duration {
-    align-self: center;
+    align-self: flex-start;
   }
   
   .practice-tool-card-cta {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     gap: var(--space-16);
   }
   
@@ -8011,8 +8024,8 @@ body.theme-dark .search-highlight {
   }
   
   .practice-tool-card-cta .practice-tool-card-content {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .models-overview {
@@ -9602,7 +9615,7 @@ body.theme-dark .search-highlight {
                                 </div>
                             </div>
 
-                            <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(65)">
+                            <div class="practice-tool-card practice-tool-card-cta" onclick="jumpToSlide(64)">
                                 <div class="icon icon-cta">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -10741,7 +10754,7 @@ body.theme-dark .search-highlight {
                                 <span class="tool-time">25 мин</span>
                             </div>
                         </div>
-                        <div class="card tool-card-cta" onclick="jumpToSlide(65)">
+                        <div class="card tool-card-cta" onclick="jumpToSlide(64)">
                             <div class="tool-card-content">
                                 <div class="tool-icon icon-cta">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -10767,7 +10780,7 @@ body.theme-dark .search-highlight {
                         <span class="current-step">Шаг 1 из 5</span>
                     </div>
                     <div class="path-indicator">
-                        <div class="path-step-indicator active" onclick="jumpToSlide(65)" style="cursor: pointer;">
+                        <div class="path-step-indicator active" onclick="jumpToSlide(64)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
@@ -10776,7 +10789,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Квиз</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(66)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(65)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
@@ -10785,7 +10798,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">ROI</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(67)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(66)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <circle cx="12" cy="8.5" r="3.5"></circle>
@@ -10795,7 +10808,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Готовность</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(67)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
@@ -10804,7 +10817,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Конструктор</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(69)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -10814,8 +10827,8 @@ body.theme-dark .search-highlight {
                         </div>
                     </div>
                     <div class="path-navigation">
-                        <button class="path-nav-btn secondary" onclick="jumpToSlide(64)">← Назад</button>
-                        <button class="path-nav-btn" onclick="jumpToSlide(66)">Следующий шаг →</button>
+                        <button class="path-nav-btn secondary" onclick="jumpToSlide(6)">← Назад</button>
+                        <button class="path-nav-btn" onclick="jumpToSlide(65)">Следующий шаг →</button>
                     </div>
                 </div>
 
@@ -10866,7 +10879,7 @@ body.theme-dark .search-highlight {
                         <span class="current-step">Шаг 2 из 5</span>
                     </div>
                     <div class="path-indicator">
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(64)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
@@ -10875,7 +10888,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Квиз</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator active" onclick="jumpToSlide(66)" style="cursor: pointer;">
+                        <div class="path-step-indicator active" onclick="jumpToSlide(65)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
@@ -10884,7 +10897,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">ROI</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(67)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(66)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <circle cx="12" cy="8.5" r="3.5"></circle>
@@ -10894,7 +10907,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Готовность</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(67)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
@@ -10903,7 +10916,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Конструктор</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(69)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -10913,8 +10926,8 @@ body.theme-dark .search-highlight {
                         </div>
                     </div>
                     <div class="path-navigation">
-                        <button class="path-nav-btn secondary" onclick="jumpToSlide(65)">← Предыдущий шаг</button>
-                        <button class="path-nav-btn" onclick="jumpToSlide(67)">Следующий шаг →</button>
+                        <button class="path-nav-btn secondary" onclick="jumpToSlide(64)">← Предыдущий шаг</button>
+                        <button class="path-nav-btn" onclick="jumpToSlide(66)">Следующий шаг →</button>
                     </div>
                 </div>
 
@@ -11019,7 +11032,7 @@ body.theme-dark .search-highlight {
                         <span class="current-step">Шаг 3 из 5</span>
                     </div>
                     <div class="path-indicator">
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(64)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
@@ -11028,7 +11041,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Квиз</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(66)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
@@ -11037,7 +11050,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">ROI</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator active" onclick="jumpToSlide(67)" style="cursor: pointer;">
+                        <div class="path-step-indicator active" onclick="jumpToSlide(66)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <circle cx="12" cy="8.5" r="3.5"></circle>
@@ -11047,7 +11060,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Готовность</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(67)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
@@ -11056,7 +11069,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Конструктор</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(69)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -11066,8 +11079,8 @@ body.theme-dark .search-highlight {
                         </div>
                     </div>
                     <div class="path-navigation">
-                        <button class="path-nav-btn secondary" onclick="jumpToSlide(66)">← Предыдущий шаг</button>
-                        <button class="path-nav-btn" onclick="jumpToSlide(68)">Следующий шаг →</button>
+                        <button class="path-nav-btn secondary" onclick="jumpToSlide(65)">← Предыдущий шаг</button>
+                        <button class="path-nav-btn" onclick="jumpToSlide(67)">Следующий шаг →</button>
                     </div>
                 </div>
 
@@ -11153,7 +11166,7 @@ body.theme-dark .search-highlight {
                         <span class="current-step">Шаг 4 из 5</span>
                     </div>
                     <div class="path-indicator">
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(64)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
@@ -11162,7 +11175,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Квиз</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(66)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
@@ -11171,7 +11184,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">ROI</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator completed" onclick="jumpToSlide(67)" style="cursor: pointer;">
+                        <div class="path-step-indicator completed" onclick="jumpToSlide(66)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <circle cx="12" cy="8.5" r="3.5"></circle>
@@ -11181,7 +11194,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Готовность</div>
                         </div>
                         <div class="path-connector completed"></div>
-                        <div class="path-step-indicator active" onclick="jumpToSlide(68)" style="cursor: pointer;">
+                        <div class="path-step-indicator active" onclick="jumpToSlide(67)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
@@ -11190,7 +11203,7 @@ body.theme-dark .search-highlight {
                             <div class="step-label">Конструктор</div>
                         </div>
                         <div class="path-connector"></div>
-                        <div class="path-step-indicator" onclick="jumpToSlide(69)" style="cursor: pointer;">
+                        <div class="path-step-indicator" onclick="jumpToSlide(68)" style="cursor: pointer;">
                             <div class="step-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -11200,8 +11213,8 @@ body.theme-dark .search-highlight {
                         </div>
                     </div>
                     <div class="path-navigation">
-                        <button class="path-nav-btn secondary" onclick="jumpToSlide(67)">← Предыдущий шаг</button>
-                        <button class="path-nav-btn" onclick="jumpToSlide(69)">Следующий шаг →</button>
+                        <button class="path-nav-btn secondary" onclick="jumpToSlide(66)">← Предыдущий шаг</button>
+                        <button class="path-nav-btn" onclick="jumpToSlide(68)">Следующий шаг →</button>
                     </div>
                 </div>
 
@@ -11287,7 +11300,7 @@ body.theme-dark .search-highlight {
                             <span class="current-step">Шаг 5 из 5</span>
                         </div>
                         <div class="path-indicator">
-                            <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
+                            <div class="path-step-indicator completed" onclick="jumpToSlide(64)" style="cursor: pointer;">
                                 <div class="step-icon">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"></path>
@@ -11296,7 +11309,7 @@ body.theme-dark .search-highlight {
                                 <div class="step-label">Квиз</div>
                             </div>
                             <div class="path-connector completed"></div>
-                            <div class="path-step-indicator completed" onclick="jumpToSlide(66)" style="cursor: pointer;">
+                            <div class="path-step-indicator completed" onclick="jumpToSlide(65)" style="cursor: pointer;">
                                 <div class="step-icon">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path>
@@ -11305,7 +11318,7 @@ body.theme-dark .search-highlight {
                                 <div class="step-label">ROI</div>
                             </div>
                             <div class="path-connector completed"></div>
-                            <div class="path-step-indicator completed" onclick="jumpToSlide(67)" style="cursor: pointer;">
+                            <div class="path-step-indicator completed" onclick="jumpToSlide(66)" style="cursor: pointer;">
                                 <div class="step-icon">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <circle cx="12" cy="8.5" r="3.5"></circle>
@@ -11315,7 +11328,7 @@ body.theme-dark .search-highlight {
                                 <div class="step-label">Готовность</div>
                             </div>
                             <div class="path-connector completed"></div>
-                            <div class="path-step-indicator completed" onclick="jumpToSlide(68)" style="cursor: pointer;">
+                            <div class="path-step-indicator completed" onclick="jumpToSlide(67)" style="cursor: pointer;">
                                 <div class="step-icon">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
@@ -11324,7 +11337,7 @@ body.theme-dark .search-highlight {
                                 <div class="step-label">Конструктор</div>
                             </div>
                             <div class="path-connector completed"></div>
-                            <div class="path-step-indicator active" onclick="jumpToSlide(69)" style="cursor: pointer;">
+                            <div class="path-step-indicator active" onclick="jumpToSlide(68)" style="cursor: pointer;">
                                 <div class="step-icon">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
@@ -11334,7 +11347,7 @@ body.theme-dark .search-highlight {
                             </div>
                         </div>
                         <div class="path-navigation">
-                            <button class="path-nav-btn secondary" onclick="jumpToSlide(68)">← Предыдущий шаг</button>
+                            <button class="path-nav-btn secondary" onclick="jumpToSlide(67)">← Предыдущий шаг</button>
                             <button class="path-nav-btn" onclick="jumpToSlide(70)">Завершить →</button>
                         </div>
                     </div>

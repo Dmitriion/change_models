@@ -3869,6 +3869,13 @@ body.theme-dark .search-highlight {
   margin-bottom: var(--space-32);
 }
 
+.roi-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-32);
+}
+
 .roi-metric {
   background: var(--color-surface);
   padding: var(--space-20);
@@ -3986,6 +3993,564 @@ body.theme-dark .search-highlight {
   justify-content: center;
   margin-top: var(--space-24);
   flex-wrap: wrap;
+}
+
+/* Детализация расчетов */
+.roi-breakdown-section {
+  margin-bottom: var(--space-24);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.roi-breakdown-section h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 1.1em;
+  font-weight: var(--font-weight-semibold);
+}
+
+.roi-breakdown-total {
+  border-top: 2px solid var(--color-primary);
+  margin-top: var(--space-8);
+  padding-top: var(--space-12);
+}
+
+.roi-breakdown-total .roi-breakdown-label,
+.roi-breakdown-total .roi-breakdown-value {
+  font-size: 1.1em;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Таблица денежных потоков */
+.roi-cashflows-table {
+  overflow-x: auto;
+  margin-top: var(--space-12);
+}
+
+.roi-cashflows-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.roi-cashflows-table th {
+  background: var(--color-surface);
+  padding: var(--space-12);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+  position: sticky;
+  top: 0;
+}
+
+.roi-cashflows-table td {
+  padding: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.roi-cashflows-table tr:hover {
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.roi-investment-row {
+  background: rgba(224, 30, 90, 0.05);
+  font-weight: var(--font-weight-medium);
+}
+
+.roi-positive-row {
+  background: rgba(45, 182, 125, 0.05);
+}
+
+/* Валидация */
+.roi-validation-error,
+.roi-validation-warning {
+  padding: var(--space-16);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-16);
+}
+
+.roi-validation-error {
+  background: rgba(224, 30, 90, 0.1);
+  border: 2px solid #E01E5A;
+  color: #E01E5A;
+}
+
+.roi-validation-error h4 {
+  margin: 0 0 var(--space-8) 0;
+  color: #E01E5A;
+  font-size: 1em;
+}
+
+.roi-validation-error ul {
+  margin: 0;
+  padding-left: var(--space-20);
+}
+
+.roi-validation-error li {
+  margin-bottom: var(--space-4);
+}
+
+.roi-validation-warning {
+  background: rgba(244, 161, 0, 0.1);
+  border: 2px solid #F4A100;
+  color: #F4A100;
+}
+
+.roi-validation-warning h4 {
+  margin: 0 0 var(--space-8) 0;
+  color: #F4A100;
+  font-size: 1em;
+}
+
+.roi-validation-warning ul {
+  margin: 0;
+  padding-left: var(--space-20);
+}
+
+.roi-validation-warning li {
+  margin-bottom: var(--space-4);
+}
+
+.roi-field-error {
+  color: #E01E5A;
+  font-size: 0.875em;
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  background: rgba(224, 30, 90, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+/* Подсказки */
+.roi-tooltip {
+  display: inline-block;
+  margin-left: var(--space-4);
+  cursor: help;
+  color: var(--color-primary);
+  font-size: 0.9em;
+  vertical-align: middle;
+}
+
+.roi-input-row label {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+
+/* Адаптивность для таблиц */
+@media (max-width: 768px) {
+  .roi-cashflows-table {
+    font-size: 0.85em;
+  }
+  
+  .roi-cashflows-table th,
+  .roi-cashflows-table td {
+    padding: var(--space-8);
+  }
+  
+  .roi-breakdown-section {
+    padding: var(--space-12);
+  }
+  
+  .roi-breakdown-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  
+  .roi-breakdown-value {
+    margin-top: var(--space-4);
+  }
+}
+
+/* Сравнение сценариев */
+.roi-scenario-toggle {
+  margin: var(--space-16) 0;
+  padding: var(--space-12);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.roi-scenario-toggle label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+}
+
+.roi-scenario-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.roi-comparison {
+  margin: var(--space-24) 0;
+  padding: var(--space-20);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-primary);
+}
+
+.roi-comparison h4 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--color-text);
+  font-size: 1.2em;
+}
+
+.roi-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+}
+
+.roi-comparison-item {
+  padding: var(--space-16);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.roi-comparison-item.highlight {
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border: 2px solid var(--color-primary);
+}
+
+.comparison-label {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+}
+
+.comparison-value {
+  font-size: 1.5em;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-8);
+}
+
+.comparison-value.positive {
+  color: #2DB67D;
+}
+
+.comparison-value.negative {
+  color: #E01E5A;
+}
+
+.comparison-value.highlight {
+  color: var(--color-primary);
+}
+
+.comparison-detail {
+  font-size: 0.85em;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* Анализ чувствительности */
+.roi-sensitivity {
+  margin: var(--space-24) 0;
+  padding: var(--space-20);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.roi-sensitivity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-16);
+}
+
+.roi-sensitivity-header h4 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.2em;
+}
+
+.roi-sensitivity-toggle {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.2s ease;
+}
+
+.roi-sensitivity-toggle:hover {
+  background: var(--color-primary-dark);
+}
+
+.roi-sensitivity-intro {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-16);
+  font-size: 0.95em;
+}
+
+.roi-sensitivity-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin-bottom: var(--space-20);
+}
+
+.sensitivity-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.sensitivity-slider-group label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sensitivity-slider-group input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-border);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.sensitivity-slider-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+.sensitivity-slider-group input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+}
+
+.sensitivity-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+.sensitivity-result-item {
+  padding: var(--space-16);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.sensitivity-result-label {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+}
+
+.sensitivity-result-value {
+  font-size: 1.3em;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.sensitivity-result-value.positive {
+  color: #2DB67D;
+}
+
+.sensitivity-result-value.negative {
+  color: #E01E5A;
+}
+
+.sensitivity-delta {
+  display: block;
+  font-size: 0.7em;
+  font-weight: var(--font-weight-normal);
+  margin-top: var(--space-4);
+  opacity: 0.8;
+}
+
+/* Адаптивность для сравнения и анализа чувствительности */
+@media (max-width: 768px) {
+  .roi-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .roi-summary {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .sensitivity-results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .roi-sensitivity-controls {
+    gap: var(--space-12);
+  }
+}
+
+/* Список сценариев */
+.roi-scenarios-list {
+  margin: var(--space-24) 0;
+  padding: var(--space-20);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.roi-scenarios-list h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--color-text);
+  font-size: 1.1em;
+}
+
+.scenarios-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.scenario-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-16);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.scenario-info {
+  flex: 1;
+}
+
+.scenario-name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.scenario-metrics {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.scenario-date {
+  font-size: 0.85em;
+  color: var(--color-text-muted);
+}
+
+.scenario-actions {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.scenario-btn {
+  padding: var(--space-8) var(--space-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-background);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.scenario-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.scenario-btn.secondary {
+  background: transparent;
+}
+
+.scenario-btn.secondary:hover {
+  background: rgba(224, 30, 90, 0.1);
+  color: #E01E5A;
+  border-color: #E01E5A;
+}
+
+@media (max-width: 768px) {
+  .scenario-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+  }
+  
+  .scenario-actions {
+    width: 100%;
+  }
+  
+  .scenario-btn {
+    flex: 1;
+  }
+}
+
+/* Стили для печати */
+@media print {
+  .roi-form,
+  .roi-actions,
+  .roi-validation-error,
+  .roi-validation-warning,
+  .roi-tooltip,
+  .roi-scenario-toggle {
+    display: none !important;
+  }
+  
+  .roi-results {
+    display: block !important;
+  }
+  
+  .roi-breakdown-section {
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+    margin-bottom: var(--space-16);
+  }
+  
+  .roi-cashflows-table {
+    page-break-inside: avoid;
+  }
+  
+  .roi-cashflows-table table {
+    border: 1px solid #ddd;
+  }
+  
+  .roi-cashflows-table th,
+  .roi-cashflows-table td {
+    border: 1px solid #ddd;
+    padding: var(--space-8);
+  }
+  
+  .roi-metric {
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+  }
+  
+  .roi-comparison {
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+  }
 }
 
 /* ========== Readiness Assessment Styles ========== */
@@ -10941,45 +11506,76 @@ body.theme-dark .search-highlight {
                         <div class="roi-input-group">
                             <h4>Инвестиции в проект</h4>
                             <div class="roi-input-row">
-                                <label>Бюджет проекта (руб.):</label>
-                                <input type="number" id="projectBudget" placeholder="1000000" step="10000">
+                                <label for="projectBudget">
+                                    Бюджет проекта (руб.):
+                                    <span class="roi-tooltip" title="Общий бюджет проекта изменений. Используется для справки, не влияет на расчет ROI.">ℹ️</span>
+                                </label>
+                                <input type="number" id="projectBudget" placeholder="1000000" step="10000" title="Общий бюджет проекта изменений">
                             </div>
                             <div class="roi-input-row">
-                                <label>Стоимость управления изменениями (руб.):</label>
-                                <input type="number" id="changeBudget" placeholder="200000" step="10000">
+                                <label for="changeBudget">
+                                    Стоимость управления изменениями (руб.):
+                                    <span class="roi-tooltip" title="Обязательное поле. Общая стоимость внедрения управления изменениями (консультанты, обучение, инструменты и т.д.)">*</span>
+                                </label>
+                                <input type="number" id="changeBudget" placeholder="200000" step="10000" required title="Обязательное поле. Общая стоимость внедрения управления изменениями">
                             </div>
                         </div>
 
                         <div class="roi-input-group">
                             <h4>Ожидаемые выгоды</h4>
                             <div class="roi-input-row">
-                                <label>Экономия на увольнениях (руб./год):</label>
-                                <input type="number" id="turnoverSavings" placeholder="500000" step="10000">
+                                <label for="turnoverSavings">
+                                    Экономия на увольнениях (руб./год):
+                                    <span class="roi-tooltip" title="Экономия от снижения текучести кадров. Включает затраты на найм, обучение и потерю продуктивности.">ℹ️</span>
+                                </label>
+                                <input type="number" id="turnoverSavings" placeholder="500000" step="10000" min="0" title="Экономия от снижения текучести кадров в год">
                             </div>
                             <div class="roi-input-row">
-                                <label>Повышение производительности (%):</label>
-                                <input type="number" id="productivityGain" placeholder="15" step="1">
+                                <label for="productivityGain">
+                                    Повышение производительности (%):
+                                    <span class="roi-tooltip" title="Ожидаемый процент повышения производительности сотрудников благодаря управлению изменениями. Обычно 5-25%.">ℹ️</span>
+                                </label>
+                                <input type="number" id="productivityGain" placeholder="15" step="0.1" min="0" max="100" title="Ожидаемый процент повышения производительности">
                             </div>
                             <div class="roi-input-row">
-                                <label>Средняя зарплата сотрудника (руб./год):</label>
-                                <input type="number" id="avgSalary" placeholder="800000" step="10000">
+                                <label for="avgSalary">
+                                    Средняя зарплата сотрудника (руб./год):
+                                    <span class="roi-tooltip" title="Средняя годовая зарплата сотрудника. Используется для расчета выгод от повышения производительности.">ℹ️</span>
+                                </label>
+                                <input type="number" id="avgSalary" placeholder="800000" step="10000" min="0" title="Средняя годовая зарплата сотрудника">
                             </div>
                             <div class="roi-input-row">
-                                <label>Количество сотрудников:</label>
-                                <input type="number" id="employeeCount" placeholder="50" step="1">
+                                <label for="employeeCount">
+                                    Количество сотрудников:
+                                    <span class="roi-tooltip" title="Количество сотрудников, затронутых изменениями. Используется для расчета выгод от производительности.">ℹ️</span>
+                                </label>
+                                <input type="number" id="employeeCount" placeholder="50" step="1" min="0" title="Количество сотрудников, затронутых изменениями">
                             </div>
                         </div>
 
                         <div class="roi-input-group">
                             <h4>Параметры расчета</h4>
                             <div class="roi-input-row">
-                                <label>Период оценки (лет):</label>
-                                <input type="number" id="evaluationPeriod" value="3" min="1" max="10">
+                                <label for="evaluationPeriod">
+                                    Период оценки (лет):
+                                    <span class="roi-tooltip" title="Период времени для оценки ROI. Рекомендуется 3-5 лет.">ℹ️</span>
+                                </label>
+                                <input type="number" id="evaluationPeriod" value="3" min="1" max="10" title="Период времени для оценки ROI">
                             </div>
                             <div class="roi-input-row">
-                                <label>Ставка дисконтирования (%):</label>
-                                <input type="number" id="discountRate" value="10" step="0.5">
+                                <label for="discountRate">
+                                    Ставка дисконтирования (%):
+                                    <span class="roi-tooltip" title="Ставка для приведения будущих денежных потоков к текущей стоимости. Обычно 8-12%.">ℹ️</span>
+                                </label>
+                                <input type="number" id="discountRate" value="10" step="0.5" min="0" max="50" title="Ставка дисконтирования для расчета NPV">
                             </div>
+                        </div>
+
+                        <div class="roi-scenario-toggle">
+                            <label>
+                                <input type="checkbox" id="showComparison" checked>
+                                <span>Показать сравнение "Без УИ" vs "С УИ"</span>
+                            </label>
                         </div>
 
                         <button class="panel-button" id="calculateROI" type="button">📊 Рассчитать ROI</button>
@@ -10998,8 +11594,33 @@ body.theme-dark .search-highlight {
                                 <div class="roi-metric-label">Чистая приведенная стоимость</div>
                             </div>
                             <div class="roi-metric">
+                                <div class="roi-metric-value" id="irrValue">0%</div>
+                                <div class="roi-metric-label">IRR (внутренняя норма доходности)</div>
+                            </div>
+                            <div class="roi-metric">
                                 <div class="roi-metric-value" id="paybackValue">0 лет</div>
                                 <div class="roi-metric-label">Срок окупаемости</div>
+                            </div>
+                        </div>
+
+                        <div class="roi-comparison" id="roiComparison" style="display: none;">
+                            <h4>Сравнение сценариев</h4>
+                            <div class="roi-comparison-grid">
+                                <div class="roi-comparison-item">
+                                    <div class="comparison-label">Без управления изменениями</div>
+                                    <div class="comparison-value negative" id="comparisonWithoutUI">-</div>
+                                    <div class="comparison-detail" id="comparisonWithoutUIDetail"></div>
+                                </div>
+                                <div class="roi-comparison-item">
+                                    <div class="comparison-label">С управлением изменениями</div>
+                                    <div class="comparison-value positive" id="comparisonWithUI">-</div>
+                                    <div class="comparison-detail" id="comparisonWithUIDetail"></div>
+                                </div>
+                                <div class="roi-comparison-item highlight">
+                                    <div class="comparison-label">Разница (выгода от УИ)</div>
+                                    <div class="comparison-value highlight" id="comparisonDifference">-</div>
+                                    <div class="comparison-detail" id="comparisonDifferenceDetail"></div>
+                                </div>
                             </div>
                         </div>
 
@@ -11008,14 +11629,53 @@ body.theme-dark .search-highlight {
                             <div id="roiBreakdown"></div>
                         </div>
 
+                        <div class="roi-sensitivity" id="roiSensitivity" style="display: none;">
+                            <div class="roi-sensitivity-header">
+                                <h4>Анализ чувствительности</h4>
+                                <button class="roi-sensitivity-toggle" onclick="toggleSensitivity()">▼ Свернуть</button>
+                            </div>
+                            <div class="roi-sensitivity-content" id="roiSensitivityContent">
+                                <p class="roi-sensitivity-intro">Посмотрите, как изменение ключевых параметров влияет на ROI, NPV и срок окупаемости.</p>
+                                <div class="roi-sensitivity-controls">
+                                    <div class="sensitivity-slider-group">
+                                        <label for="sensitivityCost">
+                                            Стоимость УИ: <span id="sensitivityCostValue">100%</span>
+                                        </label>
+                                        <input type="range" id="sensitivityCost" min="70" max="130" value="100" step="5" 
+                                               oninput="updateSensitivity('cost', this.value)">
+                                    </div>
+                                    <div class="sensitivity-slider-group">
+                                        <label for="sensitivityProductivity">
+                                            Производительность: <span id="sensitivityProductivityValue">100%</span>
+                                        </label>
+                                        <input type="range" id="sensitivityProductivity" min="80" max="120" value="100" step="5" 
+                                               oninput="updateSensitivity('productivity', this.value)">
+                                    </div>
+                                    <div class="sensitivity-slider-group">
+                                        <label for="sensitivityTurnover">
+                                            Экономия на текучести: <span id="sensitivityTurnoverValue">100%</span>
+                                        </label>
+                                        <input type="range" id="sensitivityTurnover" min="70" max="130" value="100" step="5" 
+                                               oninput="updateSensitivity('turnover', this.value)">
+                                    </div>
+                                </div>
+                                <div class="roi-sensitivity-results" id="roiSensitivityResults"></div>
+                            </div>
+                        </div>
+
                         <div class="roi-chart-container">
                             <canvas id="roiChart" width="400" height="200"></canvas>
                         </div>
 
                         <div class="roi-actions">
-                            <button class="panel-button" onclick="exportROIToPDF()">📄 Сохранить результаты</button>
+                            <button class="panel-button" onclick="exportROIToPDF()">📄 Сохранить в PDF</button>
+                            <button class="panel-button" onclick="exportROIToExcel()">📊 Экспорт в Excel</button>
+                            <button class="panel-button secondary" onclick="saveROIScenario()">💾 Сохранить сценарий</button>
+                            <button class="panel-button secondary" onclick="toggleScenariosList()">📋 Сценарии</button>
                             <button class="panel-button secondary" onclick="resetROICalculator()">🔄 Пересчитать</button>
                         </div>
+
+                        <div class="roi-scenarios-list" id="roiScenariosList" style="display: none;"></div>
                     </div>
                 </div>
             `
@@ -13303,113 +13963,624 @@ body.theme-dark .search-highlight {
         }
 
         // ========== ROI CALCULATOR ==========
-        function calculateROI() {
+        function validateROIInputs() {
+            const errors = [];
+            const warnings = [];
+
             // Получаем значения из формы
-            const budget = parseFloat(document.getElementById('projectBudget').value) || 0;
-            const employees = parseInt(document.getElementById('employeeCount').value) || 0;
-            const duration = parseInt(document.getElementById('projectDuration').value) || 0;
-            const maturity = document.getElementById('maturityLevel').value;
+            const projectBudget = parseFloat(document.getElementById('projectBudget').value) || 0;
+            const changeBudget = parseFloat(document.getElementById('changeBudget').value) || 0;
+            const turnoverSavings = parseFloat(document.getElementById('turnoverSavings').value) || 0;
+            const productivityGain = parseFloat(document.getElementById('productivityGain').value) || 0;
+            const avgSalary = parseFloat(document.getElementById('avgSalary').value) || 0;
+            const employeeCount = parseInt(document.getElementById('employeeCount').value) || 0;
+            const evaluationPeriod = parseInt(document.getElementById('evaluationPeriod').value) || 3;
+            const discountRate = parseFloat(document.getElementById('discountRate').value) || 10;
 
-            // Коэффициенты эффективности в зависимости от уровня зрелости
-            const effectivenessFactors = {
-                low: { reduction: 0.25, timeGain: 0.15, retentionGain: 0.05 },
-                medium: { reduction: 0.40, timeGain: 0.25, retentionGain: 0.10 },
-                high: { reduction: 0.55, timeGain: 0.35, retentionGain: 0.15 }
-            };
+            // Проверка обязательных полей
+            if (changeBudget <= 0) {
+                errors.push('Стоимость управления изменениями должна быть больше нуля');
+            }
 
-            const factors = effectivenessFactors[maturity];
+            // Проверка на отрицательные значения
+            if (projectBudget < 0) {
+                errors.push('Бюджет проекта не может быть отрицательным');
+            }
+            if (changeBudget < 0) {
+                errors.push('Стоимость управления изменениями не может быть отрицательной');
+            }
+            if (turnoverSavings < 0) {
+                errors.push('Экономия на увольнениях не может быть отрицательной');
+            }
+            if (productivityGain < 0) {
+                errors.push('Повышение производительности не может быть отрицательным');
+            }
+            if (avgSalary < 0) {
+                errors.push('Средняя зарплата не может быть отрицательной');
+            }
+            if (employeeCount < 0) {
+                errors.push('Количество сотрудников не может быть отрицательным');
+            }
+            if (evaluationPeriod < 0) {
+                errors.push('Период оценки не может быть отрицательным');
+            }
+            if (discountRate < 0) {
+                errors.push('Ставка дисконтирования не может быть отрицательной');
+            }
 
-            // Расчёты
-            const budgetInRubles = budget * 1000000; // Перевод в рубли
+            // Проверка на разумные диапазоны
+            if (productivityGain > 100) {
+                warnings.push('Повышение производительности более 100% выглядит нереалистично. Проверьте значение.');
+            }
+            if (productivityGain > 50) {
+                warnings.push('Повышение производительности более 50% требует обоснования.');
+            }
+            if (discountRate > 50) {
+                warnings.push('Ставка дисконтирования более 50% выглядит необычно высоко. Проверьте значение.');
+            }
+            if (discountRate < 1) {
+                warnings.push('Ставка дисконтирования менее 1% выглядит необычно низко. Проверьте значение.');
+            }
+            if (employeeCount > 100000) {
+                warnings.push('Количество сотрудников более 100,000 выглядит необычно. Проверьте значение.');
+            }
+            if (evaluationPeriod > 10) {
+                warnings.push('Период оценки более 10 лет может дать неточные результаты из-за неопределенности будущего.');
+            }
+            if (changeBudget > projectBudget && projectBudget > 0) {
+                warnings.push('Стоимость управления изменениями превышает бюджет проекта. Проверьте значения.');
+            }
 
-            // Потери без управления изменениями (63% бюджета)
-            const lossesWithoutUI = budgetInRubles * 0.63;
-
-            // Выгоды с управлением изменениями
-            const riskReduction = budgetInRubles * factors.reduction; // Снижение рисков
-            const timeSavings = budgetInRubles * factors.timeGain; // Экономия от сокращения сроков
-            const retentionSavings = (employees * 50000) * factors.retentionGain; // Экономия от снижения текучести (средняя зарплата 50к/мес)
-
-            const totalBenefits = riskReduction + timeSavings + retentionSavings;
-
-            // Стоимость управления изменениями (5-15% бюджета в зависимости от зрелости)
-            const uiCostPercent = maturity === 'high' ? 0.15 : maturity === 'medium' ? 0.10 : 0.05;
-            const uiCost = budgetInRubles * uiCostPercent;
-
-            // Чистая экономия
-            const netSavings = totalBenefits - uiCost;
-
-            // ROI через 2 года (учитывая накопительный эффект)
-            const roi = uiCost > 0 ? ((netSavings * 2) / uiCost) * 100 : 0;
-
-            // Процент сокращения сроков
-            const timeReductionPercent = factors.timeGain * 100;
+            // Проверка на минимальные значения для расчета
+            if (turnoverSavings === 0 && productivityGain === 0) {
+                warnings.push('Не указаны выгоды (экономия на увольнениях или повышение производительности). ROI может быть отрицательным.');
+            }
+            if (employeeCount === 0 && productivityGain > 0) {
+                warnings.push('Количество сотрудников равно нулю, но указано повышение производительности. Выгоды от производительности не будут рассчитаны.');
+            }
+            if (avgSalary === 0 && productivityGain > 0 && employeeCount > 0) {
+                warnings.push('Средняя зарплата не указана, но указано повышение производительности. Выгоды от производительности не будут рассчитаны.');
+            }
 
             return {
-                budget: budgetInRubles,
-                employees,
-                duration,
-                maturity,
+                isValid: errors.length === 0,
+                errors: errors,
+                warnings: warnings
+            };
+        }
+
+        // Расчет IRR (Internal Rate of Return)
+        function calculateIRR(cashFlows, initialInvestment) {
+            // IRR - это ставка дисконтирования, при которой NPV = 0
+            // Используем метод Ньютона-Рафсона для поиска корня
+            
+            if (cashFlows.length === 0 || initialInvestment <= 0) {
+                return null;
+            }
+            
+            let irr = 0.1; // Начальное предположение 10%
+            const maxIterations = 100;
+            const tolerance = 0.0001;
+            
+            for (let i = 0; i < maxIterations; i++) {
+                let npv = -initialInvestment;
+                let npvDerivative = 0;
+                
+                cashFlows.forEach((cf, index) => {
+                    const year = index + 1;
+                    const discountFactor = Math.pow(1 + irr, year);
+                    npv += cf / discountFactor;
+                    npvDerivative -= (year * cf) / (discountFactor * (1 + irr));
+                });
+                
+                if (Math.abs(npv) < tolerance) {
+                    break;
+                }
+                
+                if (Math.abs(npvDerivative) < 0.0001) {
+                    // Избегаем деления на ноль
+                    break;
+                }
+                
+                const newIrr = irr - npv / npvDerivative;
+                
+                // Ограничиваем IRR разумными пределами (-50% до 200%)
+                if (newIrr < -0.5 || newIrr > 2.0) {
+                    break;
+                }
+                
+                if (Math.abs(newIrr - irr) < tolerance) {
+                    irr = newIrr;
+                    break;
+                }
+                
+                irr = newIrr;
+            }
+            
+            return irr * 100; // Возвращаем в процентах
+        }
+
+        // Расчет сценария "Без УИ"
+        function calculateWithoutUI(inputs) {
+            // Без управления изменениями теряется 30-40% бюджета проекта
+            // Используем среднее значение 35% для консервативной оценки
+            const lossRate = 0.35;
+            const projectBudget = inputs.projectBudget || 0;
+            
+            // Потери без УИ
+            const lossesWithoutUI = projectBudget > 0 ? projectBudget * lossRate : 0;
+            
+            // Выгоды без УИ (только базовые, без улучшений)
+            const basicBenefits = 0; // Без УИ нет дополнительных выгод
+            
+            // Денежные потоки без УИ
+            const cashFlowsWithoutUI = [];
+            let cumulativeWithoutUI = 0;
+            
+            // Год 0: нет инвестиций в УИ, но есть потери
+            cashFlowsWithoutUI.push({
+                year: 0,
+                cashFlow: -lossesWithoutUI,
+                cumulative: -lossesWithoutUI,
+                discounted: -lossesWithoutUI
+            });
+            cumulativeWithoutUI = -lossesWithoutUI;
+            
+            // Годы 1-N: минимальные выгоды (только базовые)
+            for (let year = 1; year <= inputs.evaluationPeriod; year++) {
+                const cashFlow = 0; // Без УИ нет дополнительных выгод
+                cumulativeWithoutUI += cashFlow;
+                
+                const discountFactor = Math.pow(1 + inputs.discountRate / 100, year);
+                const discountedCashFlow = cashFlow / discountFactor;
+                
+                cashFlowsWithoutUI.push({
+                    year: year,
+                    cashFlow: cashFlow,
+                    cumulative: cumulativeWithoutUI,
+                    discounted: discountedCashFlow
+                });
+            }
+            
+            return {
                 lossesWithoutUI,
+                basicBenefits,
+                cashFlowsWithoutUI,
+                totalLoss: lossesWithoutUI
+            };
+        }
+
+        function calculateROI() {
+            // Получаем значения из формы
+            const projectBudget = parseFloat(document.getElementById('projectBudget').value) || 0;
+            const changeBudget = parseFloat(document.getElementById('changeBudget').value) || 0;
+            const turnoverSavings = parseFloat(document.getElementById('turnoverSavings').value) || 0;
+            const productivityGain = parseFloat(document.getElementById('productivityGain').value) || 0;
+            const avgSalary = parseFloat(document.getElementById('avgSalary').value) || 0;
+            const employeeCount = parseInt(document.getElementById('employeeCount').value) || 0;
+            const evaluationPeriod = parseInt(document.getElementById('evaluationPeriod').value) || 3;
+            const discountRate = parseFloat(document.getElementById('discountRate').value) || 10;
+
+            // Входные данные
+            const inputs = {
+                projectBudget,
+                changeBudget,
+                turnoverSavings,
+                productivityGain,
+                avgSalary,
+                employeeCount,
+                evaluationPeriod,
+                discountRate
+            };
+
+            // Расчет выгод
+            // Экономия на текучести за весь период
+            const retentionBenefits = turnoverSavings * evaluationPeriod;
+            
+            // Выгоды от повышения производительности за весь период
+            // Производительность в год: (avgSalary * employeeCount * productivityGain / 100)
+            const annualProductivityBenefit = (avgSalary * employeeCount * productivityGain / 100);
+            const productivityBenefits = annualProductivityBenefit * evaluationPeriod;
+            
+            // Общие выгоды за весь период
+            const totalBenefits = retentionBenefits + productivityBenefits;
+            
+            // Годовая выгода (для расчета денежных потоков)
+            const annualBenefit = totalBenefits / evaluationPeriod;
+
+            // Затраты
+            const totalCosts = changeBudget;
+
+            // Расчет денежных потоков по годам
+            const cashFlows = [];
+            let cumulativeCashFlow = 0;
+            
+            // Год 0: инвестиции (отрицательный поток)
+            cashFlows.push({
+                year: 0,
+                cashFlow: -changeBudget,
+                cumulative: -changeBudget,
+                discounted: -changeBudget
+            });
+            cumulativeCashFlow = -changeBudget;
+            
+            // Годы 1-N: положительные потоки (выгоды)
+            let npv = -changeBudget; // Начальное значение NPV (год 0)
+            
+            for (let year = 1; year <= evaluationPeriod; year++) {
+                const cashFlow = annualBenefit;
+                cumulativeCashFlow += cashFlow;
+                
+                // Дисконтированный денежный поток: CF / (1 + r)^t
+                const discountFactor = Math.pow(1 + discountRate / 100, year);
+                const discountedCashFlow = cashFlow / discountFactor;
+                npv += discountedCashFlow;
+                
+                cashFlows.push({
+                    year: year,
+                    cashFlow: cashFlow,
+                    cumulative: cumulativeCashFlow,
+                    discounted: discountedCashFlow
+                });
+            }
+
+            // Расчет ROI: ((Total Benefits - Total Costs) / Total Costs) × 100
+            const roi = totalCosts > 0 ? ((totalBenefits - totalCosts) / totalCosts) * 100 : 0;
+
+            // Расчет срока окупаемости (Payback Period)
+            // Находим год, когда cumulative cash flow становится положительным
+            let paybackPeriod = null;
+            for (let i = 0; i < cashFlows.length; i++) {
+                if (cashFlows[i].cumulative >= 0) {
+                    if (i === 0) {
+                        paybackPeriod = 0;
+                    } else {
+                        // Линейная интерполяция между годами
+                        const prevCumulative = cashFlows[i - 1].cumulative;
+                        const currentCumulative = cashFlows[i].cumulative;
+                        const yearDiff = cashFlows[i].year - cashFlows[i - 1].year;
+                        const cumulativeDiff = currentCumulative - prevCumulative;
+                        
+                        if (cumulativeDiff > 0) {
+                            const fraction = Math.abs(prevCumulative) / cumulativeDiff;
+                            paybackPeriod = cashFlows[i - 1].year + (fraction * yearDiff);
+                        } else {
+                            paybackPeriod = cashFlows[i].year;
+                        }
+                    }
+                    break;
+                }
+            }
+            
+            // Если окупаемость не достигнута за период оценки
+            if (paybackPeriod === null) {
+                paybackPeriod = evaluationPeriod + 1; // Больше периода оценки
+            }
+
+            // Расчет IRR
+            const annualCashFlows = cashFlows.filter(cf => cf.year > 0).map(cf => cf.cashFlow);
+            const irr = calculateIRR(annualCashFlows, changeBudget);
+
+            // Расчет сценария "Без УИ"
+            const scenarioWithoutUI = calculateWithoutUI(inputs);
+
+            // Расчеты для отображения
+            const calculations = {
+                retentionBenefits,
+                productivityBenefits,
+                annualProductivityBenefit,
                 totalBenefits,
-                uiCost,
-                netSavings,
-                roi: Math.round(roi),
-                timeReduction: Math.round(timeReductionPercent),
-                factors
+                totalCosts,
+                annualBenefit,
+                roi: Math.round(roi * 100) / 100, // Округление до 2 знаков
+                npv: Math.round(npv),
+                irr: irr !== null ? Math.round(irr * 100) / 100 : null,
+                paybackPeriod: paybackPeriod !== null ? Math.round(paybackPeriod * 100) / 100 : null,
+                cashFlows,
+                scenarioWithoutUI
+            };
+
+            // Детализация для отображения
+            const breakdown = {
+                investments: {
+                    changeBudget: changeBudget
+                },
+                benefits: {
+                    retentionBenefits: retentionBenefits,
+                    productivityBenefits: productivityBenefits,
+                    totalBenefits: totalBenefits
+                },
+                metrics: {
+                    roi: calculations.roi,
+                    npv: calculations.npv,
+                    paybackPeriod: calculations.paybackPeriod
+                }
+            };
+
+            return {
+                inputs,
+                calculations,
+                breakdown
             };
         }
 
         function renderROIResults(results) {
-            // Отображаем результаты
-            document.getElementById('roiValue').textContent = `${results.roi}%`;
-            document.getElementById('savingsValue').textContent = formatCurrency(results.netSavings * 2);
-            document.getElementById('timeReduction').textContent = `${results.timeReduction}%`;
+            const calc = results.calculations;
+            const breakdown = results.breakdown;
+            const inputs = results.inputs;
+            const showComparison = document.getElementById('showComparison')?.checked || false;
 
-            // Детальный анализ
-            document.getElementById('lossesWithoutUI').textContent = formatCurrency(results.lossesWithoutUI);
-            document.getElementById('benefitsWithUI').textContent = formatCurrency(results.totalBenefits);
-            document.getElementById('uiCost').textContent = formatCurrency(results.uiCost);
-            document.getElementById('netSavings').textContent = formatCurrency(results.netSavings);
+            // Отображаем основные метрики
+            document.getElementById('roiValue').textContent = `${calc.roi.toFixed(1)}%`;
+            document.getElementById('npvValue').textContent = formatCurrency(calc.npv);
+            
+            // IRR
+            const irrEl = document.getElementById('irrValue');
+            if (calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr)) {
+                irrEl.textContent = `${calc.irr.toFixed(1)}%`;
+                // Цветовая индикация IRR
+                if (calc.irr > 15) {
+                    irrEl.style.color = '#2DB67D';
+                } else if (calc.irr > 10) {
+                    irrEl.style.color = '#F4A100';
+                } else {
+                    irrEl.style.color = '#E01E5A';
+                }
+            } else {
+                irrEl.textContent = 'N/A';
+                irrEl.style.color = '#666';
+            }
+            
+            // Срок окупаемости
+            const paybackEl = document.getElementById('paybackValue');
+            if (calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod) {
+                paybackEl.textContent = `${calc.paybackPeriod.toFixed(2)} лет`;
+            } else {
+                paybackEl.textContent = `> ${inputs.evaluationPeriod} лет`;
+            }
 
-            // Рекомендации
-            const recommendationsEl = document.getElementById('roiRecommendations');
+            // Сравнение сценариев
+            const comparisonEl = document.getElementById('roiComparison');
+            if (showComparison && calc.scenarioWithoutUI && inputs.projectBudget > 0) {
+                comparisonEl.style.display = 'block';
+                
+                const withoutUI = calc.scenarioWithoutUI;
+                const withUI = {
+                    totalBenefits: breakdown.benefits.totalBenefits,
+                    npv: calc.npv,
+                    roi: calc.roi
+                };
+                
+                const difference = {
+                    benefits: withUI.totalBenefits - (withoutUI.totalLoss || 0),
+                    npv: withUI.npv - (withoutUI.totalLoss || 0),
+                    roi: withUI.roi
+                };
+                
+                // Без УИ
+                document.getElementById('comparisonWithoutUI').textContent = 
+                    formatCurrency(-(withoutUI.totalLoss || 0));
+                document.getElementById('comparisonWithoutUIDetail').textContent = 
+                    `Потери: ${formatCurrency(withoutUI.totalLoss || 0)}`;
+                
+                // С УИ
+                document.getElementById('comparisonWithUI').textContent = 
+                    formatCurrency(withUI.totalBenefits);
+                document.getElementById('comparisonWithUIDetail').textContent = 
+                    `Выгоды: ${formatCurrency(withUI.totalBenefits)}, NPV: ${formatCurrency(withUI.npv)}`;
+                
+                // Разница
+                document.getElementById('comparisonDifference').textContent = 
+                    formatCurrency(difference.benefits);
+                document.getElementById('comparisonDifferenceDetail').textContent = 
+                    `ROI: ${withUI.roi.toFixed(1)}%, Экономия: ${formatCurrency(difference.benefits)}`;
+            } else {
+                comparisonEl.style.display = 'none';
+            }
+
+            // Детализация расчетов в roiBreakdown
+            const breakdownEl = document.getElementById('roiBreakdown');
+            breakdownEl.innerHTML = `
+                <div class="roi-breakdown-section">
+                    <h5>Инвестиции</h5>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Стоимость управления изменениями:</span>
+                        <span class="roi-breakdown-value">${formatCurrency(breakdown.investments.changeBudget)}</span>
+                    </div>
+                </div>
+
+                <div class="roi-breakdown-section">
+                    <h5>Выгоды за период (${inputs.evaluationPeriod} ${inputs.evaluationPeriod === 1 ? 'год' : inputs.evaluationPeriod < 5 ? 'года' : 'лет'})</h5>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Экономия на текучести кадров:</span>
+                        <span class="roi-breakdown-value">${formatCurrency(breakdown.benefits.retentionBenefits)}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Выгоды от повышения производительности:</span>
+                        <span class="roi-breakdown-value">${formatCurrency(breakdown.benefits.productivityBenefits)}</span>
+                    </div>
+                    <div class="roi-breakdown-item roi-breakdown-total">
+                        <span class="roi-breakdown-label">Общие выгоды:</span>
+                        <span class="roi-breakdown-value">${formatCurrency(breakdown.benefits.totalBenefits)}</span>
+                    </div>
+                </div>
+
+                <div class="roi-breakdown-section">
+                    <h5>HR-метрики</h5>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Экономия на текучести (в год):</span>
+                        <span class="roi-breakdown-value">${formatCurrency(inputs.turnoverSavings)}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Повышение производительности:</span>
+                        <span class="roi-breakdown-value">${inputs.productivityGain}%</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Выгода от производительности (в год):</span>
+                        <span class="roi-breakdown-value">${formatCurrency(calc.annualProductivityBenefit)}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Количество сотрудников:</span>
+                        <span class="roi-breakdown-value">${inputs.employeeCount}</span>
+                    </div>
+                    ${inputs.employeeCount > 0 ? `
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">ROI на сотрудника:</span>
+                        <span class="roi-breakdown-value">${(calc.roi / inputs.employeeCount).toFixed(1)}%</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Выгода на сотрудника (в год):</span>
+                        <span class="roi-breakdown-value">${formatCurrency((calc.annualProductivityBenefit + inputs.turnoverSavings) / inputs.employeeCount)}</span>
+                    </div>
+                    ${inputs.turnoverSavings > 0 && inputs.employeeCount > 0 ? `
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Экономия на найме (при стоимости найма 150,000 ₽):</span>
+                        <span class="roi-breakdown-value">${formatCurrency((inputs.turnoverSavings / 150000) * 150000)}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Снижение текучести (примерно):</span>
+                        <span class="roi-breakdown-value">${((inputs.turnoverSavings / (150000 * inputs.employeeCount)) * 100).toFixed(1)}%</span>
+                    </div>
+                    ` : ''}
+                    ` : ''}
+                </div>
+
+                <div class="roi-breakdown-section">
+                    <h5>Денежные потоки по годам</h5>
+                    <div class="roi-cashflows-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Год</th>
+                                    <th>Денежный поток</th>
+                                    <th>Накопительный</th>
+                                    <th>Дисконтированный</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${calc.cashFlows.map(cf => `
+                                    <tr class="${cf.year === 0 ? 'roi-investment-row' : ''} ${cf.cumulative >= 0 && cf.year > 0 ? 'roi-positive-row' : ''}">
+                                        <td>${cf.year === 0 ? '0 (инвестиции)' : cf.year}</td>
+                                        <td>${formatCurrency(cf.cashFlow)}</td>
+                                        <td>${formatCurrency(cf.cumulative)}</td>
+                                        <td>${formatCurrency(cf.discounted)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="roi-breakdown-section">
+                    <h5>Итоговые показатели</h5>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">ROI (Return on Investment):</span>
+                        <span class="roi-breakdown-value">${calc.roi.toFixed(1)}%</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">NPV (Чистая приведенная стоимость):</span>
+                        <span class="roi-breakdown-value">${formatCurrency(calc.npv)}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">IRR (Внутренняя норма доходности):</span>
+                        <span class="roi-breakdown-value">${calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr) ? calc.irr.toFixed(1) + '%' : 'N/A'}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Срок окупаемости:</span>
+                        <span class="roi-breakdown-value">${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(2) + ' лет' : '> ' + inputs.evaluationPeriod + ' лет'}</span>
+                    </div>
+                    <div class="roi-breakdown-item">
+                        <span class="roi-breakdown-label">Ставка дисконтирования:</span>
+                        <span class="roi-breakdown-value">${inputs.discountRate}%</span>
+                    </div>
+                </div>
+            `;
+
+            // Рекомендации с бенчмарками
+            const industryBenchmark = 120; // Средний ROI в отрасли
             let recommendationsHTML = '';
-
-            if (results.roi > 200) {
+            
+            if (calc.roi > industryBenchmark * 1.5) {
                 recommendationsHTML = `
                     <div class="roi-recommendation excellent">
-                        <h5>🎉 Отличный результат!</h5>
-                        <p>Внедрение управления изменениями принесёт значительную отдачу. Рекомендуем начать с пилотных проектов для демонстрации ценности.</p>
+                        <h5>Отличный результат!</h5>
+                        <p>Ваш ROI (${calc.roi.toFixed(1)}%) значительно выше отраслевого среднего (${industryBenchmark}%). Внедрение управления изменениями принесёт значительную отдачу.</p>
+                        <ul>
+                            <li>Рекомендуем начать с пилотных проектов для демонстрации ценности</li>
+                            <li>Документируйте успех для масштабирования на другие проекты</li>
+                            ${calc.irr && calc.irr > 15 ? '<li>IRR выше 15% - отличная доходность инвестиций</li>' : ''}
+                        </ul>
                     </div>
                 `;
-            } else if (results.roi > 100) {
+            } else if (calc.roi > industryBenchmark) {
                 recommendationsHTML = `
                     <div class="roi-recommendation good">
-                        <h5>👍 Хорошая инвестиция</h5>
-                        <p>Управление изменениями окупится через 1-2 года. Фокус на ключевых рисках и вовлечённости персонала.</p>
+                        <h5>Хорошая инвестиция</h5>
+                        <p>Ваш ROI (${calc.roi.toFixed(1)}%) выше отраслевого среднего (${industryBenchmark}%). Управление изменениями окупится через ${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(1) : '1-2'} ${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod && calc.paybackPeriod < 2 ? 'год' : 'года'}.</p>
+                        <ul>
+                            <li>Фокус на ключевых рисках и вовлечённости персонала</li>
+                            <li>Рассмотрите оптимизацию затрат для улучшения ROI</li>
+                            ${calc.irr && calc.irr > 10 ? '<li>IRR выше 10% - приемлемая доходность</li>' : ''}
+                        </ul>
                     </div>
                 `;
-            } else if (results.roi > 50) {
+            } else if (calc.roi > industryBenchmark * 0.5) {
                 recommendationsHTML = `
                     <div class="roi-recommendation moderate">
-                        <h5>⚖️ Умеренная отдача</h5>
-                        <p>ROI положительный, но требует оптимизации подходов. Начните с базовых практик и постепенно расширяйте.</p>
+                        <h5>Умеренная отдача</h5>
+                        <p>Ваш ROI (${calc.roi.toFixed(1)}%) ниже отраслевого среднего (${industryBenchmark}%), но положительный. Требуется оптимизация подходов.</p>
+                        <ul>
+                            <li>Начните с базовых практик и постепенно расширяйте</li>
+                            <li>Пересмотрите ожидаемые выгоды - возможно, они занижены</li>
+                            <li>Рассмотрите снижение затрат на управление изменениями</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (calc.roi > 0) {
+                recommendationsHTML = `
+                    <div class="roi-recommendation moderate">
+                        <h5>Низкая отдача</h5>
+                        <p>ROI положительный (${calc.roi.toFixed(1)}%), но значительно ниже отраслевого среднего (${industryBenchmark}%).</p>
+                        <ul>
+                            <li>Рассмотрите оптимизацию затрат на управление изменениями</li>
+                            <li>Пересмотрите ожидаемые выгоды - возможно, они занижены</li>
+                            <li>Начните с минимального набора практик для снижения затрат</li>
+                        </ul>
                     </div>
                 `;
             } else {
                 recommendationsHTML = `
                     <div class="roi-recommendation poor">
-                        <h5>⚠️ Требует анализа</h5>
-                        <p>Проверьте исходные данные и рассмотрите альтернативные подходы. Возможно, нужны более эффективные методы.</p>
+                        <h5>Требует анализа</h5>
+                        <p>ROI отрицательный или нулевой. Проверьте исходные данные и рассмотрите альтернативные подходы.</p>
+                        <ul>
+                            <li>Проверьте корректность входных данных</li>
+                            <li>Рассмотрите более эффективные методы управления изменениями</li>
+                            <li>Пересмотрите параметры проекта - возможно, требуется оптимизация</li>
+                        </ul>
                     </div>
                 `;
             }
 
-            recommendationsEl.innerHTML = recommendationsHTML;
+            // Добавляем рекомендации в breakdown, если есть элемент
+            const recommendationsEl = document.getElementById('roiRecommendations');
+            if (recommendationsEl) {
+                recommendationsEl.innerHTML = recommendationsHTML;
+            } else {
+                // Добавляем рекомендации в breakdown
+                breakdownEl.innerHTML += `
+                    <div class="roi-breakdown-section">
+                        <h5>Рекомендации</h5>
+                        ${recommendationsHTML}
+                    </div>
+                `;
+            }
 
-            // Создаём диаграмму сравнения
+            // Создаём диаграмму
             renderROIChart(results);
+
+            // Инициализируем анализ чувствительности
+            initSensitivityAnalysis(results);
 
             // Показываем результаты
             document.getElementById('roiResults').style.display = 'block';
@@ -13418,23 +14589,73 @@ body.theme-dark .search-highlight {
 
         function renderROIChart(results) {
             const ctx = document.getElementById('roiChart').getContext('2d');
+            const calc = results.calculations;
+            const inputs = results.inputs;
+            const showComparison = document.getElementById('showComparison')?.checked || false;
+
+            // Подготовка данных для графика денежных потоков по годам
+            const labels = calc.cashFlows.map(cf => cf.year === 0 ? 'Год 0' : `Год ${cf.year}`);
+            const cashFlowData = calc.cashFlows.map(cf => cf.cashFlow);
+            const cumulativeData = calc.cashFlows.map(cf => cf.cumulative);
+
+            // Данные для сравнения сценариев (если включено)
+            let comparisonData = null;
+            if (showComparison && calc.scenarioWithoutUI && inputs.projectBudget > 0) {
+                const withoutUIData = calc.scenarioWithoutUI.cashFlowsWithoutUI.map(cf => cf.cashFlow);
+                comparisonData = {
+                    labels: labels,
+                    data: withoutUIData
+                };
+            }
 
             // Данные для диаграммы
+            const datasets = [
+                {
+                    label: 'Денежный поток',
+                    data: cashFlowData,
+                    type: 'bar',
+                    backgroundColor: cashFlowData.map((val, idx) => 
+                        idx === 0 ? 'rgba(224, 30, 90, 0.8)' : 'rgba(45, 182, 125, 0.8)'
+                    ),
+                    borderColor: cashFlowData.map((val, idx) => 
+                        idx === 0 ? '#E01E5A' : '#2DB67D'
+                    ),
+                    borderWidth: 2,
+                    order: 3
+                },
+                {
+                    label: 'Накопительный поток',
+                    data: cumulativeData,
+                    type: 'line',
+                    borderColor: 'rgba(33, 128, 141, 1)',
+                    backgroundColor: 'rgba(33, 128, 141, 0.1)',
+                    borderWidth: 3,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'rgba(33, 128, 141, 1)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    order: 1
+                }
+            ];
+
+            // Добавляем данные для сравнения, если включено
+            if (comparisonData) {
+                datasets.push({
+                    label: 'Без УИ',
+                    data: comparisonData.data,
+                    type: 'bar',
+                    backgroundColor: 'rgba(128, 128, 128, 0.5)',
+                    borderColor: '#808080',
+                    borderWidth: 2,
+                    order: 2
+                });
+            }
+
             const data = {
-                labels: ['Без УИ', 'С УИ'],
-                datasets: [{
-                    label: 'Эффективность проекта',
-                    data: [results.budget - results.lossesWithoutUI, results.budget + results.netSavings],
-                    backgroundColor: [
-                        'rgba(224, 30, 90, 0.8)',
-                        'rgba(45, 182, 125, 0.8)'
-                    ],
-                    borderColor: [
-                        '#E01E5A',
-                        '#2DB67D'
-                    ],
-                    borderWidth: 2
-                }]
+                labels: labels,
+                datasets: datasets
             };
 
             const config = {
@@ -13443,25 +14664,67 @@ body.theme-dark .search-highlight {
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
                     plugins: {
                         legend: {
-                            display: false
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
                         },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return formatCurrency(context.parsed.y);
+                                    const label = context.dataset.label || '';
+                                    const value = formatCurrency(context.parsed.y);
+                                    return `${label}: ${value}`;
                                 }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Денежные потоки по годам',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
                             }
                         }
                     },
                     scales: {
                         y: {
-                            beginAtZero: true,
+                            beginAtZero: false,
                             ticks: {
                                 callback: function(value) {
                                     return formatCurrency(value, true);
+                                },
+                                font: {
+                                    size: 11
                                 }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                display: false
                             }
                         }
                     }
@@ -13476,8 +14739,121 @@ body.theme-dark .search-highlight {
             window.roiChartInstance = new Chart(ctx, config);
         }
 
+        function toggleSensitivity() {
+            const contentEl = document.getElementById('roiSensitivityContent');
+            const toggleBtn = document.querySelector('.roi-sensitivity-toggle');
+            
+            if (contentEl && toggleBtn) {
+                if (contentEl.style.display === 'none') {
+                    contentEl.style.display = 'block';
+                    toggleBtn.textContent = '▼ Свернуть';
+                } else {
+                    contentEl.style.display = 'none';
+                    toggleBtn.textContent = '▶ Развернуть';
+                }
+            }
+        }
+
+        function initSensitivityAnalysis(results) {
+            const sensitivityEl = document.getElementById('roiSensitivity');
+            if (sensitivityEl) {
+                sensitivityEl.style.display = 'block';
+                updateSensitivity('cost', 100);
+            }
+        }
+
+        function updateSensitivity(param, value) {
+            const results = calculateROI();
+            const calc = results.calculations;
+            const inputs = results.inputs;
+            
+            // Обновляем значение слайдера
+            const valueEl = document.getElementById(`sensitivity${param.charAt(0).toUpperCase() + param.slice(1)}Value`);
+            if (valueEl) {
+                valueEl.textContent = `${value}%`;
+            }
+            
+            // Получаем множители для всех параметров
+            const costMultiplier = param === 'cost' ? value / 100 : parseFloat(document.getElementById('sensitivityCost')?.value || 100) / 100;
+            const productivityMultiplier = param === 'productivity' ? value / 100 : parseFloat(document.getElementById('sensitivityProductivity')?.value || 100) / 100;
+            const turnoverMultiplier = param === 'turnover' ? value / 100 : parseFloat(document.getElementById('sensitivityTurnover')?.value || 100) / 100;
+            
+            // Пересчитываем с учетом множителей
+            const adjustedChangeBudget = inputs.changeBudget * costMultiplier;
+            const adjustedProductivityGain = inputs.productivityGain * productivityMultiplier;
+            const adjustedTurnoverSavings = inputs.turnoverSavings * turnoverMultiplier;
+            
+            // Пересчитываем выгоды
+            const adjustedRetentionBenefits = adjustedTurnoverSavings * inputs.evaluationPeriod;
+            const adjustedAnnualProductivityBenefit = (inputs.avgSalary * inputs.employeeCount * adjustedProductivityGain / 100);
+            const adjustedProductivityBenefits = adjustedAnnualProductivityBenefit * inputs.evaluationPeriod;
+            const adjustedTotalBenefits = adjustedRetentionBenefits + adjustedProductivityBenefits;
+            
+            // Пересчитываем ROI и NPV
+            const adjustedROI = adjustedChangeBudget > 0 ? ((adjustedTotalBenefits - adjustedChangeBudget) / adjustedChangeBudget) * 100 : 0;
+            
+            // Упрощенный расчет NPV (только для демонстрации)
+            let adjustedNPV = -adjustedChangeBudget;
+            const adjustedAnnualBenefit = adjustedTotalBenefits / inputs.evaluationPeriod;
+            for (let year = 1; year <= inputs.evaluationPeriod; year++) {
+                const discountFactor = Math.pow(1 + inputs.discountRate / 100, year);
+                adjustedNPV += adjustedAnnualBenefit / discountFactor;
+            }
+            
+            // Отображаем результаты
+            const resultsEl = document.getElementById('roiSensitivityResults');
+            if (resultsEl) {
+                resultsEl.innerHTML = `
+                    <div class="sensitivity-results-grid">
+                        <div class="sensitivity-result-item">
+                            <div class="sensitivity-result-label">ROI</div>
+                            <div class="sensitivity-result-value ${adjustedROI > calc.roi ? 'positive' : adjustedROI < calc.roi ? 'negative' : ''}">
+                                ${adjustedROI.toFixed(1)}%
+                                ${adjustedROI !== calc.roi ? `<span class="sensitivity-delta">(${adjustedROI > calc.roi ? '+' : ''}${(adjustedROI - calc.roi).toFixed(1)}%)</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="sensitivity-result-item">
+                            <div class="sensitivity-result-label">NPV</div>
+                            <div class="sensitivity-result-value ${adjustedNPV > calc.npv ? 'positive' : adjustedNPV < calc.npv ? 'negative' : ''}">
+                                ${formatCurrency(Math.round(adjustedNPV))}
+                                ${adjustedNPV !== calc.npv ? `<span class="sensitivity-delta">(${adjustedNPV > calc.npv ? '+' : ''}${formatCurrency(Math.round(adjustedNPV - calc.npv))})</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="sensitivity-result-item">
+                            <div class="sensitivity-result-label">Базовые значения</div>
+                            <div class="sensitivity-result-value">
+                                ROI: ${calc.roi.toFixed(1)}%, NPV: ${formatCurrency(calc.npv)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
         function exportROIToPDF() {
             const results = calculateROI();
+            const calc = results.calculations;
+            const breakdown = results.breakdown;
+            const inputs = results.inputs;
+
+            // Определяем класс рекомендации
+            let recommendationClass = 'poor';
+            let recommendationHTML = '';
+            if (calc.roi > 200) {
+                recommendationClass = 'excellent';
+                recommendationHTML = '<h3>Отличный результат!</h3><p>Внедрение управления изменениями принесёт значительную отдачу. Рекомендуем начать с пилотных проектов для демонстрации ценности.</p>';
+            } else if (calc.roi > 100) {
+                recommendationClass = 'good';
+                recommendationHTML = `<h3>Хорошая инвестиция</h3><p>Управление изменениями окупится через ${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(1) : '1-2'} ${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod && calc.paybackPeriod < 2 ? 'год' : 'года'}. Фокус на ключевых рисках и вовлечённости персонала.</p>`;
+            } else if (calc.roi > 50) {
+                recommendationClass = 'moderate';
+                recommendationHTML = '<h3>Умеренная отдача</h3><p>ROI положительный, но требует оптимизации подходов. Начните с базовых практик и постепенно расширяйте.</p>';
+            } else if (calc.roi > 0) {
+                recommendationClass = 'moderate';
+                recommendationHTML = '<h3>Низкая отдача</h3><p>ROI положительный, но невысокий. Рассмотрите оптимизацию затрат на управление изменениями или пересмотрите ожидаемые выгоды.</p>';
+            } else {
+                recommendationHTML = '<h3>Требует анализа</h3><p>Проверьте исходные данные и рассмотрите альтернативные подходы. Возможно, нужны более эффективные методы или пересмотр параметров проекта.</p>';
+            }
 
             const reportWindow = window.open('', '_blank');
             reportWindow.document.write(`
@@ -13487,20 +14863,29 @@ body.theme-dark .search-highlight {
                     <meta charset="UTF-8">
                     <title>ROI Отчёт - ${new Date().toLocaleDateString('ru-RU')}</title>
                     <style>
+                        @media print {
+                            body { margin: 0; padding: 20px; }
+                            .no-print { display: none !important; }
+                            .page-break { page-break-after: always; }
+                        }
                         body {
                             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                             line-height: 1.6;
                             padding: 40px;
                             max-width: 900px;
                             margin: 0 auto;
+                            color: #333;
                         }
-                        h1 { color: #2DB67D; border-bottom: 3px solid #2DB67D; padding-bottom: 10px; }
-                        h2, h3 { color: #333; margin-top: 30px; }
+                        h1 { color: #2DB67D; border-bottom: 3px solid #2DB67D; padding-bottom: 10px; margin-bottom: 20px; }
+                        h2 { color: #333; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em; }
+                        h3 { color: #333; margin-top: 20px; margin-bottom: 10px; font-size: 1.2em; }
+                        h4 { color: #666; margin-top: 15px; margin-bottom: 10px; font-size: 1.1em; }
+                        h5 { color: #666; margin-top: 12px; margin-bottom: 8px; font-size: 1em; font-weight: 600; }
                         .section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
                         .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0; }
                         .metric { text-align: center; padding: 20px; background: #f9f9f9; border-radius: 8px; }
                         .metric-value { font-size: 24px; font-weight: bold; color: #2DB67D; }
-                        .metric-label { color: #666; font-size: 14px; }
+                        .metric-label { color: #666; font-size: 14px; margin-top: 5px; }
                         .breakdown { margin: 20px 0; }
                         .breakdown-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
                         .breakdown-label { font-weight: 500; }
@@ -13510,7 +14895,13 @@ body.theme-dark .search-highlight {
                         .good { background: rgba(244, 161, 0, 0.1); border: 2px solid #F4A100; }
                         .moderate { background: rgba(255, 193, 7, 0.1); border: 2px solid #FFC107; }
                         .poor { background: rgba(224, 30, 90, 0.1); border: 2px solid #E01E5A; }
-                        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; }
+                        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 12px; }
+                        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+                        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+                        th { background-color: #f5f5f5; font-weight: 600; }
+                        tr:nth-child(even) { background-color: #f9f9f9; }
+                        .cashflow-negative { color: #E01E5A; }
+                        .cashflow-positive { color: #2DB67D; }
                     </style>
                 </head>
                 <body>
@@ -13518,60 +14909,153 @@ body.theme-dark .search-highlight {
                     <p><strong>Дата расчёта:</strong> ${new Date().toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
 
                     <div class="section">
-                        <h2>📊 Ключевые метрики</h2>
+                        <h2>Ключевые метрики</h2>
                         <div class="metrics">
                             <div class="metric">
-                                <div class="metric-value">${results.roi}%</div>
-                                <div class="metric-label">ROI через 2 года</div>
+                                <div class="metric-value">${calc.roi.toFixed(1)}%</div>
+                                <div class="metric-label">ROI проекта</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">${formatCurrency(results.netSavings * 2)}</div>
-                                <div class="metric-label">Экономия за 2 года</div>
+                                <div class="metric-value">${formatCurrency(calc.npv)}</div>
+                                <div class="metric-label">NPV (Чистая приведенная стоимость)</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">${results.timeReduction}%</div>
-                                <div class="metric-label">Сокращение сроков</div>
+                                <div class="metric-value">${calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr) ? calc.irr.toFixed(1) + '%' : 'N/A'}</div>
+                                <div class="metric-label">IRR (Внутренняя норма доходности)</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(2) + ' лет' : '> ' + inputs.evaluationPeriod + ' лет'}</div>
+                                <div class="metric-label">Срок окупаемости</div>
                             </div>
                         </div>
                     </div>
 
+                    ${calc.scenarioWithoutUI && inputs.projectBudget > 0 ? `
                     <div class="section">
-                        <h2>💰 Детальный анализ</h2>
+                        <h2>Сравнение сценариев</h2>
+                        <div class="breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Без управления изменениями:</span>
+                                <span class="breakdown-value" style="color: #E01E5A;">${formatCurrency(-(calc.scenarioWithoutUI.totalLoss || 0))}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">С управлением изменениями:</span>
+                                <span class="breakdown-value" style="color: #2DB67D;">${formatCurrency(breakdown.benefits.totalBenefits)}</span>
+                            </div>
+                            <div class="breakdown-item" style="border-top: 2px solid #2DB67D; margin-top: 10px; padding-top: 15px;">
+                                <span class="breakdown-label" style="font-weight: bold; font-size: 1.1em;">Выгода от УИ:</span>
+                                <span class="breakdown-value" style="font-size: 1.2em; color: #2DB67D;">${formatCurrency(breakdown.benefits.totalBenefits - (calc.scenarioWithoutUI.totalLoss || 0))}</span>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div class="section">
+                        <h2>Входные данные</h2>
                         <div class="breakdown">
                             <div class="breakdown-item">
                                 <span class="breakdown-label">Бюджет проекта:</span>
-                                <span class="breakdown-value">${formatCurrency(results.budget)}</span>
+                                <span class="breakdown-value">${formatCurrency(inputs.projectBudget)}</span>
                             </div>
                             <div class="breakdown-item">
-                                <span class="breakdown-label">Потери без УИ:</span>
-                                <span class="breakdown-value">${formatCurrency(results.lossesWithoutUI)}</span>
+                                <span class="breakdown-label">Стоимость управления изменениями:</span>
+                                <span class="breakdown-value">${formatCurrency(inputs.changeBudget)}</span>
                             </div>
                             <div class="breakdown-item">
-                                <span class="breakdown-label">Выгоды с УИ:</span>
-                                <span class="breakdown-value">${formatCurrency(results.totalBenefits)}</span>
+                                <span class="breakdown-label">Экономия на увольнениях (в год):</span>
+                                <span class="breakdown-value">${formatCurrency(inputs.turnoverSavings)}</span>
                             </div>
                             <div class="breakdown-item">
-                                <span class="breakdown-label">Стоимость УИ:</span>
-                                <span class="breakdown-value">${formatCurrency(results.uiCost)}</span>
+                                <span class="breakdown-label">Повышение производительности:</span>
+                                <span class="breakdown-value">${inputs.productivityGain}%</span>
                             </div>
                             <div class="breakdown-item">
-                                <span class="breakdown-label">Чистая экономия:</span>
-                                <span class="breakdown-value">${formatCurrency(results.netSavings)}</span>
+                                <span class="breakdown-label">Средняя зарплата сотрудника:</span>
+                                <span class="breakdown-value">${formatCurrency(inputs.avgSalary)}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Количество сотрудников:</span>
+                                <span class="breakdown-value">${inputs.employeeCount}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Период оценки:</span>
+                                <span class="breakdown-value">${inputs.evaluationPeriod} ${inputs.evaluationPeriod === 1 ? 'год' : inputs.evaluationPeriod < 5 ? 'года' : 'лет'}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Ставка дисконтирования:</span>
+                                <span class="breakdown-value">${inputs.discountRate}%</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="section">
-                        <h2>🎯 Рекомендации</h2>
-                        <div class="recommendation ${results.roi > 200 ? 'excellent' : results.roi > 100 ? 'good' : results.roi > 50 ? 'moderate' : 'poor'}">
-                            ${results.roi > 200 ?
-                                '<h3>🎉 Отличный результат!</h3><p>Внедрение управления изменениями принесёт значительную отдачу. Рекомендуем начать с пилотных проектов для демонстрации ценности.</p>' :
-                                results.roi > 100 ?
-                                '<h3>👍 Хорошая инвестиция</h3><p>Управление изменениями окупится через 1-2 года. Фокус на ключевых рисках и вовлечённости персонала.</p>' :
-                                results.roi > 50 ?
-                                '<h3>⚖️ Умеренная отдача</h3><p>ROI положительный, но требует оптимизации подходов. Начните с базовых практик и постепенно расширяйте.</p>' :
-                                '<h3>⚠️ Требует анализа</h3><p>Проверьте исходные данные и рассмотрите альтернативные подходы. Возможно, нужны более эффективные методы.</p>'
-                            }
+                        <h2>Расчеты по годам</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Год</th>
+                                    <th>Денежный поток</th>
+                                    <th>Накопительный поток</th>
+                                    <th>Дисконтированный поток</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${calc.cashFlows.map(cf => `
+                                    <tr>
+                                        <td>${cf.year === 0 ? '0 (инвестиции)' : cf.year}</td>
+                                        <td class="${cf.cashFlow < 0 ? 'cashflow-negative' : 'cashflow-positive'}">${formatCurrency(cf.cashFlow)}</td>
+                                        <td class="${cf.cumulative < 0 ? 'cashflow-negative' : 'cashflow-positive'}">${formatCurrency(cf.cumulative)}</td>
+                                        <td>${formatCurrency(cf.discounted)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="section">
+                        <h2>Детализация выгод</h2>
+                        <div class="breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Экономия на текучести кадров (за период):</span>
+                                <span class="breakdown-value">${formatCurrency(breakdown.benefits.retentionBenefits)}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Выгоды от повышения производительности (за период):</span>
+                                <span class="breakdown-value">${formatCurrency(breakdown.benefits.productivityBenefits)}</span>
+                            </div>
+                            <div class="breakdown-item" style="border-top: 2px solid #2DB67D; margin-top: 10px; padding-top: 15px;">
+                                <span class="breakdown-label" style="font-weight: bold; font-size: 1.1em;">Общие выгоды:</span>
+                                <span class="breakdown-value" style="font-size: 1.2em;">${formatCurrency(breakdown.benefits.totalBenefits)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Итоговые показатели</h2>
+                        <div class="breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">ROI (Return on Investment):</span>
+                                <span class="breakdown-value">${calc.roi.toFixed(1)}%</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">NPV (Чистая приведенная стоимость):</span>
+                                <span class="breakdown-value">${formatCurrency(calc.npv)}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">IRR (Внутренняя норма доходности):</span>
+                                <span class="breakdown-value">${calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr) ? calc.irr.toFixed(1) + '%' : 'N/A'}</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Срок окупаемости:</span>
+                                <span class="breakdown-value">${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(2) + ' лет' : '> ' + inputs.evaluationPeriod + ' лет'}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Рекомендации</h2>
+                        <div class="recommendation ${recommendationClass}">
+                            ${recommendationHTML}
                         </div>
                     </div>
 
@@ -13602,6 +15086,170 @@ body.theme-dark .search-highlight {
             if (window.roiChartInstance) {
                 window.roiChartInstance.destroy();
                 window.roiChartInstance = null;
+            }
+        }
+
+        function exportROIToExcel() {
+            const results = calculateROI();
+            const calc = results.calculations;
+            const breakdown = results.breakdown;
+            const inputs = results.inputs;
+
+            // Создаем CSV содержимое (совместимо с Excel)
+            let csv = 'ROI Отчёт - ' + new Date().toLocaleDateString('ru-RU') + '\n\n';
+            
+            // Ключевые метрики
+            csv += 'Ключевые метрики\n';
+            csv += 'Метрика,Значение\n';
+            csv += `ROI проекта,${calc.roi.toFixed(1)}%\n`;
+            csv += `NPV,${formatCurrency(calc.npv)}\n`;
+            csv += `IRR,${calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr) ? calc.irr.toFixed(1) + '%' : 'N/A'}\n`;
+            csv += `Срок окупаемости,${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(2) + ' лет' : '> ' + inputs.evaluationPeriod + ' лет'}\n\n`;
+            
+            // Входные данные
+            csv += 'Входные данные\n';
+            csv += 'Параметр,Значение\n';
+            csv += `Бюджет проекта,${formatCurrency(inputs.projectBudget)}\n`;
+            csv += `Стоимость управления изменениями,${formatCurrency(inputs.changeBudget)}\n`;
+            csv += `Экономия на увольнениях (в год),${formatCurrency(inputs.turnoverSavings)}\n`;
+            csv += `Повышение производительности,${inputs.productivityGain}%\n`;
+            csv += `Средняя зарплата сотрудника,${formatCurrency(inputs.avgSalary)}\n`;
+            csv += `Количество сотрудников,${inputs.employeeCount}\n`;
+            csv += `Период оценки,${inputs.evaluationPeriod} ${inputs.evaluationPeriod === 1 ? 'год' : inputs.evaluationPeriod < 5 ? 'года' : 'лет'}\n`;
+            csv += `Ставка дисконтирования,${inputs.discountRate}%\n\n`;
+            
+            // Денежные потоки
+            csv += 'Денежные потоки по годам\n';
+            csv += 'Год,Денежный поток,Накопительный поток,Дисконтированный поток\n';
+            calc.cashFlows.forEach(cf => {
+                const year = cf.year === 0 ? '0 (инвестиции)' : cf.year;
+                csv += `${year},${cf.cashFlow},${cf.cumulative},${cf.discounted}\n`;
+            });
+            csv += '\n';
+            
+            // Детализация выгод
+            csv += 'Детализация выгод\n';
+            csv += 'Статья,Значение\n';
+            csv += `Экономия на текучести кадров (за период),${formatCurrency(breakdown.benefits.retentionBenefits)}\n`;
+            csv += `Выгоды от повышения производительности (за период),${formatCurrency(breakdown.benefits.productivityBenefits)}\n`;
+            csv += `Общие выгоды,${formatCurrency(breakdown.benefits.totalBenefits)}\n`;
+            
+            // Создаем blob и скачиваем
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `ROI_Calculation_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function saveROIScenario() {
+            const results = calculateROI();
+            const scenarioName = prompt('Введите название сценария:', `Сценарий ${new Date().toLocaleDateString('ru-RU')}`);
+            
+            if (!scenarioName) {
+                return;
+            }
+            
+            const scenario = {
+                name: scenarioName,
+                inputs: results.inputs,
+                results: {
+                    roi: results.calculations.roi,
+                    npv: results.calculations.npv,
+                    irr: results.calculations.irr,
+                    paybackPeriod: results.calculations.paybackPeriod
+                },
+                timestamp: new Date().toISOString()
+            };
+            
+            const scenarios = JSON.parse(localStorage.getItem('roi_scenarios') || '[]');
+            scenarios.push(scenario);
+            localStorage.setItem('roi_scenarios', JSON.stringify(scenarios));
+            
+            alert(`Сценарий "${scenarioName}" сохранен!`);
+            
+            // Обновляем список сценариев, если он отображается
+            updateScenariosList();
+        }
+
+        function loadROIScenarioByIndex(index) {
+            const scenarios = JSON.parse(localStorage.getItem('roi_scenarios') || '[]');
+            if (index >= 0 && index < scenarios.length) {
+                loadROIScenario(scenarios[index]);
+            }
+        }
+
+        function loadROIScenario(scenario) {
+            // Загружаем входные данные из сценария
+            document.getElementById('projectBudget').value = scenario.inputs.projectBudget || '';
+            document.getElementById('changeBudget').value = scenario.inputs.changeBudget || '';
+            document.getElementById('turnoverSavings').value = scenario.inputs.turnoverSavings || '';
+            document.getElementById('productivityGain').value = scenario.inputs.productivityGain || '';
+            document.getElementById('avgSalary').value = scenario.inputs.avgSalary || '';
+            document.getElementById('employeeCount').value = scenario.inputs.employeeCount || '';
+            document.getElementById('evaluationPeriod').value = scenario.inputs.evaluationPeriod || 3;
+            document.getElementById('discountRate').value = scenario.inputs.discountRate || 10;
+            
+            // Пересчитываем
+            const results = calculateROI();
+            renderROIResults(results);
+        }
+
+        function updateScenariosList() {
+            const scenarios = JSON.parse(localStorage.getItem('roi_scenarios') || '[]');
+            const scenariosListEl = document.getElementById('roiScenariosList');
+            
+            if (scenariosListEl) {
+                if (scenarios.length === 0) {
+                    scenariosListEl.innerHTML = '<p>Нет сохраненных сценариев</p>';
+                } else {
+                    scenariosListEl.innerHTML = `
+                        <h5>Сохраненные сценарии</h5>
+                        <div class="scenarios-list">
+                            ${scenarios.map((scenario, index) => `
+                                <div class="scenario-item">
+                                    <div class="scenario-info">
+                                        <div class="scenario-name">${scenario.name}</div>
+                                        <div class="scenario-metrics">
+                                            ROI: ${scenario.results.roi.toFixed(1)}%, 
+                                            NPV: ${formatCurrency(scenario.results.npv)}
+                                        </div>
+                                        <div class="scenario-date">${new Date(scenario.timestamp).toLocaleDateString('ru-RU')}</div>
+                                    </div>
+                                    <div class="scenario-actions">
+                                        <button class="scenario-btn" onclick="loadROIScenarioByIndex(${index})">Загрузить</button>
+                                        <button class="scenario-btn secondary" onclick="deleteROIScenario(${index})">Удалить</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                scenariosListEl.style.display = 'block';
+            }
+        }
+
+        function deleteROIScenario(index) {
+            if (confirm('Удалить этот сценарий?')) {
+                const scenarios = JSON.parse(localStorage.getItem('roi_scenarios') || '[]');
+                scenarios.splice(index, 1);
+                localStorage.setItem('roi_scenarios', JSON.stringify(scenarios));
+                updateScenariosList();
+            }
+        }
+
+        function toggleScenariosList() {
+            const scenariosListEl = document.getElementById('roiScenariosList');
+            if (scenariosListEl) {
+                if (scenariosListEl.style.display === 'none') {
+                    updateScenariosList();
+                } else {
+                    scenariosListEl.style.display = 'none';
+                }
             }
         }
 
@@ -13648,15 +15296,111 @@ body.theme-dark .search-highlight {
             }
         }
 
+        function showValidationErrors(validation) {
+            // Удаляем предыдущие сообщения об ошибках
+            const existingErrors = document.querySelectorAll('.roi-validation-error, .roi-validation-warning');
+            existingErrors.forEach(el => el.remove());
+
+            // Показываем ошибки
+            if (validation.errors.length > 0) {
+                const errorContainer = document.createElement('div');
+                errorContainer.className = 'roi-validation-error';
+                errorContainer.innerHTML = `
+                    <h4>Ошибки ввода:</h4>
+                    <ul>
+                        ${validation.errors.map(err => `<li>${err}</li>`).join('')}
+                    </ul>
+                `;
+                
+                const form = document.querySelector('.roi-form');
+                if (form) {
+                    form.insertBefore(errorContainer, form.firstChild);
+                }
+            }
+
+            // Показываем предупреждения
+            if (validation.warnings.length > 0) {
+                const warningContainer = document.createElement('div');
+                warningContainer.className = 'roi-validation-warning';
+                warningContainer.innerHTML = `
+                    <h4>Предупреждения:</h4>
+                    <ul>
+                        ${validation.warnings.map(warn => `<li>${warn}</li>`).join('')}
+                    </ul>
+                `;
+                
+                const form = document.querySelector('.roi-form');
+                if (form) {
+                    const errorContainer = document.querySelector('.roi-validation-error');
+                    if (errorContainer) {
+                        form.insertBefore(warningContainer, errorContainer.nextSibling);
+                    } else {
+                        form.insertBefore(warningContainer, form.firstChild);
+                    }
+                }
+            }
+        }
+
         function initROICalculator() {
             const calculateBtn = document.getElementById('calculateROI');
 
             if (calculateBtn) {
                 calculateBtn.addEventListener('click', () => {
+                    // Валидация входных данных
+                    const validation = validateROIInputs();
+                    
+                    if (!validation.isValid) {
+                        showValidationErrors(validation);
+                        return;
+                    }
+
+                    // Показываем предупреждения, но продолжаем расчет
+                    if (validation.warnings.length > 0) {
+                        showValidationErrors(validation);
+                    } else {
+                        // Удаляем предыдущие сообщения, если валидация прошла успешно
+                        const existingMessages = document.querySelectorAll('.roi-validation-error, .roi-validation-warning');
+                        existingMessages.forEach(el => el.remove());
+                    }
+
+                    // Выполняем расчет
                     const results = calculateROI();
                     renderROIResults(results);
                 });
             }
+
+            // Добавляем валидацию в реальном времени для ключевых полей
+            const criticalFields = ['changeBudget', 'turnoverSavings', 'productivityGain', 'employeeCount', 'avgSalary'];
+            criticalFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('blur', () => {
+                        const validation = validateROIInputs();
+                        // Показываем только ошибки для этого поля
+                        const fieldErrors = validation.errors.filter(err => 
+                            err.toLowerCase().includes(fieldId === 'changeBudget' ? 'стоимость управления' :
+                                                      fieldId === 'turnoverSavings' ? 'увольнениях' :
+                                                      fieldId === 'productivityGain' ? 'производительности' :
+                                                      fieldId === 'employeeCount' ? 'сотрудников' :
+                                                      fieldId === 'avgSalary' ? 'зарплата' : '')
+                        );
+                        
+                        // Удаляем предыдущие сообщения для этого поля
+                        const existingError = field.parentElement?.querySelector('.roi-field-error');
+                        if (existingError) existingError.remove();
+                        
+                        if (fieldErrors.length > 0) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'roi-field-error';
+                            errorMsg.textContent = fieldErrors[0];
+                            field.parentElement?.appendChild(errorMsg);
+                            field.style.borderColor = '#E01E5A';
+                        } else {
+                            field.style.borderColor = '';
+                        }
+                    });
+                }
+            });
         }
 
         // ========== READINESS ASSESSMENT ==========

@@ -15212,9 +15212,9 @@ body.theme-dark .search-highlight {
                             <div class="selection-matrix">
                                 <div class="matrix-step">
                                     <h4>Шаг 0: Ваша роль</h4>
-                                    <p class="matrix-step-description">Выберите роль, с которой вы работаете над изменениями</p>
+                                    <p class="matrix-step-description">Выберите вашу роль в проекте изменений согласно методологии Prosci</p>
                                     <div class="matrix-parameters">
-                                        <div class="matrix-parameter" data-step="0" data-value="CEO">
+                                        <div class="matrix-parameter" data-step="0" data-value="TOP">
                                             <div class="matrix-parameter-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -15223,10 +15223,10 @@ body.theme-dark .search-highlight {
                                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                                 </svg>
                                             </div>
-                                            <div class="matrix-parameter-title">CEO / Генеральный директор</div>
-                                            <div class="matrix-parameter-description">Стратегический фокус, быстрые результаты, бизнес-метрики</div>
+                                            <div class="matrix-parameter-title">ТОП (Executive Sponsor)</div>
+                                            <div class="matrix-parameter-description">Высшее руководство, спонсор изменений. По данным Prosci, активное спонсорство — ключевой фактор успеха.</div>
                                         </div>
-                                        <div class="matrix-parameter" data-step="0" data-value="HRD">
+                                        <div class="matrix-parameter" data-step="0" data-value="FunctionalLeader">
                                             <div class="matrix-parameter-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -15235,10 +15235,10 @@ body.theme-dark .search-highlight {
                                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                                 </svg>
                                             </div>
-                                            <div class="matrix-parameter-title">HRD / HR директор</div>
-                                            <div class="matrix-parameter-description">Фокус на людях, вовлеченность, работа с сопротивлением</div>
+                                            <div class="matrix-parameter-title">Функциональный руководитель</div>
+                                            <div class="matrix-parameter-description">Руководитель подразделения, управляющий затронутыми сотрудниками.</div>
                                         </div>
-                                        <div class="matrix-parameter" data-step="0" data-value="ChangeManager">
+                                        <div class="matrix-parameter" data-step="0" data-value="ChangeAgent">
                                             <div class="matrix-parameter-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -15248,8 +15248,8 @@ body.theme-dark .search-highlight {
                                                     <line x1="3" y1="15" x2="21" y2="15"></line>
                                                 </svg>
                                             </div>
-                                            <div class="matrix-parameter-title">Руководитель управления изменениями</div>
-                                            <div class="matrix-parameter-description">Детальный план, инструменты, комплексный подход</div>
+                                            <div class="matrix-parameter-title">Участник изменений</div>
+                                            <div class="matrix-parameter-description">Член команды управления изменениями, реализующий план изменений.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -25648,9 +25648,10 @@ body.theme-dark .search-highlight {
                 { name: 'Стандарт ACMP', keyword: 'acmp', reason: 'Профессиональный стандарт управления изменениями', complexity: 'Высокая', focus: 'Стратегия' }
             ];
 
-            // Фильтрация и приоритизация на основе роли
-            if (role === 'CEO') {
-                // CEO предпочитает: быстрые результаты, низкая/средняя сложность, стратегический фокус
+            // Фильтрация и приоритизация на основе роли (согласно методологии Prosci)
+            if (role === 'TOP') {
+                // ТОП (Executive Sponsor) предпочитает: быстрые результаты, стратегический фокус, бизнес-метрики
+                // Согласно Prosci, спонсор фокусируется на видении, ресурсах и стратегических решениях
                 recommendations = recommendations
                     .filter(r => r.complexity !== 'Высокая' || resources === 'Неограниченные')
                     .sort((a, b) => {
@@ -25660,8 +25661,9 @@ body.theme-dark .search-highlight {
                         if (a.complexity !== 'Низкая' && b.complexity === 'Низкая') return 1;
                         return 0;
                     });
-            } else if (role === 'HRD') {
-                // HRD предпочитает: фокус на людях, работа с сопротивлением
+            } else if (role === 'FunctionalLeader') {
+                // Функциональный руководитель предпочитает: фокус на людях, вовлечение команды, работа с сопротивлением
+                // Согласно Prosci, функциональные руководители отвечают за вовлечение своих команд и коммуникацию изменений
                 recommendations = recommendations
                     .filter(r => r.focus === 'Люди' || r.focus === 'Культура')
                     .sort((a, b) => {
@@ -25669,8 +25671,9 @@ body.theme-dark .search-highlight {
                         if (a.focus !== 'Люди' && b.focus === 'Люди') return 1;
                         return 0;
                     });
-            } else if (role === 'ChangeManager') {
-                // Руководитель УИ предпочитает: детальные модели, комплексный подход
+            } else if (role === 'ChangeAgent') {
+                // Участник изменений предпочитает: детальные модели, комплексный подход, инструменты
+                // Согласно Prosci, команда управления изменениями реализует план и обеспечивает поддержку сотрудников
                 recommendations = recommendations
                     .sort((a, b) => {
                         if (a.complexity === 'Высокая' && b.complexity !== 'Высокая') return -1;
@@ -25714,12 +25717,12 @@ body.theme-dark .search-highlight {
             recommendations = recommendations.slice(0, 3).map(rec => {
                 let enhancedReason = rec.reason;
                 
-                if (role === 'CEO') {
-                    enhancedReason += '. Быстрые результаты и стратегический фокус';
-                } else if (role === 'HRD') {
-                    enhancedReason += '. Эффективная работа с людьми и сопротивлением';
-                } else if (role === 'ChangeManager') {
-                    enhancedReason += '. Детальный план и комплексный подход';
+                if (role === 'TOP') {
+                    enhancedReason += '. Оптимально для ТОП-менеджмента: быстрые результаты и стратегический фокус';
+                } else if (role === 'FunctionalLeader') {
+                    enhancedReason += '. Эффективна для функциональных руководителей: работа с людьми и вовлечение команды';
+                } else if (role === 'ChangeAgent') {
+                    enhancedReason += '. Подходит для команды управления изменениями: детальный план и комплексный подход';
                 }
 
                 if (resistance === 'Высокое') {

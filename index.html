@@ -327,7 +327,10 @@ body {
   overflow: hidden;
   position: relative;
   padding-bottom: 80px; /* Отступ для фиксированного тулбара */
-  touch-action: pan-y;
+  /* Разрешаем вертикальный скролл, но не блокируем горизонтальные жесты для свайпов */
+  touch-action: pan-y pan-x;
+  /* Предотвращаем цепочку скролла */
+  overscroll-behavior: contain;
 }
 
 /* Адаптивный отступ для тулбара с учетом safe-area */
@@ -347,8 +350,12 @@ body {
   transform: translateY(24px);
   transition: opacity 0.45s var(--ease-standard), transform 0.6s var(--ease-standard);
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
+  /* Разрешаем вертикальный скролл и горизонтальные жесты для свайпов */
+  touch-action: pan-y pan-x;
+  /* Предотвращаем цепочку скролла и bounce-эффект на iOS */
   overscroll-behavior: contain;
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
 }
 
 .slide.active {
@@ -3541,6 +3548,1515 @@ body.theme-dark .search-highlight {
   }
 
   .readiness-actions .panel-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ========== СТИЛИ ДЛЯ ЭКСПЕРТНОГО СОДЕРЖИМОГО РЕЗУЛЬТАТОВ ========== */
+
+/* Квиз - экспертная интерпретация */
+.quiz-expert-insight {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.quiz-expert-insight h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-expert-summary {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.quiz-expert-detailed {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-16);
+  color: var(--color-text-secondary);
+}
+
+.quiz-profile-strengths,
+.quiz-profile-risks {
+  margin-top: var(--space-16);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.quiz-profile-strengths h6,
+.quiz-profile-risks h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-profile-strengths ul,
+.quiz-profile-risks ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.quiz-profile-strengths li,
+.quiz-profile-risks li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.quiz-model-expert-analysis {
+  margin-top: var(--space-16);
+  padding: var(--space-16);
+  background: rgba(var(--color-teal-500-rgb), 0.03);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.quiz-model-expert-analysis h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--pres-primary);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-model-reason {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-16);
+  color: var(--color-text-secondary);
+}
+
+.quiz-model-fit-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+.fit-criteria,
+.fit-implementation,
+.fit-alternatives {
+  padding: var(--space-12);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.fit-criteria strong,
+.fit-implementation strong,
+.fit-alternatives strong {
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.fit-criteria ul,
+.fit-implementation ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.fit-criteria li,
+.fit-implementation li {
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.fit-alternatives p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.quiz-action-plan {
+  margin-top: var(--space-32);
+  padding: var(--space-24);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.quiz-action-plan h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-action-plan-intro {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-20);
+  color: var(--color-text-secondary);
+}
+
+.action-plan-phases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.action-plan-phase {
+  padding: var(--space-20);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.phase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-16);
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.phase-header h6 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.phase-timeframe {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.phase-actions {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.phase-actions li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.quiz-action-plan-note {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-primary);
+}
+
+.quiz-action-plan-note p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* ROI - экспертная интерпретация */
+.roi-expert-analysis {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.roi-expert-analysis h5 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.expert-metric-analysis {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.metric-analysis-item {
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.metric-analysis-item h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.metric-analysis-item p {
+  margin: 0 0 var(--space-8) 0;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.metric-analysis-item p:last-child {
+  margin-bottom: 0;
+}
+
+.metric-analysis-item strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.roi-risk-analysis {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.roi-risk-analysis h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.risk-analysis-intro {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-20);
+  color: var(--color-text-secondary);
+}
+
+.risk-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-16);
+  margin-bottom: var(--space-20);
+}
+
+.risk-scenario {
+  padding: var(--space-16);
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+}
+
+.risk-scenario.optimistic {
+  background: rgba(45, 182, 125, 0.08);
+  border-left-color: #2DB67D;
+}
+
+.risk-scenario.realistic {
+  background: rgba(59, 130, 246, 0.08);
+  border-left-color: #3B82F6;
+}
+
+.risk-scenario.pessimistic {
+  background: rgba(224, 30, 90, 0.08);
+  border-left-color: #E01E5A;
+}
+
+.risk-scenario h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.scenario-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.scenario-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-8);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.metric-label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.metric-value {
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.risk-scenario p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.risk-mitigation {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.risk-mitigation h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.risk-mitigation ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.risk-mitigation li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+/* Readiness - экспертная интерпретация */
+.readiness-expert-insight {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.readiness-expert-insight h4 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.expert-overall-analysis {
+  margin-bottom: var(--space-24);
+}
+
+.expert-interpretation {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.expert-context {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.expert-strengths,
+.expert-key-insights,
+.expert-critical-gaps {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.expert-strengths h5,
+.expert-key-insights h5,
+.expert-critical-gaps h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.expert-strengths ul,
+.expert-key-insights ul,
+.expert-critical-gaps ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.expert-strengths li,
+.expert-key-insights li,
+.expert-critical-gaps li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.expert-category-analysis {
+  margin-top: var(--space-24);
+}
+
+.expert-category-analysis h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.category-expert-analysis {
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-12);
+  border: 1px solid var(--color-border);
+}
+
+.category-expert-analysis h6 {
+  margin: 0 0 var(--space-8) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.category-expert-analysis p {
+  margin: 0 0 var(--space-8) 0;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.category-expert-analysis p:last-child {
+  margin-bottom: 0;
+}
+
+.category-expert-analysis strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.expert-action-plan {
+  margin-top: var(--space-24);
+}
+
+.expert-action-plan h5 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.action-plan-phase.immediate,
+.action-plan-phase.short-term,
+.action-plan-phase.medium-term {
+  margin-bottom: var(--space-20);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+}
+
+.action-plan-phase.immediate {
+  border-left-color: #E01E5A;
+  background: rgba(224, 30, 90, 0.05);
+}
+
+.action-plan-phase.short-term {
+  border-left-color: #F4A100;
+  background: rgba(244, 161, 0, 0.05);
+}
+
+.action-plan-phase.medium-term {
+  border-left-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.action-plan-phase h6 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.action-plan-item {
+  margin-bottom: var(--space-16);
+  padding: var(--space-12);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+}
+
+.action-plan-item:last-child {
+  margin-bottom: 0;
+}
+
+.action-plan-item strong {
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.action-timeframe {
+  display: inline-block;
+  margin-left: var(--space-8);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.action-plan-item ul {
+  margin: var(--space-8) 0 0 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.action-plan-item li {
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+/* ========== СТИЛИ ДЛЯ ЭКСПЕРТНОГО СОДЕРЖИМОГО ГИБРИДНОЙ МОДЕЛИ ========== */
+
+.hybrid-expert-insight {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.hybrid-expert-insight h5 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.expert-overall-assessment {
+  margin-bottom: var(--space-24);
+}
+
+.expert-assessment-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.expert-combination-text,
+.expert-base-model-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text-secondary);
+}
+
+.expert-combination-text:last-child,
+.expert-base-model-text:last-child {
+  margin-bottom: 0;
+}
+
+.hybrid-expert-insight .expert-strengths,
+.hybrid-expert-insight .expert-risks,
+.hybrid-expert-insight .expert-recommendations {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.hybrid-expert-insight .expert-strengths h6,
+.hybrid-expert-insight .expert-risks h6,
+.hybrid-expert-insight .expert-recommendations h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.hybrid-expert-insight .expert-strengths ul,
+.hybrid-expert-insight .expert-risks ul,
+.hybrid-expert-insight .expert-recommendations ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.hybrid-expert-insight .expert-strengths li,
+.hybrid-expert-insight .expert-risks li,
+.hybrid-expert-insight .expert-recommendations li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+/* ========== СТИЛИ ДЛЯ ЭКСПЕРТНОГО СОДЕРЖИМОГО PCT ========== */
+
+.pct-expert-insight {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.pct-expert-insight h4 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-expert-insight .expert-overall-analysis {
+  margin-bottom: var(--space-24);
+}
+
+.pct-expert-insight .expert-interpretation {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.pct-expert-insight .expert-context,
+.pct-expert-insight .expert-balance {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: var(--space-12);
+  color: var(--color-text-secondary);
+}
+
+.pct-expert-insight .expert-context:last-child,
+.pct-expert-insight .expert-balance:last-child {
+  margin-bottom: 0;
+}
+
+.pct-expert-insight .expert-strengths,
+.pct-expert-insight .expert-critical-gaps {
+  margin-top: var(--space-20);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.pct-expert-insight .expert-strengths h5,
+.pct-expert-insight .expert-critical-gaps h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-expert-insight .expert-strengths ul,
+.pct-expert-insight .expert-critical-gaps ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.pct-expert-insight .expert-strengths li,
+.pct-expert-insight .expert-critical-gaps li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.pct-expert-insight .expert-category-analysis {
+  margin-top: var(--space-24);
+}
+
+.pct-expert-insight .expert-category-analysis h5 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-expert-insight .category-expert-analysis {
+  padding: var(--space-16);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-12);
+  border: 1px solid var(--color-border);
+}
+
+.pct-expert-insight .category-expert-analysis h6 {
+  margin: 0 0 var(--space-8) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-expert-insight .category-expert-analysis p {
+  margin: 0 0 var(--space-8) 0;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.pct-expert-insight .category-expert-analysis p:last-child {
+  margin-bottom: 0;
+}
+
+.pct-expert-insight .category-recommendations {
+  margin-top: var(--space-12);
+  padding: var(--space-12);
+  background: rgba(var(--color-teal-500-rgb), 0.03);
+  border-radius: var(--radius-sm);
+}
+
+.pct-expert-insight .category-recommendations strong {
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-expert-insight .category-recommendations ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.pct-expert-insight .category-recommendations li {
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.pct-expert-insight .expert-priority-actions {
+  margin-top: var(--space-24);
+}
+
+.pct-expert-insight .expert-priority-actions h5 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-basic-recommendations {
+  margin-top: var(--space-24);
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.pct-basic-recommendations h4 {
+  margin: 0 0 var(--space-16) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-basic-recommendations ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.pct-basic-recommendations li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ РЕЗУЛЬТАТОВ (ЭКРАНЫ < 480px) ========== */
+@media (max-width: 480px) {
+  /* Квиз результаты */
+  .quiz-result {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+
+  .quiz-result h4 {
+    font-size: 18px;
+    margin-bottom: var(--space-16);
+  }
+
+  .quiz-profile {
+    padding: var(--space-16);
+  }
+
+  .quiz-profile-title {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+
+  .quiz-profile-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .quiz-expert-insight {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+
+  .quiz-expert-insight h5 {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+
+  .quiz-expert-summary {
+    font-size: 14px;
+  }
+
+  .quiz-expert-detailed {
+    font-size: 13px;
+  }
+
+  .quiz-profile-strengths,
+  .quiz-profile-risks {
+    padding: var(--space-12);
+    margin-top: var(--space-12);
+  }
+
+  .quiz-profile-strengths h6,
+  .quiz-profile-risks h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+
+  .quiz-profile-strengths li,
+  .quiz-profile-risks li {
+    font-size: 13px;
+    margin-bottom: var(--space-6);
+  }
+
+  .quiz-model-item {
+    padding: var(--space-12);
+  }
+
+  .quiz-model-header {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .quiz-model-name {
+    font-size: 14px;
+  }
+
+  .quiz-model-match {
+    font-size: 14px;
+  }
+
+  .quiz-model-expert-analysis {
+    padding: var(--space-12);
+    margin-top: var(--space-12);
+  }
+
+  .quiz-model-expert-analysis h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+
+  .quiz-model-reason {
+    font-size: 13px;
+  }
+
+  .quiz-model-fit-details {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .fit-criteria,
+  .fit-implementation,
+  .fit-alternatives {
+    padding: var(--space-10);
+  }
+
+  .fit-criteria li,
+  .fit-implementation li {
+    font-size: 12px;
+  }
+
+  .fit-alternatives p {
+    font-size: 12px;
+  }
+
+  .quiz-action-plan {
+    padding: var(--space-16);
+    margin-top: var(--space-20);
+  }
+
+  .quiz-action-plan h5 {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+
+  .quiz-action-plan-intro {
+    font-size: 13px;
+  }
+
+  .action-plan-phase {
+    padding: var(--space-12);
+  }
+
+  .phase-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .phase-header h6 {
+    font-size: 14px;
+  }
+
+  .phase-timeframe {
+    font-size: 12px;
+  }
+
+  .phase-actions li {
+    font-size: 13px;
+  }
+
+  .quiz-actions {
+    flex-direction: column;
+  }
+
+  .quiz-actions .panel-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ROI результаты */
+  .roi-results {
+    margin-top: var(--space-20);
+    padding-top: var(--space-16);
+  }
+
+  .roi-results h3 {
+    font-size: 20px;
+    margin-bottom: var(--space-16);
+  }
+
+  .roi-metrics {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-20);
+  }
+
+  .roi-metric {
+    padding: var(--space-16);
+  }
+
+  .roi-metric-value {
+    font-size: 24px;
+  }
+
+  .roi-metric-label {
+    font-size: 13px;
+  }
+
+  .roi-breakdown {
+    margin: var(--space-12) 0;
+  }
+
+  .roi-breakdown-item {
+    padding: var(--space-10) var(--space-12);
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .roi-breakdown-label {
+    font-size: 13px;
+  }
+
+  .roi-breakdown-value {
+    font-size: 14px;
+  }
+
+  .roi-expert-analysis {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+
+  .roi-expert-analysis h5 {
+    font-size: 16px;
+    margin-bottom: var(--space-16);
+  }
+
+  .expert-metric-analysis {
+    gap: var(--space-16);
+  }
+
+  .metric-analysis-item {
+    padding: var(--space-12);
+  }
+
+  .metric-analysis-item h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+
+  .metric-analysis-item p {
+    font-size: 13px;
+  }
+
+  .roi-risk-analysis {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+
+  .roi-risk-analysis h5 {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+
+  .risk-analysis-intro {
+    font-size: 13px;
+  }
+
+  .risk-scenarios {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  .risk-scenario {
+    padding: var(--space-12);
+  }
+
+  .risk-scenario h6 {
+    font-size: 14px;
+  }
+
+  .scenario-metric {
+    padding: var(--space-6);
+  }
+
+  .metric-label {
+    font-size: 12px;
+  }
+
+  .metric-value {
+    font-size: 14px;
+  }
+
+  .risk-scenario p {
+    font-size: 12px;
+  }
+
+  .risk-mitigation {
+    padding: var(--space-12);
+  }
+
+  .risk-mitigation h6 {
+    font-size: 14px;
+  }
+
+  .risk-mitigation li {
+    font-size: 13px;
+  }
+
+  .roi-actions {
+    flex-direction: column;
+  }
+
+  .roi-actions .panel-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Readiness результаты */
+  .readiness-results {
+    padding: 0;
+  }
+
+  .readiness-overall {
+    padding: var(--space-20);
+    margin-bottom: var(--space-24);
+  }
+
+  .readiness-overall-score {
+    font-size: 32px;
+  }
+
+  .readiness-overall-level {
+    font-size: 16px;
+  }
+
+  .readiness-overall-description {
+    font-size: 13px;
+  }
+
+  .readiness-radar-container {
+    padding: var(--space-12);
+    margin-bottom: var(--space-20);
+  }
+
+  .readiness-categories {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-20);
+  }
+
+  .readiness-category-result {
+    padding: var(--space-16);
+  }
+
+  .readiness-category-name {
+    font-size: 14px;
+  }
+
+  .readiness-category-score {
+    font-size: 14px;
+  }
+
+  .readiness-expert-insight {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+
+  .readiness-expert-insight h4 {
+    font-size: 18px;
+    margin-bottom: var(--space-16);
+  }
+
+  .expert-interpretation {
+    font-size: 14px;
+  }
+
+  .expert-context {
+    font-size: 13px;
+  }
+
+  .expert-strengths,
+  .expert-key-insights,
+  .expert-critical-gaps {
+    padding: var(--space-12);
+    margin-top: var(--space-16);
+  }
+
+  .expert-strengths h5,
+  .expert-key-insights h5,
+  .expert-critical-gaps h5 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+
+  .expert-strengths li,
+  .expert-key-insights li,
+  .expert-critical-gaps li {
+    font-size: 13px;
+    margin-bottom: var(--space-6);
+  }
+
+  .category-expert-analysis {
+    padding: var(--space-12);
+    margin-bottom: var(--space-10);
+  }
+
+  .category-expert-analysis h6 {
+    font-size: 14px;
+  }
+
+  .category-expert-analysis p {
+    font-size: 13px;
+  }
+
+  .action-plan-phase {
+    padding: var(--space-12);
+    margin-bottom: var(--space-16);
+  }
+
+  .action-plan-phase h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-12);
+  }
+
+  .action-plan-item {
+    padding: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+
+  .action-plan-item strong {
+    font-size: 13px;
+  }
+
+  .action-timeframe {
+    font-size: 11px;
+    display: block;
+    margin-left: 0;
+    margin-top: var(--space-4);
+  }
+
+  .action-plan-item li {
+    font-size: 12px;
+  }
+
+  .readiness-recommendation {
+    padding: var(--space-16);
+    margin-bottom: var(--space-16);
+  }
+
+  .readiness-recommendation h5 {
+    font-size: 15px;
+    margin-bottom: var(--space-10);
+  }
+
+  .readiness-recommendation li {
+    font-size: 13px;
+  }
+
+  .readiness-actions {
+    flex-direction: column;
+  }
+
+  .readiness-actions .panel-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Hybrid конструктор результаты */
+  .hybrid-preview-header {
+    padding: var(--space-16);
+  }
+  
+  .hybrid-model-summary {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+  
+  .hybrid-model-visualization {
+    margin: var(--space-16) 0;
+  }
+  
+  .hybrid-model-visualization svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .hybrid-model-composition {
+    padding: var(--space-16);
+  }
+  
+  .hybrid-expert-insight {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+  
+  .hybrid-expert-insight h5 {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+  
+  .expert-assessment-text,
+  .expert-combination-text,
+  .expert-base-model-text {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  .expert-strengths,
+  .expert-risks,
+  .expert-recommendations {
+    padding: var(--space-12);
+    margin-top: var(--space-12);
+  }
+  
+  .expert-strengths h6,
+  .expert-risks h6,
+  .expert-recommendations h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+  
+  .expert-strengths li,
+  .expert-risks li,
+  .expert-recommendations li {
+    font-size: 13px;
+    margin-bottom: var(--space-6);
+  }
+  
+  .hybrid-plan-phases {
+    gap: var(--space-16);
+  }
+  
+  .hybrid-plan-phase {
+    padding: var(--space-16);
+  }
+  
+  .hybrid-plan-phase h6 {
+    font-size: 14px;
+  }
+  
+  .hybrid-plan-phase li {
+    font-size: 13px;
+  }
+  
+  /* PCT результаты */
+  .pct-results {
+    padding: var(--space-16);
+  }
+  
+  .pct-results h3 {
+    font-size: 18px;
+    margin-bottom: var(--space-16);
+  }
+  
+  .pct-scores {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-20);
+  }
+  
+  .pct-score-item {
+    padding: var(--space-12);
+  }
+  
+  .pct-visualization {
+    margin: var(--space-16) 0;
+  }
+  
+  .pct-visualization svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .pct-expert-insight {
+    padding: var(--space-16);
+    margin-top: var(--space-16);
+  }
+  
+  .pct-expert-insight h4 {
+    font-size: 18px;
+    margin-bottom: var(--space-16);
+  }
+  
+  .expert-interpretation {
+    font-size: 14px;
+  }
+  
+  .expert-context,
+  .expert-balance {
+    font-size: 13px;
+  }
+  
+  .expert-strengths,
+  .expert-critical-gaps {
+    padding: var(--space-12);
+    margin-top: var(--space-16);
+  }
+  
+  .expert-strengths h5,
+  .expert-critical-gaps h5 {
+    font-size: 14px;
+    margin-bottom: var(--space-8);
+  }
+  
+  .expert-strengths li,
+  .expert-critical-gaps li {
+    font-size: 13px;
+    margin-bottom: var(--space-6);
+  }
+  
+  .category-expert-analysis {
+    padding: var(--space-12);
+    margin-bottom: var(--space-10);
+  }
+  
+  .category-expert-analysis h6 {
+    font-size: 14px;
+  }
+  
+  .category-expert-analysis p {
+    font-size: 13px;
+  }
+  
+  .category-recommendations {
+    margin-top: var(--space-8);
+  }
+  
+  .category-recommendations ul {
+    margin-top: var(--space-8);
+  }
+  
+  .category-recommendations li {
+    font-size: 12px;
+  }
+  
+  .expert-priority-actions {
+    margin-top: var(--space-20);
+  }
+  
+  .expert-priority-actions h5 {
+    font-size: 15px;
+    margin-bottom: var(--space-16);
+  }
+  
+  .action-plan-phase {
+    padding: var(--space-12);
+    margin-bottom: var(--space-16);
+  }
+  
+  .action-plan-phase h6 {
+    font-size: 14px;
+    margin-bottom: var(--space-12);
+  }
+  
+  .action-plan-item {
+    padding: var(--space-10);
+    margin-bottom: var(--space-12);
+  }
+  
+  .action-plan-item strong {
+    font-size: 13px;
+  }
+  
+  .action-plan-item li {
+    font-size: 12px;
+  }
+  
+  .pct-basic-recommendations {
+    margin-top: var(--space-20);
+    padding: var(--space-16);
+    background: rgba(var(--color-teal-500-rgb), 0.05);
+    border-radius: var(--radius-md);
+  }
+  
+  .pct-basic-recommendations h4 {
+    font-size: 16px;
+    margin-bottom: var(--space-12);
+  }
+  
+  .pct-basic-recommendations li {
+    font-size: 13px;
+    margin-bottom: var(--space-8);
+  }
+  
+  .pct-actions {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+  
+  .pct-actions .panel-button {
     width: 100%;
     justify-content: center;
   }
@@ -8462,21 +9978,94 @@ body.theme-dark .search-highlight {
 
 /* ========== Enhanced Quiz Styles ========== */
 .quiz-profile {
-  background: rgba(var(--color-teal-500-rgb), 0.08);
-  padding: var(--space-16);
-  border-radius: 8px;
-  margin: var(--space-16) 0;
+  padding: var(--space-20);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-24);
+  border: 1px solid var(--color-border);
 }
 
 .quiz-profile-title {
   font-weight: var(--font-weight-semibold);
   color: var(--pres-primary);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-12);
+  font-size: 16px;
 }
 
 .quiz-profile-description {
-  font-style: italic;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--color-text);
+  margin-bottom: var(--space-16);
+}
+
+.quiz-recommendations {
+  margin-top: var(--space-24);
+}
+
+.quiz-recommendations h5 {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quiz-model-item {
+  padding: var(--space-20);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-16);
+  transition: all 0.2s ease;
+}
+
+.quiz-model-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.1);
+}
+
+.quiz-model-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-bottom: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.quiz-model-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border-radius: 50%;
+  font-weight: var(--font-weight-bold);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.quiz-model-name {
+  flex: 1;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  min-width: 0;
+}
+
+.quiz-model-match {
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.quiz-model-sources {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  padding: var(--space-8) 0;
 }
 
 .quiz-profile-chart {
@@ -15775,6 +17364,215 @@ body.theme-dark .search-highlight {
             if (idx >= 0) jumpToSlide(idx);
         }
         
+        // ========== ЭКСПЕРТНЫЕ ФУНКЦИИ ДЛЯ ИНТЕРПРЕТАЦИИ РЕЗУЛЬТАТОВ ==========
+        
+        // Экспертная интерпретация профиля квиза
+        function generateExpertInsight(profile, models, answers) {
+            const scopeInfo = quizScopeMap[answers.scope] ?? quizScopeMap.small;
+            const resistanceInfo = quizResistanceMap[answers.resistance] ?? quizResistanceMap.mixed;
+            const paceInfo = quizPaceMap[answers.pace] ?? quizPaceMap.iterative;
+            const cultureInfo = quizCultureMap[answers.culture] ?? quizCultureMap.hybrid;
+            const resourcesInfo = quizResourcesMap[answers.resources] ?? quizResourcesMap.adequate;
+            
+            // Определяем общий характер профиля
+            const isComplex = answers.scope === 'large' || answers.resistance === 'high';
+            const isFast = answers.pace === 'rapid';
+            const isConservative = answers.culture === 'conservative';
+            const hasLimitedResources = answers.resources === 'limited';
+            
+            let summary = '';
+            let detailed = '';
+            const strengths = [];
+            const risks = [];
+            
+            // Генерируем экспертную интерпретацию
+            if (isComplex && hasLimitedResources) {
+                summary = 'Ваш профиль характеризуется высокой сложностью при ограниченных ресурсах — это требует особого внимания к приоритизации и фазовому подходу.';
+                detailed = 'Комбинация крупного масштаба изменений и ограниченных ресурсов создает уникальные вызовы. Ключ к успеху — в правильной последовательности действий и фокусе на критических элементах. Рекомендуется начать с пилотных зон и постепенно масштабировать успешные практики.';
+                strengths.push('Понимание сложности проекта позволяет планировать реалистично');
+                strengths.push('Ограниченные ресурсы заставляют фокусироваться на наиболее важном');
+                risks.push('Риск перегрузки команды при попытке сделать все сразу');
+                risks.push('Возможность недооценки масштаба работ из-за ограниченных ресурсов');
+                risks.push('Высокий риск выгорания команды при неправильном планировании');
+            } else if (isComplex && !hasLimitedResources) {
+                summary = 'У вас есть все необходимое для успешной реализации крупных изменений — важно использовать ресурсы эффективно и поддерживать баланс.';
+                detailed = 'Достаточные ресурсы при крупном масштабе — это сильная позиция. Однако важно не распылять усилия и поддерживать фокус на ключевых приоритетах. Рекомендуется создать структурированную программу управления изменениями с четкими этапами и метриками.';
+                strengths.push('Достаточные ресурсы позволяют реализовать комплексный подход');
+                strengths.push('Возможность привлечения экспертизы и обучения команды');
+                strengths.push('Способность масштабировать успешные практики');
+                risks.push('Риск избыточного усложнения из-за доступности ресурсов');
+                risks.push('Возможность конфликтов приоритетов между разными направлениями');
+            } else if (!isComplex && isFast) {
+                summary = 'Ваш профиль оптимален для быстрых, локальных изменений — это позволяет быстро получать результаты и демонстрировать ценность.';
+                detailed = 'Сочетание локального масштаба и быстрого темпа создает идеальные условия для agile-подхода к изменениям. Фокус должен быть на быстрых победах и итеративном улучшении. Это позволяет накапливать опыт и создавать позитивную динамику.';
+                strengths.push('Быстрый темп позволяет быстро демонстрировать результаты');
+                strengths.push('Локальный масштаб упрощает управление и коммуникацию');
+                strengths.push('Возможность быстрой адаптации на основе обратной связи');
+                risks.push('Риск поспешных решений без достаточного анализа');
+                risks.push('Возможность недооценки долгосрочных последствий');
+            } else {
+                summary = 'Ваш профиль показывает сбалансированный подход к изменениям — это создает хорошие условия для устойчивого успеха.';
+                detailed = 'Сбалансированный профиль позволяет использовать проверенные методологии с возможностью адаптации под конкретную ситуацию. Рекомендуется комбинировать структурированные подходы с элементами гибкости для оптимального результата.';
+                strengths.push('Сбалансированность снижает риски перекосов в ту или иную сторону');
+                strengths.push('Возможность адаптации под меняющиеся условия');
+                risks.push('Риск недостаточной фокусировки при попытке учесть все аспекты');
+            }
+            
+            // Добавляем специфические риски и сильные стороны на основе параметров
+            if (answers.resistance === 'high') {
+                risks.push('Высокое сопротивление требует активной работы с людьми и может замедлить процесс');
+                strengths.push('Осознание высокого сопротивления позволяет заранее подготовить план работы с ним');
+            }
+            
+            if (isConservative) {
+                risks.push('Консервативная культура может замедлить принятие изменений');
+                strengths.push('Консервативная культура ценит структурированные и проверенные подходы');
+            }
+            
+            return { summary, detailed, strengths, risks };
+        }
+        
+        // Анализ соответствия модели профилю
+        function analyzeModelFit(model, profile, answers) {
+            const scopeInfo = quizScopeMap[answers.scope] ?? quizScopeMap.small;
+            const resistanceInfo = quizResistanceMap[answers.resistance] ?? quizResistanceMap.mixed;
+            const paceInfo = quizPaceMap[answers.pace] ?? quizPaceMap.iterative;
+            
+            let reason = '';
+            const criteria = [];
+            const implementation = [];
+            let alternatives = '';
+            
+            // Генерируем анализ на основе модели и профиля
+            if (model.keyword.toLowerCase().includes('адкар') || model.keyword.toLowerCase().includes('adkar')) {
+                reason = `${model.label} идеально подходит для вашего профиля, так как обеспечивает структурированный подход к индивидуальным изменениям, что критично при ${resistanceInfo.title.toLowerCase()}.`;
+                criteria.push(`Высокое соответствие по работе с сопротивлением (${model.matchPercent}%)`);
+                criteria.push(`Подходит для ${scopeInfo.title.toLowerCase()}`);
+                criteria.push(`Адаптируется к ${paceInfo.title.toLowerCase()}`);
+                implementation.push('Начните с диагностики текущего этапа ADKAR для каждой группы сотрудников');
+                implementation.push('Разработайте план коммуникаций для каждого этапа (Осознание → Желание → Знание → Способность → Закрепление)');
+                implementation.push('Создайте систему отслеживания прогресса по каждому этапу');
+                implementation.push('Организуйте регулярные check-in сессии для оценки прогресса');
+                alternatives = 'Альтернативы: Модель Коттера (для более структурированного подхода), Модель Сатир (для работы с эмоциональной стороной)';
+            } else if (model.keyword.toLowerCase().includes('коттер') || model.keyword.toLowerCase().includes('kotter')) {
+                reason = `${model.label} подходит для вашего профиля, обеспечивая четкую структуру из 8 шагов, что особенно важно при ${scopeInfo.title.toLowerCase()}.`;
+                criteria.push(`Структурированный подход для ${scopeInfo.title.toLowerCase()}`);
+                criteria.push(`Эффективен при ${resistanceInfo.title.toLowerCase()}`);
+                criteria.push(`Поддерживает ${paceInfo.title.toLowerCase()}`);
+                implementation.push('Сформируйте коалицию поддержки из ключевых лидеров');
+                implementation.push('Создайте и коммуницируйте убедительное видение изменений');
+                implementation.push('Обеспечьте краткосрочные победы для поддержания мотивации');
+                implementation.push('Закрепите изменения в культуре организации');
+                alternatives = 'Альтернативы: ADKAR (для индивидуального подхода), Модель McKinsey (для более комплексного анализа)';
+            } else if (model.keyword.toLowerCase().includes('pdca') || model.keyword.toLowerCase().includes('цикл')) {
+                reason = `${model.label} оптимален для вашего профиля, обеспечивая быстрые итерации и непрерывное улучшение, что идеально для ${paceInfo.title.toLowerCase()}.`;
+                criteria.push(`Итеративный подход для ${paceInfo.title.toLowerCase()}`);
+                criteria.push(`Быстрая адаптация под ${scopeInfo.title.toLowerCase()}`);
+                criteria.push(`Эффективен при ${resistanceInfo.title.toLowerCase()}`);
+                implementation.push('Определите пилотную зону для первого цикла PDCA');
+                implementation.push('Установите четкие метрики для измерения результатов');
+                implementation.push('Проводите регулярные ретроспективы после каждого цикла');
+                implementation.push('Масштабируйте успешные практики на другие области');
+                alternatives = 'Альтернативы: R2P2 (для более структурированных итераций), Теория подталкивания (для мягкого влияния)';
+            } else {
+                reason = `${model.label} рекомендована на основе анализа вашего профиля проекта. Модель хорошо сочетается с вашими параметрами изменений.`;
+                criteria.push(`Соответствие по масштабу: ${scopeInfo.title}`);
+                criteria.push(`Соответствие по сопротивлению: ${resistanceInfo.title}`);
+                criteria.push(`Соответствие по темпу: ${paceInfo.title}`);
+                implementation.push('Изучите детальное описание модели для понимания всех этапов');
+                implementation.push('Адаптируйте модель под специфику вашей организации');
+                implementation.push('Разработайте план внедрения с учетом ваших ресурсов');
+                alternatives = 'Рекомендуется также рассмотреть альтернативные модели из топ-3 для сравнения подходов';
+            }
+            
+            return { reason, criteria, implementation, alternatives };
+        }
+        
+        // Генерация плана действий на основе профиля
+        function generateActionPlan(models, profile, answers) {
+            const scopeInfo = quizScopeMap[answers.scope] ?? quizScopeMap.small;
+            const resistanceInfo = quizResistanceMap[answers.resistance] ?? quizResistanceMap.mixed;
+            const paceInfo = quizPaceMap[answers.pace] ?? quizPaceMap.iterative;
+            
+            const phases = [];
+            
+            // Фаза 1: Подготовка (1-2 недели)
+            phases.push({
+                name: 'Подготовка и планирование',
+                timeframe: '1-2 недели',
+                actions: [
+                    'Изучите детальное описание рекомендованных моделей',
+                    'Проведите встречу с ключевыми стейкхолдерами для обсуждения подхода',
+                    'Оцените текущую готовность организации к изменениям (используйте инструмент диагностики готовности)',
+                    'Определите пилотную зону для начала внедрения',
+                    'Сформируйте команду управления изменениями с четкими ролями',
+                    'Разработайте план коммуникаций с учетом уровня сопротивления'
+                ]
+            });
+            
+            // Фаза 2: Пилотное внедрение (2-4 недели)
+            if (answers.scope === 'small' || answers.pace === 'rapid') {
+                phases.push({
+                    name: 'Пилотное внедрение',
+                    timeframe: '2-4 недели',
+                    actions: [
+                        'Запустите пилотный проект в выбранной зоне',
+                        'Применяйте выбранную модель с адаптацией под специфику',
+                        'Собирайте обратную связь от участников каждую неделю',
+                        'Документируйте уроки и лучшие практики',
+                        'Корректируйте подход на основе полученного опыта',
+                        'Демонстрируйте первые результаты для поддержания мотивации'
+                    ]
+                });
+            } else {
+                phases.push({
+                    name: 'Пилотное внедрение',
+                    timeframe: '3-6 недель',
+                    actions: [
+                        'Запустите пилотный проект в выбранной зоне',
+                        'Применяйте выбранную модель с адаптацией под специфику',
+                        'Собирайте обратную связь от участников каждые 2 недели',
+                        'Проводите регулярные встречи команды управления изменениями',
+                        'Документируйте уроки и лучшие практики',
+                        'Корректируйте подход на основе полученного опыта',
+                        'Демонстрируйте промежуточные результаты'
+                    ]
+                });
+            }
+            
+            // Фаза 3: Масштабирование (4-8 недель)
+            if (answers.scope === 'large') {
+                phases.push({
+                    name: 'Масштабирование',
+                    timeframe: '4-8 недель',
+                    actions: [
+                        'Проанализируйте результаты пилотного проекта',
+                        'Адаптируйте модель для других подразделений',
+                        'Обучите команды в новых зонах на основе опыта пилота',
+                        'Создайте систему обмена лучшими практиками',
+                        'Масштабируйте успешные элементы поэтапно',
+                        'Поддерживайте единый подход при адаптации под локальные особенности'
+                    ]
+                });
+            }
+            
+            // Фаза 4: Закрепление (2-4 недели)
+            phases.push({
+                name: 'Закрепление и оптимизация',
+                timeframe: '2-4 недели',
+                actions: [
+                    'Проведите оценку эффективности внедренной модели',
+                    'Идентифицируйте области для улучшения',
+                    'Закрепите успешные практики в процессах организации',
+                    'Создайте базу знаний для будущих проектов изменений',
+                    'Организуйте ретроспективу с командой для извлечения уроков',
+                    'Планируйте следующие шаги развития практики управления изменениями'
+                ]
+            });
+            
+            return { phases };
+        }
+        
         function resolveQuizResult(answers) {
             // Получаем информацию по всем 5 категориям
             const scopeInfo = quizScopeMap[answers.scope] ?? quizScopeMap.small;
@@ -15937,9 +17735,29 @@ body.theme-dark .search-highlight {
                 // Профиль проекта
                 const profileEl = document.createElement('div');
                 profileEl.className = 'quiz-profile';
+                
+                // Генерируем экспертную интерпретацию
+                const expertInsight = generateExpertInsight(quizResult.profile, quizResult.models, answers);
+                
                 profileEl.innerHTML = `
                     <div class="quiz-profile-title">Ваш профиль проекта:</div>
                     <div class="quiz-profile-description">${quizResult.profile}</div>
+                    
+                    <div class="quiz-expert-insight">
+                        <h5>Экспертная интерпретация вашего профиля</h5>
+                        <p class="quiz-expert-summary"><strong>${expertInsight.summary}</strong></p>
+                        <p class="quiz-expert-detailed">${expertInsight.detailed}</p>
+                        
+                        <div class="quiz-profile-strengths">
+                            <h6>Сильные стороны вашего подхода:</h6>
+                            <ul>${expertInsight.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+                        </div>
+                        
+                        <div class="quiz-profile-risks">
+                            <h6>Потенциальные риски и рекомендации по их митигации:</h6>
+                            <ul>${expertInsight.risks.map(r => `<li>${r}</li>`).join('')}</ul>
+                        </div>
+                    </div>
                 `;
                 resultContainer.appendChild(profileEl);
 
@@ -15957,6 +17775,10 @@ body.theme-dark .search-highlight {
                 quizResult.models.forEach((model, index) => {
                     const modelEl = document.createElement('div');
                     modelEl.className = 'quiz-model-item';
+                    
+                    // Генерируем экспертный анализ соответствия модели
+                    const expertAnalysis = analyzeModelFit(model, quizResult.profile, answers);
+                    
                     modelEl.innerHTML = `
                         <div class="quiz-model-header">
                             <span class="quiz-model-number">${index + 1}</span>
@@ -15966,9 +17788,55 @@ body.theme-dark .search-highlight {
                         <div class="quiz-model-sources">
                             Рекомендовано: ${model.sources.join(', ')}
                         </div>
+                        
+                        <div class="quiz-model-expert-analysis">
+                            <h6>Почему ${model.label} подходит для вашего проекта:</h6>
+                            <p class="quiz-model-reason">${expertAnalysis.reason}</p>
+                            
+                            <div class="quiz-model-fit-details">
+                                <div class="fit-criteria">
+                                    <strong>Критерии соответствия:</strong>
+                                    <ul>${expertAnalysis.criteria.map(c => `<li>${c}</li>`).join('')}</ul>
+                                </div>
+                                
+                                <div class="fit-implementation">
+                                    <strong>Рекомендации по внедрению:</strong>
+                                    <ul>${expertAnalysis.implementation.map(i => `<li>${i}</li>`).join('')}</ul>
+                                </div>
+                                
+                                <div class="fit-alternatives">
+                                    <strong>Альтернативные модели для рассмотрения:</strong>
+                                    <p>${expertAnalysis.alternatives}</p>
+                                </div>
+                            </div>
+                        </div>
                     `;
                     recommendationsEl.appendChild(modelEl);
                 });
+                
+                // Добавляем план действий
+                const actionPlan = generateActionPlan(quizResult.models, quizResult.profile, answers);
+                const actionPlanEl = document.createElement('div');
+                actionPlanEl.className = 'quiz-action-plan';
+                actionPlanEl.innerHTML = `
+                    <h5>План действий на основе вашего профиля</h5>
+                    <p class="quiz-action-plan-intro">Следующий план поможет вам систематически внедрить рекомендованные модели и достичь успеха в вашем проекте изменений.</p>
+                    <div class="action-plan-phases">
+                        ${actionPlan.phases.map((phase, index) => `
+                            <div class="action-plan-phase">
+                                <div class="phase-header">
+                                    <h6>Фаза ${index + 1}: ${phase.name}</h6>
+                                    <span class="phase-timeframe">${phase.timeframe}</span>
+                                </div>
+                                <ul class="phase-actions">${phase.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-action-plan-note">
+                        <p><strong>Важно:</strong> Этот план является рекомендательным. Адаптируйте его под специфику вашей организации, доступные ресурсы и временные рамки проекта.</p>
+                    </div>
+                `;
+                recommendationsEl.appendChild(actionPlanEl);
                 resultContainer.appendChild(recommendationsEl);
 
                 // Действия
@@ -16963,6 +18831,160 @@ body.theme-dark .search-highlight {
             };
         }
 
+        // ========== ЭКСПЕРТНЫЕ ФУНКЦИИ ДЛЯ ROI ==========
+        
+        // Анализ финансовых результатов
+        function analyzeFinancialResults(calc, inputs) {
+            const industryROI = 120; // Средний ROI в отрасли
+            const typicalDiscountRate = 8; // Типичная ставка дисконтирования
+            const typicalPayback = 2.5; // Типичный срок окупаемости (лет)
+            
+            // ROI интерпретация
+            let roiInterpretation = '';
+            let roiContext = '';
+            let roiBenchmark = '';
+            
+            if (calc.roi > industryROI * 1.5) {
+                roiInterpretation = `Ваш ROI ${calc.roi.toFixed(1)}% значительно превышает отраслевой стандарт. Это указывает на высокую эффективность инвестиций в управление изменениями и сильную финансовую обоснованность проекта.`;
+                roiContext = 'Такой высокий ROI обычно достигается при правильной оценке всех выгод (снижение текучести, повышение продуктивности) и эффективном управлении затратами.';
+                roiBenchmark = `Ваш результат в ${(calc.roi / industryROI).toFixed(1)} раза выше среднего по отрасли (${industryROI}%). Это исключительный результат, который демонстрирует высокую ценность управления изменениями для вашей организации.`;
+            } else if (calc.roi > industryROI) {
+                roiInterpretation = `Ваш ROI ${calc.roi.toFixed(1)}% выше отраслевого среднего, что указывает на хорошую финансовую эффективность инвестиций в управление изменениями.`;
+                roiContext = 'Этот результат показывает, что проект имеет сильную финансовую обоснованность и должен быть приоритетным для организации.';
+                roiBenchmark = `Ваш результат на ${(calc.roi - industryROI).toFixed(1)} процентных пунктов выше среднего по отрасли (${industryROI}%). Это хороший показатель эффективности.`;
+            } else if (calc.roi > industryROI * 0.7) {
+                roiInterpretation = `Ваш ROI ${calc.roi.toFixed(1)}% близок к отраслевому среднему. Проект имеет положительную финансовую отдачу, но есть возможности для оптимизации.`;
+                roiContext = 'Такой ROI указывает на необходимость пересмотра некоторых параметров (возможно, недооценка выгод или переоценка затрат) для улучшения результата.';
+                roiBenchmark = `Ваш результат на ${(industryROI - calc.roi).toFixed(1)} процентных пунктов ниже среднего по отрасли (${industryROI}%). Рекомендуется провести дополнительный анализ для улучшения показателей.`;
+            } else {
+                roiInterpretation = `Ваш ROI ${calc.roi.toFixed(1)}% ниже отраслевого среднего. Необходимо пересмотреть параметры проекта или подход к управлению изменениями.`;
+                roiContext = 'Низкий ROI может указывать на недооценку выгод, переоценку затрат, или необходимость более эффективного подхода к управлению изменениями.';
+                roiBenchmark = `Ваш результат значительно ниже среднего по отрасли (${industryROI}%). Рекомендуется консультация с экспертами по управлению изменениями для оптимизации проекта.`;
+            }
+            
+            // NPV интерпретация
+            let npvInterpretation = '';
+            let npvSensitivity = '';
+            let npvRecommendation = '';
+            
+            if (calc.npv > 0) {
+                npvInterpretation = `Положительный NPV ${formatCurrency(calc.npv)} означает, что проект создает стоимость для организации с учетом временной стоимости денег. Это сильный индикатор финансовой привлекательности проекта.`;
+                npvSensitivity = `При изменении ставки дисконтирования на ±1% NPV изменится примерно на ${formatCurrency(Math.abs(calc.npv * 0.1))}. Это умеренная чувствительность, что указывает на устойчивость проекта к изменениям в стоимости капитала.`;
+                npvRecommendation = `Положительный NPV подтверждает финансовую обоснованность проекта. Рекомендуется приступить к реализации с учетом всех рисков и возможностей оптимизации.`;
+            } else {
+                npvInterpretation = `Отрицательный NPV ${formatCurrency(calc.npv)} указывает, что проект не создает достаточной стоимости с учетом временной стоимости денег при текущих параметрах.`;
+                npvSensitivity = `Необходимо пересмотреть параметры проекта: увеличить ожидаемые выгоды, снизить затраты, или продлить период оценки для учета долгосрочных выгод.`;
+                npvRecommendation = `Рекомендуется провести дополнительный анализ и оптимизацию проекта. Возможно, некоторые выгоды недооценены (например, долгосрочное влияние на культуру, репутацию, инновационность).`;
+            }
+            
+            // IRR интерпретация
+            let irrInterpretation = '';
+            let irrRecommendation = '';
+            let irrComparison = '';
+            
+            if (calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr)) {
+                if (calc.irr > inputs.discountRate * 1.5) {
+                    irrInterpretation = `IRR ${calc.irr.toFixed(1)}% значительно превышает ставку дисконтирования (${inputs.discountRate}%), что указывает на высокую внутреннюю доходность проекта.`;
+                    irrRecommendation = `Проект имеет исключительную доходность. Рекомендуется приоритизировать его реализацию и рассмотреть возможность увеличения масштаба инвестиций.`;
+                    irrComparison = `IRR вашего проекта (${calc.irr.toFixed(1)}%) значительно выше типичной доходности корпоративных проектов (8-12%), что делает его очень привлекательным с точки зрения альтернативных инвестиций.`;
+                } else if (calc.irr > inputs.discountRate) {
+                    irrInterpretation = `IRR ${calc.irr.toFixed(1)}% превышает ставку дисконтирования (${inputs.discountRate}%), что подтверждает финансовую привлекательность проекта.`;
+                    irrRecommendation = `Проект имеет положительную доходность. Рекомендуется реализация с мониторингом ключевых параметров для обеспечения достижения целевых показателей.`;
+                    irrComparison = `IRR вашего проекта (${calc.irr.toFixed(1)}%) находится в диапазоне типичной доходности корпоративных проектов, что подтверждает его финансовую обоснованность.`;
+                } else {
+                    irrInterpretation = `IRR ${calc.irr.toFixed(1)}% ниже или близок к ставке дисконтирования (${inputs.discountRate}%), что указывает на необходимость оптимизации проекта.`;
+                    irrRecommendation = `Рекомендуется пересмотреть параметры проекта для улучшения доходности. Возможно, стоит рассмотреть альтернативные подходы к управлению изменениями или увеличить ожидаемые выгоды.`;
+                    irrComparison = `IRR вашего проекта (${calc.irr.toFixed(1)}%) ниже типичной доходности корпоративных проектов. Необходим дополнительный анализ для улучшения показателей.`;
+                }
+            }
+            
+            // Payback интерпретация
+            let paybackInterpretation = '';
+            let paybackRecommendation = '';
+            
+            if (calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod) {
+                if (calc.paybackPeriod <= typicalPayback) {
+                    paybackInterpretation = `Срок окупаемости ${calc.paybackPeriod.toFixed(2)} лет быстрее типичного для проектов управления изменениями, что указывает на быструю отдачу от инвестиций.`;
+                    paybackRecommendation = `Быстрая окупаемость снижает финансовые риски проекта. Рекомендуется приоритизировать реализацию и рассмотреть возможность реинвестирования полученных выгод.`;
+                } else if (calc.paybackPeriod <= inputs.evaluationPeriod * 0.6) {
+                    paybackInterpretation = `Срок окупаемости ${calc.paybackPeriod.toFixed(2)} лет находится в приемлемом диапазоне и обеспечивает возврат инвестиций в течение периода оценки.`;
+                    paybackRecommendation = `Окупаемость в пределах периода оценки подтверждает финансовую обоснованность проекта. Рекомендуется реализация с фокусом на достижение целевых показателей.`;
+                } else {
+                    paybackInterpretation = `Срок окупаемости ${calc.paybackPeriod.toFixed(2)} лет близок к концу периода оценки, что требует внимательного мониторинга для обеспечения окупаемости.`;
+                    paybackRecommendation = `Рекомендуется оптимизировать проект для ускорения окупаемости или продлить период оценки для учета долгосрочных выгод.`;
+                }
+            } else {
+                paybackInterpretation = `Срок окупаемости превышает период оценки (${inputs.evaluationPeriod} лет), что указывает на долгосрочный характер выгод от управления изменениями.`;
+                paybackRecommendation = `Хотя окупаемость выходит за рамки периода оценки, это типично для проектов управления изменениями, где значительная часть выгод реализуется в долгосрочной перспективе (улучшение культуры, снижение текучести, повышение инновационности). Рекомендуется расширить период оценки или пересмотреть параметры для учета всех выгод.`;
+            }
+            
+            return {
+                roiInterpretation,
+                roiContext,
+                roiBenchmark,
+                npvInterpretation,
+                npvSensitivity,
+                npvRecommendation,
+                irrInterpretation,
+                irrRecommendation,
+                irrComparison,
+                paybackInterpretation,
+                paybackRecommendation
+            };
+        }
+        
+        // Генерация анализа рисков
+        function generateRiskAnalysis(calc, inputs) {
+            const optimisticROI = calc.roi * 1.2;
+            const pessimisticROI = calc.roi * 0.8;
+            
+            let optimistic = '';
+            let realistic = '';
+            let pessimistic = '';
+            const mitigation = [];
+            
+            // Оптимистичный сценарий
+            if (optimisticROI > 180) {
+                optimistic = `При оптимистичном сценарии ROI достигает ${optimisticROI.toFixed(1)}%, что указывает на исключительную эффективность. Такой результат возможен при успешной реализации всех запланированных мероприятий и достижении целевых показателей по снижению текучести и повышению продуктивности.`;
+            } else if (optimisticROI > 120) {
+                optimistic = `При оптимистичном сценарии ROI составляет ${optimisticROI.toFixed(1)}%, что значительно выше отраслевого среднего. Это возможно при эффективной реализации проекта и достижении всех целевых показателей.`;
+            } else {
+                optimistic = `При оптимистичном сценарии ROI достигает ${optimisticROI.toFixed(1)}%, что близко к отраслевому среднему. Это указывает на потенциал для улучшения результатов при правильной реализации.`;
+            }
+            
+            // Реалистичный сценарий
+            if (calc.roi > 120) {
+                realistic = `Реалистичный сценарий основан на текущих оценках и показывает ROI ${calc.roi.toFixed(1)}%. Этот результат достижим при стандартной реализации проекта управления изменениями с учетом типичных рисков и возможностей.`;
+            } else {
+                realistic = `Реалистичный сценарий показывает ROI ${calc.roi.toFixed(1)}%. Для улучшения результата рекомендуется пересмотреть параметры проекта, увеличить ожидаемые выгоды или оптимизировать затраты.`;
+            }
+            
+            // Пессимистичный сценарий
+            if (pessimisticROI > 0) {
+                pessimistic = `При пессимистичном сценарии ROI составляет ${pessimisticROI.toFixed(1)}%, что все еще показывает положительную отдачу, но ниже ожидаемой. Это может произойти при задержках в реализации, недостижении целевых показателей или непредвиденных затратах.`;
+            } else {
+                pessimistic = `При пессимистичном сценарии ROI становится отрицательным (${pessimisticROI.toFixed(1)}%), что указывает на необходимость тщательного планирования и управления рисками для избежания такого исхода.`;
+            }
+            
+            // Рекомендации по снижению рисков
+            mitigation.push('Регулярный мониторинг ключевых показателей (текучесть, продуктивность, вовлеченность) для раннего выявления отклонений');
+            mitigation.push('Активное управление сопротивлением изменениям через коммуникацию, обучение и вовлечение сотрудников');
+            mitigation.push('Фазовый подход к реализации с пилотными проектами для проверки эффективности перед масштабированием');
+            mitigation.push('Создание резервов времени и бюджета (10-15%) для покрытия непредвиденных затрат');
+            mitigation.push('Регулярные ретроспективы и корректировка планов на основе полученного опыта');
+            mitigation.push('Фокус на быстрых победах для поддержания мотивации и демонстрации ценности');
+            
+            if (calc.paybackPeriod !== null && calc.paybackPeriod > inputs.evaluationPeriod * 0.7) {
+                mitigation.push('Особое внимание к ускорению окупаемости через оптимизацию затрат и увеличение краткосрочных выгод');
+            }
+            
+            if (calc.roi < 100) {
+                mitigation.push('Пересмотр параметров проекта: возможно, некоторые выгоды недооценены (долгосрочное влияние на культуру, репутацию, инновационность)');
+            }
+            
+            return { optimistic, realistic, pessimistic, mitigation };
+        }
+        
         function renderROIResults(results) {
             const calc = results.calculations;
             const breakdown = results.breakdown;
@@ -17155,6 +19177,108 @@ body.theme-dark .search-highlight {
                 </div>
             `;
 
+            // ========== ЭКСПЕРТНАЯ ИНТЕРПРЕТАЦИЯ ФИНАНСОВЫХ ПОКАЗАТЕЛЕЙ ==========
+            const expertFinancialAnalysis = analyzeFinancialResults(calc, inputs);
+            
+            // Добавляем экспертную интерпретацию в breakdown
+            breakdownEl.innerHTML += `
+                <div class="roi-expert-analysis">
+                    <h5>Экспертная интерпретация финансовых показателей</h5>
+                    
+                    <div class="expert-metric-analysis">
+                        <div class="metric-analysis-item">
+                            <h6>ROI ${calc.roi.toFixed(1)}% — что это значит:</h6>
+                            <p>${expertFinancialAnalysis.roiInterpretation}</p>
+                            <p><strong>Контекст:</strong> ${expertFinancialAnalysis.roiContext}</p>
+                            <p><strong>Сравнение с бенчмарками:</strong> ${expertFinancialAnalysis.roiBenchmark}</p>
+                        </div>
+                        
+                        <div class="metric-analysis-item">
+                            <h6>NPV ${formatCurrency(calc.npv)} — анализ:</h6>
+                            <p>${expertFinancialAnalysis.npvInterpretation}</p>
+                            <p><strong>Чувствительность:</strong> ${expertFinancialAnalysis.npvSensitivity}</p>
+                            <p><strong>Рекомендация:</strong> ${expertFinancialAnalysis.npvRecommendation}</p>
+                        </div>
+                        
+                        ${calc.irr !== null && !isNaN(calc.irr) && isFinite(calc.irr) ? `
+                        <div class="metric-analysis-item">
+                            <h6>IRR ${calc.irr.toFixed(1)}% — оценка доходности:</h6>
+                            <p>${expertFinancialAnalysis.irrInterpretation}</p>
+                            <p><strong>Рекомендация:</strong> ${expertFinancialAnalysis.irrRecommendation}</p>
+                            <p><strong>Сравнение с альтернативными инвестициями:</strong> ${expertFinancialAnalysis.irrComparison}</p>
+                        </div>
+                        ` : ''}
+                        
+                        <div class="metric-analysis-item">
+                            <h6>Срок окупаемости ${calc.paybackPeriod !== null && calc.paybackPeriod <= inputs.evaluationPeriod ? calc.paybackPeriod.toFixed(2) + ' лет' : '> ' + inputs.evaluationPeriod + ' лет'} — оценка:</h6>
+                            <p>${expertFinancialAnalysis.paybackInterpretation}</p>
+                            <p><strong>Рекомендация:</strong> ${expertFinancialAnalysis.paybackRecommendation}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // ========== АНАЛИЗ РИСКОВ И СЦЕНАРИЕВ ==========
+            const riskAnalysis = generateRiskAnalysis(calc, inputs);
+            breakdownEl.innerHTML += `
+                <div class="roi-risk-analysis">
+                    <h5>Анализ рисков и сценариев</h5>
+                    <p class="risk-analysis-intro">Экспертный анализ различных сценариев развития проекта для понимания диапазона возможных результатов.</p>
+                    
+                    <div class="risk-scenarios">
+                        <div class="risk-scenario optimistic">
+                            <h6>Оптимистичный сценарий (+20% выгод):</h6>
+                            <div class="scenario-metrics">
+                                <div class="scenario-metric">
+                                    <span class="metric-label">ROI:</span>
+                                    <span class="metric-value">${(calc.roi * 1.2).toFixed(1)}%</span>
+                                </div>
+                                <div class="scenario-metric">
+                                    <span class="metric-label">NPV:</span>
+                                    <span class="metric-value">${formatCurrency(calc.npv * 1.2)}</span>
+                                </div>
+                            </div>
+                            <p>${riskAnalysis.optimistic}</p>
+                        </div>
+                        
+                        <div class="risk-scenario realistic">
+                            <h6>Реалистичный сценарий (текущие данные):</h6>
+                            <div class="scenario-metrics">
+                                <div class="scenario-metric">
+                                    <span class="metric-label">ROI:</span>
+                                    <span class="metric-value">${calc.roi.toFixed(1)}%</span>
+                                </div>
+                                <div class="scenario-metric">
+                                    <span class="metric-label">NPV:</span>
+                                    <span class="metric-value">${formatCurrency(calc.npv)}</span>
+                                </div>
+                            </div>
+                            <p>${riskAnalysis.realistic}</p>
+                        </div>
+                        
+                        <div class="risk-scenario pessimistic">
+                            <h6>Пессимистичный сценарий (-20% выгод):</h6>
+                            <div class="scenario-metrics">
+                                <div class="scenario-metric">
+                                    <span class="metric-label">ROI:</span>
+                                    <span class="metric-value">${(calc.roi * 0.8).toFixed(1)}%</span>
+                                </div>
+                                <div class="scenario-metric">
+                                    <span class="metric-label">NPV:</span>
+                                    <span class="metric-value">${formatCurrency(calc.npv * 0.8)}</span>
+                                </div>
+                            </div>
+                            <p>${riskAnalysis.pessimistic}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-mitigation">
+                        <h6>Рекомендации по снижению рисков:</h6>
+                        <ul>${riskAnalysis.mitigation.map(m => `<li>${m}</li>`).join('')}</ul>
+                    </div>
+                </div>
+            `;
+            
             // Рекомендации с бенчмарками
             const industryBenchmark = 120; // Средний ROI в отрасли
             let recommendationsHTML = '';
@@ -18546,7 +20670,120 @@ body.theme-dark .search-highlight {
             return recommendations;
         }
 
+        // ========== ЭКСПЕРТНАЯ ИНТЕРПРЕТАЦИЯ ДИАГНОСТИКИ ГОТОВНОСТИ ==========
+        
+        function generateReadinessExpertInsight(results) {
+            const { overallScore, maxScore, level, percentage, categoryScores, recommendations } = results;
+            
+            // Общая экспертная интерпретация
+            let overallInterpretation = '';
+            let strategicContext = '';
+            const keyInsights = [];
+            const criticalGaps = [];
+            const strengths = [];
+            
+            // Определяем общий уровень готовности
+            if (percentage >= 80) {
+                overallInterpretation = `Ваша организация демонстрирует высокую готовность к изменениям (${percentage}%). Это указывает на сильную основу для успешной реализации проекта изменений с минимальными рисками.`;
+                strategicContext = 'Высокая готовность означает, что организация имеет необходимые элементы (лидерство, культура, ресурсы, коммуникации) для эффективного управления изменениями. Это позволяет приступить к реализации с уверенностью и фокусом на достижении целей.';
+                strengths.push('Сильная организационная база для изменений');
+                strengths.push('Минимальные риски при реализации проекта');
+                strengths.push('Возможность быстрого старта и достижения результатов');
+            } else if (percentage >= 60) {
+                overallInterpretation = `Ваша организация показывает среднюю готовность к изменениям (${percentage}%). Есть хорошая основа, но требуются улучшения в отдельных областях перед запуском изменений для снижения рисков.`;
+                strategicContext = 'Средняя готовность указывает на наличие большинства необходимых элементов, но с некоторыми пробелами. Рекомендуется провести подготовительную работу в слабых областях перед полномасштабной реализацией.';
+                keyInsights.push('Необходимо усилить слабые области перед запуском проекта');
+                keyInsights.push('Рекомендуется пилотный подход для проверки готовности');
+            } else if (percentage >= 40) {
+                overallInterpretation = `Ваша организация демонстрирует низкую готовность к изменениям (${percentage}%). Необходимы значительные подготовительные работы перед запуском проекта изменений для обеспечения успеха.`;
+                strategicContext = 'Низкая готовность указывает на существенные пробелы в ключевых областях. Без устранения этих пробелов проект изменений имеет высокий риск неудачи. Рекомендуется комплексная программа подготовки.';
+                criticalGaps.push('Существенные пробелы требуют немедленного внимания');
+                criticalGaps.push('Высокий риск неудачи без подготовки');
+                keyInsights.push('Необходима комплексная программа подготовки');
+            } else {
+                overallInterpretation = `Ваша организация имеет критически низкую готовность к изменениям (${percentage}%). Требуется срочная и комплексная работа по подготовке организации перед любыми попытками реализации изменений.`;
+                strategicContext = 'Критически низкая готовность означает, что организация не готова к изменениям в текущем состоянии. Любые попытки реализации без подготовки имеют очень высокий риск провала. Необходима системная работа по развитию организационных возможностей.';
+                criticalGaps.push('Критические пробелы во всех ключевых областях');
+                criticalGaps.push('Очень высокий риск провала проекта без подготовки');
+                criticalGaps.push('Требуется системная трансформация организационных возможностей');
+            }
+            
+            // Анализ по категориям
+            const categoryAnalysis = {};
+            Object.entries(categoryScores).forEach(([category, score]) => {
+                const categoryName = getReadinessCategoryName(category);
+                let analysis = '';
+                let priority = '';
+                let impact = '';
+                
+                if (score >= 4) {
+                    analysis = `${categoryName} показывает высокий уровень готовности (${score.toFixed(1)}/5). Это сильная сторона организации, которую можно использовать как основу для изменений.`;
+                    priority = 'Низкий приоритет — область не требует внимания';
+                    impact = 'Эта область является опорой для успешной реализации изменений';
+                } else if (score >= 3) {
+                    analysis = `${categoryName} демонстрирует средний уровень готовности (${score.toFixed(1)}/5). Есть хорошая основа, но требуются улучшения для оптимальной поддержки изменений.`;
+                    priority = 'Средний приоритет — рекомендуется улучшение';
+                    impact = 'Улучшение этой области повысит общую готовность и снизит риски';
+                } else if (score >= 2) {
+                    analysis = `${categoryName} показывает низкий уровень готовности (${score.toFixed(1)}/5). Это область требует внимания перед запуском изменений.`;
+                    priority = 'Высокий приоритет — требует немедленного внимания';
+                    impact = 'Низкая готовность в этой области создает значительные риски для проекта';
+                } else {
+                    analysis = `${categoryName} демонстрирует критически низкий уровень готовности (${score.toFixed(1)}/5). Это критическая область, требующая срочного вмешательства.`;
+                    priority = 'Критический приоритет — требует немедленных действий';
+                    impact = 'Критически низкая готовность в этой области может привести к провалу проекта';
+                }
+                
+                categoryAnalysis[category] = { analysis, priority, impact, score };
+            });
+            
+            // Генерация плана действий
+            const actionPlan = {
+                immediate: [],
+                shortTerm: [],
+                mediumTerm: []
+            };
+            
+            recommendations.forEach(rec => {
+                if (rec.urgency === 'critical') {
+                    actionPlan.immediate.push({
+                        category: rec.category,
+                        title: rec.title,
+                        timeframe: rec.timeframe,
+                        actions: rec.actions
+                    });
+                } else if (rec.urgency === 'high') {
+                    actionPlan.shortTerm.push({
+                        category: rec.category,
+                        title: rec.title,
+                        timeframe: rec.timeframe,
+                        actions: rec.actions
+                    });
+                } else {
+                    actionPlan.mediumTerm.push({
+                        category: rec.category,
+                        title: rec.title,
+                        timeframe: rec.timeframe,
+                        actions: rec.actions
+                    });
+                }
+            });
+            
+            return {
+                overallInterpretation,
+                strategicContext,
+                keyInsights,
+                criticalGaps,
+                strengths,
+                categoryAnalysis,
+                actionPlan
+            };
+        }
+        
         function renderReadinessResults(results) {
+            // Генерируем экспертную интерпретацию
+            const expertInsight = generateReadinessExpertInsight(results);
+            
             // Общий балл
             document.getElementById('readinessOverallScore').textContent = `${results.overallScore}/${results.maxScore}`;
             document.getElementById('readinessOverallLevel').textContent = results.level;
@@ -18569,8 +20806,97 @@ body.theme-dark .search-highlight {
                 </div>
             `).join('');
 
-            // Рекомендации
+            // Добавляем экспертную интерпретацию перед рекомендациями
+            const expertInsightEl = document.createElement('div');
+            expertInsightEl.className = 'readiness-expert-insight';
+            expertInsightEl.innerHTML = `
+                <h4>Экспертная интерпретация результатов</h4>
+                <div class="expert-overall-analysis">
+                    <p class="expert-interpretation"><strong>${expertInsight.overallInterpretation}</strong></p>
+                    <p class="expert-context">${expertInsight.strategicContext}</p>
+                </div>
+                
+                ${expertInsight.strengths.length > 0 ? `
+                <div class="expert-strengths">
+                    <h5>Сильные стороны вашей организации:</h5>
+                    <ul>${expertInsight.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+                </div>
+                ` : ''}
+                
+                ${expertInsight.keyInsights.length > 0 ? `
+                <div class="expert-key-insights">
+                    <h5>Ключевые инсайты:</h5>
+                    <ul>${expertInsight.keyInsights.map(i => `<li>${i}</li>`).join('')}</ul>
+                </div>
+                ` : ''}
+                
+                ${expertInsight.criticalGaps.length > 0 ? `
+                <div class="expert-critical-gaps">
+                    <h5>Критические пробелы, требующие внимания:</h5>
+                    <ul>${expertInsight.criticalGaps.map(g => `<li>${g}</li>`).join('')}</ul>
+                </div>
+                ` : ''}
+                
+                <div class="expert-category-analysis">
+                    <h5>Детальный анализ по категориям:</h5>
+                    ${Object.entries(expertInsight.categoryAnalysis).map(([category, analysis]) => `
+                        <div class="category-expert-analysis">
+                            <h6>${getReadinessCategoryName(category)} (${analysis.score.toFixed(1)}/5)</h6>
+                            <p>${analysis.analysis}</p>
+                            <p><strong>Приоритет:</strong> ${analysis.priority}</p>
+                            <p><strong>Влияние:</strong> ${analysis.impact}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="expert-action-plan">
+                    <h5>Стратегический план действий:</h5>
+                    ${expertInsight.actionPlan.immediate.length > 0 ? `
+                        <div class="action-plan-phase immediate">
+                            <h6>Немедленные действия (критический приоритет):</h6>
+                            ${expertInsight.actionPlan.immediate.map(item => `
+                                <div class="action-plan-item">
+                                    <strong>${item.category}: ${item.title}</strong>
+                                    <span class="action-timeframe">${item.timeframe}</span>
+                                    <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${expertInsight.actionPlan.shortTerm.length > 0 ? `
+                        <div class="action-plan-phase short-term">
+                            <h6>Краткосрочные действия (высокий приоритет):</h6>
+                            ${expertInsight.actionPlan.shortTerm.map(item => `
+                                <div class="action-plan-item">
+                                    <strong>${item.category}: ${item.title}</strong>
+                                    <span class="action-timeframe">${item.timeframe}</span>
+                                    <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${expertInsight.actionPlan.mediumTerm.length > 0 ? `
+                        <div class="action-plan-phase medium-term">
+                            <h6>Среднесрочные действия (средний/низкий приоритет):</h6>
+                            ${expertInsight.actionPlan.mediumTerm.map(item => `
+                                <div class="action-plan-item">
+                                    <strong>${item.category}: ${item.title}</strong>
+                                    <span class="action-timeframe">${item.timeframe}</span>
+                                    <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            // Вставляем экспертную интерпретацию перед рекомендациями
             const recommendationsContainer = document.getElementById('readinessRecommendations');
+            recommendationsContainer.parentNode.insertBefore(expertInsightEl, recommendationsContainer);
+            
+            // Рекомендации
             recommendationsContainer.innerHTML = results.recommendations.map(rec => `
                 <div class="readiness-recommendation ${rec.urgency}">
                     <div class="readiness-recommendation-header">
@@ -19054,10 +21380,117 @@ body.theme-dark .search-highlight {
             `;
         }
 
+        // ========== ЭКСПЕРТНАЯ ИНТЕРПРЕТАЦИЯ ГИБРИДНОЙ МОДЕЛИ ==========
+        
+        function generateHybridExpertInsight(baseModel, elements) {
+            const totalElements = baseModel.elements.length + elements.length;
+            const hasMultipleSources = new Set(elements.map(e => e.source)).size > 1;
+            
+            let overallAssessment = '';
+            let strengths = [];
+            const risks = [];
+            const recommendations = [];
+            
+            // Оценка сложности модели
+            if (totalElements <= 5) {
+                overallAssessment = `Ваша гибридная модель имеет оптимальную сложность (${totalElements} элементов). Это обеспечивает баланс между полнотой подхода и простотой реализации.`;
+                strengths.push('Простота внедрения и понимания командой');
+                strengths.push('Минимальный риск перегрузки процесса');
+                strengths.push('Быстрое достижение результатов');
+            } else if (totalElements <= 10) {
+                overallAssessment = `Ваша гибридная модель имеет среднюю сложность (${totalElements} элементов). Это позволяет охватить ключевые аспекты изменений, но требует тщательного планирования интеграции.`;
+                strengths.push('Комплексный охват различных аспектов изменений');
+                strengths.push('Гибкость в адаптации под разные ситуации');
+                risks.push('Риск усложнения процесса внедрения');
+                risks.push('Необходимость дополнительного обучения команды');
+            } else {
+                overallAssessment = `Ваша гибридная модель имеет высокую сложность (${totalElements} элементов). Это обеспечивает максимальный охват, но требует значительных ресурсов и опыта для успешной реализации.`;
+                strengths.push('Максимальный охват всех аспектов изменений');
+                strengths.push('Высокая адаптивность к сложным проектам');
+                risks.push('Высокий риск перегрузки команды и процесса');
+                risks.push('Требуется значительный опыт и ресурсы');
+                risks.push('Необходимость поэтапного внедрения');
+            }
+            
+            // Оценка сочетания базовой модели и элементов
+            let combinationAssessment = '';
+            if (hasMultipleSources && elements.length > 0) {
+                combinationAssessment = `Вы успешно интегрировали элементы из разных источников (${new Set(elements.map(e => e.source)).size} различных моделей), что создает уникальную комбинацию, адаптированную под ваши потребности.`;
+                strengths.push('Уникальная комбинация лучших практик');
+                strengths.push('Адаптация под специфику проекта');
+                recommendations.push('Убедитесь, что элементы логически связаны и не противоречат друг другу');
+                recommendations.push('Проведите пилотное тестирование для проверки совместимости элементов');
+            } else if (elements.length > 0) {
+                combinationAssessment = `Вы дополнили базовую модель ${baseModel.name} элементами из ${elements[0].source}, что создает целостный подход с фокусом на определенной методологии.`;
+                strengths.push('Целостный подход с единой методологической основой');
+                strengths.push('Простота обучения команды');
+            } else {
+                combinationAssessment = `Вы используете базовую модель ${baseModel.name} без дополнительных элементов. Это простой и проверенный подход, который хорошо подходит для стандартных проектов изменений.`;
+                strengths.push('Простота и проверенность подхода');
+                strengths.push('Минимальные требования к обучению');
+                recommendations.push('Рассмотрите возможность добавления дополнительных элементов для повышения эффективности');
+            }
+            
+            // Оценка базовой модели
+            let baseModelAssessment = '';
+            const modelAssessments = {
+                'adkar': {
+                    assessment: `${baseModel.name} обеспечивает структурированный подход к индивидуальным изменениям. Это сильная основа для гибридной модели, особенно при работе с сопротивлением.`,
+                    strengths: ['Фокус на индивидуальном уровне', 'Четкая структура этапов', 'Измеримость прогресса'],
+                    recommendations: ['Дополните элементами для работы на организационном уровне', 'Добавьте инструменты коммуникации']
+                },
+                'kotter': {
+                    assessment: `${baseModel.name} предоставляет четкую структуру из 8 шагов для организационных изменений. Это отличная основа для крупных трансформаций.`,
+                    strengths: ['Структурированный подход', 'Фокус на лидерстве', 'Проверенная методология'],
+                    recommendations: ['Дополните элементами для работы с сопротивлением', 'Добавьте инструменты для индивидуальной поддержки']
+                },
+                'levin': {
+                    assessment: `${baseModel.name} фокусируется на трех этапах изменений. Это гибкая основа, которая хорошо сочетается с дополнительными элементами.`,
+                    strengths: ['Простота и ясность', 'Гибкость применения', 'Фокус на психологии изменений'],
+                    recommendations: ['Дополните конкретными инструментами для каждого этапа', 'Добавьте элементы для измерения прогресса']
+                }
+            };
+            
+            const modelAssessment = modelAssessments[baseModel.id] || {
+                assessment: `${baseModel.name} является хорошей основой для гибридной модели. Убедитесь, что дополнительные элементы логически дополняют базовую структуру.`,
+                strengths: ['Проверенная методология', 'Адаптивность'],
+                recommendations: ['Оцените совместимость дополнительных элементов', 'Проведите тестирование интеграции']
+            };
+            
+            baseModelAssessment = modelAssessment.assessment;
+            strengths.push(...modelAssessment.strengths);
+            recommendations.push(...modelAssessment.recommendations);
+            
+            // Рекомендации по внедрению
+            if (totalElements > 10) {
+                recommendations.push('Рекомендуется поэтапное внедрение: сначала базовая модель, затем постепенное добавление элементов');
+                recommendations.push('Создайте детальный план интеграции с четкими этапами и метриками');
+            }
+            
+            if (hasMultipleSources) {
+                recommendations.push('Разработайте единый глоссарий терминов для всех элементов модели');
+                recommendations.push('Обеспечьте обучение команды по всем используемым методологиям');
+            }
+            
+            return {
+                overallAssessment,
+                combinationAssessment,
+                baseModelAssessment,
+                strengths,
+                risks,
+                recommendations,
+                totalElements,
+                hasMultipleSources
+            };
+        }
+        
         function renderHybridPreview() {
             const container = document.getElementById('hybridPreview');
             const selectedBase = hybridBaseModels.find(m => m.id === hybridSelectedBase);
             const selectedElements = hybridElements.filter(e => hybridSelectedElements.includes(e.id));
+            
+            // Генерируем экспертную интерпретацию
+            const expertInsight = generateHybridExpertInsight(selectedBase, selectedElements);
 
             container.innerHTML = `
                 <div class="hybrid-preview-header">
@@ -19093,6 +21526,36 @@ body.theme-dark .search-highlight {
                                 ${selectedElements.map(element => `<li>${element.name} (${element.source})</li>`).join('')}
                             </ul>
                         </div>
+                    ` : ''}
+                </div>
+                
+                <div class="hybrid-expert-insight">
+                    <h5>Экспертная оценка вашей гибридной модели</h5>
+                    <div class="expert-overall-assessment">
+                        <p class="expert-assessment-text"><strong>${expertInsight.overallAssessment}</strong></p>
+                        <p class="expert-combination-text">${expertInsight.combinationAssessment}</p>
+                        <p class="expert-base-model-text">${expertInsight.baseModelAssessment}</p>
+                    </div>
+                    
+                    ${expertInsight.strengths.length > 0 ? `
+                    <div class="expert-strengths">
+                        <h6>Сильные стороны вашей модели:</h6>
+                        <ul>${expertInsight.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${expertInsight.risks.length > 0 ? `
+                    <div class="expert-risks">
+                        <h6>Потенциальные риски и рекомендации по их митигации:</h6>
+                        <ul>${expertInsight.risks.map(r => `<li>${r}</li>`).join('')}</ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${expertInsight.recommendations.length > 0 ? `
+                    <div class="expert-recommendations">
+                        <h6>Рекомендации по оптимизации и внедрению:</h6>
+                        <ul>${expertInsight.recommendations.map(r => `<li>${r}</li>`).join('')}</ul>
+                    </div>
                     ` : ''}
                 </div>
             `;
@@ -19980,6 +22443,167 @@ body.theme-dark .search-highlight {
             container.innerHTML = svg;
         }
         
+        // ========== ЭКСПЕРТНАЯ ИНТЕРПРЕТАЦИЯ PCT ОЦЕНКИ ==========
+        
+        function generatePCTExpertInsight(scores) {
+            const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            const maxScore = 120; // 4 категории × 30 баллов
+            const percentage = (totalScore / maxScore) * 100;
+            
+            // Определяем общий уровень готовности проекта
+            let overallAssessment = '';
+            let strategicContext = '';
+            const strengths = [];
+            const criticalGaps = [];
+            const categoryAnalysis = {};
+            
+            if (percentage >= 80) {
+                overallAssessment = `Ваш проект демонстрирует высокую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Все четыре измерения (Успех, Лидерство, Проекты, Изменения) находятся на сильном уровне, что указывает на высокую вероятность успешной реализации.`;
+                strategicContext = 'Высокий общий балл PCT означает, что проект имеет сильную основу во всех критических измерениях. Это позволяет приступить к реализации с уверенностью, но важно поддерживать баланс между измерениями.';
+                strengths.push('Сильная основа во всех четырех измерениях PCT');
+                strengths.push('Минимальные риски при реализации проекта');
+                strengths.push('Возможность быстрого старта и достижения результатов');
+            } else if (percentage >= 60) {
+                overallAssessment = `Ваш проект показывает среднюю готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Большинство измерений находятся на приемлемом уровне, но есть области, требующие внимания перед запуском проекта.`;
+                strategicContext = 'Средняя готовность указывает на наличие большинства необходимых элементов, но с некоторыми пробелами. Рекомендуется провести работу в слабых областях перед полномасштабной реализацией.';
+                strengths.push('Хорошая основа в большинстве измерений');
+                criticalGaps.push('Необходимо усилить слабые измерения перед запуском');
+            } else if (percentage >= 40) {
+                overallAssessment = `Ваш проект демонстрирует низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Есть существенные пробелы в ключевых измерениях, что создает высокий риск неудачи проекта.`;
+                strategicContext = 'Низкая готовность указывает на существенные пробелы в критических измерениях. Без устранения этих пробелов проект имеет высокий риск неудачи. Рекомендуется комплексная программа подготовки.';
+                criticalGaps.push('Существенные пробелы требуют немедленного внимания');
+                criticalGaps.push('Высокий риск неудачи без подготовки');
+            } else {
+                overallAssessment = `Ваш проект имеет критически низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Требуется срочная и комплексная работа по подготовке проекта перед любыми попытками реализации.`;
+                strategicContext = 'Критически низкая готовность означает, что проект не готов к реализации в текущем состоянии. Любые попытки реализации без подготовки имеют очень высокий риск провала. Необходима системная работа по развитию всех измерений PCT.';
+                criticalGaps.push('Критические пробелы во всех измерениях');
+                criticalGaps.push('Очень высокий риск провала проекта без подготовки');
+                criticalGaps.push('Требуется системная трансформация проекта');
+            }
+            
+            // Анализ баланса между измерениями
+            const avgScore = totalScore / 4;
+            const imbalances = [];
+            Object.entries(scores).forEach(([key, score]) => {
+                const diff = Math.abs(score - avgScore);
+                if (diff > 5) {
+                    imbalances.push({ category: key, score, diff });
+                }
+            });
+            
+            let balanceAssessment = '';
+            if (imbalances.length === 0) {
+                balanceAssessment = 'Все четыре измерения PCT находятся в хорошем балансе, что является сильной стороной вашего проекта.';
+                strengths.push('Сбалансированность всех измерений PCT');
+            } else if (imbalances.length <= 2) {
+                balanceAssessment = `Есть некоторые дисбалансы между измерениями. Рекомендуется усилить слабые измерения для достижения лучшего баланса.`;
+                criticalGaps.push(`Дисбаланс между измерениями: ${imbalances.map(i => i.category).join(', ')}`);
+            } else {
+                balanceAssessment = 'Значительные дисбалансы между измерениями PCT. Это создает риск того, что сильные измерения не смогут компенсировать слабые.';
+                criticalGaps.push('Критические дисбалансы между измерениями требуют немедленного внимания');
+            }
+            
+            // Детальный анализ по категориям
+            const categoryNames = {
+                success: 'Успех',
+                leadership: 'Лидерство/Спонсорство',
+                projectManagement: 'Управление проектами',
+                changeManagement: 'Управление изменениями'
+            };
+            
+            Object.entries(scores).forEach(([key, score]) => {
+                const name = categoryNames[key];
+                let analysis = '';
+                let priority = '';
+                let impact = '';
+                let recommendations = [];
+                
+                if (score >= 25) {
+                    analysis = `${name} показывает отличный уровень (${score}/30). Это сильная сторона проекта, которую можно использовать как основу для успешной реализации.`;
+                    priority = 'Низкий приоритет — область не требует внимания';
+                    impact = 'Эта область является опорой для успешной реализации проекта';
+                    recommendations.push('Продолжайте поддерживать текущий уровень');
+                    recommendations.push('Используйте эту область как основу для усиления других измерений');
+                } else if (score >= 20) {
+                    analysis = `${name} демонстрирует приемлемый уровень (${score}/30). Есть хорошая основа, но требуются улучшения для оптимальной поддержки проекта.`;
+                    priority = 'Средний приоритет — рекомендуется улучшение';
+                    impact = 'Улучшение этой области повысит общую готовность проекта';
+                    recommendations.push('Проведите дополнительный анализ факторов в этой категории');
+                    recommendations.push('Разработайте план улучшения слабых факторов');
+                } else if (score >= 10) {
+                    analysis = `${name} показывает низкий уровень (${score}/30). Это область требует немедленного внимания перед запуском проекта.`;
+                    priority = 'Высокий приоритет — требует немедленного внимания';
+                    impact = 'Низкий уровень в этой области создает значительные риски для проекта';
+                    recommendations.push('Срочно разработайте план улучшения факторов в этой категории');
+                    recommendations.push('Привлеките дополнительные ресурсы и экспертизу');
+                    recommendations.push('Рассмотрите возможность задержки запуска проекта до улучшения');
+                } else if (score > 0) {
+                    analysis = `${name} демонстрирует критически низкий уровень (${score}/30). Это критическая область, требующая срочного вмешательства.`;
+                    priority = 'Критический приоритет — требует немедленных действий';
+                    impact = 'Критически низкий уровень в этой области может привести к провалу проекта';
+                    recommendations.push('Немедленно остановите планирование запуска проекта');
+                    recommendations.push('Срочно разработайте комплексный план улучшения');
+                    recommendations.push('Привлеките внешнюю экспертизу для этой категории');
+                } else {
+                    analysis = `${name} не оценена (0/30). Необходимо провести оценку всех факторов в этой категории для получения полной картины готовности проекта.`;
+                    priority = 'Критический приоритет — требуется полная оценка';
+                    impact = 'Отсутствие оценки не позволяет судить о готовности проекта';
+                    recommendations.push('Немедленно проведите оценку всех факторов в этой категории');
+                }
+                
+                categoryAnalysis[key] = {
+                    name,
+                    score,
+                    analysis,
+                    priority,
+                    impact,
+                    recommendations
+                };
+            });
+            
+            // Генерация приоритетных действий
+            const priorityActions = {
+                critical: [],
+                high: [],
+                medium: []
+            };
+            
+            Object.values(categoryAnalysis).forEach(cat => {
+                if (cat.score < 10) {
+                    priorityActions.critical.push({
+                        category: cat.name,
+                        score: cat.score,
+                        actions: cat.recommendations
+                    });
+                } else if (cat.score < 20) {
+                    priorityActions.high.push({
+                        category: cat.name,
+                        score: cat.score,
+                        actions: cat.recommendations
+                    });
+                } else if (cat.score < 25) {
+                    priorityActions.medium.push({
+                        category: cat.name,
+                        score: cat.score,
+                        actions: cat.recommendations
+                    });
+                }
+            });
+            
+            return {
+                overallAssessment,
+                strategicContext,
+                balanceAssessment,
+                strengths,
+                criticalGaps,
+                categoryAnalysis,
+                priorityActions,
+                totalScore,
+                percentage,
+                imbalances
+            };
+        }
+        
         function generatePCTRecommendations() {
             const container = document.getElementById('pctRecommendations');
             if (!container) return;
@@ -19991,7 +22615,17 @@ body.theme-dark .search-highlight {
                 changeManagement: calculateCategoryScore('changeManagement')
             };
             
-            const recommendations = [];
+            // Проверяем, есть ли хотя бы одна оценка
+            const hasAnyScore = Object.values(scores).some(score => score > 0);
+            
+            if (!hasAnyScore) {
+                container.innerHTML = '<p>Начните оценку факторов, чтобы получить рекомендации.</p>';
+                return;
+            }
+            
+            // Генерируем экспертную интерпретацию
+            const expertInsight = generatePCTExpertInsight(scores);
+            
             const categoryNames = {
                 success: 'Успех',
                 leadership: 'Лидерство/Спонсорство',
@@ -19999,31 +22633,112 @@ body.theme-dark .search-highlight {
                 changeManagement: 'Управление изменениями'
             };
             
+            const basicRecommendations = [];
             Object.keys(scores).forEach(key => {
                 const score = scores[key];
                 const name = categoryNames[key];
                 
                 if (score >= 25) {
-                    recommendations.push(`<strong>${name}</strong>: Сильная сторона (${score}/30) — продолжайте поддерживать и использовать.`);
+                    basicRecommendations.push(`<strong>${name}</strong>: Сильная сторона (${score}/30) — продолжайте поддерживать и использовать.`);
                 } else if (score >= 20) {
-                    recommendations.push(`<strong>${name}</strong>: Есть риски (${score}/30) — необходим дополнительный анализ.`);
+                    basicRecommendations.push(`<strong>${name}</strong>: Есть риски (${score}/30) — необходим дополнительный анализ.`);
                 } else if (score >= 10) {
-                    recommendations.push(`<strong>${name}</strong>: Высокий риск (${score}/30) — требуются немедленные меры.`);
+                    basicRecommendations.push(`<strong>${name}</strong>: Высокий риск (${score}/30) — требуются немедленные меры.`);
                 } else if (score > 0) {
-                    recommendations.push(`<strong>${name}</strong>: Критический уровень (${score}/30) — срочно требуется вмешательство.`);
+                    basicRecommendations.push(`<strong>${name}</strong>: Критический уровень (${score}/30) — срочно требуется вмешательство.`);
                 }
             });
             
-            if (recommendations.length === 0) {
-                container.innerHTML = '<p>Начните оценку факторов, чтобы получить рекомендации.</p>';
-            } else {
-                container.innerHTML = `
-                    <h4>Рекомендации на основе оценки:</h4>
+            container.innerHTML = `
+                <div class="pct-expert-insight">
+                    <h4>Экспертная интерпретация результатов PCT</h4>
+                    <div class="expert-overall-analysis">
+                        <p class="expert-interpretation"><strong>${expertInsight.overallAssessment}</strong></p>
+                        <p class="expert-context">${expertInsight.strategicContext}</p>
+                        <p class="expert-balance">${expertInsight.balanceAssessment}</p>
+                    </div>
+                    
+                    ${expertInsight.strengths.length > 0 ? `
+                    <div class="expert-strengths">
+                        <h5>Сильные стороны вашего проекта:</h5>
+                        <ul>${expertInsight.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+                    </div>
+                    ` : ''}
+                    
+                    ${expertInsight.criticalGaps.length > 0 ? `
+                    <div class="expert-critical-gaps">
+                        <h5>Критические пробелы, требующие внимания:</h5>
+                        <ul>${expertInsight.criticalGaps.map(g => `<li>${g}</li>`).join('')}</ul>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="expert-category-analysis">
+                        <h5>Детальный анализ по измерениям PCT:</h5>
+                        ${Object.entries(expertInsight.categoryAnalysis).map(([key, cat]) => `
+                            <div class="category-expert-analysis">
+                                <h6>${cat.name} (${cat.score}/30)</h6>
+                                <p>${cat.analysis}</p>
+                                <p><strong>Приоритет:</strong> ${cat.priority}</p>
+                                <p><strong>Влияние:</strong> ${cat.impact}</p>
+                                ${cat.recommendations.length > 0 ? `
+                                    <div class="category-recommendations">
+                                        <strong>Рекомендации:</strong>
+                                        <ul>${cat.recommendations.map(r => `<li>${r}</li>`).join('')}</ul>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${expertInsight.priorityActions.critical.length > 0 || expertInsight.priorityActions.high.length > 0 || expertInsight.priorityActions.medium.length > 0 ? `
+                    <div class="expert-priority-actions">
+                        <h5>Приоритетные действия:</h5>
+                        ${expertInsight.priorityActions.critical.length > 0 ? `
+                            <div class="action-plan-phase immediate">
+                                <h6>Немедленные действия (критический приоритет):</h6>
+                                ${expertInsight.priorityActions.critical.map(item => `
+                                    <div class="action-plan-item">
+                                        <strong>${item.category} (${item.score}/30)</strong>
+                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${expertInsight.priorityActions.high.length > 0 ? `
+                            <div class="action-plan-phase short-term">
+                                <h6>Краткосрочные действия (высокий приоритет):</h6>
+                                ${expertInsight.priorityActions.high.map(item => `
+                                    <div class="action-plan-item">
+                                        <strong>${item.category} (${item.score}/30)</strong>
+                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        
+                        ${expertInsight.priorityActions.medium.length > 0 ? `
+                            <div class="action-plan-phase medium-term">
+                                <h6>Среднесрочные действия (средний приоритет):</h6>
+                                ${expertInsight.priorityActions.medium.map(item => `
+                                    <div class="action-plan-item">
+                                        <strong>${item.category} (${item.score}/30)</strong>
+                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="pct-basic-recommendations">
+                    <h4>Краткие рекомендации на основе оценки:</h4>
                     <ul>
-                        ${recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                        ${basicRecommendations.map(rec => `<li>${rec}</li>`).join('')}
                     </ul>
-                `;
-            }
+                </div>
+            `;
         }
         
         function setupPCTEventListeners() {
@@ -20726,72 +23441,161 @@ body.theme-dark .search-highlight {
         let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
-        let isScrolling = false;
-        let scrollTimeout = null;
         let touchStartTime = 0;
+        let maxVerticalMovement = 0;
+        let maxHorizontalMovement = 0;
+        let touchTarget = null;
+        
+        // Проверка, является ли элемент интерактивным (не должен блокировать свайпы)
+        function isInteractiveElement(element) {
+            if (!element) return false;
+            
+            const tagName = element.tagName.toLowerCase();
+            
+            // Строгие интерактивные элементы, которые точно должны блокировать свайпы
+            const strictInteractiveTags = ['input', 'button', 'textarea', 'select'];
+            if (strictInteractiveTags.includes(tagName)) return true;
+            
+            // Ссылки блокируют свайпы только если они не в карточках или больших кликабельных областях
+            if (tagName === 'a') {
+                // Проверяем, не является ли ссылка частью большой кликабельной области (карточки)
+                const parentCard = element.closest('.card, .useful-option-card, .faq-topic-card, .practice-tool-card');
+                // Если ссылка в большой карточке, не блокируем свайпы (пользователь может свайпать по карточке)
+                if (parentCard) return false;
+                // Иначе блокируем (это обычная ссылка)
+                return true;
+            }
+            
+            // Проверка на scrollable элементы с небольшим контентом (не весь слайд)
+            const style = window.getComputedStyle(element);
+            const isScrollable = element.scrollHeight > element.clientHeight && 
+                                (style.overflowY === 'auto' || style.overflowY === 'scroll' || style.overflowY === 'overlay');
+            // Блокируем свайпы только в небольших scrollable элементах (не в основном слайде)
+            if (isScrollable && element !== document.querySelector('.slide.active')) {
+                // Проверяем, не является ли это основным контейнером слайда
+                const isMainSlide = element.classList.contains('slide') || element.closest('.slide.active') === element;
+                if (!isMainSlide) return true;
+            }
+            
+            // Проверка на элементы с contenteditable (редактируемые поля)
+            if (element.contentEditable === 'true') return true;
+            
+            // НЕ блокируем свайпы на элементах с onclick, так как они могут быть на карточках
+            // Пользователь может свайпать по карточке, даже если она кликабельна
+            
+            return false;
+        }
         
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
             touchStartTime = Date.now();
-            isScrolling = false;
+            maxVerticalMovement = 0;
+            maxHorizontalMovement = 0;
+            touchTarget = e.target;
             
-            // Сброс таймера скролла
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
+            // На iPhone свайпы от левого края экрана могут конфликтовать с системным жестом "назад"
+            // Но мы не блокируем их, так как пользователь может хотеть свайпать слайды
+            // Система iOS сама обработает конфликт, если это системный жест
         }, { passive: true });
         
         document.addEventListener('touchmove', (e) => {
-            // Определяем, скроллит ли пользователь
+            const currentX = e.changedTouches[0].screenX;
             const currentY = e.changedTouches[0].screenY;
+            
+            const deltaX = Math.abs(currentX - touchStartX);
             const deltaY = Math.abs(currentY - touchStartY);
             
-            // Если вертикальное движение больше 10px, считаем это скроллом
-            if (deltaY > 10) {
-                isScrolling = true;
-            }
-            
-            // Сброс таймера при движении
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-            }
-            scrollTimeout = setTimeout(() => {
-                isScrolling = false;
-            }, 150);
+            // Отслеживаем максимальные движения для более точного определения направления
+            maxHorizontalMovement = Math.max(maxHorizontalMovement, deltaX);
+            maxVerticalMovement = Math.max(maxVerticalMovement, deltaY);
         }, { passive: true });
         
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             
-            // Не обрабатываем свайп, если пользователь скроллил
-            // или если прошло слишком много времени (более 500ms)
             const touchDuration = Date.now() - touchStartTime;
-            if (!isScrolling && touchDuration < 500) {
-                handleSwipe();
-            }
-            
-            // Очистка таймера
-            if (scrollTimeout) {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = null;
-            }
-            isScrolling = false;
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const swipeThreshold = 80; // Увеличен порог с 50 до 80px
             const horizontalSwipe = Math.abs(touchEndX - touchStartX);
             const verticalSwipe = Math.abs(touchEndY - touchStartY);
             
-            // Только если горизонтальный свайп значительно больше вертикального
-            // (минимум в 1.5 раза больше) и превышает порог
-            if (horizontalSwipe > verticalSwipe * 1.5 && horizontalSwipe > swipeThreshold) {
-                if (touchEndX < touchStartX) {
+            // Проверяем, не находится ли пользователь в интерактивном элементе
+            const isInInteractiveElement = isInteractiveElement(touchTarget) || 
+                                         isInteractiveElement(touchTarget?.closest('input, button, textarea, select, a, [contenteditable="true"]'));
+            
+            // Проверяем, не находится ли пользователь в scrollable области
+            let scrollableParent = touchTarget;
+            let isInScrollableArea = false;
+            let scrollableElement = null;
+            while (scrollableParent && scrollableParent !== document.body) {
+                const style = window.getComputedStyle(scrollableParent);
+                const isScrollable = scrollableParent.scrollHeight > scrollableParent.clientHeight && 
+                                    (style.overflowY === 'auto' || style.overflowY === 'scroll' || style.overflowY === 'overlay');
+                if (isScrollable) {
+                    isInScrollableArea = true;
+                    scrollableElement = scrollableParent;
+                    break;
+                }
+                scrollableParent = scrollableParent.parentElement;
+            }
+            
+            // Проверяем, действительно ли пользователь скроллил в scrollable области
+            let actuallyScrolled = false;
+            if (isInScrollableArea && scrollableElement) {
+                // Проверяем, изменилась ли позиция скролла
+                const scrollTop = scrollableElement.scrollTop;
+                // Если элемент был прокручен, значит пользователь скроллил, а не свайпал
+                // Но это сложно определить точно, поэтому используем более мягкую проверку
+                actuallyScrolled = maxVerticalMovement > 20 && maxVerticalMovement > maxHorizontalMovement * 2;
+            }
+            
+            // Определяем, был ли это явный вертикальный скролл
+            // Более мягкая проверка: вертикальное движение должно быть значительно больше горизонтального
+            const isVerticalScroll = maxVerticalMovement > 40 && maxVerticalMovement > maxHorizontalMovement * 2;
+            
+            // Не обрабатываем свайп, если:
+            // 1. Пользователь в интерактивном элементе (input, button и т.д.)
+            // 2. Пользователь в scrollable области и действительно скроллил вертикально
+            // 3. Свайп был слишком долгим (более 800ms) - медленный жест
+            // 4. Вертикальное движение значительно больше горизонтального (явный скролл)
+            if (!isInInteractiveElement && 
+                !(isInScrollableArea && actuallyScrolled) && 
+                touchDuration < 800 && 
+                !isVerticalScroll) {
+                handleSwipe(horizontalSwipe, verticalSwipe, maxHorizontalMovement, maxVerticalMovement);
+            }
+            
+            // Сброс переменных
+            maxVerticalMovement = 0;
+            maxHorizontalMovement = 0;
+            touchTarget = null;
+        }, { passive: true });
+        
+        function handleSwipe(horizontalSwipe, verticalSwipe, maxHorizontal, maxVertical) {
+            // Уменьшен порог для более чувствительного распознавания на iPhone
+            // Порог 50px оптимален для комфортного использования на мобильных устройствах
+            const swipeThreshold = 50;
+            
+            // Используем максимальные движения для более точного определения направления
+            const effectiveHorizontalSwipe = Math.max(horizontalSwipe, maxHorizontal || 0);
+            const effectiveVerticalSwipe = Math.max(verticalSwipe, maxVertical || 0);
+            
+            // Более мягкое условие для распознавания горизонтального свайпа:
+            // 1. Горизонтальное движение должно быть больше вертикального (минимум в 1.2 раза)
+            // 2. Горизонтальное движение должно превышать порог
+            // 3. Если горизонтальное движение очень большое (> 100px), принимаем его даже при небольшом вертикальном движении
+            const isHorizontalSwipe = (effectiveHorizontalSwipe > effectiveVerticalSwipe * 1.2 && effectiveHorizontalSwipe > swipeThreshold) ||
+                                     (effectiveHorizontalSwipe > 100 && effectiveHorizontalSwipe > effectiveVerticalSwipe);
+            
+            if (isHorizontalSwipe) {
+                // Определяем направление свайпа с небольшим запасом для предотвращения случайных срабатываний
+                const swipeDirection = touchEndX - touchStartX;
+                const minSwipeDistance = 30; // Минимальное расстояние для уверенного распознавания направления
+                
+                if (swipeDirection < -minSwipeDistance) {
                     // Swipe left - next slide
                     changeSlide(1);
-                } else if (touchEndX > touchStartX) {
+                } else if (swipeDirection > minSwipeDistance) {
                     // Swipe right - previous slide
                     changeSlide(-1);
                 }

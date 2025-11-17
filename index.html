@@ -3012,9 +3012,19 @@ body.theme-dark .search-highlight {
   transition: all 0.35s var(--ease-standard);
 }
 
-.pct-score-item:hover {
+.pct-score-item.clickable {
+  cursor: pointer;
+}
+
+.pct-score-item.clickable:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+}
+
+.pct-score-item.clickable:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .pct-score-item.excellent {
@@ -4386,6 +4396,340 @@ body.theme-dark .search-highlight {
   line-height: 1.6;
   color: var(--color-text-secondary);
   font-size: 14px;
+}
+
+/* ========== ПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ PCT ========== */
+
+.pct-critical-actions {
+  margin: var(--space-32) 0;
+}
+
+.pct-critical-actions h4 {
+  margin: 0 0 var(--space-24) 0;
+  color: #E01E5A;
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+}
+
+.critical-action-card {
+  background: rgba(224, 30, 90, 0.1);
+  border: 2px solid #E01E5A;
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  box-shadow: var(--shadow-md);
+}
+
+.critical-action-card .action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-16);
+  gap: var(--space-16);
+}
+
+.critical-action-card .action-header h5 {
+  margin: 0;
+  color: #E01E5A;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  flex: 1;
+}
+
+.critical-action-card .action-priority {
+  background: #E01E5A;
+  color: white;
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
+}
+
+.critical-action-card .action-description {
+  margin: 0 0 var(--space-16) 0;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+.critical-action-card .action-timeframe {
+  margin-bottom: var(--space-16);
+  padding: var(--space-12);
+  background: rgba(224, 30, 90, 0.1);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.critical-action-card .action-steps {
+  margin-top: var(--space-16);
+}
+
+.critical-action-card .action-steps h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.critical-action-card .action-steps ol {
+  margin: 0;
+  padding-left: var(--space-24);
+  list-style-type: decimal;
+}
+
+.critical-action-card .action-steps li {
+  margin-bottom: var(--space-12);
+  line-height: 1.7;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.pct-practical-recommendations {
+  margin: var(--space-32) 0;
+}
+
+.pct-practical-recommendations h4 {
+  margin: 0 0 var(--space-24) 0;
+  color: var(--pres-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.practical-recommendation-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-standard);
+}
+
+.practical-recommendation-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.practical-recommendation-card h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--pres-primary);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.practical-recommendation-card .recommendation-timeframe {
+  margin-bottom: var(--space-16);
+  padding: var(--space-8) var(--space-12);
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.practical-recommendation-card .recommendation-actions {
+  margin-top: var(--space-16);
+}
+
+.practical-recommendation-card .recommendation-actions h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.practical-recommendation-card .recommendation-actions ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.practical-recommendation-card .recommendation-actions li {
+  margin-bottom: var(--space-10);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.pct-quick-wins {
+  margin: var(--space-32) 0;
+  background: rgba(45, 182, 125, 0.05);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  border: 1px solid rgba(45, 182, 125, 0.2);
+}
+
+.pct-quick-wins h4 {
+  margin: 0 0 var(--space-12) 0;
+  color: #2DB67D;
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.pct-quick-wins .quick-wins-intro {
+  margin: 0 0 var(--space-20) 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.quick-win-card {
+  background: white;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-20);
+  margin-bottom: var(--space-16);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-win-card:last-child {
+  margin-bottom: 0;
+}
+
+.quick-win-card h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--pres-primary);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.quick-win-card p {
+  margin: 0 0 var(--space-12) 0;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.quick-win-card .quick-win-details {
+  margin-top: var(--space-12);
+  padding-top: var(--space-12);
+  border-top: 1px solid var(--color-border);
+}
+
+.quick-win-card .quick-win-details > div {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.quick-win-card .quick-win-details > div:last-child {
+  margin-bottom: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.pct-interdependencies {
+  margin: var(--space-32) 0;
+}
+
+.pct-interdependencies h4 {
+  margin: 0 0 var(--space-24) 0;
+  color: var(--pres-primary);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.interdependency-card {
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid #4A90E2;
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  box-shadow: var(--shadow-sm);
+}
+
+.interdependency-card:last-child {
+  margin-bottom: 0;
+}
+
+.interdependency-card h5 {
+  margin: 0 0 var(--space-12) 0;
+  color: #4A90E2;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.interdependency-card p {
+  margin: 0 0 var(--space-12) 0;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.interdependency-card .interdependency-recommendation {
+  margin: var(--space-16) 0;
+  padding: var(--space-12);
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #4A90E2;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.interdependency-card .interdependency-actions {
+  margin-top: var(--space-16);
+}
+
+.interdependency-card .interdependency-actions h6 {
+  margin: 0 0 var(--space-12) 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.interdependency-card .interdependency-actions ul {
+  margin: 0;
+  padding-left: var(--space-20);
+  list-style-type: disc;
+}
+
+.interdependency-card .interdependency-actions li {
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ ПРАКТИЧЕСКИХ РЕКОМЕНДАЦИЙ PCT ========== */
+@media (max-width: 480px) {
+  .pct-critical-actions h4,
+  .pct-practical-recommendations h4,
+  .pct-quick-wins h4,
+  .pct-interdependencies h4 {
+    font-size: 18px;
+  }
+
+  .critical-action-card {
+    padding: var(--space-16);
+  }
+
+  .critical-action-card .action-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .critical-action-card .action-header h5 {
+    font-size: 16px;
+  }
+
+  .practical-recommendation-card {
+    padding: var(--space-16);
+  }
+
+  .practical-recommendation-card h5 {
+    font-size: 16px;
+  }
+
+  .quick-win-card {
+    padding: var(--space-16);
+  }
+
+  .interdependency-card {
+    padding: var(--space-16);
+  }
 }
 
 /* ========== МОБИЛЬНАЯ АДАПТАЦИЯ РЕЗУЛЬТАТОВ (ЭКРАНЫ < 480px) ========== */
@@ -11850,7 +12194,7 @@ body.theme-dark .search-highlight {
             }, 5000);
         }
 
-        function changeSlide(direction) {
+        window.changeSlide = function(direction) {
             const slides = document.querySelectorAll('.slide');
             if (slides.length === 0) {
                 console.warn('Слайды ещё не созданы, changeSlide отменён');
@@ -22209,12 +22553,20 @@ body.theme-dark .search-highlight {
         }
         
         function initPCT() {
-            console.log('Инициализация PCT инструмента...');
-            loadPCTScores();
-            renderPCTCategory('success');
-            setupPCTEventListeners();
-            updatePCTResults();
-            updatePCTTabsProgress();
+            try {
+                console.log('Инициализация PCT инструмента...');
+                if (!pctAssessment || !pctAssessment.categories) {
+                    console.warn('PCT assessment data not available');
+                    return;
+                }
+                loadPCTScores();
+                renderPCTCategory('success');
+                setupPCTEventListeners();
+                updatePCTResults();
+                updatePCTTabsProgress();
+            } catch (error) {
+                console.error('Ошибка при инициализации PCT:', error);
+            }
         }
         
         function getPCTCategoryIcon(categoryId) {
@@ -22331,8 +22683,11 @@ body.theme-dark .search-highlight {
         }
         
         function calculateCategoryScore(categoryId) {
+            if (!pctState || !pctState.scores || !pctState.scores[categoryId]) {
+                return 0;
+            }
             const scores = pctState.scores[categoryId];
-            return Object.values(scores).reduce((sum, val) => sum + val, 0);
+            return Object.values(scores).reduce((sum, val) => sum + (Number(val) || 0), 0);
         }
         
         function updatePCTProgress() {
@@ -22356,7 +22711,35 @@ body.theme-dark .search-highlight {
             }
         }
         
+        // Функция для переключения категории PCT (используется и кнопками, и иконками результатов)
+        function switchPCTCategory(categoryId) {
+            // Обновляем активную кнопку вверху
+            const tabs = document.querySelectorAll('.pct-tab');
+            tabs.forEach(tab => {
+                if (tab.getAttribute('data-category') === categoryId) {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Рендерим новую категорию
+            renderPCTCategory(categoryId);
+            
+            // Прокручиваем к началу категории для удобства пользователя
+            const contentEl = document.getElementById('pctContent');
+            if (contentEl) {
+                // Небольшая задержка для завершения рендеринга
+                setTimeout(() => {
+                    contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+        
         function updatePCTResults() {
+            if (!pctAssessment || !pctAssessment.categories) {
+                return;
+            }
+            
             const categories = Object.keys(pctAssessment.categories);
             
             categories.forEach(catId => {
@@ -22371,15 +22754,31 @@ body.theme-dark .search-highlight {
                     }
                     
                     // Цветовая индикация
-                    scoreEl.className = 'pct-score-item';
+                    scoreEl.className = 'pct-score-item clickable';
                     if (score >= 25) scoreEl.classList.add('excellent');
                     else if (score >= 20) scoreEl.classList.add('moderate');
                     else if (score >= 10) scoreEl.classList.add('risk');
+                    
+                    // Добавляем обработчик клика для переключения категории
+                    // Удаляем старый обработчик через клонирование элемента
+                    const newScoreEl = scoreEl.cloneNode(true);
+                    scoreEl.parentNode.replaceChild(newScoreEl, scoreEl);
+                    
+                    // Добавляем обработчик клика на новый элемент
+                    newScoreEl.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Переключаем категорию
+                        switchPCTCategory(catId);
+                    });
                 }
             });
             
-            renderPCTVisualization();
-            generatePCTRecommendations();
+            try {
+                renderPCTVisualization();
+                generatePCTRecommendations();
+            } catch (error) {
+                console.error('Ошибка при обновлении результатов PCT:', error);
+            }
         }
         
         function renderPCTVisualization() {
@@ -22446,7 +22845,23 @@ body.theme-dark .search-highlight {
         // ========== ЭКСПЕРТНАЯ ИНТЕРПРЕТАЦИЯ PCT ОЦЕНКИ ==========
         
         function generatePCTExpertInsight(scores) {
-            const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            // Проверка на существование scores
+            if (!scores || typeof scores !== 'object') {
+                return {
+                    overallAssessment: 'Оценка не завершена',
+                    strategicContext: 'Проведите оценку всех факторов для получения интерпретации',
+                    balanceAssessment: '',
+                    strengths: [],
+                    criticalGaps: [],
+                    categoryAnalysis: {},
+                    priorityActions: { critical: [], high: [], medium: [] },
+                    totalScore: 0,
+                    percentage: 0,
+                    imbalances: []
+                };
+            }
+            
+            const totalScore = Object.values(scores).reduce((sum, score) => sum + (Number(score) || 0), 0);
             const maxScore = 120; // 4 категории × 30 баллов
             const percentage = (totalScore / maxScore) * 100;
             
@@ -22457,33 +22872,78 @@ body.theme-dark .search-highlight {
             const criticalGaps = [];
             const categoryAnalysis = {};
             
+            // Определяем конкретные баллы по категориям для фактической интерпретации
+            const categoryScoresDetail = Object.entries(scores).map(([key, score]) => {
+                const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                return `${categoryNames[key] || key}: ${Number(score) || 0}/30`;
+            }).join(', ');
+            
             if (percentage >= 80) {
-                overallAssessment = `Ваш проект демонстрирует высокую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Все четыре измерения (Успех, Лидерство, Проекты, Изменения) находятся на сильном уровне, что указывает на высокую вероятность успешной реализации.`;
-                strategicContext = 'Высокий общий балл PCT означает, что проект имеет сильную основу во всех критических измерениях. Это позволяет приступить к реализации с уверенностью, но важно поддерживать баланс между измерениями.';
-                strengths.push('Сильная основа во всех четырех измерениях PCT');
-                strengths.push('Минимальные риски при реализации проекта');
-                strengths.push('Возможность быстрого старта и достижения результатов');
+                overallAssessment = `Ваш проект демонстрирует высокую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Детализация: ${categoryScoresDetail}. Все четыре измерения находятся на сильном уровне (≥25 баллов каждое), что указывает на высокую вероятность успешной реализации (по данным Prosci, проекты с PCT ≥80% имеют 85%+ вероятность успеха).`;
+                strategicContext = `Проект имеет сильную основу во всех критических измерениях PCT. Это означает, что у вас есть: четкие цели и выгоды (Успех), активное спонсорство (Лидерство), организованная техническая реализация (Проекты) и структурированный подход к управлению изменениями (Изменения). Вы можете приступить к реализации с уверенностью, но важно поддерживать этот уровень на протяжении всего проекта.`;
+                strengths.push(`Сильная основа во всех четырех измерениях PCT: ${categoryScoresDetail}`);
+                strengths.push('Минимальные риски при реализации проекта (вероятность успеха 85%+)');
+                strengths.push('Возможность быстрого старта и достижения результатов без дополнительной подготовки');
             } else if (percentage >= 60) {
-                overallAssessment = `Ваш проект показывает среднюю готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Большинство измерений находятся на приемлемом уровне, но есть области, требующие внимания перед запуском проекта.`;
-                strategicContext = 'Средняя готовность указывает на наличие большинства необходимых элементов, но с некоторыми пробелами. Рекомендуется провести работу в слабых областях перед полномасштабной реализацией.';
-                strengths.push('Хорошая основа в большинстве измерений');
-                criticalGaps.push('Необходимо усилить слабые измерения перед запуском');
+                const strongCategories = Object.entries(scores).filter(([key, score]) => score >= 25).map(([key]) => {
+                    const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                    return categoryNames[key];
+                });
+                const weakCategories = Object.entries(scores).filter(([key, score]) => score < 20).map(([key]) => {
+                    const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                    return categoryNames[key];
+                });
+                
+                overallAssessment = `Ваш проект показывает среднюю готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Детализация: ${categoryScoresDetail}. ${strongCategories.length > 0 ? `Сильные стороны: ${strongCategories.join(', ')}.` : ''} ${weakCategories.length > 0 ? `Требуют внимания: ${weakCategories.join(', ')}.` : ''} Это создает умеренный риск неудачи (вероятность успеха 50-70% по данным Prosci).`;
+                strategicContext = `Средняя готовность указывает на наличие большинства необходимых элементов, но с конкретными пробелами в ${weakCategories.length > 0 ? weakCategories.join(' и ') : 'некоторых областях'}. Рекомендуется провести целенаправленную работу в слабых областях перед полномасштабной реализацией. Фокус на улучшении слабых измерений повысит общую готовность до 80%+ и снизит риск неудачи.`;
+                if (strongCategories.length > 0) {
+                    strengths.push(`Хорошая основа в ${strongCategories.join(' и ')} (≥25 баллов)`);
+                }
+                criticalGaps.push(`Необходимо усилить ${weakCategories.length > 0 ? weakCategories.join(' и ') : 'слабые измерения'} перед запуском (текущий уровень <20 баллов)`);
             } else if (percentage >= 40) {
-                overallAssessment = `Ваш проект демонстрирует низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Есть существенные пробелы в ключевых измерениях, что создает высокий риск неудачи проекта.`;
-                strategicContext = 'Низкая готовность указывает на существенные пробелы в критических измерениях. Без устранения этих пробелов проект имеет высокий риск неудачи. Рекомендуется комплексная программа подготовки.';
-                criticalGaps.push('Существенные пробелы требуют немедленного внимания');
-                criticalGaps.push('Высокий риск неудачи без подготовки');
+                const lowCategories = Object.entries(scores).filter(([key, score]) => score < 15).map(([key]) => {
+                    const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                    return `${categoryNames[key]} (${scores[key]}/30)`;
+                });
+                
+                overallAssessment = `Ваш проект демонстрирует низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Детализация: ${categoryScoresDetail}. ${lowCategories.length > 0 ? `Критически слабые области: ${lowCategories.join(', ')}.` : ''} Это создает высокий риск неудачи проекта (вероятность успеха 20-40% по данным Prosci).`;
+                strategicContext = `Низкая готовность указывает на существенные пробелы в критических измерениях. ${lowCategories.length > 0 ? `Особенно критичны: ${lowCategories.join(', ')}.` : ''} Без устранения этих пробелов проект имеет высокий риск неудачи. Рекомендуется комплексная программа подготовки с фокусом на критически слабые области перед любыми попытками реализации.`;
+                criticalGaps.push(`Существенные пробелы в ${lowCategories.length > 0 ? lowCategories.join(', ') : 'ключевых измерениях'} требуют немедленного внимания`);
+                criticalGaps.push(`Высокий риск неудачи без подготовки (вероятность успеха только ${Math.round(percentage * 0.5)}%)`);
             } else {
-                overallAssessment = `Ваш проект имеет критически низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Требуется срочная и комплексная работа по подготовке проекта перед любыми попытками реализации.`;
-                strategicContext = 'Критически низкая готовность означает, что проект не готов к реализации в текущем состоянии. Любые попытки реализации без подготовки имеют очень высокий риск провала. Необходима системная работа по развитию всех измерений PCT.';
-                criticalGaps.push('Критические пробелы во всех измерениях');
-                criticalGaps.push('Очень высокий риск провала проекта без подготовки');
-                criticalGaps.push('Требуется системная трансформация проекта');
+                const allLowScores = Object.entries(scores).map(([key, score]) => {
+                    const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                    return `${categoryNames[key]}: ${score}/30`;
+                }).join(', ');
+                
+                overallAssessment = `Ваш проект имеет критически низкую готовность по модели PCT (${totalScore}/120, ${percentage.toFixed(0)}%). Детализация: ${allLowScores}. Все измерения находятся на критически низком уровне (<15 баллов каждое), что создает очень высокий риск провала (вероятность успеха <20% по данным Prosci).`;
+                strategicContext = `Критически низкая готовность означает, что проект не готов к реализации в текущем состоянии. Все четыре измерения PCT требуют срочного развития. Любые попытки реализации без подготовки имеют очень высокий риск провала (вероятность успеха менее 20%). Необходима системная работа по развитию всех измерений PCT, начиная с наиболее критических (Лидерство и Успех, так как они блокируют остальные).`;
+                criticalGaps.push(`Критические пробелы во всех измерениях: ${allLowScores}`);
+                criticalGaps.push(`Очень высокий риск провала проекта без подготовки (вероятность успеха менее ${Math.round(percentage * 0.3)}%)`);
+                criticalGaps.push('Требуется системная трансформация проекта перед запуском');
             }
             
             // Анализ баланса между измерениями
+            const scoreValues = Object.values(scores).map(s => Number(s) || 0);
+            if (scoreValues.length === 0) {
+                return {
+                    overallAssessment: 'Оценка не завершена',
+                    strategicContext: 'Проведите оценку всех факторов для получения интерпретации',
+                    balanceAssessment: '',
+                    strengths: [],
+                    criticalGaps: [],
+                    categoryAnalysis: {},
+                    priorityActions: { critical: [], high: [], medium: [] },
+                    totalScore: 0,
+                    percentage: 0,
+                    imbalances: []
+                };
+            }
             const avgScore = totalScore / 4;
             const imbalances = [];
+            const minCategoryScore = Math.min(...scoreValues);
+            const maxCategoryScore = Math.max(...scoreValues);
+            
             Object.entries(scores).forEach(([key, score]) => {
                 const diff = Math.abs(score - avgScore);
                 if (diff > 5) {
@@ -22492,15 +22952,29 @@ body.theme-dark .search-highlight {
             });
             
             let balanceAssessment = '';
+            // Сбалансированность может быть сильной стороной только если общий уровень высокий (>= 60%)
+            // Если все измерения низкие, но сбалансированы - это не сильная сторона, а равномерная слабость
             if (imbalances.length === 0) {
-                balanceAssessment = 'Все четыре измерения PCT находятся в хорошем балансе, что является сильной стороной вашего проекта.';
-                strengths.push('Сбалансированность всех измерений PCT');
+                if (percentage >= 60) {
+                    balanceAssessment = `Все четыре измерения PCT находятся в хорошем балансе (разброс: ${minCategoryScore}-${maxCategoryScore} баллов), что является сильной стороной вашего проекта. Это означает, что проект развивается равномерно во всех критических направлениях.`;
+                    strengths.push('Сбалансированность всех измерений PCT при высоком общем уровне готовности');
+                } else if (percentage >= 40) {
+                    balanceAssessment = `Все четыре измерения PCT находятся в балансе (разброс: ${minCategoryScore}-${maxCategoryScore} баллов), но общий уровень готовности средний. Это означает равномерное распределение пробелов, что упрощает планирование улучшений.`;
+                    // Не добавляем в сильные стороны при среднем/низком общем уровне
+                } else {
+                    balanceAssessment = `Все четыре измерения PCT находятся в балансе (разброс: ${minCategoryScore}-${maxCategoryScore} баллов), но общий уровень готовности низкий. Это равномерная слабость во всех измерениях, что требует комплексного подхода к улучшению.`;
+                    criticalGaps.push('Равномерно низкий уровень во всех измерениях PCT требует системного подхода');
+                }
             } else if (imbalances.length <= 2) {
-                balanceAssessment = `Есть некоторые дисбалансы между измерениями. Рекомендуется усилить слабые измерения для достижения лучшего баланса.`;
-                criticalGaps.push(`Дисбаланс между измерениями: ${imbalances.map(i => i.category).join(', ')}`);
+                const imbalanceCategories = imbalances.map(i => {
+                    const categoryNames = { success: 'Успех', leadership: 'Лидерство', projectManagement: 'Проекты', changeManagement: 'Изменения' };
+                    return `${categoryNames[i.category]} (${i.score}/30)`;
+                }).join(', ');
+                balanceAssessment = `Обнаружены дисбалансы между измерениями: ${imbalanceCategories}. Разница между максимальным и минимальным баллом составляет ${maxCategoryScore - minCategoryScore} баллов. Это указывает на неравномерное развитие проекта, где сильные измерения не могут компенсировать слабые.`;
+                criticalGaps.push(`Дисбаланс между измерениями: разница ${maxCategoryScore - minCategoryScore} баллов между сильнейшим и слабейшим измерением`);
             } else {
-                balanceAssessment = 'Значительные дисбалансы между измерениями PCT. Это создает риск того, что сильные измерения не смогут компенсировать слабые.';
-                criticalGaps.push('Критические дисбалансы между измерениями требуют немедленного внимания');
+                balanceAssessment = `Значительные дисбалансы между измерениями PCT (разброс: ${minCategoryScore}-${maxCategoryScore} баллов, разница ${maxCategoryScore - minCategoryScore} баллов). Это создает критический риск: сильные измерения не смогут компенсировать слабые, что может привести к провалу проекта.`;
+                criticalGaps.push(`Критические дисбалансы между измерениями: разница ${maxCategoryScore - minCategoryScore} баллов требует немедленного выравнивания`);
             }
             
             // Детальный анализ по категориям
@@ -22512,48 +22986,61 @@ body.theme-dark .search-highlight {
             };
             
             Object.entries(scores).forEach(([key, score]) => {
-                const name = categoryNames[key];
+                const name = categoryNames[key] || key;
+                const numScore = Number(score) || 0;
                 let analysis = '';
                 let priority = '';
                 let impact = '';
                 let recommendations = [];
                 
-                if (score >= 25) {
-                    analysis = `${name} показывает отличный уровень (${score}/30). Это сильная сторона проекта, которую можно использовать как основу для успешной реализации.`;
-                    priority = 'Низкий приоритет — область не требует внимания';
-                    impact = 'Эта область является опорой для успешной реализации проекта';
-                    recommendations.push('Продолжайте поддерживать текущий уровень');
-                    recommendations.push('Используйте эту область как основу для усиления других измерений');
-                } else if (score >= 20) {
-                    analysis = `${name} демонстрирует приемлемый уровень (${score}/30). Есть хорошая основа, но требуются улучшения для оптимальной поддержки проекта.`;
-                    priority = 'Средний приоритет — рекомендуется улучшение';
-                    impact = 'Улучшение этой области повысит общую готовность проекта';
-                    recommendations.push('Проведите дополнительный анализ факторов в этой категории');
-                    recommendations.push('Разработайте план улучшения слабых факторов');
-                } else if (score >= 10) {
-                    analysis = `${name} показывает низкий уровень (${score}/30). Это область требует немедленного внимания перед запуском проекта.`;
-                    priority = 'Высокий приоритет — требует немедленного внимания';
-                    impact = 'Низкий уровень в этой области создает значительные риски для проекта';
-                    recommendations.push('Срочно разработайте план улучшения факторов в этой категории');
-                    recommendations.push('Привлеките дополнительные ресурсы и экспертизу');
-                    recommendations.push('Рассмотрите возможность задержки запуска проекта до улучшения');
-                } else if (score > 0) {
-                    analysis = `${name} демонстрирует критически низкий уровень (${score}/30). Это критическая область, требующая срочного вмешательства.`;
-                    priority = 'Критический приоритет — требует немедленных действий';
-                    impact = 'Критически низкий уровень в этой области может привести к провалу проекта';
-                    recommendations.push('Немедленно остановите планирование запуска проекта');
-                    recommendations.push('Срочно разработайте комплексный план улучшения');
-                    recommendations.push('Привлеките внешнюю экспертизу для этой категории');
+                // Подсчитываем количество факторов с разными оценками для фактической интерпретации
+                const categoryScores = (pctState && pctState.scores && pctState.scores[key]) ? pctState.scores[key] : {};
+                const factorsCount = {
+                    excellent: Object.values(categoryScores).filter(s => Number(s) === 3).length,
+                    applicable: Object.values(categoryScores).filter(s => Number(s) === 2).length,
+                    notApplicable: Object.values(categoryScores).filter(s => Number(s) === 1).length,
+                    notRated: Object.values(categoryScores).filter(s => !s || Number(s) === 0).length
+                };
+                const totalFactors = (pctAssessment && pctAssessment.categories && pctAssessment.categories[key] && pctAssessment.categories[key].factors) ? pctAssessment.categories[key].factors.length : 10;
+                
+                if (numScore >= 25) {
+                    analysis = `${name} показывает отличный уровень (${numScore}/30). ${factorsCount.excellent > 0 ? `${factorsCount.excellent} из ${totalFactors} факторов оценены как "Превосходит ожидания" (3 балла), ${factorsCount.applicable} факторов как "Применимо" (2 балла).` : `${factorsCount.applicable} из ${totalFactors} факторов оценены как "Применимо" (2 балла).`} Это сильная сторона проекта, которая обеспечивает надежную основу для успешной реализации. По данным Prosci, проекты с сильными измерениями PCT имеют значительно более высокую вероятность успеха.`;
+                    priority = 'Низкий приоритет — область не требует немедленного внимания';
+                    impact = `Эта область является опорой для успешной реализации проекта. Сильный уровень в ${name.toLowerCase()} означает, что ${key === 'success' ? 'цели и выгоды четко определены' : key === 'leadership' ? 'спонсорство активно и эффективно' : key === 'projectManagement' ? 'техническая реализация хорошо организована' : 'управление изменениями структурировано'}, что критически важно для достижения результатов проекта.`;
+                    recommendations.push('Продолжайте поддерживать текущий уровень на протяжении всего проекта');
+                    recommendations.push(`Используйте сильную позицию в ${name.toLowerCase()} как основу для усиления других измерений PCT`);
+                } else if (numScore >= 20) {
+                    analysis = `${name} демонстрирует приемлемый уровень (${numScore}/30). ${factorsCount.applicable > 0 ? `${factorsCount.applicable} факторов оценены как "Применимо" (2 балла), ${factorsCount.notApplicable > 0 ? `${factorsCount.notApplicable} как "Не применимо" (1 балл)` : 'остальные требуют улучшения'}.` : 'Большинство факторов требуют улучшения.'} Есть хорошая основа, но для оптимальной поддержки проекта требуется улучшение слабых факторов.`;
+                    priority = 'Средний приоритет — рекомендуется улучшение в ближайшие 2-4 недели';
+                    impact = `Улучшение этой области с ${numScore}/30 до 25+/30 повысит общую готовность проекта на ${Math.round((25 - numScore) / 120 * 100)}% и снизит риск неудачи. ${key === 'leadership' ? 'Особенно критично для успеха проекта: слабое спонсорство — причина №1 провалов.' : ''}`;
+                    recommendations.push(`Проведите детальный анализ факторов в категории ${name} и определите приоритетные области для улучшения`);
+                    recommendations.push(`Разработайте конкретный план улучшения слабых факторов с целевым показателем 25+/30`);
+                    recommendations.push(`Назначьте ответственного за реализацию плана улучшения в категории ${name}`);
+                } else if (numScore >= 10) {
+                    analysis = `${name} показывает низкий уровень (${numScore}/30). ${factorsCount.notApplicable > 0 ? `${factorsCount.notApplicable} факторов оценены как "Не применимо" (1 балл), ${factorsCount.applicable > 0 ? `только ${factorsCount.applicable} как "Применимо" (2 балла)` : 'отсутствуют факторы с оценкой "Применимо"'}.` : 'Большинство факторов не оценены или имеют низкие оценки.'} Это область требует немедленного внимания перед запуском проекта. Низкий уровень создает значительный риск для успеха проекта.`;
+                    priority = 'Высокий приоритет — требует немедленного внимания в течение 1-2 недель';
+                    impact = `Низкий уровень в ${name.toLowerCase()} (${numScore}/30 вместо целевых 25+/30) создает значительные риски для проекта. ${key === 'leadership' ? 'Слабое спонсорство блокирует все остальные измерения PCT и является причиной более 50% провалов проектов.' : key === 'success' ? 'Неопределенные цели и выгоды делают невозможным эффективную коммуникацию и мотивацию сотрудников.' : key === 'changeManagement' ? 'Отсутствие управления изменениями означает, что 70% выгод проекта могут быть недостигнуты из-за непринятия изменений сотрудниками.' : 'Слабая техническая реализация создает риск срыва сроков и недостижения технических целей.'}`;
+                    recommendations.push(`Срочно разработайте комплексный план улучшения факторов в категории ${name} с целевым показателем 20+/30 в течение 2-4 недель`);
+                    recommendations.push(`Привлеките дополнительные ресурсы и экспертизу для категории ${name}`);
+                    recommendations.push(`Рассмотрите возможность задержки запуска проекта до улучшения ${name.toLowerCase()} до уровня 20+/30`);
+                } else if (numScore > 0) {
+                    analysis = `${name} демонстрирует критически низкий уровень (${numScore}/30). ${factorsCount.notApplicable > 0 ? `Большинство факторов (${factorsCount.notApplicable}) оценены как "Не применимо" (1 балл)` : 'Почти все факторы имеют низкие оценки или не оценены'}. Это критическая область, требующая срочного вмешательства. Проект не может быть успешным с таким низким уровнем в этом измерении.`;
+                    priority = 'КРИТИЧЕСКИЙ приоритет — требует немедленных действий в течение 1 недели';
+                    impact = `Критически низкий уровень в ${name.toLowerCase()} (${numScore}/30) может привести к провалу проекта. ${key === 'leadership' ? 'Без сильного спонсора проект обречен на провал — это причина №1 неудач.' : key === 'success' ? 'Без четких целей и выгод невозможно мотивировать сотрудников и достичь результатов.' : key === 'changeManagement' ? 'Без управления изменениями сотрудники не примут изменения, и выгоды проекта не будут достигнуты.' : 'Без организованной технической реализации проект не может быть реализован.'} Необходимо срочное вмешательство.`;
+                    recommendations.push(`НЕМЕДЛЕННО остановите планирование запуска проекта до улучшения ${name.toLowerCase()}`);
+                    recommendations.push(`Срочно разработайте комплексный план улучшения категории ${name} с целевым показателем 15+/30 в течение 1-2 недель`);
+                    recommendations.push(`Привлеките внешнюю экспертизу для категории ${name} — внутренних ресурсов может быть недостаточно`);
                 } else {
-                    analysis = `${name} не оценена (0/30). Необходимо провести оценку всех факторов в этой категории для получения полной картины готовности проекта.`;
-                    priority = 'Критический приоритет — требуется полная оценка';
-                    impact = 'Отсутствие оценки не позволяет судить о готовности проекта';
-                    recommendations.push('Немедленно проведите оценку всех факторов в этой категории');
+                    analysis = `${name} не оценена (0/30). Все ${totalFactors} факторов в этой категории не оценены. Необходимо провести полную оценку всех факторов для получения картины готовности проекта. Без оценки невозможно судить о готовности проекта в этом измерении.`;
+                    priority = 'КРИТИЧЕСКИЙ приоритет — требуется полная оценка немедленно';
+                    impact = `Отсутствие оценки в ${name.toLowerCase()} не позволяет судить о готовности проекта. Это создает неопределенность и риск принятия неправильных решений. Необходимо провести оценку всех факторов перед любыми действиями по проекту.`;
+                    recommendations.push(`НЕМЕДЛЕННО проведите оценку всех ${totalFactors} факторов в категории ${name}`);
+                    recommendations.push(`Используйте результаты оценки для определения приоритетов улучшения в ${name.toLowerCase()}`);
                 }
                 
                 categoryAnalysis[key] = {
                     name,
-                    score,
+                    score: numScore,
                     analysis,
                     priority,
                     impact,
@@ -22604,6 +23091,554 @@ body.theme-dark .search-highlight {
             };
         }
         
+        // ========== ПРАКТИЧЕСКИЕ ЭКСПЕРТНЫЕ РЕКОМЕНДАЦИИ PCT ==========
+        
+        function generatePCTPracticalRecommendations() {
+            // Проверка на существование необходимых объектов
+            if (!pctAssessment || !pctAssessment.categories || !pctState || !pctState.scores) {
+                return {
+                    criticalActions: [],
+                    practicalRecommendations: [],
+                    quickWins: [],
+                    crossCategoryInsights: []
+                };
+            }
+            
+            const scores = {
+                success: calculateCategoryScore('success'),
+                leadership: calculateCategoryScore('leadership'),
+                projectManagement: calculateCategoryScore('projectManagement'),
+                changeManagement: calculateCategoryScore('changeManagement')
+            };
+            
+            // Получаем детальные оценки по каждому фактору
+            const detailedScores = {};
+            Object.keys(pctAssessment.categories).forEach(categoryId => {
+                detailedScores[categoryId] = {};
+                const categoryScores = (pctState.scores && pctState.scores[categoryId]) ? pctState.scores[categoryId] : {};
+                if (pctAssessment.categories[categoryId] && pctAssessment.categories[categoryId].factors) {
+                    pctAssessment.categories[categoryId].factors.forEach(factor => {
+                        detailedScores[categoryId][factor.id] = categoryScores[factor.id] || 0;
+                    });
+                }
+            });
+            
+            // Генерируем практические рекомендации на основе конкретных факторов
+            const practicalRecommendations = [];
+            const criticalActions = [];
+            const quickWins = [];
+            
+            // Анализ категории "Успех"
+            if (scores.success < 25) {
+                const weakFactors = [];
+                Object.entries(detailedScores.success).forEach(([factorId, score]) => {
+                    if (score <= 2) {
+                        const factor = pctAssessment.categories.success.factors.find(f => f.id == factorId);
+                        if (factor) {
+                            weakFactors.push({ id: factorId, text: factor.text, score });
+                        }
+                    }
+                });
+                
+                if (weakFactors.length > 0) {
+                    if (scores.success < 15) {
+                        criticalActions.push({
+                            category: 'Успех',
+                            title: 'КРИТИЧНО: Неопределенность целей и выгод проекта',
+                            description: `Проект не имеет четко определенных целей, выгод и критериев успеха (${scores.success}/30). Это фундаментальный риск, который блокирует все остальные измерения PCT. Без четких целей невозможно эффективно коммуницировать изменения и мотивировать сотрудников.`,
+                            actions: [
+                                'Проведите сессию по определению целей проекта с участием спонсора и ключевых стейкхолдеров (рекомендуется использовать методику SMART)',
+                                'Создайте документ "Business Case" с четким обоснованием выгод для организации (финансовые, операционные, стратегические)',
+                                'Определите конкретные метрики успеха для каждого уровня организации (организационный, групповой, индивидуальный)',
+                                'Назначьте ответственных за каждую выгоду проекта (Benefit Owners) и установите регулярный мониторинг',
+                                'Проведите оценку зависимости выгод от людей (Prosci Best Practice: 70% выгод зависят от принятия изменений сотрудниками)',
+                                'Создайте единое понимание критериев успеха в спонсорской коалиции через сессию выравнивания (Sponsor Alignment Session)'
+                            ],
+                            timeframe: 'Немедленно (1-2 недели)',
+                            priority: 'КРИТИЧЕСКИЙ'
+                        });
+                    } else {
+                        practicalRecommendations.push({
+                            category: 'Успех',
+                            title: 'Улучшение определения целей и выгод',
+                            weakFactors: weakFactors,
+                            actions: generateSuccessRecommendations(weakFactors, scores.success),
+                            timeframe: '2-4 недели'
+                        });
+                    }
+                } else if (scores.success < 25 && scores.success >= 20) {
+                    // Если нет слабых факторов (score <= 2), но общий балл 20-24, все равно даем рекомендации
+                    practicalRecommendations.push({
+                        category: 'Успех',
+                        title: 'Оптимизация определения целей и выгод',
+                        weakFactors: [],
+                        actions: [
+                            'Проведите аудит текущих целей и выгод проекта, убедитесь, что они четко определены и измеримы',
+                            'Проверьте, что все выгоды имеют назначенных Benefit Owners и установлен мониторинг',
+                            'Убедитесь, что критерии успеха четко коммуницированы всем затронутым сотрудникам',
+                            'Проведите сессию выравнивания спонсорской коалиции для единого понимания критериев успеха',
+                            'Оцените зависимость выгод от людей и убедитесь, что это учтено в плане управления изменениями'
+                        ],
+                        timeframe: '2-3 недели'
+                    });
+                }
+            }
+            
+            // Анализ категории "Лидерство/Спонсорство"
+            if (scores.leadership < 25) {
+                const weakFactors = [];
+                Object.entries(detailedScores.leadership).forEach(([factorId, score]) => {
+                    if (score <= 2) {
+                        const factor = pctAssessment.categories.leadership.factors.find(f => f.id == factorId);
+                        if (factor) {
+                            weakFactors.push({ id: factorId, text: factor.text, score });
+                        }
+                    }
+                });
+                
+                if (weakFactors.length > 0) {
+                    if (scores.leadership < 15) {
+                        criticalActions.push({
+                            category: 'Лидерство/Спонсорство',
+                            title: 'КРИТИЧНО: Слабое спонсорство и лидерство',
+                            description: `Отсутствие сильного спонсора или недостаточная активность спонсора (${scores.leadership}/30) создает критический риск провала проекта. По данным Prosci, слабое спонсорство — причина №1 неудач проектов изменений (более 50% провалов связаны с этим фактором).`,
+                            actions: [
+                                'Проведите оценку готовности спонсора (Sponsor Readiness Assessment) и определите пробелы в его активности',
+                                'Организуйте встречу один-на-один со спонсором для обсуждения его роли и ожиданий (Sponsor One-on-One)',
+                                'Создайте план развития спонсорства (Sponsor Development Plan) с конкретными действиями для спонсора',
+                                'Проведите тренинг для спонсора по его роли в управлении изменениями (Prosci рекомендует минимум 2 часа)',
+                                'Сформируйте спонсорскую коалицию из руководителей, которые влияют на затронутые группы',
+                                'Установите регулярные встречи со спонсором (рекомендуется еженедельно) для обсуждения прогресса и барьеров',
+                                'Создайте "Спонсорский план действий" (Sponsor Action Plan) с конкретными сообщениями и действиями для каждой группы',
+                                'Обеспечьте видимое участие спонсора в коммуникациях (видео, личные встречи, письма)'
+                            ],
+                            timeframe: 'Немедленно (1-2 недели)',
+                            priority: 'КРИТИЧЕСКИЙ'
+                        });
+                    } else {
+                        practicalRecommendations.push({
+                            category: 'Лидерство/Спонсорство',
+                            title: 'Усиление спонсорства и лидерства',
+                            weakFactors: weakFactors,
+                            actions: generateLeadershipRecommendations(weakFactors, scores.leadership),
+                            timeframe: '2-4 недели'
+                        });
+                    }
+                } else if (scores.leadership < 25 && scores.leadership >= 20) {
+                    // Если нет слабых факторов (score <= 2), но общий балл 20-24, все равно даем рекомендации
+                    practicalRecommendations.push({
+                        category: 'Лидерство/Спонсорство',
+                        title: 'Оптимизация спонсорства и лидерства',
+                        weakFactors: [],
+                        actions: [
+                            'Проведите аудит активности спонсора и убедитесь, что он принимает видимое участие в ключевых мероприятиях проекта',
+                            'Убедитесь, что спонсорская коалиция сформирована и все участники активно поддерживают изменения',
+                            'Проверьте, что спонсор имеет четкое понимание своей роли и может четко объяснить суть, причину и выгоды изменений',
+                            'Установите регулярные встречи со спонсором для обсуждения прогресса и барьеров (еженедельно)',
+                            'Создайте план видимого участия спонсора в коммуникациях с затронутыми группами',
+                            'Обеспечьте, что спонсор публично поддерживает изменения и работает с сопротивлением'
+                        ],
+                        timeframe: '2-3 недели'
+                    });
+                }
+            }
+            
+            // Анализ категории "Управление проектами"
+            if (scores.projectManagement < 25) {
+                const weakFactors = [];
+                Object.entries(detailedScores.projectManagement).forEach(([factorId, score]) => {
+                    if (score <= 2) {
+                        const factor = pctAssessment.categories.projectManagement.factors.find(f => f.id == factorId);
+                        if (factor) {
+                            weakFactors.push({ id: factorId, text: factor.text, score });
+                        }
+                    }
+                });
+                
+                if (weakFactors.length > 0) {
+                    if (scores.projectManagement < 15) {
+                        criticalActions.push({
+                            category: 'Управление проектами',
+                            title: 'КРИТИЧНО: Слабая организация технической реализации',
+                            description: `Проект имеет критически слабую организацию технической стороны (${scores.projectManagement}/30). Отсутствие четкого плана, ресурсов или процессов создает высокий риск срыва сроков и недостижения технических целей.`,
+                            actions: [
+                                'Проведите детальное определение изменений: какие люди затронуты, какие процессы изменяются, какие системы затрагиваются',
+                                'Назначьте опытного руководителя проекта (Project Manager) с необходимыми полномочиями и ресурсами',
+                                'Определите ключевые вехи проекта и создайте детальный план-график с использованием инструментов управления проектами',
+                                'Проведите декомпозицию работ (Work Breakdown Structure) и назначьте ответственных за каждую задачу',
+                                'Определите и получите все необходимые проектные ресурсы, создайте матрицу ответственности (RACI)',
+                                'Установите регулярные совещания проектной команды (еженедельно) с четким процессом эскалации проблем',
+                                'Интегрируйте план управления изменениями в план проекта для синхронизации технической и человеческой сторон'
+                            ],
+                            timeframe: 'Немедленно (1-2 недели)',
+                            priority: 'КРИТИЧЕСКИЙ'
+                        });
+                    } else {
+                        practicalRecommendations.push({
+                            category: 'Управление проектами',
+                            title: 'Улучшение технической реализации',
+                            weakFactors: weakFactors,
+                            actions: generateProjectManagementRecommendations(weakFactors, scores.projectManagement),
+                            timeframe: '2-4 недели'
+                        });
+                    }
+                } else if (scores.projectManagement < 25 && scores.projectManagement >= 20) {
+                    // Если нет слабых факторов (score <= 2), но общий балл 20-24, все равно даем рекомендации
+                    practicalRecommendations.push({
+                        category: 'Управление проектами',
+                        title: 'Оптимизация технической реализации',
+                        weakFactors: [],
+                        actions: [
+                            'Проведите аудит текущего плана проекта и убедитесь, что все вехи четко определены и синхронизированы',
+                            'Убедитесь, что план управления изменениями полностью интегрирован в план проекта',
+                            'Проверьте, что все ресурсы выделены и назначены ответственные за каждую задачу',
+                            'Установите регулярный мониторинг прогресса с еженедельными отчетами о статусе',
+                            'Проведите тренинг для руководителя проекта по управлению изменениями, если еще не проведен'
+                        ],
+                        timeframe: '2-3 недели'
+                    });
+                }
+            }
+            
+            // Анализ категории "Управление изменениями"
+            if (scores.changeManagement < 25) {
+                const weakFactors = [];
+                Object.entries(detailedScores.changeManagement).forEach(([factorId, score]) => {
+                    if (score <= 2) {
+                        const factor = pctAssessment.categories.changeManagement.factors.find(f => f.id == factorId);
+                        if (factor) {
+                            weakFactors.push({ id: factorId, text: factor.text, score });
+                        }
+                    }
+                });
+                
+                if (weakFactors.length > 0) {
+                    if (scores.changeManagement < 15) {
+                        criticalActions.push({
+                            category: 'Управление изменениями',
+                            title: 'КРИТИЧНО: Отсутствие структурированного подхода к управлению изменениями',
+                            description: `Проект не использует структурированный подход к управлению изменениями (${scores.changeManagement}/30), что создает высокий риск непринятия изменений сотрудниками и недостижения выгод проекта. По данным Prosci, 70% выгод проекта зависят от принятия изменений сотрудниками, поэтому отсутствие управления изменениями критично.`,
+                            actions: [
+                                'Примените структурированную методологию управления изменениями (Prosci ADKAR, Kotter, или другую проверенную методологию)',
+                                'Проведите оценку параметров изменений (Scope, Speed, Scale) и их влияния на сотрудников',
+                                'Выполните оценку риска проекта изменений (Change Risk Assessment) для определения приоритетов',
+                                'Определите конкретные показатели принятия и использования (Adoption Metrics) для каждой группы',
+                                'Проведите оценку состава спонсорской коалиции (Sponsor Coalition Assessment)',
+                                'Разработайте стратегию управления изменениями (Change Management Strategy) с учетом специфики проекта',
+                                'Выделите ресурсы для управления изменениями (Change Management Resources) — минимум 1 FTE на 100 затронутых сотрудников',
+                                'Создайте интегрированный план проекта (Integrated Project Plan), объединяющий технический план и план управления изменениями'
+                            ],
+                            timeframe: 'Немедленно (1-2 недели)',
+                            priority: 'КРИТИЧЕСКИЙ'
+                        });
+                    } else {
+                        practicalRecommendations.push({
+                            category: 'Управление изменениями',
+                            title: 'Развитие практик управления изменениями',
+                            weakFactors: weakFactors,
+                            actions: generateChangeManagementRecommendations(weakFactors, scores.changeManagement),
+                            timeframe: '2-4 недели'
+                        });
+                    }
+                } else if (scores.changeManagement < 25 && scores.changeManagement >= 20) {
+                    // Если нет слабых факторов (score <= 2), но общий балл 20-24, все равно даем рекомендации
+                    practicalRecommendations.push({
+                        category: 'Управление изменениями',
+                        title: 'Оптимизация практик управления изменениями',
+                        weakFactors: [],
+                        actions: [
+                            'Проведите аудит текущей стратегии управления изменениями и убедитесь, что она соответствует масштабу и сложности проекта',
+                            'Проверьте, что все планы управления изменениями (коммуникации, обучение, коучинг) интегрированы в план проекта',
+                            'Убедитесь, что выделены достаточные ресурсы для управления изменениями (минимум 1 FTE на 100 затронутых сотрудников)',
+                            'Установите процесс регулярного измерения эффективности управления изменениями и корректировки подхода',
+                            'Проверьте, что определены конкретные показатели принятия и использования для каждой группы',
+                            'Оцените готовность организации к принятию ответственности за изменения после завершения проекта'
+                        ],
+                        timeframe: '2-3 недели'
+                    });
+                }
+            }
+            
+            // Анализ взаимосвязей между категориями
+            const crossCategoryInsights = analyzePCTInterdependencies(scores, detailedScores);
+            
+            // Генерация Quick Wins (быстрых побед)
+            quickWins.push(...generateQuickWins(detailedScores, scores));
+            
+            return {
+                criticalActions,
+                practicalRecommendations,
+                quickWins,
+                crossCategoryInsights
+            };
+        }
+        
+        // Генерация рекомендаций для категории "Успех"
+        function generateSuccessRecommendations(weakFactors, totalScore) {
+            const actions = [];
+            
+            weakFactors.forEach(factor => {
+                switch(factor.id) {
+                    case 1:
+                        actions.push('Проведите сессию по сбору входных данных проекта: бизнес-кейс, устав проекта, объем работ, план проекта. Создайте единый документ "Project Charter" с этими данными.');
+                        break;
+                    case 2:
+                        actions.push('Проведите воркшоп по определению выгод организации. Используйте методику "Benefit Mapping": определите выгоды на трех уровнях (организационный, групповой, индивидуальный) и свяжите их с бизнес-целями.');
+                        break;
+                    case 3:
+                        actions.push('Определите цели проекта по методологии SMART (Specific, Measurable, Achievable, Relevant, Time-bound). Убедитесь, что цели измеримы и имеют конкретные сроки.');
+                        break;
+                    case 4:
+                        actions.push('Определите целевые показатели принятия и использования для каждой группы сотрудников. Например: "90% сотрудников используют новую систему к концу 3-го месяца" или "85% сотрудников прошли обучение в течение 2 месяцев".');
+                        break;
+                    case 5:
+                        actions.push('Установите единицы измерения для каждой цели и выгоды. Используйте количественные метрики (проценты, количество, время) и качественные индикаторы (опросы, интервью).');
+                        break;
+                    case 6:
+                        actions.push('Проведите приоритизацию выгод и целей с использованием матрицы важность/сложность. Сфокусируйтесь на выгодах с высокой важностью и средней/низкой сложностью достижения.');
+                        break;
+                    case 7:
+                        actions.push('Назначьте Benefit Owners (владельцев выгод) для каждой выгоды проекта. Это должны быть руководители, которые несут ответственность за достижение выгоды в своей области.');
+                        break;
+                    case 8:
+                        actions.push('Проведите оценку зависимости выгод от людей. Используйте шкалу от 0% (выгода не зависит от людей) до 100% (выгода полностью зависит от принятия изменений сотрудниками).');
+                        break;
+                    case 9:
+                        actions.push('Определите критерии успеха проекта и создайте документ "Success Criteria", который можно коммуницировать сотрудникам. Критерии должны быть понятными и измеримыми.');
+                        break;
+                    case 10:
+                        actions.push('Проведите сессию выравнивания спонсорской коалиции (Sponsor Alignment Session). Убедитесь, что все спонсоры имеют единое понимание критериев успеха и могут их четко объяснить.');
+                        break;
+                }
+            });
+            
+            return actions;
+        }
+        
+        // Генерация рекомендаций для категории "Лидерство/Спонсорство"
+        function generateLeadershipRecommendations(weakFactors, totalScore) {
+            const actions = [];
+            
+            weakFactors.forEach(factor => {
+                switch(factor.id) {
+                    case 1:
+                        actions.push('Определите основного спонсора проекта. Спонсор должен иметь власть над людьми, процессами и системами, затронутыми изменениями. Если такого спонсора нет, это критический риск проекта.');
+                        break;
+                    case 2:
+                        actions.push('Проведите тренинг для спонсора по формулированию "Что меняется, почему меняется, что в этом для меня" (What-Why-WIIFM). Спонсор должен уметь четко объяснить суть, причину и выгоды изменений.');
+                        break;
+                    case 3:
+                        actions.push('Проведите сессию по определению видения и стратегии организации. Если видение не определено, создайте видение для проекта изменений, которое будет направлять все решения.');
+                        break;
+                    case 4:
+                        actions.push('Проведите анализ согласованности изменений со стратегией организации. Если изменений нет согласованности, пересмотрите либо изменения, либо стратегию.');
+                        break;
+                    case 5:
+                        actions.push('Определите приоритетность проекта относительно других инициатив. Создайте матрицу приоритетов и коммуницируйте ее всем заинтересованным лицам через спонсора.');
+                        break;
+                    case 6:
+                        actions.push('Установите процесс эскалации для спонсора. Спонсор должен быть доступен для решения проблем по графику, объему и ресурсам проекта в течение 24-48 часов.');
+                        break;
+                    case 7:
+                        actions.push('Создайте план видимого участия спонсора (Sponsor Visibility Plan). Спонсор должен участвовать в ключевых мероприятиях проекта: запуск, важные вехи, завершение.');
+                        break;
+                    case 8:
+                        actions.push('Проведите оценку спонсорской коалиции. Определите, какие руководители должны быть в коалиции, и проведите сессию по их вовлечению в поддержку изменений.');
+                        break;
+                    case 9:
+                        actions.push('Создайте план прямого общения спонсора с сотрудниками (Sponsor Communication Plan). Спонсор должен общаться с затронутыми группами напрямую, не через посредников.');
+                        break;
+                    case 10:
+                        actions.push('Разработайте план работы спонсора с сопротивлением и празднования успехов. Спонсор должен публично поддерживать изменения и работать с теми, кто сопротивляется.');
+                        break;
+                }
+            });
+            
+            return actions;
+        }
+        
+        // Генерация рекомендаций для категории "Управление проектами"
+        function generateProjectManagementRecommendations(weakFactors, totalScore) {
+            const actions = [];
+            
+            weakFactors.forEach(factor => {
+                switch(factor.id) {
+                    case 1:
+                        actions.push('Проведите детальное определение изменений. Определите, какие люди затронуты изменениями, какие процессы изменяются, какие системы затрагиваются. Создайте документ "Change Definition".');
+                        break;
+                    case 2:
+                        actions.push('Определите конкретные цели проекта по методологии SMART. Убедитесь, что цели измеримы и имеют конкретные сроки достижения.');
+                        break;
+                    case 3:
+                        actions.push('Проведите сессию по определению объема проекта (Scope). Определите функциональный объем (что будет делать система/процесс) и организационный объем (какие группы затронуты).');
+                        break;
+                    case 4:
+                        actions.push('Назначьте руководителя проекта (Project Manager), который будет управлять жизненным циклом проекта от начала до завершения. Убедитесь, что у PM есть необходимые полномочия и ресурсы.');
+                        break;
+                    case 5:
+                        actions.push('Определите ключевые вехи проекта и создайте план-график (Project Schedule). Используйте инструменты управления проектами (MS Project, Jira, или аналогичные).');
+                        break;
+                    case 6:
+                        actions.push('Проведите декомпозицию работ (Work Breakdown Structure) и определите требуемые результаты для каждой задачи. Назначьте ответственных за каждую задачу.');
+                        break;
+                    case 7:
+                        actions.push('Определите и получите проектные ресурсы. Создайте матрицу ответственности (RACI) для распределения ресурсов по задачам проекта.');
+                        break;
+                    case 8:
+                        actions.push('Установите регулярные совещания проектной команды (рекомендуется еженедельно). Создайте шаблон отчета о статусе проекта и процесс эскалации проблем.');
+                        break;
+                    case 9:
+                        actions.push('Проведите тренинг для руководителя проекта по управлению изменениями. PM должен понимать, что техническая реализация — это только часть успеха, важна также человеческая сторона.');
+                        break;
+                    case 10:
+                        actions.push('Интегрируйте план управления изменениями в план проекта. Создайте единый интегрированный план, где технические задачи и задачи управления изменениями синхронизированы.');
+                        break;
+                }
+            });
+            
+            return actions;
+        }
+        
+        // Генерация рекомендаций для категории "Управление изменениями"
+        function generateChangeManagementRecommendations(weakFactors, totalScore) {
+            const actions = [];
+            
+            weakFactors.forEach(factor => {
+                switch(factor.id) {
+                    case 1:
+                        actions.push('Примените структурированную методологию управления изменениями (Prosci ADKAR, Kotter 8 Steps, или другую проверенную методологию). Не импровизируйте — используйте проверенные практики.');
+                        break;
+                    case 2:
+                        actions.push('Проведите оценку параметров изменений: Scope (объем), Speed (скорость), Scale (масштаб). Определите, сколько людей затронуто, как быстро происходят изменения, насколько они значимы.');
+                        break;
+                    case 3:
+                        actions.push('Выполните оценку риска проекта изменений (Change Risk Assessment). Оцените факторы риска: размер изменений, история изменений в организации, культура, готовность к изменениям.');
+                        break;
+                    case 4:
+                        actions.push('Определите конкретные показатели принятия и использования для каждой группы. Используйте метрики: процент сотрудников, использующих новое решение, частота использования, качество использования.');
+                        break;
+                    case 5:
+                        actions.push('Проведите оценку состава спонсорской коалиции. Определите, какие руководители должны быть в коалиции, оцените их готовность и активность в поддержке изменений.');
+                        break;
+                    case 6:
+                        actions.push('Разработайте стратегию управления изменениями (Change Management Strategy). Выберите подход: самообслуживание, коучинг, обучение, или комбинированный, в зависимости от масштаба и сложности.');
+                        break;
+                    case 7:
+                        actions.push('Выделите ресурсы для управления изменениями. Рекомендация Prosci: минимум 1 FTE (Full-Time Equivalent) на 100 затронутых сотрудников для проектов среднего/высокого риска.');
+                        break;
+                    case 8:
+                        actions.push('Разработайте планы управления изменениями: план коммуникаций, план обучения, план коучинга менеджеров, план работы с сопротивлением. Интегрируйте их в план проекта.');
+                        break;
+                    case 9:
+                        actions.push('Установите процесс измерения эффективности управления изменениями. Регулярно отслеживайте показатели принятия и использования, проводите опросы, собирайте обратную связь и корректируйте подход.');
+                        break;
+                    case 10:
+                        actions.push('Проведите оценку готовности организации к принятию ответственности за изменения. Определите, кто будет поддерживать изменения после завершения проекта, и создайте план передачи ответственности.');
+                        break;
+                }
+            });
+            
+            return actions;
+        }
+        
+        // Анализ взаимосвязей между категориями PCT
+        function analyzePCTInterdependencies(scores, detailedScores) {
+            const insights = [];
+            
+            // Если слабое лидерство, это влияет на все остальное
+            if (scores.leadership < 20 && (scores.success < 20 || scores.projectManagement < 20 || scores.changeManagement < 20)) {
+                insights.push({
+                    type: 'critical_interdependency',
+                    title: 'Критическая взаимосвязь: Слабое лидерство блокирует другие измерения',
+                    description: 'Слабое лидерство/спонсорство создает каскадный эффект на все остальные измерения PCT. Без сильного спонсора невозможно эффективно определить цели (Успех), обеспечить ресурсы для проекта (Проекты) и получить поддержку сотрудников (Изменения).',
+                    recommendation: 'Приоритет #1: Усиление спонсорства. Все остальные действия будут неэффективны без сильного спонсора. Начните с работы со спонсором, затем переходите к другим измерениям.',
+                    actions: [
+                        'Проведите срочную встречу со спонсором для обсуждения его роли',
+                        'Создайте план развития спонсорства с конкретными действиями',
+                        'Обеспечьте видимое участие спонсора в проекте',
+                        'Только после улучшения спонсорства переходите к усилению других измерений'
+                    ]
+                });
+            }
+            
+            // Если слабый "Успех", это влияет на мотивацию и принятие
+            if (scores.success < 20 && scores.changeManagement < 20) {
+                insights.push({
+                    type: 'interdependency',
+                    title: 'Взаимосвязь: Неопределенные цели затрудняют управление изменениями',
+                    description: 'Если цели и выгоды проекта не определены четко, невозможно эффективно коммуницировать изменения сотрудникам и мотивировать их к принятию. Сотрудники не понимают, зачем нужны изменения.',
+                    recommendation: 'Сначала определите четкие цели и выгоды (Успех), затем разработайте коммуникационную стратегию для их донесения (Изменения).',
+                    actions: [
+                        'Проведите сессию по определению целей и выгод проекта',
+                        'Создайте документ "Business Case" с четким обоснованием',
+                        'Разработайте ключевые сообщения для коммуникаций на основе определенных выгод',
+                        'Используйте выгоды как основу для мотивации сотрудников к принятию изменений'
+                    ]
+                });
+            }
+            
+            // Если слабое управление проектами, это влияет на реализацию изменений
+            if (scores.projectManagement < 20 && scores.changeManagement < 20) {
+                insights.push({
+                    type: 'interdependency',
+                    title: 'Взаимосвязь: Техническая и человеческая стороны должны быть синхронизированы',
+                    description: 'Управление проектами (техническая сторона) и управление изменениями (человеческая сторона) должны работать синхронно. Если техническая реализация не организована, невозможно эффективно управлять изменениями.',
+                    recommendation: 'Интегрируйте план управления изменениями в план проекта. Создайте единый интегрированный план с синхронизированными вехами.',
+                    actions: [
+                        'Создайте интегрированный план проекта, объединяющий технические задачи и задачи управления изменениями',
+                        'Синхронизируйте вехи технической реализации с вехами управления изменениями',
+                        'Установите регулярные совещания проектной команды с участием специалиста по управлению изменениями',
+                        'Обеспечьте, чтобы руководитель проекта понимал важность управления изменениями'
+                    ]
+                });
+            }
+            
+            return insights;
+        }
+        
+        // Генерация Quick Wins (быстрых побед)
+        function generateQuickWins(detailedScores, scores) {
+            const quickWins = [];
+            
+            // Quick Win 1: Если есть спонсор, но он не активен
+            if (detailedScores.leadership[1] >= 2 && detailedScores.leadership[7] <= 2) {
+                quickWins.push({
+                    title: 'Быстрая победа: Увеличьте видимое участие спонсора',
+                    description: 'У вас есть спонсор с необходимой властью, но он недостаточно активен. Это можно исправить быстро.',
+                    action: 'Проведите встречу со спонсором и попросите его записать короткое видео (2-3 минуты) о важности изменений для организации. Опубликуйте видео для всех затронутых сотрудников.',
+                    impact: 'Высокий',
+                    effort: 'Низкий',
+                    timeframe: '1 неделя'
+                });
+            }
+            
+            // Quick Win 2: Если цели определены, но не коммуницированы
+            if (detailedScores.success[3] >= 2 && detailedScores.success[9] <= 2) {
+                quickWins.push({
+                    title: 'Быстрая победа: Коммуницируйте критерии успеха сотрудникам',
+                    description: 'Критерии успеха определены, но не доведены до сотрудников. Это можно исправить быстро.',
+                    action: 'Создайте простой одностраничный документ с критериями успеха проекта в понятном для сотрудников формате. Распространите его через все доступные каналы коммуникации.',
+                    impact: 'Средний',
+                    effort: 'Низкий',
+                    timeframe: '3-5 дней'
+                });
+            }
+            
+            // Quick Win 3: Если есть план проекта, но нет интеграции с управлением изменениями
+            if (detailedScores.projectManagement[5] >= 2 && detailedScores.projectManagement[10] <= 2) {
+                quickWins.push({
+                    title: 'Быстрая победа: Интегрируйте план управления изменениями в план проекта',
+                    description: 'У вас есть план проекта, но он не интегрирован с планом управления изменениями. Это можно исправить относительно быстро.',
+                    action: 'Добавьте задачи управления изменениями в существующий план проекта. Синхронизируйте вехи технической реализации с вехами управления изменениями (коммуникации, обучение, поддержка).',
+                    impact: 'Высокий',
+                    effort: 'Средний',
+                    timeframe: '1-2 недели'
+                });
+            }
+            
+            return quickWins;
+        }
+        
         function generatePCTRecommendations() {
             const container = document.getElementById('pctRecommendations');
             if (!container) return;
@@ -22626,30 +23661,11 @@ body.theme-dark .search-highlight {
             // Генерируем экспертную интерпретацию
             const expertInsight = generatePCTExpertInsight(scores);
             
-            const categoryNames = {
-                success: 'Успех',
-                leadership: 'Лидерство/Спонсорство',
-                projectManagement: 'Управление проектами',
-                changeManagement: 'Управление изменениями'
-            };
+            // Генерируем практические рекомендации
+            const practicalRecs = generatePCTPracticalRecommendations();
             
-            const basicRecommendations = [];
-            Object.keys(scores).forEach(key => {
-                const score = scores[key];
-                const name = categoryNames[key];
-                
-                if (score >= 25) {
-                    basicRecommendations.push(`<strong>${name}</strong>: Сильная сторона (${score}/30) — продолжайте поддерживать и использовать.`);
-                } else if (score >= 20) {
-                    basicRecommendations.push(`<strong>${name}</strong>: Есть риски (${score}/30) — необходим дополнительный анализ.`);
-                } else if (score >= 10) {
-                    basicRecommendations.push(`<strong>${name}</strong>: Высокий риск (${score}/30) — требуются немедленные меры.`);
-                } else if (score > 0) {
-                    basicRecommendations.push(`<strong>${name}</strong>: Критический уровень (${score}/30) — срочно требуется вмешательство.`);
-                }
-            });
-            
-            container.innerHTML = `
+            // Формируем HTML с практическими рекомендациями
+            let html = `
                 <div class="pct-expert-insight">
                     <h4>Экспертная интерпретация результатов PCT</h4>
                     <div class="expert-overall-analysis">
@@ -22671,74 +23687,86 @@ body.theme-dark .search-highlight {
                         <ul>${expertInsight.criticalGaps.map(g => `<li>${g}</li>`).join('')}</ul>
                     </div>
                     ` : ''}
-                    
-                    <div class="expert-category-analysis">
-                        <h5>Детальный анализ по измерениям PCT:</h5>
-                        ${Object.entries(expertInsight.categoryAnalysis).map(([key, cat]) => `
-                            <div class="category-expert-analysis">
-                                <h6>${cat.name} (${cat.score}/30)</h6>
-                                <p>${cat.analysis}</p>
-                                <p><strong>Приоритет:</strong> ${cat.priority}</p>
-                                <p><strong>Влияние:</strong> ${cat.impact}</p>
-                                ${cat.recommendations.length > 0 ? `
-                                    <div class="category-recommendations">
-                                        <strong>Рекомендации:</strong>
-                                        <ul>${cat.recommendations.map(r => `<li>${r}</li>`).join('')}</ul>
-                                    </div>
-                                ` : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                    
-                    ${expertInsight.priorityActions.critical.length > 0 || expertInsight.priorityActions.high.length > 0 || expertInsight.priorityActions.medium.length > 0 ? `
-                    <div class="expert-priority-actions">
-                        <h5>Приоритетные действия:</h5>
-                        ${expertInsight.priorityActions.critical.length > 0 ? `
-                            <div class="action-plan-phase immediate">
-                                <h6>Немедленные действия (критический приоритет):</h6>
-                                ${expertInsight.priorityActions.critical.map(item => `
-                                    <div class="action-plan-item">
-                                        <strong>${item.category} (${item.score}/30)</strong>
-                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                        
-                        ${expertInsight.priorityActions.high.length > 0 ? `
-                            <div class="action-plan-phase short-term">
-                                <h6>Краткосрочные действия (высокий приоритет):</h6>
-                                ${expertInsight.priorityActions.high.map(item => `
-                                    <div class="action-plan-item">
-                                        <strong>${item.category} (${item.score}/30)</strong>
-                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                        
-                        ${expertInsight.priorityActions.medium.length > 0 ? `
-                            <div class="action-plan-phase medium-term">
-                                <h6>Среднесрочные действия (средний приоритет):</h6>
-                                ${expertInsight.priorityActions.medium.map(item => `
-                                    <div class="action-plan-item">
-                                        <strong>${item.category} (${item.score}/30)</strong>
-                                        <ul>${item.actions.map(a => `<li>${a}</li>`).join('')}</ul>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : ''}
-                    </div>
-                    ` : ''}
                 </div>
                 
-                <div class="pct-basic-recommendations">
-                    <h4>Краткие рекомендации на основе оценки:</h4>
-                    <ul>
-                        ${basicRecommendations.map(rec => `<li>${rec}</li>`).join('')}
-                    </ul>
+                ${practicalRecs.criticalActions.length > 0 ? `
+                <div class="pct-critical-actions">
+                    <h4>🚨 Критические действия (требуют немедленного внимания)</h4>
+                    ${practicalRecs.criticalActions.map(action => `
+                        <div class="critical-action-card">
+                            <div class="action-header">
+                                <h5>${action.title}</h5>
+                                <span class="action-priority">${action.priority}</span>
+                            </div>
+                            <p class="action-description">${action.description}</p>
+                            <div class="action-timeframe"><strong>Срок:</strong> ${action.timeframe}</div>
+                            <div class="action-steps">
+                                <h6>Практические шаги:</h6>
+                                <ol>
+                                    ${action.actions.map(step => `<li>${step}</li>`).join('')}
+                                </ol>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
+                ` : ''}
+                
+                ${practicalRecs.practicalRecommendations.length > 0 ? `
+                <div class="pct-practical-recommendations">
+                    <h4>💡 Практические рекомендации по улучшению</h4>
+                    ${practicalRecs.practicalRecommendations.map(rec => `
+                        <div class="practical-recommendation-card">
+                            <h5>${rec.category}: ${rec.title}</h5>
+                            <div class="recommendation-timeframe"><strong>Рекомендуемый срок:</strong> ${rec.timeframe}</div>
+                            <div class="recommendation-actions">
+                                <h6>Конкретные действия:</h6>
+                                <ul>
+                                    ${rec.actions.map(action => `<li>${action}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                ${practicalRecs.quickWins.length > 0 ? `
+                <div class="pct-quick-wins">
+                    <h4>⚡ Быстрые победы (Quick Wins)</h4>
+                    <p class="quick-wins-intro">Эти действия можно реализовать быстро и получить заметный эффект:</p>
+                    ${practicalRecs.quickWins.map(win => `
+                        <div class="quick-win-card">
+                            <h5>${win.title}</h5>
+                            <p>${win.description}</p>
+                            <div class="quick-win-details">
+                                <div><strong>Действие:</strong> ${win.action}</div>
+                                <div><strong>Влияние:</strong> ${win.impact} | <strong>Усилия:</strong> ${win.effort} | <strong>Срок:</strong> ${win.timeframe}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+                
+                ${practicalRecs.crossCategoryInsights.length > 0 ? `
+                <div class="pct-interdependencies">
+                    <h4>🔗 Взаимосвязи между измерениями PCT</h4>
+                    ${practicalRecs.crossCategoryInsights.map(insight => `
+                        <div class="interdependency-card">
+                            <h5>${insight.title}</h5>
+                            <p>${insight.description}</p>
+                            <p class="interdependency-recommendation"><strong>Рекомендация:</strong> ${insight.recommendation}</p>
+                            <div class="interdependency-actions">
+                                <h6>Действия:</h6>
+                                <ul>
+                                    ${insight.actions.map(action => `<li>${action}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
             `;
+            
+            container.innerHTML = html;
         }
         
         function setupPCTEventListeners() {
@@ -22747,13 +23775,8 @@ body.theme-dark .search-highlight {
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
-                    
-                    // Обновить активную кнопку
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Рендерить новую категорию
-                    renderPCTCategory(category);
+                    // Используем общую функцию для переключения категории
+                    switchPCTCategory(category);
                 });
             });
             
@@ -23943,8 +24966,16 @@ body.theme-dark .search-highlight {
         }
 
         // Инициализация PCT инструмента
-        initPCT();
-        console.log('✓ PCT инструмент инициализирован');
+        try {
+            if (typeof initPCT === 'function' && typeof pctAssessment !== 'undefined') {
+                initPCT();
+                console.log('✓ PCT инструмент инициализирован');
+            } else {
+                console.warn('PCT инструмент не может быть инициализирован: отсутствуют необходимые функции или данные');
+            }
+        } catch (error) {
+            console.error('Ошибка при инициализации PCT инструмента:', error);
+        }
 
         // Инициализация ROI калькулятора
         initROICalculator();

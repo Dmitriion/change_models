@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>56 Моделей Управления Изменениями: От Классических к Современным (2025)</title>
     <style>
         :root {
@@ -327,6 +327,14 @@ body {
   overflow: hidden;
   position: relative;
   padding-bottom: 80px; /* Отступ для фиксированного тулбара */
+  touch-action: pan-y;
+}
+
+/* Адаптивный отступ для тулбара с учетом safe-area */
+@supports (padding: max(0px)) {
+  .slide-container {
+    padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+  }
 }
 
 .slide {
@@ -338,6 +346,9 @@ body {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.45s var(--ease-standard), transform 0.6s var(--ease-standard);
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 
 .slide.active {
@@ -1260,6 +1271,13 @@ body {
   max-height: 60px;
 }
 
+/* Safe area для iPhone (notch) */
+@supports (padding: max(0px)) {
+  .navigation {
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}
+
 .nav-buttons {
   display: flex;
   gap: var(--space-12);
@@ -1277,6 +1295,7 @@ body {
   transition: all var(--duration-fast) var(--ease-standard);
   box-shadow: 0 4px 12px rgba(var(--color-teal-500-rgb), 0.15);
   min-height: 32px;
+  min-width: 44px;
   transform: translateY(0);
 }
 
@@ -1438,6 +1457,7 @@ body {
   transition: transform 0.2s var(--ease-standard), box-shadow 0.2s var(--ease-standard), background 0.2s var(--ease-standard), border-color 0.2s var(--ease-standard), color 0.2s var(--ease-standard);
   white-space: nowrap;
   min-height: 28px;
+  min-width: 44px;
 }
 
 .toolbar-btn:hover {
@@ -1535,6 +1555,145 @@ body {
 
 .search-result-item span {
   color: var(--color-text-secondary);
+}
+
+/* ========== МОБИЛЬНАЯ АДАПТАЦИЯ НАВИГАЦИОННОГО ТУЛБАРА ========== */
+
+/* Медиа-запросы для экранов меньше 480px */
+@media (max-width: 480px) {
+  .navigation {
+    padding: var(--space-12) var(--space-8);
+    max-height: none;
+    min-height: auto;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: stretch;
+  }
+  
+  .nav-buttons {
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--space-8);
+    order: 1;
+  }
+  
+  .btn {
+    flex: 1;
+    min-height: 44px; /* Минимальный размер для касания */
+    min-width: 44px;
+    font-size: 14px;
+    padding: var(--space-12) var(--space-16);
+  }
+  
+  .nav-center {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-8);
+    order: 2;
+    align-items: stretch;
+  }
+  
+  .slide-counter {
+    font-size: 11px;
+    text-align: center;
+    order: 1;
+  }
+  
+  .model-selector,
+  .path-selector {
+    width: 100%;
+    min-height: 44px;
+    font-size: 14px; /* Предотвращает зум на iOS */
+    padding: var(--space-10) var(--space-12);
+    order: 2;
+  }
+  
+  .path-meta {
+    font-size: 11px;
+    text-align: center;
+    order: 3;
+  }
+  
+  .nav-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-8);
+    order: 3;
+  }
+  
+  .search-container {
+    width: 100%;
+    min-width: auto;
+    order: 1;
+  }
+  
+  .search-container input {
+    min-height: 44px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+  
+  .nav-actions-group {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    order: 2;
+  }
+  
+  .toolbar-btn {
+    flex: 1 1 calc(50% - var(--space-4));
+    min-width: calc(50% - var(--space-4));
+    min-height: 44px;
+    font-size: 12px;
+    padding: var(--space-10) var(--space-8);
+  }
+}
+
+/* Для очень маленьких экранов (меньше 360px) */
+@media (max-width: 360px) {
+  .toolbar-btn {
+    font-size: 11px;
+    padding: var(--space-8) var(--space-6);
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+  
+  .btn {
+    font-size: 13px;
+    padding: var(--space-10) var(--space-12);
+  }
+  
+  .navigation {
+    padding: var(--space-10) var(--space-6);
+  }
+}
+
+/* Оптимизация для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .toolbar-btn,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Убираем hover-эффекты на touch-устройствах */
+  .btn:hover,
+  .toolbar-btn:hover {
+    transform: none;
+  }
+  
+  .btn:active,
+  .toolbar-btn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  
+  /* Улучшаем визуальную обратную связь */
+  .btn:active,
+  .toolbar-btn:active {
+    transition: transform 0.1s var(--ease-standard), opacity 0.1s var(--ease-standard);
+  }
 }
 
 .search-result-item:hover,
@@ -20567,30 +20726,72 @@ body.theme-dark .search-highlight {
         let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
+        let isScrolling = false;
+        let scrollTimeout = null;
+        let touchStartTime = 0;
         
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
+            touchStartTime = Date.now();
+            isScrolling = false;
+            
+            // Сброс таймера скролла
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', (e) => {
+            // Определяем, скроллит ли пользователь
+            const currentY = e.changedTouches[0].screenY;
+            const deltaY = Math.abs(currentY - touchStartY);
+            
+            // Если вертикальное движение больше 10px, считаем это скроллом
+            if (deltaY > 10) {
+                isScrolling = true;
+            }
+            
+            // Сброс таймера при движении
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
         }, { passive: true });
         
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
+            
+            // Не обрабатываем свайп, если пользователь скроллил
+            // или если прошло слишком много времени (более 500ms)
+            const touchDuration = Date.now() - touchStartTime;
+            if (!isScrolling && touchDuration < 500) {
+                handleSwipe();
+            }
+            
+            // Очистка таймера
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = null;
+            }
+            isScrolling = false;
         }, { passive: true });
         
         function handleSwipe() {
-            const swipeThreshold = 50;
+            const swipeThreshold = 80; // Увеличен порог с 50 до 80px
             const horizontalSwipe = Math.abs(touchEndX - touchStartX);
             const verticalSwipe = Math.abs(touchEndY - touchStartY);
             
-            // Only trigger if horizontal swipe is more significant than vertical
-            if (horizontalSwipe > verticalSwipe && horizontalSwipe > swipeThreshold) {
+            // Только если горизонтальный свайп значительно больше вертикального
+            // (минимум в 1.5 раза больше) и превышает порог
+            if (horizontalSwipe > verticalSwipe * 1.5 && horizontalSwipe > swipeThreshold) {
                 if (touchEndX < touchStartX) {
                     // Swipe left - next slide
                     changeSlide(1);
-                }
-                if (touchEndX > touchStartX) {
+                } else if (touchEndX > touchStartX) {
                     // Swipe right - previous slide
                     changeSlide(-1);
                 }
@@ -22090,6 +22291,51 @@ body.theme-dark .search-highlight {
         }
         
         console.log('=== Инициализация завершена ===');
+        
+        // Динамический расчет отступа для тулбара
+        function updateNavigationPadding() {
+            const navigationEl = document.querySelector('.navigation');
+            const slideContainerEl = document.querySelector('.slide-container');
+            
+            if (navigationEl && slideContainerEl) {
+                const navHeight = navigationEl.offsetHeight;
+                
+                // Получаем safe-area-inset-bottom через CSS переменную или напрямую
+                let safeAreaBottom = 0;
+                if (CSS.supports('padding', 'env(safe-area-inset-bottom)')) {
+                    // Пытаемся получить значение через getComputedStyle
+                    const testEl = document.createElement('div');
+                    testEl.style.paddingBottom = 'env(safe-area-inset-bottom)';
+                    document.body.appendChild(testEl);
+                    const computed = window.getComputedStyle(testEl);
+                    const paddingValue = computed.paddingBottom;
+                    document.body.removeChild(testEl);
+                    
+                    // Если значение в px, извлекаем число
+                    if (paddingValue && paddingValue !== '0px') {
+                        safeAreaBottom = parseInt(paddingValue) || 0;
+                    }
+                }
+                
+                // Используем max() для учета safe-area (минимум 80px + высота тулбара + отступ)
+                const paddingBottom = Math.max(80, navHeight + 20 + safeAreaBottom);
+                slideContainerEl.style.paddingBottom = `${paddingBottom}px`;
+            }
+        }
+        
+        // Обновляем отступ при загрузке и изменении размера окна
+        updateNavigationPadding();
+        window.addEventListener('resize', updateNavigationPadding);
+        
+        // Обновляем отступ после изменения содержимого тулбара
+        const resizeObserver = new ResizeObserver(() => {
+            updateNavigationPadding();
+        });
+        
+        const navigationEl = document.querySelector('.navigation');
+        if (navigationEl) {
+            resizeObserver.observe(navigationEl);
+        }
         
         // Show swipe hint after a short delay
         setTimeout(showSwipeHint, 1000);

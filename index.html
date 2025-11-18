@@ -24816,9 +24816,6 @@ html.mobile-fullscreen {
                     window.scrollTo(0, 0);
                 }, 100);
                 
-                // Показываем уведомление пользователю с инструкцией
-                showFullscreenHint();
-                
                 // Инициализируем обработчик swipe-down для выхода
                 initSwipeDownExit();
             } else {
@@ -24922,44 +24919,6 @@ html.mobile-fullscreen {
                     document.removeEventListener('touchend', swipeDownHandler._touchEnd);
                 }
                 swipeDownHandler = null;
-            }
-        }
-        
-        // Показ подсказки для мобильных устройств
-        function showFullscreenHint() {
-            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Проверяем, показывали ли мы уже подсказку
-                const hintShown = sessionStorage.getItem('fullscreen-hint-shown');
-                
-                // Создаем временное уведомление с инструкцией по выходу
-                const hint = document.createElement('div');
-                hint.className = 'mobile-fullscreen-hint';
-                hint.innerHTML = `
-                    <div class="hint-content">
-                        <p>📱 <strong>Полноэкранный режим активен</strong></p>
-                        <p>Для выхода:</p>
-                        <p>• Нажмите кнопку <strong>✕</strong> в правом верхнем углу</p>
-                        <p>• Или сделайте <strong>свайп вниз</strong> от верхнего края экрана</p>
-                        ${isIOS ? '<p style="font-size: 0.9em; color: var(--color-text-secondary); margin-top: 8px;">💡 Также можно использовать "Поделиться" → "На экран Домой"</p>' : ''}
-                        <button onclick="this.parentElement.parentElement.remove()">Понятно</button>
-                    </div>
-                `;
-                document.body.appendChild(hint);
-                
-                // Отмечаем, что подсказка была показана
-                if (!hintShown) {
-                    sessionStorage.setItem('fullscreen-hint-shown', 'true');
-                }
-                
-                // Автоматически скрываем через 4 секунды
-                setTimeout(() => {
-                    if (hint.parentElement) {
-                        hint.remove();
-                    }
-                }, 4000);
             }
         }
         

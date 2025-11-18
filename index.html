@@ -353,6 +353,8 @@ body {
     .slide-container {
       padding-top: max(50px, calc(50px + env(safe-area-inset-top)));
       padding-bottom: max(60px, calc(60px + env(safe-area-inset-bottom) + 20px)); /* +20px дополнительный отступ */
+      padding-left: max(0px, env(safe-area-inset-left));
+      padding-right: max(0px, env(safe-area-inset-right));
     }
   }
 }
@@ -373,6 +375,7 @@ body {
   overscroll-behavior: contain;
   overscroll-behavior-y: contain;
   overscroll-behavior-x: none;
+  scroll-behavior: smooth; /* Плавная прокрутка */
 }
 
 .slide.active {
@@ -395,13 +398,59 @@ body {
 
   .overview-card,
   .practice-tool-card {
-    padding: var(--space-20);
+    padding: clamp(1rem, 4vw, 1.5rem); /* Адаптивный padding: 16px - 24px */
+  }
+  
+  .card {
+    padding: clamp(1rem, 4vw, 1.5rem); /* Адаптивный padding для карточек */
+  }
+  
+  .card p {
+    line-height: 1.7; /* Улучшенная читаемость на мобильных */
+  }
+  
+  .useful-option-content p {
+    line-height: 1.7; /* Улучшенная читаемость */
   }
 }
 
 @media (max-width: 480px) {
   .slide {
-    padding: clamp(0.5rem, 2vw, 0.75rem);
+    padding: clamp(0.75rem, 3vw, 1rem); /* Минимум 12px вместо 8px для лучшей читаемости */
+    /* Отступ снизу для удобной прокрутки */
+    padding-bottom: clamp(4rem, 15vw, 6rem);
+  }
+}
+
+/* Оптимизация для landscape-ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .slide {
+    padding: clamp(0.5rem, 2vw, 1rem); /* Компактные отступы для landscape */
+  }
+  
+  .navigation {
+    max-height: 50px; /* Компактная навигация */
+    padding: 6px 12px;
+  }
+  
+  .btn {
+    min-height: 40px; /* Немного меньше для landscape */
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .slide-title {
+    font-size: clamp(1.25rem, 4vw, 1.75rem); /* Компактные заголовки */
+    margin-bottom: var(--space-12);
+  }
+  
+  .slide-subtitle {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    margin-bottom: var(--space-16);
+  }
+  
+  .card {
+    padding: clamp(0.875rem, 3vw, 1.25rem); /* Компактные карточки */
   }
 }
 
@@ -1323,6 +1372,19 @@ body {
 @supports (padding: max(0px)) {
   .navigation {
     padding-bottom: max(8px, env(safe-area-inset-bottom));
+    padding-left: max(8px, calc(8px + env(safe-area-inset-left)));
+    padding-right: max(8px, calc(8px + env(safe-area-inset-right)));
+  }
+  
+  /* Safe area для верхних кнопок */
+  .fullscreen-btn,
+  .export-btn {
+    top: max(8px, calc(8px + env(safe-area-inset-top)));
+    right: max(8px, calc(8px + env(safe-area-inset-right)));
+  }
+  
+  .export-btn {
+    right: max(48px, calc(48px + env(safe-area-inset-right)));
   }
 }
 
@@ -1610,33 +1672,33 @@ body {
 /* Медиа-запросы для экранов меньше 480px */
 @media (max-width: 480px) {
   .navigation {
-    padding: 6px 8px; /* Уменьшено с var(--space-12) var(--space-8) до 6px 8px (65%) */
-    max-height: 42px; /* Уменьшено с none до 42px (70% от ~60px) */
+    padding: 8px 12px; /* Улучшено для лучшего touch-таргета */
+    max-height: auto; /* Разрешаем увеличение высоты для 44px кнопок */
     min-height: auto;
     flex-direction: column;
-    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
+    gap: var(--space-12); /* Увеличено с 6px до 12px для лучшего spacing */
     align-items: stretch;
   }
   
   .nav-buttons {
     width: 100%;
     justify-content: space-between;
-    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
+    gap: var(--space-12); /* Увеличено с 6px до 12px для предотвращения случайных нажатий */
     order: 1;
   }
   
   .btn {
     flex: 1;
-    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
-    min-width: 30px; /* Уменьшено с 44px до 30px (68%) */
-    font-size: 12px; /* Уменьшено с 14px до 12px */
-    padding: 6px 10px; /* Уменьшено с var(--space-12) var(--space-16) до 6px 10px */
+    min-height: 44px; /* Соответствие стандартам доступности (Apple HIG, Material Design) */
+    min-width: 44px; /* Минимальный размер touch-таргета */
+    font-size: 13px; /* Немного увеличен для лучшей читаемости */
+    padding: 10px 16px; /* Улучшен padding для комфортного нажатия */
   }
   
   .nav-center {
     width: 100%;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-12); /* Улучшен spacing */
     order: 2;
     align-items: stretch;
   }
@@ -1650,9 +1712,9 @@ body {
   .model-selector,
   .path-selector {
     width: 100%;
-    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
-    font-size: 12px; /* Уменьшено с 14px до 12px */
-    padding: 5px 8px; /* Уменьшено с var(--space-10) var(--space-12) до 5px 8px */
+    min-height: 44px; /* Соответствие стандартам доступности */
+    font-size: 13px; /* Немного увеличен для лучшей читаемости */
+    padding: 10px 12px; /* Улучшен padding */
     order: 2;
   }
   
@@ -1665,7 +1727,7 @@ body {
   .nav-actions {
     width: 100%;
     flex-direction: column;
-    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
+    gap: var(--space-12); /* Улучшен spacing */
     order: 3;
   }
   
@@ -1676,8 +1738,9 @@ body {
   }
   
   .search-container input {
-    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
-    font-size: 14px; /* Уменьшено с 16px до 14px для предотвращения зума на iOS */
+    min-height: 44px; /* Соответствие стандартам доступности */
+    font-size: 16px; /* 16px предотвращает зум на iOS, но лучше использовать viewport meta */
+    padding: 10px 12px; /* Улучшен padding */
   }
   
   .nav-actions-group {
@@ -1716,13 +1779,13 @@ body {
   }
 }
 
-/* Оптимизация для touch-устройств (уменьшено пропорционально) */
+/* Оптимизация для touch-устройств */
 @media (hover: none) and (pointer: coarse) {
   .btn,
   .toolbar-btn,
   button {
-    min-height: 30px; /* Уменьшено с 44px до 30px (68%) для соответствия новым размерам тулбаров */
-    min-width: 30px; /* Уменьшено с 44px до 30px (68%) */
+    min-height: 44px; /* Соответствие стандартам доступности */
+    min-width: 44px; /* Минимальный размер touch-таргета */
   }
   
   /* Убираем hover-эффекты на touch-устройствах */
@@ -9125,7 +9188,7 @@ html.mobile-fullscreen {
   }
   
   .model-info {
-    padding: var(--space-16);
+    padding: clamp(0.875rem, 3vw, 1.25rem); /* Адаптивный padding: 14px - 20px */
     width: 100%;
     flex-shrink: 0;
   }
@@ -9153,12 +9216,13 @@ html.mobile-fullscreen {
   
   .model-info p {
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7; /* Улучшенная читаемость на мобильных */
     margin-bottom: var(--space-12);
   }
   
   .model-info ul {
     font-size: 0.95rem;
+    line-height: 1.7; /* Улучшенная читаемость для списков */
     margin-bottom: var(--space-12);
   }
   
@@ -12151,7 +12215,7 @@ html.mobile-fullscreen {
 
   .useful-options-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-20);
+    gap: clamp(1rem, 4vw, 1.5rem); /* Адаптивный gap: 16px - 24px для предотвращения случайных нажатий */
   }
 
   .useful-option-card {
@@ -12176,7 +12240,7 @@ html.mobile-fullscreen {
   }
 
   .useful-option-card {
-    padding: var(--space-20);
+    padding: clamp(1rem, 4vw, 1.25rem); /* Адаптивный padding */
     gap: var(--space-12);
   }
 

@@ -24722,10 +24722,12 @@ html.mobile-fullscreen {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
             
             // Определяем, находимся ли мы в полноэкранном режиме
+            // Включаем проверку мобильного полноэкранного режима
             const isFullscreen = doc.fullscreenElement || 
                                  doc.webkitFullscreenElement || 
                                  doc.mozFullScreenElement || 
-                                 doc.msFullscreenElement;
+                                 doc.msFullscreenElement ||
+                                 doc.body.classList.contains('mobile-fullscreen');
             
             if (!isFullscreen) {
                 // Вход в полноэкранный режим
@@ -24752,7 +24754,10 @@ html.mobile-fullscreen {
                 }
             } else {
                 // Выход из полноэкранного режима
-                if (doc.exitFullscreen) {
+                // Если используется мобильный полноэкранный режим, выходим через handleMobileFullscreen
+                if (doc.body.classList.contains('mobile-fullscreen')) {
+                    handleMobileFullscreen(false);
+                } else if (doc.exitFullscreen) {
                     doc.exitFullscreen();
                 } else if (doc.webkitExitFullscreen) {
                     doc.webkitExitFullscreen();

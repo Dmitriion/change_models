@@ -530,14 +530,25 @@ body {
   pointer-events: none;
 }
 
-.card:hover {
+/* Hover только для кликабельных карточек */
+.card[onclick]:hover,
+.card.clickable:hover {
   transform: translateY(-8px);
   box-shadow: 0 24px 40px rgba(var(--color-slate-900-rgb), 0.12);
   border-color: rgba(var(--color-teal-500-rgb), 0.35);
+  cursor: pointer;
 }
 
-.card:hover::after {
+.card[onclick]:hover::after,
+.card.clickable:hover::after {
   opacity: 1;
+}
+
+/* Убираем hover для неинтерактивных карточек */
+.card:not([onclick]):not(.clickable):not(.practice-tool-card-cta):not(.tool-card-cta):not(.useful-option-card):hover {
+  transform: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-border);
 }
 
 .card h3 {
@@ -681,15 +692,16 @@ body {
   transition: transform 0.3s var(--ease-standard);
 }
 
-.classification-card:hover .classification-card-icon {
-  transform: scale(1.1);
-  background: rgba(var(--color-teal-500-rgb), 0.12);
-  border-color: var(--color-teal-300);
-  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+/* Убираем hover для неинтерактивных classification-card */
+.classification-card:not([onclick]):hover .classification-card-icon {
+  transform: none;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-color: rgba(var(--color-teal-500-rgb), 0.15);
+  box-shadow: none;
 }
 
-.classification-card:hover .classification-models-list li::before {
-  transform: scale(1.2);
+.classification-card:not([onclick]):hover .classification-models-list li::before {
+  transform: none;
 }
 
 .classification-highlight-box {
@@ -844,11 +856,12 @@ body {
   margin: 0;
 }
 
-.pillar-card:hover .pillar-icon {
-  transform: scale(1.1);
-  background: rgba(var(--color-teal-500-rgb), 0.12);
-  border-color: var(--color-teal-300);
-  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+/* Убираем hover для неинтерактивных pillar-card */
+.pillar-card:not([onclick]):hover .pillar-icon {
+  transform: none;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-color: rgba(var(--color-teal-500-rgb), 0.15);
+  box-shadow: none;
 }
 
 /* Адаптивность для слайда 6 */
@@ -968,11 +981,12 @@ body {
   margin: 0;
 }
 
-.trend-card:hover .trend-icon {
-  transform: scale(1.1);
-  background: rgba(var(--color-teal-500-rgb), 0.12);
-  border-color: var(--color-teal-300);
-  box-shadow: 0 8px 20px rgba(var(--color-teal-500-rgb), 0.2);
+/* Убираем hover для неинтерактивных trend-card */
+.trend-card:not([onclick]):hover .trend-icon {
+  transform: none;
+  background: rgba(var(--color-teal-500-rgb), 0.08);
+  border-color: rgba(var(--color-teal-500-rgb), 0.15);
+  box-shadow: none;
 }
 
 /* Адаптивность для слайда 5 */
@@ -10991,10 +11005,11 @@ html.mobile-fullscreen {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.overview-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-teal-300);
+/* Убираем hover для неинтерактивных overview-card */
+.overview-card:not([onclick]):hover {
+  transform: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-border);
 }
 
 .overview-icon,
@@ -11193,10 +11208,11 @@ html.mobile-fullscreen {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.model-category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-teal-300);
+/* Убираем hover для неинтерактивных model-category-card */
+.model-category-card:not([onclick]):hover {
+  transform: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-color: var(--color-border);
 }
 
 .model-category-card .type-badge {
@@ -12081,6 +12097,50 @@ html.mobile-fullscreen {
   background: rgba(var(--color-teal-500-rgb), 0.15);
   border-color: var(--color-teal-400);
   transform: scale(1.1);
+}
+
+/* ========== УНИВЕРСАЛЬНЫЙ TOUCH-ИНДИКАТОР ДЛЯ КЛИКАБЕЛЬНЫХ КАРТОЧЕК ========== */
+.touch-indicator {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  border: 1.5px solid rgba(var(--color-teal-500-rgb), 0.3);
+  border-radius: 50%;
+  color: var(--color-primary);
+  opacity: 0.6;
+  transition: all 0.3s var(--ease-standard);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.touch-indicator svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+
+/* Показываем индикатор при hover на кликабельных карточках */
+.card[onclick]:hover .touch-indicator,
+.card.clickable:hover .touch-indicator,
+.practice-tool-card-cta:hover .touch-indicator,
+.tool-card-cta:hover .touch-indicator {
+  opacity: 1;
+  background: rgba(var(--color-teal-500-rgb), 0.15);
+  border-color: var(--color-teal-400);
+  transform: scale(1.1);
+}
+
+/* На мобильных показываем индикатор всегда */
+@media (max-width: 768px) {
+  .touch-indicator {
+    opacity: 0.8;
+  }
 }
 
 /* Адаптивность для useful-options-grid */
@@ -25446,6 +25506,9 @@ html.mobile-fullscreen {
         console.log('Текущий слайд после инициализации:', currentSlide);
         initializeTheme(); // Инициализация темы ПОСЛЕ объявления всех переменных
         
+        // Автоматически добавляем touch-indicator к кликабельным карточкам
+        addTouchIndicators();
+        
         // ========== Quiz Functions ==========
         function initQuiz() {
             console.log('Инициализация квиза...');
@@ -27177,6 +27240,51 @@ html.mobile-fullscreen {
         
         // Show swipe hint after a short delay
         setTimeout(showSwipeHint, 1000);
+        
+        // ========== Функция для автоматического добавления touch-indicator ==========
+        function addTouchIndicators() {
+            // Находим все кликабельные карточки
+            const clickableCards = document.querySelectorAll(
+                '.card[onclick], ' +
+                '.practice-tool-card-cta, ' +
+                '.tool-card-cta, ' +
+                '.card.clickable'
+            );
+            
+            clickableCards.forEach(card => {
+                // Проверяем, нет ли уже индикатора (touch-indicator или useful-option-touch-indicator)
+                if (!card.querySelector('.touch-indicator') && 
+                    !card.querySelector('.useful-option-touch-indicator')) {
+                    
+                    // Убеждаемся, что карточка имеет position: relative
+                    const computedStyle = window.getComputedStyle(card);
+                    if (computedStyle.position === 'static') {
+                        card.style.position = 'relative';
+                    }
+                    
+                    // Создаем индикатор
+                    const indicator = document.createElement('div');
+                    indicator.className = 'touch-indicator';
+                    indicator.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                    `;
+                    card.appendChild(indicator);
+                }
+            });
+        }
+        
+        // Переинициализируем индикаторы при изменении слайдов (для динамически создаваемых карточек)
+        const originalActivateSlide = window.activateSlide;
+        if (originalActivateSlide) {
+            window.activateSlide = function(slideIndex) {
+                originalActivateSlide(slideIndex);
+                // Добавляем небольшую задержку для динамически создаваемых элементов
+                setTimeout(addTouchIndicators, 100);
+            };
+        }
     </script>
 </body>
 </html>

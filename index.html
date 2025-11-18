@@ -342,15 +342,15 @@ body {
   }
 }
 
-/* Мобильный padding-top для верхнего тулбара */
+/* Мобильный padding-top для верхнего тулбара (уменьшено пропорционально) */
 @media (max-width: 768px) {
   .slide-container {
-    padding-top: 60px; /* Отступ для верхних элементов на мобильных */
+    padding-top: 50px; /* Уменьшено с 60px до 50px (83%) для соответствия новым размерам тулбара */
   }
   
   @supports (padding: max(0px)) {
     .slide-container {
-      padding-top: max(60px, calc(60px + env(safe-area-inset-top)));
+      padding-top: max(50px, calc(50px + env(safe-area-inset-top)));
     }
   }
 }
@@ -1594,27 +1594,27 @@ body {
 /* Медиа-запросы для экранов меньше 480px */
 @media (max-width: 480px) {
   .navigation {
-    padding: var(--space-12) var(--space-8);
-    max-height: none;
+    padding: 6px 8px; /* Уменьшено с var(--space-12) var(--space-8) до 6px 8px (65%) */
+    max-height: 42px; /* Уменьшено с none до 42px (70% от ~60px) */
     min-height: auto;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
     align-items: stretch;
   }
   
   .nav-buttons {
     width: 100%;
     justify-content: space-between;
-    gap: var(--space-8);
+    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
     order: 1;
   }
   
   .btn {
     flex: 1;
-    min-height: 44px; /* Минимальный размер для касания */
-    min-width: 44px;
-    font-size: 14px;
-    padding: var(--space-12) var(--space-16);
+    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
+    min-width: 30px; /* Уменьшено с 44px до 30px (68%) */
+    font-size: 12px; /* Уменьшено с 14px до 12px */
+    padding: 6px 10px; /* Уменьшено с var(--space-12) var(--space-16) до 6px 10px */
   }
   
   .nav-center {
@@ -1634,14 +1634,14 @@ body {
   .model-selector,
   .path-selector {
     width: 100%;
-    min-height: 44px;
-    font-size: 14px; /* Предотвращает зум на iOS */
-    padding: var(--space-10) var(--space-12);
+    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
+    font-size: 12px; /* Уменьшено с 14px до 12px */
+    padding: 5px 8px; /* Уменьшено с var(--space-10) var(--space-12) до 5px 8px */
     order: 2;
   }
   
   .path-meta {
-    font-size: 11px;
+    font-size: 10px; /* Уменьшено с 11px до 10px */
     text-align: center;
     order: 3;
   }
@@ -1649,7 +1649,7 @@ body {
   .nav-actions {
     width: 100%;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: 6px; /* Уменьшено с var(--space-8) до 6px */
     order: 3;
   }
   
@@ -1660,8 +1660,8 @@ body {
   }
   
   .search-container input {
-    min-height: 44px;
-    font-size: 16px; /* Предотвращает зум на iOS */
+    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
+    font-size: 14px; /* Уменьшено с 16px до 14px для предотвращения зума на iOS */
   }
   
   .nav-actions-group {
@@ -1700,13 +1700,13 @@ body {
   }
 }
 
-/* Оптимизация для touch-устройств */
+/* Оптимизация для touch-устройств (уменьшено пропорционально) */
 @media (hover: none) and (pointer: coarse) {
   .btn,
   .toolbar-btn,
   button {
-    min-height: 44px;
-    min-width: 44px;
+    min-height: 30px; /* Уменьшено с 44px до 30px (68%) для соответствия новым размерам тулбаров */
+    min-width: 30px; /* Уменьшено с 44px до 30px (68%) */
   }
   
   /* Убираем hover-эффекты на touch-устройствах */
@@ -1761,9 +1761,20 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1002;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, all 0.3s ease;
   transform: translateY(0);
   opacity: 1;
+  cursor: pointer;
+}
+
+.circular-progress:hover {
+  transform: scale(1.05);
+  box-shadow: 0 24px 48px rgba(var(--color-slate-900-rgb), 0.2);
+  background: rgba(var(--color-teal-500-rgb), 0.05);
+}
+
+.circular-progress:active {
+  transform: scale(0.98);
 }
 
 /* Автоскрытие верхнего тулбара при прокрутке вниз */
@@ -1773,30 +1784,36 @@ body {
   pointer-events: none;
 }
 
-/* Компактный размер на мобильных */
+/* Компактный размер на мобильных (уменьшено до 65% от исходного) */
 @media (max-width: 768px) {
   .circular-progress {
-    top: 12px;
-    left: 12px;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(var(--color-slate-900-rgb), 0.12);
+    top: 8px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(var(--color-slate-900-rgb), 0.1);
   }
   
   .circular-progress svg {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
   }
   
   .progress-count {
-    font-size: 10px;
+    font-size: 8px;
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  .circular-progress::after {
+    width: 14px;
+    height: 14px;
   }
   
   @supports (padding: max(0px)) {
     .circular-progress {
-      top: max(12px, calc(12px + env(safe-area-inset-top)));
-      left: max(12px, calc(12px + env(safe-area-inset-left)));
+      top: max(8px, calc(8px + env(safe-area-inset-top)));
+      left: max(8px, calc(8px + env(safe-area-inset-left)));
     }
   }
 }
@@ -1828,6 +1845,35 @@ body {
   font-size: 12px;
   font-weight: var(--font-weight-semibold);
   color: var(--color-text);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2;
+}
+
+/* Иконка дома при hover */
+.circular-progress::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2321808d' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'%3E%3C/path%3E%3Cpolyline points='9 22 9 12 15 12 15 22'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.circular-progress:hover .progress-count {
+  opacity: 0.3;
+  transform: scale(0.9);
+}
+
+.circular-progress:hover::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .bookmark-panel,
@@ -2752,33 +2798,37 @@ body.theme-dark .search-highlight {
   pointer-events: none;
 }
 
-/* Компактные размеры на мобильных */
+/* Компактные размеры на мобильных (уменьшено до 65% от исходного) */
 @media (max-width: 768px) {
   .fullscreen-btn {
-    top: 12px;
-    right: 12px;
-    padding: 6px 10px;
-    font-size: 16px;
-    border-radius: 12px;
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 10px;
+    min-width: 32px;
+    min-height: 32px;
   }
   
   .export-btn {
-    top: 12px;
-    right: 60px;
-    padding: 6px 12px;
-    font-size: 12px;
-    border-radius: 12px;
+    top: 8px;
+    right: 48px;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 10px;
+    min-width: 32px;
+    min-height: 32px;
   }
   
   @supports (padding: max(0px)) {
     .fullscreen-btn {
-      top: max(12px, calc(12px + env(safe-area-inset-top)));
-      right: max(12px, calc(12px + env(safe-area-inset-right)));
+      top: max(8px, calc(8px + env(safe-area-inset-top)));
+      right: max(8px, calc(8px + env(safe-area-inset-right)));
     }
     
     .export-btn {
-      top: max(12px, calc(12px + env(safe-area-inset-top)));
-      right: max(60px, calc(60px + env(safe-area-inset-right)));
+      top: max(8px, calc(8px + env(safe-area-inset-top)));
+      right: max(48px, calc(48px + env(safe-area-inset-right)));
     }
   }
 }
@@ -10889,28 +10939,26 @@ html.mobile-fullscreen {
   padding: 6px 12px;
 }
 
-/* Адаптивность для очень маленьких экранов */
+/* Адаптивность для очень маленьких экранов (уменьшено до 65-70%) */
 @media (max-width: 640px) {
   .navigation {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    max-height: 42px; /* Уменьшено с 80px до 42px (52%) */
+    padding: 5px 6px; /* Уменьшено с 6px 8px до 5px 6px */
+    gap: 5px; /* Уменьшено с var(--space-6) до 5px */
   }
 
   .navigation::-webkit-scrollbar {
     display: none;
   }
 
-  .navigation {
-    padding: 6px 8px;
-    gap: var(--space-6);
-  }
-
   .toolbar-btn {
-    min-height: 44px; /* Минимум для комфортного тапа */
-    padding: 8px 12px;
-    font-size: 12px;
+    min-height: 30px; /* Уменьшено с 44px до 30px (68%) */
+    padding: 5px 8px; /* Уменьшено с 8px 12px до 5px 8px */
+    font-size: 11px; /* Уменьшено с 12px до 11px */
   }
 
   .slide-counter {
@@ -10942,17 +10990,20 @@ html.mobile-fullscreen {
 
 @media (max-width: 480px) {
   .navigation {
-    padding: 4px 6px;
+    padding: 4px 5px; /* Уменьшено с 4px 6px до 4px 5px */
+    max-height: 38px; /* Дополнительное уменьшение для очень маленьких экранов */
   }
 
   .toolbar-btn {
-    padding: 6px 10px;
-    font-size: 11px;
+    padding: 4px 8px; /* Уменьшено с 6px 10px до 4px 8px */
+    font-size: 10px; /* Уменьшено с 11px до 10px */
+    min-height: 28px; /* Уменьшено для очень маленьких экранов */
   }
 
   .model-selector, .path-selector {
     max-width: 120px;
-    font-size: 11px;
+    font-size: 10px; /* Уменьшено с 11px до 10px */
+    padding: 3px 6px; /* Уменьшено padding */
   }
 }
 
@@ -12570,11 +12621,40 @@ html.mobile-fullscreen {
         const progressBarEl = document.getElementById('progressBar');
         const progressCircleEl = document.getElementById('progressCircle');
         const progressCountEl = document.getElementById('progressCount');
+        const progressIndicatorEl = document.getElementById('progressIndicator');
         const slideCounterEl = document.getElementById('slideCounter');
         const prevBtnEl = document.getElementById('prevBtn');
         const nextBtnEl = document.getElementById('nextBtn');
         const modelSelectorEl = document.getElementById('modelSelector');
         const bookmarkToggleBtn = document.getElementById('bookmarkToggle');
+        
+        // Обработчик клика на круговой индикатор прогресса - переход на первый слайд
+        if (progressIndicatorEl) {
+            progressIndicatorEl.setAttribute('title', 'Вернуться к началу презентации');
+            progressIndicatorEl.setAttribute('role', 'button');
+            progressIndicatorEl.setAttribute('aria-label', 'Вернуться к началу презентации');
+            
+            function goToFirstSlide() {
+                // Переходим на первый видимый слайд
+                if (typeof jumpToSlide === 'function') {
+                    // Используем первый видимый слайд из текущего пути обучения
+                    // Если visibleSlides еще не определен, используем слайд 0
+                    const firstVisibleSlide = (typeof visibleSlides !== 'undefined' && visibleSlides && visibleSlides.length > 0) 
+                        ? visibleSlides[0] 
+                        : 0;
+                    jumpToSlide(firstVisibleSlide);
+                }
+            }
+            
+            // Обработчик клика для десктопов
+            progressIndicatorEl.addEventListener('click', goToFirstSlide);
+            
+            // Обработчик touch для мобильных устройств
+            progressIndicatorEl.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                goToFirstSlide();
+            }, { passive: false });
+        }
         const bookmarkPanelToggleBtn = document.getElementById('bookmarkPanelToggle');
         const bookmarkPanelEl = document.getElementById('bookmarkPanel');
         const bookmarkPanelCloseBtn = document.getElementById('bookmarkPanelClose');
@@ -26619,20 +26699,23 @@ html.mobile-fullscreen {
                     }
                 }
                 
-                // Используем max() для учета safe-area (минимум 80px + высота тулбара + отступ)
-                const paddingBottom = Math.max(80, navHeight + 20 + safeAreaBottom);
+                // Используем max() для учета safe-area
+                // На мобильных тулбары уменьшены, поэтому используем меньший минимум
+                const minPadding = isMobile ? 50 : 80; // уменьшено с 80 до 50 на мобильных (62%)
+                const paddingBottom = Math.max(minPadding, navHeight + (isMobile ? 12 : 20) + safeAreaBottom);
                 slideContainerEl.style.paddingBottom = `${paddingBottom}px`;
                 
                 // На мобильных также устанавливаем padding-top для верхнего тулбара
                 if (isMobile) {
                     // Вычисляем высоту верхнего тулбара (circular-progress + кнопки)
+                    // На мобильных тулбары уменьшены до 65-70%, поэтому используем меньшие значения
                     const circularProgress = document.querySelector('.circular-progress');
                     const exportBtn = document.querySelector('.export-btn');
                     const topToolbarHeight = circularProgress ? 
-                        (circularProgress.offsetHeight + 24) : // высота + отступы
-                        (exportBtn ? exportBtn.offsetHeight + 24 : 60);
+                        (circularProgress.offsetHeight + 16) : // высота + отступы (уменьшено с 24 до 16)
+                        (exportBtn ? exportBtn.offsetHeight + 16 : 50); // уменьшено с 60 до 50
                     
-                    const paddingTop = Math.max(60, topToolbarHeight + safeAreaTop);
+                    const paddingTop = Math.max(50, topToolbarHeight + safeAreaTop); // уменьшено с 60 до 50
                     slideContainerEl.style.paddingTop = `${paddingTop}px`;
                 } else {
                     // На десктопе убираем padding-top

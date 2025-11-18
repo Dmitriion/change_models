@@ -26368,19 +26368,22 @@ body.theme-dark .search-highlight {
                 const currentScrollTop = activeSlide.scrollTop || 0;
                 const scrollHeight = activeSlide.scrollHeight || 0;
                 const clientHeight = activeSlide.clientHeight || window.innerHeight;
-                const isAtBottom = scrollHeight > 0 && currentScrollTop + clientHeight >= scrollHeight - 10; // 10px допуск
-                const isAtTop = currentScrollTop <= 10; // 10px допуск
+                const isAtBottom = scrollHeight > 0 && currentScrollTop + clientHeight >= scrollHeight - 20; // 20px допуск
+                const isAtTop = currentScrollTop <= 20; // 20px допуск
                 
                 // Получаем последнюю позицию прокрутки для этого слайда
                 const slideId = activeSlide.id || activeSlide.getAttribute('data-slide-index') || 'default';
                 const prevScrollTop = lastScrollTop[slideId] || 0;
-                const scrollingDown = currentScrollTop > prevScrollTop;
-                const scrollingUp = currentScrollTop < prevScrollTop;
+                
+                // Более точное определение направления прокрутки (минимум 5px разница)
+                const scrollDelta = currentScrollTop - prevScrollTop;
+                const scrollingDown = scrollDelta > 5;
+                const scrollingUp = scrollDelta < -5;
                 
                 lastScrollTop[slideId] = currentScrollTop;
                 
                 // Скрываем верхний тулбар при прокрутке вниз (кроме начала)
-                if (scrollingDown && currentScrollTop > 50) {
+                if (scrollingDown && currentScrollTop > 30) {
                     topToolbarElements.forEach(el => {
                         if (el && !el.classList.contains('toolbar-hidden')) {
                             el.classList.add('toolbar-hidden');
@@ -26395,9 +26398,15 @@ body.theme-dark .search-highlight {
                     });
                 }
                 
-                // Скрываем нижний тулбар при прокрутке вниз (кроме конца)
+                // Более агрессивное скрытие нижнего тулбара при прокрутке вниз
                 if (bottomToolbar) {
-                    if (scrollingDown && !isAtBottom && currentScrollTop > 50) {
+                    // Скрываем если:
+                    // 1. Прокрутка вниз И не в самом начале (больше 30px) И не в самом конце
+                    // 2. Или просто прокрутили достаточно далеко от верха (больше 100px)
+                    const shouldHideBottom = (scrollingDown && currentScrollTop > 30 && !isAtBottom) || 
+                                           (currentScrollTop > 100 && !isAtBottom && !scrollingUp);
+                    
+                    if (shouldHideBottom) {
                         if (!bottomToolbar.classList.contains('toolbar-hidden')) {
                             bottomToolbar.classList.add('toolbar-hidden');
                         }
@@ -26414,25 +26423,76 @@ body.theme-dark .search-highlight {
                     clearTimeout(scrollTimeout);
                 }
                 
-                // Показываем тулбары через 2 секунды после остановки прокрутки
+                // Показываем тулбары через 3 секунды после остановки прокрутки (только если не прокручиваем)
                 scrollTimeout = setTimeout(() => {
-                    topToolbarElements.forEach(el => {
-                        if (el && el.classList.contains('toolbar-hidden')) {
-                            el.classList.remove('toolbar-hidden');
+                    // Проверяем, что прокрутка действительно остановилась
+                    const finalScrollTop = activeSlide.scrollTop || 0;
+                    if (Math.abs(finalScrollTop - currentScrollTop) < 5) {
+                        // Показываем только если не в середине длинного контента
+                        const finalScrollHeight = activeSlide.scrollHeight || 0;
+                        const finalClientHeight = activeSlide.clientHeight || window.innerHeight;
+                        const finalIsAtBottom = finalScrollHeight > 0 && finalScrollTop + finalClientHeight >= finalScrollHeight - 20;
+                        
+                        if (finalIsAtBottom || finalScrollTop <= 30) {
+                            topToolbarElements.forEach(el => {
+                                if (el && el.classList.contains('toolbar-hidden')) {
+                                    el.classList.remove('toolbar-hidden');
+                                }
+                            });
+                            if (bottomToolbar && bottomToolbar.classList.contains('toolbar-hidden')) {
+                                bottomToolbar.classList.remove('toolbar-hidden');
+                            }
                         }
-                    });
-                    if (bottomToolbar && bottomToolbar.classList.contains('toolbar-hidden')) {
-                        bottomToolbar.classList.remove('toolbar-hidden');
                     }
-                }, 2000);
+                }, 3000);
             }
+            
+            // Хранилище для touch-данных каждого слайда
+            const touchData = new Map();
             
             // Добавляем обработчики прокрутки ко всем слайдам (если еще не добавлены)
             const slides = document.querySelectorAll('.slide');
             slides.forEach(slide => {
                 // Проверяем, не добавлен ли уже обработчик
                 if (!slide.hasAttribute('data-scroll-handler-added')) {
+                    // Основной обработчик прокрутки
                     slide.addEventListener('scroll', handleScroll, { passive: true });
+                    
+                    // Дополнительный обработчик для touch-устройств (iOS)
+                    const slideId = slide.id || slide.getAttribute('data-slide-index') || `slide-${Math.random()}`;
+                    
+                    slide.addEventListener('touchstart', (e) => {
+                        touchData.set(slideId, {
+                            startY: e.touches[0].clientY,
+                            startScrollTop: slide.scrollTop || 0
+                        });
+                    }, { passive: true });
+                    
+                    slide.addEventListener('touchmove', (e) => {
+                        const data = touchData.get(slideId);
+                        if (!data) return;
+                        
+                        const touchCurrentY = e.touches[0].clientY;
+                        const touchDeltaY = touchCurrentY - data.startY;
+                        const currentScrollTop = slide.scrollTop || 0;
+                        
+                        // Если прокрутка вниз (палец движется вверх) и прокрутили больше 30px
+                        if (touchDeltaY < -30 && currentScrollTop > data.startScrollTop + 20) {
+                            // Принудительно скрываем нижний тулбар
+                            if (bottomToolbar && !bottomToolbar.classList.contains('toolbar-hidden')) {
+                                bottomToolbar.classList.add('toolbar-hidden');
+                            }
+                        }
+                        
+                        // Вызываем основной обработчик для обновления состояния
+                        handleScroll();
+                    }, { passive: true });
+                    
+                    slide.addEventListener('touchend', () => {
+                        // Очищаем данные после окончания касания
+                        touchData.delete(slideId);
+                    }, { passive: true });
+                    
                     slide.setAttribute('data-scroll-handler-added', 'true');
                 }
             });

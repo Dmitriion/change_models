@@ -2783,6 +2783,102 @@ body.theme-dark .search-highlight {
   }
 }
 
+/* Мобильный полноэкранный режим */
+.mobile-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+body.mobile-fullscreen,
+html.mobile-fullscreen {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  height: -webkit-fill-available !important;
+}
+
+.presentation.mobile-fullscreen {
+  height: 100vh !important;
+  height: -webkit-fill-available !important;
+  overflow: hidden !important;
+}
+
+/* Подсказка для мобильных устройств */
+.mobile-fullscreen-hint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-fullscreen-hint .hint-content {
+  background: var(--color-surface);
+  padding: var(--space-24);
+  border-radius: var(--radius-lg);
+  max-width: 90%;
+  max-height: 80%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.mobile-fullscreen-hint .hint-content p {
+  margin: var(--space-8) 0;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.mobile-fullscreen-hint .hint-content button {
+  margin-top: var(--space-16);
+  padding: var(--space-12) var(--space-24);
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border: none;
+  border-radius: var(--radius-base);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobile-fullscreen-hint .hint-content button:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Interactive Matrix */
 .matrix-row {
   cursor: pointer;
@@ -11686,7 +11782,7 @@ body.theme-dark .search-highlight {
   transition: all 0.35s var(--ease-standard);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   text-align: left;
 }
 
@@ -11762,6 +11858,39 @@ body.theme-dark .search-highlight {
   text-align: left;
 }
 
+/* Индикатор touch/click для кликабельных карточек */
+.useful-option-touch-indicator {
+  position: absolute;
+  top: var(--space-16);
+  right: var(--space-16);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--color-teal-500-rgb), 0.1);
+  border: 1.5px solid rgba(var(--color-teal-500-rgb), 0.3);
+  border-radius: 50%;
+  color: var(--color-primary);
+  opacity: 0.7;
+  transition: all 0.3s var(--ease-standard);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.useful-option-touch-indicator svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.useful-option-card:hover .useful-option-touch-indicator {
+  opacity: 1;
+  background: rgba(var(--color-teal-500-rgb), 0.15);
+  border-color: var(--color-teal-400);
+  transform: scale(1.1);
+}
+
 /* Адаптивность для useful-options-grid */
 @media (max-width: 768px) {
   .useful-options-container {
@@ -11807,6 +11936,18 @@ body.theme-dark .search-highlight {
   .useful-option-icon svg {
     width: 24px;
     height: 24px;
+  }
+
+  .useful-option-touch-indicator {
+    width: 28px;
+    height: 28px;
+    top: var(--space-12);
+    right: var(--space-12);
+  }
+
+  .useful-option-touch-indicator svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -13190,6 +13331,12 @@ body.theme-dark .search-highlight {
                     <div class="useful-options-container">
                         <div class="useful-options-grid">
                             <div class="useful-option-card" onclick="goToClassification()">
+                                <div class="useful-option-touch-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                    </svg>
+                                </div>
                                 <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -13204,6 +13351,12 @@ body.theme-dark .search-highlight {
                             </div>
 
                             <div class="useful-option-card" onclick="goToPracticalTools()">
+                                <div class="useful-option-touch-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                    </svg>
+                                </div>
                                 <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
@@ -13220,6 +13373,12 @@ body.theme-dark .search-highlight {
                             </div>
 
                             <div class="useful-option-card" onclick="goToFAQ()">
+                                <div class="useful-option-touch-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                    </svg>
+                                </div>
                                 <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <circle cx="12" cy="12" r="10"></circle>
@@ -13234,6 +13393,12 @@ body.theme-dark .search-highlight {
                             </div>
 
                             <div class="useful-option-card" onclick="goToModelSelector()">
+                                <div class="useful-option-touch-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                    </svg>
+                                </div>
                                 <div class="useful-option-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="3" y="3" width="7" height="7"></rect>
@@ -24400,16 +24565,174 @@ body.theme-dark .search-highlight {
             }
         });
         
-        // Fullscreen toggle
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
+        // Fullscreen toggle с поддержкой мобильных устройств
+        window.toggleFullscreen = function toggleFullscreen() {
+            const doc = document;
+            const docEl = doc.documentElement;
+            
+            // Проверка на мобильное устройство
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            
+            // Определяем, находимся ли мы в полноэкранном режиме
+            const isFullscreen = doc.fullscreenElement || 
+                                 doc.webkitFullscreenElement || 
+                                 doc.mozFullScreenElement || 
+                                 doc.msFullscreenElement;
+            
+            if (!isFullscreen) {
+                // Вход в полноэкранный режим
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else if (docEl.webkitRequestFullscreen) {
+                    // Safari и другие WebKit браузеры
+                    docEl.webkitRequestFullscreen();
+                } else if (docEl.webkitEnterFullscreen) {
+                    // iOS Safari (для некоторых элементов)
+                    docEl.webkitEnterFullscreen();
+                } else if (docEl.mozRequestFullScreen) {
+                    // Firefox
+                    docEl.mozRequestFullScreen();
+                } else if (docEl.msRequestFullscreen) {
+                    // IE/Edge
+                    docEl.msRequestFullscreen();
+                } else if (isMobile) {
+                    // Для мобильных устройств, которые не поддерживают полноэкранный режим
+                    // Используем альтернативный подход - скрываем UI элементы
+                    handleMobileFullscreen(true);
                 }
+            } else {
+                // Выход из полноэкранного режима
+                if (doc.exitFullscreen) {
+                    doc.exitFullscreen();
+                } else if (doc.webkitExitFullscreen) {
+                    doc.webkitExitFullscreen();
+                } else if (doc.mozCancelFullScreen) {
+                    doc.mozCancelFullScreen();
+                } else if (doc.msExitFullscreen) {
+                    doc.msExitFullscreen();
+                } else if (isMobile) {
+                    handleMobileFullscreen(false);
+                }
+            }
+        }
+        
+        // Обработка полноэкранного режима для мобильных устройств (альтернативный подход)
+        function handleMobileFullscreen(enter) {
+            const body = document.body;
+            const html = document.documentElement;
+            const presentation = document.querySelector('.presentation');
+            
+            if (enter) {
+                // Добавляем класс для полноэкранного режима
+                body.classList.add('mobile-fullscreen');
+                html.classList.add('mobile-fullscreen');
+                if (presentation) {
+                    presentation.classList.add('mobile-fullscreen');
+                }
+                
+                // Скрываем тулбары для более полного экрана
+                const topToolbars = document.querySelectorAll('.circular-progress, .export-btn, .fullscreen-btn');
+                const bottomToolbar = document.querySelector('.navigation');
+                
+                topToolbars.forEach(el => {
+                    if (el) el.style.display = 'none';
+                });
+                if (bottomToolbar) {
+                    bottomToolbar.style.display = 'none';
+                }
+                
+                // Обновляем viewport для максимального использования экрана
+                let viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+                }
+                
+                // Прокручиваем вверх для скрытия адресной строки
+                window.scrollTo(0, 1);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 100);
+                
+                // Показываем уведомление пользователю
+                showFullscreenHint();
+            } else {
+                // Убираем класс
+                body.classList.remove('mobile-fullscreen');
+                html.classList.remove('mobile-fullscreen');
+                if (presentation) {
+                    presentation.classList.remove('mobile-fullscreen');
+                }
+                
+                // Показываем тулбары обратно
+                const topToolbars = document.querySelectorAll('.circular-progress, .export-btn, .fullscreen-btn');
+                const bottomToolbar = document.querySelector('.navigation');
+                
+                topToolbars.forEach(el => {
+                    if (el) el.style.display = '';
+                });
+                if (bottomToolbar) {
+                    bottomToolbar.style.display = '';
+                }
+                
+                // Восстанавливаем viewport
+                let viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                }
+            }
+        }
+        
+        // Показ подсказки для мобильных устройств
+        function showFullscreenHint() {
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isIOS) {
+                // Создаем временное уведомление
+                const hint = document.createElement('div');
+                hint.className = 'mobile-fullscreen-hint';
+                hint.innerHTML = `
+                    <div class="hint-content">
+                        <p>💡 Для полноэкранного режима на iOS:</p>
+                        <p>Нажмите кнопку "Поделиться" → "На экран Домой"</p>
+                        <p>или используйте режим чтения Safari</p>
+                        <button onclick="this.parentElement.parentElement.remove()">Понятно</button>
+                    </div>
+                `;
+                document.body.appendChild(hint);
+                
+                // Автоматически скрываем через 5 секунд
+                setTimeout(() => {
+                    if (hint.parentElement) {
+                        hint.remove();
+                    }
+                }, 5000);
+            }
+        }
+        
+        // Обработка событий изменения полноэкранного режима
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+        document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+        document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.querySelector('.fullscreen-btn');
+            if (!fullscreenBtn) return;
+            
+            const isFullscreen = document.fullscreenElement || 
+                                document.webkitFullscreenElement || 
+                                document.mozFullScreenElement || 
+                                document.msFullscreenElement ||
+                                document.body.classList.contains('mobile-fullscreen');
+            
+            if (isFullscreen) {
+                fullscreenBtn.setAttribute('title', 'Выйти из полноэкранного режима');
+                fullscreenBtn.textContent = '⛶';
+            } else {
+                fullscreenBtn.setAttribute('title', 'Полноэкранный режим');
+                fullscreenBtn.textContent = '⛶';
             }
         }
         

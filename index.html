@@ -327,6 +327,7 @@ body {
   overflow: hidden;
   position: relative;
   padding-bottom: 80px; /* Отступ для фиксированного тулбара */
+  padding-top: 0; /* Будет установлен динамически на мобильных */
   /* Разрешаем вертикальный скролл, но не блокируем горизонтальные жесты для свайпов */
   touch-action: pan-y pan-x;
   /* Предотвращаем цепочку скролла */
@@ -337,6 +338,20 @@ body {
 @supports (padding: max(0px)) {
   .slide-container {
     padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+}
+
+/* Мобильный padding-top для верхнего тулбара */
+@media (max-width: 768px) {
+  .slide-container {
+    padding-top: 60px; /* Отступ для верхних элементов на мобильных */
+  }
+  
+  @supports (padding: max(0px)) {
+    .slide-container {
+      padding-top: max(60px, calc(60px + env(safe-area-inset-top)));
+    }
   }
 }
 
@@ -1276,6 +1291,16 @@ body {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   height: auto;
   max-height: 60px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Автоскрытие нижнего тулбара при прокрутке вниз */
+.navigation.toolbar-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Safe area для iPhone (notch) */
@@ -1736,6 +1761,44 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1002;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Автоскрытие верхнего тулбара при прокрутке вниз */
+.circular-progress.toolbar-hidden {
+  transform: translateY(-100px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Компактный размер на мобильных */
+@media (max-width: 768px) {
+  .circular-progress {
+    top: 12px;
+    left: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(var(--color-slate-900-rgb), 0.12);
+  }
+  
+  .circular-progress svg {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .progress-count {
+    font-size: 10px;
+  }
+  
+  @supports (padding: max(0px)) {
+    .circular-progress {
+      top: max(12px, calc(12px + env(safe-area-inset-top)));
+      left: max(12px, calc(12px + env(safe-area-inset-left)));
+    }
+  }
 }
 
 .circular-progress svg {
@@ -2638,13 +2701,22 @@ body.theme-dark .search-highlight {
   padding: 8px 12px;
   cursor: pointer;
   font-size: 18px;
-  transition: all 0.2s;
+  transition: transform 0.3s ease, opacity 0.3s ease, all 0.2s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .fullscreen-btn:hover {
   background: var(--color-secondary);
   transform: scale(1.05);
+}
+
+/* Автоскрытие при прокрутке */
+.fullscreen-btn.toolbar-hidden {
+  transform: translateY(-100px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Export PDF Button */
@@ -2661,14 +2733,54 @@ body.theme-dark .search-highlight {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: transform 0.3s ease, opacity 0.3s ease, all 0.2s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .export-btn:hover {
   background: var(--color-primary-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Автоскрытие при прокрутке */
+.export-btn.toolbar-hidden {
+  transform: translateY(-100px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Компактные размеры на мобильных */
+@media (max-width: 768px) {
+  .fullscreen-btn {
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+  
+  .export-btn {
+    top: 12px;
+    right: 60px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+  
+  @supports (padding: max(0px)) {
+    .fullscreen-btn {
+      top: max(12px, calc(12px + env(safe-area-inset-top)));
+      right: max(12px, calc(12px + env(safe-area-inset-right)));
+    }
+    
+    .export-btn {
+      top: max(12px, calc(12px + env(safe-area-inset-top)));
+      right: max(60px, calc(60px + env(safe-area-inset-right)));
+    }
+  }
 }
 
 /* Interactive Matrix */
@@ -26158,27 +26270,51 @@ body.theme-dark .search-highlight {
             
             if (navigationEl && slideContainerEl) {
                 const navHeight = navigationEl.offsetHeight;
+                const isMobile = window.innerWidth <= 768;
                 
                 // Получаем safe-area-inset-bottom через CSS переменную или напрямую
                 let safeAreaBottom = 0;
+                let safeAreaTop = 0;
+                
                 if (CSS.supports('padding', 'env(safe-area-inset-bottom)')) {
                     // Пытаемся получить значение через getComputedStyle
                     const testEl = document.createElement('div');
                     testEl.style.paddingBottom = 'env(safe-area-inset-bottom)';
+                    testEl.style.paddingTop = 'env(safe-area-inset-top)';
                     document.body.appendChild(testEl);
                     const computed = window.getComputedStyle(testEl);
-                    const paddingValue = computed.paddingBottom;
+                    const paddingBottomValue = computed.paddingBottom;
+                    const paddingTopValue = computed.paddingTop;
                     document.body.removeChild(testEl);
                     
                     // Если значение в px, извлекаем число
-                    if (paddingValue && paddingValue !== '0px') {
-                        safeAreaBottom = parseInt(paddingValue) || 0;
+                    if (paddingBottomValue && paddingBottomValue !== '0px') {
+                        safeAreaBottom = parseInt(paddingBottomValue) || 0;
+                    }
+                    if (paddingTopValue && paddingTopValue !== '0px') {
+                        safeAreaTop = parseInt(paddingTopValue) || 0;
                     }
                 }
                 
                 // Используем max() для учета safe-area (минимум 80px + высота тулбара + отступ)
                 const paddingBottom = Math.max(80, navHeight + 20 + safeAreaBottom);
                 slideContainerEl.style.paddingBottom = `${paddingBottom}px`;
+                
+                // На мобильных также устанавливаем padding-top для верхнего тулбара
+                if (isMobile) {
+                    // Вычисляем высоту верхнего тулбара (circular-progress + кнопки)
+                    const circularProgress = document.querySelector('.circular-progress');
+                    const exportBtn = document.querySelector('.export-btn');
+                    const topToolbarHeight = circularProgress ? 
+                        (circularProgress.offsetHeight + 24) : // высота + отступы
+                        (exportBtn ? exportBtn.offsetHeight + 24 : 60);
+                    
+                    const paddingTop = Math.max(60, topToolbarHeight + safeAreaTop);
+                    slideContainerEl.style.paddingTop = `${paddingTop}px`;
+                } else {
+                    // На десктопе убираем padding-top
+                    slideContainerEl.style.paddingTop = '0px';
+                }
             }
         }
         
@@ -26195,6 +26331,159 @@ body.theme-dark .search-highlight {
         if (navigationEl) {
             resizeObserver.observe(navigationEl);
         }
+        
+        // Автоскрытие тулбаров при прокрутке (только на мобильных)
+        let toolbarAutoHideInitialized = false;
+        let scrollTimeout = null;
+        let lastScrollTop = {};
+        
+        function initToolbarAutoHide() {
+            // Проверяем, что мы на мобильном устройстве
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) {
+                // Удаляем классы скрытия при переходе на десктоп
+                document.querySelectorAll('.toolbar-hidden').forEach(el => {
+                    el.classList.remove('toolbar-hidden');
+                });
+                return;
+            }
+            
+            const topToolbarElements = [
+                document.querySelector('.circular-progress'),
+                document.querySelector('.export-btn'),
+                document.querySelector('.fullscreen-btn')
+            ].filter(el => el !== null);
+            
+            const bottomToolbar = document.querySelector('.navigation');
+            
+            if (topToolbarElements.length === 0 && !bottomToolbar) return;
+            
+            // Функция для обработки прокрутки
+            function handleScroll() {
+                // Получаем текущий активный слайд
+                const activeSlide = document.querySelector('.slide.active');
+                if (!activeSlide) return;
+                
+                // Используем прокрутку активного слайда
+                const currentScrollTop = activeSlide.scrollTop || 0;
+                const scrollHeight = activeSlide.scrollHeight || 0;
+                const clientHeight = activeSlide.clientHeight || window.innerHeight;
+                const isAtBottom = scrollHeight > 0 && currentScrollTop + clientHeight >= scrollHeight - 10; // 10px допуск
+                const isAtTop = currentScrollTop <= 10; // 10px допуск
+                
+                // Получаем последнюю позицию прокрутки для этого слайда
+                const slideId = activeSlide.id || activeSlide.getAttribute('data-slide-index') || 'default';
+                const prevScrollTop = lastScrollTop[slideId] || 0;
+                const scrollingDown = currentScrollTop > prevScrollTop;
+                const scrollingUp = currentScrollTop < prevScrollTop;
+                
+                lastScrollTop[slideId] = currentScrollTop;
+                
+                // Скрываем верхний тулбар при прокрутке вниз (кроме начала)
+                if (scrollingDown && currentScrollTop > 50) {
+                    topToolbarElements.forEach(el => {
+                        if (el && !el.classList.contains('toolbar-hidden')) {
+                            el.classList.add('toolbar-hidden');
+                        }
+                    });
+                } else if (scrollingUp || isAtTop) {
+                    // Показываем верхний тулбар при прокрутке вверх или в начале
+                    topToolbarElements.forEach(el => {
+                        if (el && el.classList.contains('toolbar-hidden')) {
+                            el.classList.remove('toolbar-hidden');
+                        }
+                    });
+                }
+                
+                // Скрываем нижний тулбар при прокрутке вниз (кроме конца)
+                if (bottomToolbar) {
+                    if (scrollingDown && !isAtBottom && currentScrollTop > 50) {
+                        if (!bottomToolbar.classList.contains('toolbar-hidden')) {
+                            bottomToolbar.classList.add('toolbar-hidden');
+                        }
+                    } else if (scrollingUp || isAtBottom || isAtTop) {
+                        // Показываем нижний тулбар при прокрутке вверх, в конце или в начале
+                        if (bottomToolbar.classList.contains('toolbar-hidden')) {
+                            bottomToolbar.classList.remove('toolbar-hidden');
+                        }
+                    }
+                }
+                
+                // Сбрасываем таймер
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                
+                // Показываем тулбары через 2 секунды после остановки прокрутки
+                scrollTimeout = setTimeout(() => {
+                    topToolbarElements.forEach(el => {
+                        if (el && el.classList.contains('toolbar-hidden')) {
+                            el.classList.remove('toolbar-hidden');
+                        }
+                    });
+                    if (bottomToolbar && bottomToolbar.classList.contains('toolbar-hidden')) {
+                        bottomToolbar.classList.remove('toolbar-hidden');
+                    }
+                }, 2000);
+            }
+            
+            // Добавляем обработчики прокрутки ко всем слайдам (если еще не добавлены)
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                // Проверяем, не добавлен ли уже обработчик
+                if (!slide.hasAttribute('data-scroll-handler-added')) {
+                    slide.addEventListener('scroll', handleScroll, { passive: true });
+                    slide.setAttribute('data-scroll-handler-added', 'true');
+                }
+            });
+            
+            // Обновляем обработчики при смене слайда
+            if (!toolbarAutoHideInitialized) {
+                const originalChangeSlide = window.changeSlide;
+                if (originalChangeSlide) {
+                    window.changeSlide = function(direction) {
+                        const result = originalChangeSlide(direction);
+                        
+                        // Сбрасываем состояние и показываем тулбары при смене слайда
+                        setTimeout(() => {
+                            const newActiveSlide = document.querySelector('.slide.active');
+                            if (newActiveSlide) {
+                                topToolbarElements.forEach(el => {
+                                    if (el) el.classList.remove('toolbar-hidden');
+                                });
+                                if (bottomToolbar) {
+                                    bottomToolbar.classList.remove('toolbar-hidden');
+                                }
+                                // Сбрасываем позицию прокрутки для нового слайда
+                                const slideId = newActiveSlide.id || 'default';
+                                lastScrollTop[slideId] = newActiveSlide.scrollTop || 0;
+                            }
+                        }, 100);
+                        
+                        return result;
+                    };
+                }
+                toolbarAutoHideInitialized = true;
+            }
+        }
+        
+        // Инициализируем автоскрытие тулбаров после загрузки DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(initToolbarAutoHide, 500);
+            });
+        } else {
+            setTimeout(initToolbarAutoHide, 500);
+        }
+        
+        // Переинициализируем при изменении размера окна (для переключения между мобильным и десктопом)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                initToolbarAutoHide();
+            }, 250);
+        });
         
         // Show swipe hint after a short delay
         setTimeout(showSwipeHint, 1000);

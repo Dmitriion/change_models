@@ -346,11 +346,13 @@ body {
 @media (max-width: 768px) {
   .slide-container {
     padding-top: 50px; /* Уменьшено с 60px до 50px (83%) для соответствия новым размерам тулбара */
+    padding-bottom: 60px; /* Базовый отступ для нижнего тулбара + дополнительный зазор */
   }
   
   @supports (padding: max(0px)) {
     .slide-container {
       padding-top: max(50px, calc(50px + env(safe-area-inset-top)));
+      padding-bottom: max(60px, calc(60px + env(safe-area-inset-bottom) + 20px)); /* +20px дополнительный отступ */
     }
   }
 }
@@ -2763,6 +2765,71 @@ body.theme-dark .search-highlight {
   transform: translateY(-100px);
   opacity: 0;
   pointer-events: none;
+}
+
+/* Плавающая кнопка выхода в полноэкранном режиме на мобильных */
+.fullscreen-btn.fullscreen-exit-mode {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(var(--color-teal-500-rgb), 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10001; /* Выше всех элементов */
+  animation: fullscreenBtnAppear 0.3s ease;
+}
+
+.fullscreen-btn.fullscreen-exit-mode:hover,
+.fullscreen-btn.fullscreen-exit-mode:active {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+@keyframes fullscreenBtnAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* На мобильных в полноэкранном режиме кнопка всегда видна и стилизована */
+@media (max-width: 768px) {
+  .mobile-fullscreen .fullscreen-btn.fullscreen-exit-mode {
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    font-size: 20px !important;
+    border-radius: 50% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid rgba(var(--color-teal-500-rgb), 0.4) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  }
+  
+  .mobile-fullscreen .fullscreen-btn.fullscreen-exit-mode:active {
+    transform: scale(0.95) !important;
+    background: rgba(255, 255, 255, 1) !important;
+  }
+  
+  @supports (padding: max(0px)) {
+    .mobile-fullscreen .fullscreen-btn.fullscreen-exit-mode {
+      top: max(8px, calc(8px + env(safe-area-inset-top))) !important;
+      right: max(8px, calc(8px + env(safe-area-inset-right))) !important;
+    }
+  }
 }
 
 /* Export PDF Button */
@@ -24704,6 +24771,7 @@ html.mobile-fullscreen {
             const body = document.body;
             const html = document.documentElement;
             const presentation = document.querySelector('.presentation');
+            const fullscreenBtn = document.querySelector('.fullscreen-btn');
             
             if (enter) {
                 // Добавляем класс для полноэкранного режима
@@ -24713,8 +24781,8 @@ html.mobile-fullscreen {
                     presentation.classList.add('mobile-fullscreen');
                 }
                 
-                // Скрываем тулбары для более полного экрана
-                const topToolbars = document.querySelectorAll('.circular-progress, .export-btn, .fullscreen-btn');
+                // Скрываем остальные тулбары, но оставляем кнопку fullscreen видимой как плавающую
+                const topToolbars = document.querySelectorAll('.circular-progress, .export-btn');
                 const bottomToolbar = document.querySelector('.navigation');
                 
                 topToolbars.forEach(el => {
@@ -24722,6 +24790,13 @@ html.mobile-fullscreen {
                 });
                 if (bottomToolbar) {
                     bottomToolbar.style.display = 'none';
+                }
+                
+                // Делаем кнопку fullscreen плавающей (не скрываем, а делаем стиль для полноэкранного режима)
+                if (fullscreenBtn) {
+                    fullscreenBtn.classList.add('fullscreen-exit-mode');
+                    fullscreenBtn.setAttribute('title', 'Выйти из полноэкранного режима');
+                    fullscreenBtn.textContent = '✕'; // Меняем иконку на крестик для выхода
                 }
                 
                 // Обновляем viewport для максимального использования экрана
@@ -24736,8 +24811,11 @@ html.mobile-fullscreen {
                     window.scrollTo(0, 0);
                 }, 100);
                 
-                // Показываем уведомление пользователю
+                // Показываем уведомление пользователю с инструкцией
                 showFullscreenHint();
+                
+                // Инициализируем обработчик swipe-down для выхода
+                initSwipeDownExit();
             } else {
                 // Убираем класс
                 body.classList.remove('mobile-fullscreen');
@@ -24757,37 +24835,126 @@ html.mobile-fullscreen {
                     bottomToolbar.style.display = '';
                 }
                 
+                // Возвращаем кнопку fullscreen в обычное состояние
+                if (fullscreenBtn) {
+                    fullscreenBtn.classList.remove('fullscreen-exit-mode');
+                    fullscreenBtn.setAttribute('title', 'Полноэкранный режим');
+                    fullscreenBtn.textContent = '⛶';
+                }
+                
                 // Восстанавливаем viewport
                 let viewport = document.querySelector('meta[name="viewport"]');
                 if (viewport) {
                     viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
                 }
+                
+                // Удаляем обработчик swipe-down
+                removeSwipeDownExit();
+            }
+        }
+        
+        // Инициализация обработчика swipe-down для выхода из полноэкранного режима
+        let swipeDownHandler = null;
+        
+        function initSwipeDownExit() {
+            // Удаляем старые обработчики, если они есть
+            removeSwipeDownExit();
+            
+            let touchStartY = 0;
+            let touchStartTime = 0;
+            let isSwipeDown = false;
+            
+            const touchStartHandler = function(e) {
+                if (e.touches && e.touches.length > 0) {
+                    touchStartY = e.touches[0].clientY;
+                    touchStartTime = Date.now();
+                    isSwipeDown = false;
+                    
+                    // Проверяем, что касание началось в верхней части экрана (первые 120px)
+                    if (touchStartY < 120) {
+                        isSwipeDown = true;
+                    }
+                }
+            };
+            
+            swipeDownHandler = function(e) {
+                if (!isSwipeDown || !e.touches || e.touches.length === 0) return;
+                
+                const touchY = e.touches[0].clientY;
+                const touchDelta = touchY - touchStartY;
+                const timeDelta = Date.now() - touchStartTime;
+                
+                // Если свайп вниз больше 60px и выполнен быстро (менее 600ms)
+                if (touchDelta > 60 && timeDelta < 600) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleFullscreen(); // Выходим из полноэкранного режима
+                    isSwipeDown = false;
+                    return false;
+                }
+            };
+            
+            const touchEndHandler = function(e) {
+                isSwipeDown = false;
+            };
+            
+            document.addEventListener('touchstart', touchStartHandler, { passive: true });
+            document.addEventListener('touchmove', swipeDownHandler, { passive: false });
+            document.addEventListener('touchend', touchEndHandler, { passive: true });
+            
+            // Сохраняем обработчики для последующего удаления
+            swipeDownHandler._touchStart = touchStartHandler;
+            swipeDownHandler._touchEnd = touchEndHandler;
+        }
+        
+        function removeSwipeDownExit() {
+            if (swipeDownHandler) {
+                document.removeEventListener('touchmove', swipeDownHandler);
+                if (swipeDownHandler._touchStart) {
+                    document.removeEventListener('touchstart', swipeDownHandler._touchStart);
+                }
+                if (swipeDownHandler._touchEnd) {
+                    document.removeEventListener('touchend', swipeDownHandler._touchEnd);
+                }
+                swipeDownHandler = null;
             }
         }
         
         // Показ подсказки для мобильных устройств
         function showFullscreenHint() {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-            if (isIOS) {
-                // Создаем временное уведомление
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Проверяем, показывали ли мы уже подсказку
+                const hintShown = sessionStorage.getItem('fullscreen-hint-shown');
+                
+                // Создаем временное уведомление с инструкцией по выходу
                 const hint = document.createElement('div');
                 hint.className = 'mobile-fullscreen-hint';
                 hint.innerHTML = `
                     <div class="hint-content">
-                        <p>💡 Для полноэкранного режима на iOS:</p>
-                        <p>Нажмите кнопку "Поделиться" → "На экран Домой"</p>
-                        <p>или используйте режим чтения Safari</p>
+                        <p>📱 <strong>Полноэкранный режим активен</strong></p>
+                        <p>Для выхода:</p>
+                        <p>• Нажмите кнопку <strong>✕</strong> в правом верхнем углу</p>
+                        <p>• Или сделайте <strong>свайп вниз</strong> от верхнего края экрана</p>
+                        ${isIOS ? '<p style="font-size: 0.9em; color: var(--color-text-secondary); margin-top: 8px;">💡 Также можно использовать "Поделиться" → "На экран Домой"</p>' : ''}
                         <button onclick="this.parentElement.parentElement.remove()">Понятно</button>
                     </div>
                 `;
                 document.body.appendChild(hint);
                 
-                // Автоматически скрываем через 5 секунд
+                // Отмечаем, что подсказка была показана
+                if (!hintShown) {
+                    sessionStorage.setItem('fullscreen-hint-shown', 'true');
+                }
+                
+                // Автоматически скрываем через 4 секунды
                 setTimeout(() => {
                     if (hint.parentElement) {
                         hint.remove();
                     }
-                }, 5000);
+                }, 4000);
             }
         }
         
@@ -24796,6 +24963,11 @@ html.mobile-fullscreen {
         document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
         document.addEventListener('mozfullscreenchange', updateFullscreenButton);
         document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+        
+        // Инициализация состояния кнопки при загрузке страницы
+        setTimeout(() => {
+            updateFullscreenButton();
+        }, 500);
         
         function updateFullscreenButton() {
             const fullscreenBtn = document.querySelector('.fullscreen-btn');
@@ -24808,11 +24980,23 @@ html.mobile-fullscreen {
                                 document.body.classList.contains('mobile-fullscreen');
             
             if (isFullscreen) {
+                // В полноэкранном режиме показываем кнопку выхода
                 fullscreenBtn.setAttribute('title', 'Выйти из полноэкранного режима');
-                fullscreenBtn.textContent = '⛶';
+                // Для мобильного режима иконка уже изменена в handleMobileFullscreen
+                if (!fullscreenBtn.classList.contains('fullscreen-exit-mode')) {
+                    fullscreenBtn.textContent = '⛶';
+                } else {
+                    fullscreenBtn.textContent = '✕';
+                }
+                // Убеждаемся, что кнопка видна в мобильном режиме
+                if (document.body.classList.contains('mobile-fullscreen')) {
+                    fullscreenBtn.classList.add('fullscreen-exit-mode');
+                }
             } else {
+                // В обычном режиме показываем кнопку входа
                 fullscreenBtn.setAttribute('title', 'Полноэкранный режим');
                 fullscreenBtn.textContent = '⛶';
+                fullscreenBtn.classList.remove('fullscreen-exit-mode');
             }
         }
         
@@ -26701,8 +26885,10 @@ html.mobile-fullscreen {
                 
                 // Используем max() для учета safe-area
                 // На мобильных тулбары уменьшены, поэтому используем меньший минимум
-                const minPadding = isMobile ? 50 : 80; // уменьшено с 80 до 50 на мобильных (62%)
-                const paddingBottom = Math.max(minPadding, navHeight + (isMobile ? 12 : 20) + safeAreaBottom);
+                // Добавляем дополнительный отступ 20px (0.5 см) для комфортного просмотра, чтобы контент не заезжал под тулбар
+                const extraPadding = isMobile ? 20 : 0; // Дополнительный отступ 0.5 см на мобильных
+                const minPadding = isMobile ? (50 + extraPadding) : 80; // 70px минимум на мобильных (50 + 20)
+                const paddingBottom = Math.max(minPadding, navHeight + (isMobile ? 12 : 20) + safeAreaBottom + extraPadding);
                 slideContainerEl.style.paddingBottom = `${paddingBottom}px`;
                 
                 // На мобильных также устанавливаем padding-top для верхнего тулбара
